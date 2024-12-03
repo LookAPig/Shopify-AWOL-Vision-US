@@ -1,0 +1,264 @@
+ {
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "show_title": true,
+        "page_width": "medium"
+      }
+    },
+    "show_room_for_host_zNrYC6": {
+      "type": "show-room-for-host",
+      "blocks": {
+        "search_banner_3EGWVP": {
+          "type": "search_banner",
+          "settings": {
+            "banner": "shopify://shop_images/Showroom_host_banner.png",
+            "banner_mobile": "shopify://shop_images/Showroom_hostbanner_mobile.png",
+            "title": "Host a<br> Neighborhood <br> Showroom",
+            "subtitle": "Unlock exclusive perks and connect <br>with other projector enthusiasts",
+            "input_lable": "",
+            "button_lable": "apply to become a host",
+            "link_to": "shopify://pages/become-a-host-application",
+            "position": "left",
+            "font_color": "#ffffff",
+            "button_color": "#1faeff",
+            "button_font_color": "#ffffff"
+          }
+        },
+        "items_wdjPyU": {
+          "type": "items",
+          "settings": {
+            "item_header": "01",
+            "item_subtitle": "Become an Ambassador",
+            "item_context": "Share a discount with your friends & family, and earn cash with each sale you encourage.",
+            "item_header1": "02",
+            "item_subtitle1": "Earn Rewards",
+            "item_context1": "Enjoy exclusive early-access to new products, ongoing discounts as you add to your space, and get paid for hosting virtual or in-person visits.",
+            "item_header2": "03",
+            "item_subtitle2": "Join the Community",
+            "item_context2": "Connect with other Hosts and participate in Host-exclusive events.",
+            "item_bg": "#eeeff1",
+            "item_header_color": "",
+            "item_font_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "search_banner_3EGWVP",
+        "items_wdjPyU"
+      ],
+      "custom_css": [
+        ".search_banner_container .search_banner_context {display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px;}",
+        "@media screen and (max-width: 768px) {br {display: none; } .search_banner_container .search_banner_context {gap: 0; } .search_banner_container .search_containers a {color: white !important; background: #1faeff !important; position: unset; margin: 0; width: fit-content; font-size: 12px; padding: 12px 22px; }}"
+      ],
+      "settings": {
+        "background_type": "boxed",
+        "text_width": "medium",
+        "text_position": "center",
+        "text_alignment": "center",
+        "background": "rgba(0,0,0,0)",
+        "text_color": "rgba(0,0,0,0)",
+        "button_background": "rgba(0,0,0,0)",
+        "button_text_color": "rgba(0,0,0,0)"
+      }
+    },
+    "image_with_text_NChXMX": {
+      "type": "image-with-text",
+      "blocks": {
+        "item_JM3T8b": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/Mask_group.png",
+            "tab_label": "",
+            "subheading": "",
+            "title": "Host Visits",
+            "content": "<p>Become an Ambassador by inviting shoppers and friends to see and feel your AWOL Vision products in person before they buy, and get rewarded when they do.</p>",
+            "button_text": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "item_JM3T8b"
+      ],
+      "custom_css": [
+        ".image-with-text__image-wrapper {border-radius: 22px;}"
+      ],
+      "settings": {
+        "show_new_style": true,
+        "reveal_on_scroll": true,
+        "background_type": "boxed",
+        "background_overlap": "image",
+        "image_position": "right",
+        "text_alignment": "left",
+        "cycle_speed": 8,
+        "accent_background": "rgba(0,0,0,0)",
+        "text_color": "rgba(0,0,0,0)",
+        "button_background": "rgba(0,0,0,0)",
+        "button_text_color": "rgba(0,0,0,0)"
+      }
+    },
+    "image_with_text_NpmEiK": {
+      "type": "image-with-text",
+      "blocks": {
+        "item_Ughzpg": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/Group_14.png",
+            "tab_label": "Item",
+            "subheading": "",
+            "title": "Connect Virtually",
+            "content": "<p>Share your honest reviews and answer shoppers’ and friends questions by text, phone, video, chat or email.</p>",
+            "button_text": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "item_Ughzpg"
+      ],
+      "custom_css": [
+        ".image-with-text__image-wrapper {border-radius: 22px;}"
+      ],
+      "settings": {
+        "show_new_style": true,
+        "reveal_on_scroll": true,
+        "background_type": "boxed",
+        "background_overlap": "image",
+        "image_position": "left",
+        "text_alignment": "left",
+        "cycle_speed": 8,
+        "accent_background": "rgba(0,0,0,0)",
+        "text_color": "rgba(0,0,0,0)",
+        "button_background": "rgba(0,0,0,0)",
+        "button_text_color": "rgba(0,0,0,0)"
+      }
+    },
+    "faq_list_tmTC9w": {
+      "type": "faq-list",
+      "blocks": {
+        "question_jhJwtD": {
+          "type": "question",
+          "settings": {
+            "question": "What is a Neighborhood Showroom?",
+            "answer": "AWOL Vision's Neighborhood Showroom is a unique program for showcasing projectors. \nCustomers can experience the product first hand, learn about its advantages, and engage with real users—all in a pressure-free environment."
+          }
+        },
+        "question_BR3M9F": {
+          "type": "question",
+          "settings": {
+            "question": "Who are Neighborhood Showroom Hosts?",
+            "answer": "Neighborhood Showroom Hosts are users of AWOL Vision products who showcase them in their homes to connect with local shoppers. \n\nThey share honest experiences and feedback, and enjoy exclusive benefits."
+          }
+        },
+        "question_4CCc4X": {
+          "type": "question",
+          "settings": {
+            "question": "How do I apply to become a Host?",
+            "answer": "Please apply through the following link：\n\nhttps://awolvision.com/pages/become-a-host"
+          }
+        },
+        "question_8QAzMN": {
+          "type": "question",
+          "settings": {
+            "question": "How do I visit a Neighborhood Showroom？",
+            "answer": "To visit a Neighborhood Showroom, search our website for events near you, choose a suitable location, and submit a request to visit.\n\nOur support team will help you set up your visit or virtual connection and provide Host contact info and directions."
+          }
+        },
+        "question_U79VdB": {
+          "type": "question",
+          "settings": {
+            "question": "Can I directly purchase AWOL Vision products at Neighborhood Showrooms?",
+            "answer": "At Neighborhood Showrooms, you can experience AWOL Vision products, but direct purchases are usually not available. \n\nYou can ask the Host for information and then place your order on our website."
+          }
+        },
+        "question_cGmK4K": {
+          "type": "question",
+          "settings": {
+            "question": "How are the showcase events at Neighborhood Showrooms conducted?",
+            "answer": "Showcase events are typically organized by the Host, where customers can experience the products in the Host's home or virtually. \n\nYou will have the opportunity to ask questions and learn about product features and user experiences."
+          }
+        },
+        "question_mVpE84": {
+          "type": "question",
+          "settings": {
+            "question": "Is there a fee to participate in a Neighborhood Showroom?",
+            "answer": "Participating in Neighborhood Showroom events is free. \n\nYou can enjoy interactions with the host and product experiences without any charges."
+          }
+        },
+        "question_PGj9rz": {
+          "type": "question",
+          "settings": {
+            "question": "If I have other questions how can I contact you？",
+            "answer": "You can email us at lambert@awolvision.com"
+          }
+        }
+      },
+      "block_order": [
+        "question_jhJwtD",
+        "question_BR3M9F",
+        "question_4CCc4X",
+        "question_8QAzMN",
+        "question_U79VdB",
+        "question_cGmK4K",
+        "question_mVpE84",
+        "question_PGj9rz"
+      ],
+      "settings": {
+        "placeholder_width": "",
+        "title": "FAQs",
+        "content": "",
+        "background": "rgba(0,0,0,0)",
+        "text_color": "rgba(0,0,0,0)"
+      }
+    },
+    "show_room_for_host_zxbgcd": {
+      "type": "show-room-for-host",
+      "blocks": {
+        "search_banner_iVCJr9": {
+          "type": "search_banner",
+          "settings": {
+            "banner": "shopify://shop_images/Showroom_host_banner02.png",
+            "banner_mobile": "shopify://shop_images/Showroom_hostbanner02_mobile.png",
+            "title": "Become a Host",
+            "subtitle": "Submit your application today to become a<br> Neighborhood Showroom Host.",
+            "input_lable": "",
+            "button_lable": "apply to become a host",
+            "link_to": "shopify://pages/become-a-host-application",
+            "position": "left",
+            "font_color": "#ffffff",
+            "button_color": "#1faeff",
+            "button_font_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "search_banner_iVCJr9"
+      ],
+      "custom_css": [
+        ".search_banner_container .search_banner_context {display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px;}",
+        "@media screen and (max-width: 768px) {br {display: none; } .search_banner_container .search_banner_context {gap: 0; } .search_banner_container .search_containers a {color: white !important; background: #1faeff !important; position: unset; margin: 0; width: fit-content; font-size: 12px; padding: 12px 22px; width: fit-content; font-size: 12px; padding: 12px 22px; }}"
+      ],
+      "settings": {
+        "background_type": "boxed",
+        "text_width": "medium",
+        "text_position": "center",
+        "text_alignment": "center",
+        "background": "rgba(0,0,0,0)",
+        "text_color": "rgba(0,0,0,0)",
+        "button_background": "rgba(0,0,0,0)",
+        "button_text_color": "rgba(0,0,0,0)"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "show_room_for_host_zNrYC6",
+    "image_with_text_NChXMX",
+    "image_with_text_NpmEiK",
+    "faq_list_tmTC9w",
+    "show_room_for_host_zxbgcd"
+  ]
+}

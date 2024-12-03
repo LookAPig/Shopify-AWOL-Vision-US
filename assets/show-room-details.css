@@ -1,0 +1,162 @@
+@font-face {
+  font-family: "Manrope";
+  src: url("https://cdn.shopify.com/s/files/1/0554/7445/4576/files/Manrope.woff2?v=1718257995") format("woff2-variations");
+  font-weight: 200 800;
+}
+.showroom_detail_header .mySwiper {
+  margin-bottom: 96px;
+  /* overflow: hidden; */
+  padding: 0 390px;
+}
+.showroom_detail_header .mySwiper img {
+  width: 100%;
+}
+.showroom_detail_header .h3 {
+  color: var(--Dark-Gray, #1B1D1D);
+  text-align: center;
+  font-family: Manrope;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 115%; /* 55.2px */
+  letter-spacing: -1.44px;
+}
+.detail_context {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 135px;
+}
+.detail_context .information {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+.information_header .information_subtitle,
+.information_desc .information_subdesc,
+.information_name .information_name_desc {
+  color: var(--Dark-Gray, #1B1D1D);
+  font-family: Manrope;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 115%; /* 13.8px */
+  letter-spacing: 0.84px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.information_header .information_title,
+.information_desc .information_desc_title {
+  color: #1B1D1D;
+  font-family: Manrope;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 115%; /* 23px */
+  letter-spacing: -0.4px;
+}
+.host_name {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: #1B1D1D;
+  font-family: Manrope;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 115%; /* 23px */
+  letter-spacing: -0.4px;
+}
+.host_name img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.information_link_to {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.information_link_to a {
+  color: #FFF;
+  text-align: center;
+  font-family: Manrope;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px; /* 142.857% */
+  letter-spacing: 0.98px;
+  text-transform: uppercase;
+  display: inline-flex;
+  padding: 12px 22px;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+  background: #000;
+}
+.map_container {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+.about_context {
+  color: var(--Dark-Gray, #1B1D1D);
+  font-family: Manrope;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%; /* 24px */
+  letter-spacing: -0.16px;
+}
+.about_showroom .about_header,
+.map .map_header {
+  align-self: stretch;
+  color: var(--Dark-Gray, #1B1D1D);
+  font-family: Manrope;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 115%; /* 27.6px */
+  letter-spacing: -0.48px;
+  margin-bottom: 24px;
+}
+.map_image p {
+  color: rgba(27, 29, 29, 0.40);
+  font-family: Manrope;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 115%; /* 13.8px */
+  letter-spacing: -0.36px;
+}
+.showroom_image_items div.swiper-slide {margin: 0 20px 0 0;}
+.showroom_image_items div.swiper-slide img{
+  width: 100%;
+  height: 600px;
+  border-radius: 22px;
+  object-fit: cover;
+}
+@media screen and (max-width: 1024px) {
+  .showroom_detail_header .mySwiper {
+    padding: 0;
+    overflow: hidden;
+  }
+  .detail_context {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+  .showroom_image_items div.swiper-slide img {
+    height: 360px;
+    border-radius: 0;
+  }
+  .showroom_detail_header .mySwiper {
+    margin-bottom: 40px;
+  }
+  .showroom_detail_header .h3 {
+    font-size: 28px;
+  }
+  .information_header .information_title, .information_desc .information_desc_title,
+  .host_name{
+    font-size: 16px;
+  }
+}

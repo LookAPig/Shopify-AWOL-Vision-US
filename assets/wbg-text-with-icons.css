@@ -1,0 +1,51 @@
+.wbg-text-with-icons-container {
+  --icon-size: 40px;
+  --font-color: #F5F6F9;
+  --mobile-gap: 60px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  max-width: var(--container-max-width);
+  margin: auto;
+  color: var(--font-color);
+  row-gap: var(--mobile-gap);
+}
+
+.wbg-icon-instance {
+  max-height:300px;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  width: 25%;
+}
+
+.wbg-icon-instance img {
+  width: var(--icon-size);
+  height: var(--icon-size);
+}
+
+.wbg-icon-title {
+  margin: 8px auto;
+  font-size: 27px;
+}
+
+.wbg-icon-body {
+  margin: 0;
+  font-size: 16px;
+  max-width:50%;
+}
+
+@media screen and (max-width: 1024px) {
+  .wbg-icon-instance {
+    width: 50%;
+  }
+  .wbg-icon-title {
+    font-size: 16px;
+  }
+
+.wbg-icon-body {
+    font-size: 12px;
+    display: none;
+  }
+}

@@ -1,0 +1,181 @@
+{{- 'show-room-details.css' | asset_url | stylesheet_tag: true -}}
+  <section class="section ">
+    <div class="showroom_detail_header" style="overflow: hidden;">
+      <h3 class="container h3 showroom_detail_h3"></h3>
+      <div class="mySwiper">
+        <div class="swiper-wrapper showroom_image_items">
+          <div class="swiper-slide"><img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/ComfyUI_00293__1_2.png?v=1721213052" alt="" /></div>
+          <div class="swiper-slide"><img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/ComfyUI_00293__1_2.png?v=1721213052" alt="" /></div>
+          <div class="swiper-slide"><img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/ComfyUI_00293__1_2.png?v=1721213052" alt="" /></div>
+        </div>
+      </div>
+      <div class="detail_context container">
+        <div class="information">
+          <div class="information_header">
+            <div class="information_subtitle">location</div>
+            <div class="information_title"></div>
+          </div>
+          <div class="information_desc">
+            <div class="information_subdesc">Showroom Type</div>
+            <div class="information_desc_title"></div>
+          </div>
+          <div class="information_name">
+            <div class="information_name_desc">hosted by</div>
+            <div class="host_name">
+              <img src="" alt="host" />
+              <span></span>
+            </div>
+          </div>
+          <div class="information_link_to">
+            <a class="request_visit" href="https://awolvision.com/pages/visit-a-neighborhood-showroom">request a visit</a>
+            <a class="contact_visit" href="https://awolvision.com/pages/connect-virtually">connect virtually</a>
+          </div>
+        </div>
+        <div class="map_container">
+            <div class="about_showroom">
+              <div class="about_header">About this Showroom</div>
+              <div class="about_context">
+               
+              </div>
+            </div>
+            <div class="map">
+              <div class="map_header">Location</div>
+              <div class="map_image">
+                {% comment %} <img style="width: 100%;" src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/image_4.png?v=1721211869" alt=""> {% endcomment %}
+                <div id="map" style="width: 100%;height: 460px;"></div>
+                <p>AWOL’s Neighborhood Showrooms are located at the homes of real AWOL customers in your area. For privacy, the exact location will be provided to you by an AWOL Concierge after you submit your request to connect.</p>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script src="{{ 'swiper-bundle.min.js' | asset_url }}"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOavTIWq4qRgppoQYzktYy5j0Yshb3HRI&callback=initMap&libraries=places&v=weekly"></script>
+  <script>
+    let map;
+    let service;
+    let infowindow;
+
+    function initMap(query_location_name) {
+      console.log('query_location_name', query_location_name)
+      const sydney = new google.maps.LatLng(-33.867, 151.195);
+
+      infowindow = new google.maps.InfoWindow();
+      map = new google.maps.Map(document.getElementById("map"), {
+        center: sydney,
+        zoom: 15,
+        gestureHandling: "none",
+        zoomControl: false,
+        disableDefaultUI: true,
+      });
+
+      const request = {
+        query: query_location_name,
+        fields: ["name", "geometry"],
+      };
+
+      service = new google.maps.places.PlacesService(map);
+      service.findPlaceFromQuery(request, (results, status) => {
+        if (status === google.maps.places.PlacesServiceStatus.OK && results) {
+          for (let i = 0; i < results.length; i++) {
+            createMarker(results[i]);
+          }
+
+          map.setCenter(results[0].geometry.location);
+        }
+      });
+    }
+
+    function createMarker(place) {
+      if (!place.geometry || !place.geometry.location) return;
+
+      const marker = new google.maps.Marker({
+        map,
+        position: place.geometry.location,
+      });
+
+      google.maps.event.addListener(marker, "click", () => {
+        infowindow.setContent(place.name || "");
+        infowindow.open(map);
+      });
+    }
+    // window.initMap = initMap('Museum of Contemporary Art Australia');
+    
+    let params = getUrlParams(window.location.href)
+    let distance = params.distance
+    // console.log('distance', distance)
+    distance = distance.replace(/%20/g, " ");
+    console.log('od', 'https://admin.awolvision.com/prod-api/system/showrooms/' + params.id)
+    $.ajax({
+      url: 'https://admin.awolvision.com/prod-api/system/showrooms/' + params.id,
+      type: 'GET',
+      dataType: 'json',
+      contentType: "application/json",
+      data: [],
+      success: function(response) {
+        // 请求成功时的回调函数
+        if (response.code == 200) {
+          let type = response.data.type == 1 ? "Neighborhood Showroom" : "Retail"
+          $(".showroom_detail_h3").html(response.data.tile);
+          $(".information_title").html(distance + ' ' + response.data.city + ', ' + response.data.country);
+          $(".information_desc_title").html(type);
+          $(".host_name img").attr('src', response.data.headPortrait);
+          $(".host_name span").html(response.data.firstName + ' ' + response.data.lastName);
+          $(".about_context").html(response.data.description);
+          $(".request_visit").attr("href", "https://awolvision.com/pages/visit-a-neighborhood-showroom?showroomId="+ response.data.id);
+          $(".contact_visit").attr("href", "https://awolvision.com/pages/connect-virtually?showroomId="+ response.data.id);
+          let images = response.data.photoList;
+          let images_list = ""
+          for (let i = 0; i < images.length; i++) {
+            images_list += "<div class='swiper-slide'><img src='" + images[i].url + "' alt='' /></div>"
+          }
+          $(".showroom_image_items").html(images_list)
+          if (response.data.address) {
+            window.initMap = initMap(response.data.address);
+          } else {
+            window.initMap = initMap('Museum of Contemporary Art Australia');
+          }
+        }
+      },
+      error: function(xhr, status, error) {
+        // 请求失败时的回调函数
+        console.error('Error:', error);
+      }
+    });
+    var swiper = new Swiper(".mySwiper", {
+      slidesPerView: window.innerWidth < 1024 ? 1 : 1,
+      loop: true,
+      spaceBetween: 20,
+      autoplay: {
+        delay: 6000
+      },
+      pagination: {
+        el: ".swiper-pagination",
+      },
+    });
+    function getUrlParams(url) {
+      const paramsRegex = /[?&]+([^=&]+)=([^&]*)/gi;
+      const params = {};
+      let match;
+      while (match = paramsRegex.exec(url)) {
+        params[match[1]] = match[2];
+      }
+      return params;
+    }
+
+  </script>
+  {% schema %}
+  {
+    "name": "Showroom details",
+    "class": "shopify-section--show-room",
+    "settings": [],
+    "blocks": [],
+    "presets": [
+      {
+        "name": "Showroom details",
+        "settings": {}
+      }
+    ]
+  }
+  {% endschema %}

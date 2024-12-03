@@ -1,0 +1,73 @@
+{% comment %} {{- 'event_page.css' | asset_url | stylesheet_tag: true -}} {% endcomment %}
+{% style %}
+  .event_page_countdown {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.background }};
+  }
+{% endstyle %}
+<div class="event_page_countdown">
+  {% render 'event-countdown' with endTime: section.settings.end_tiem %}
+</div>
+{% schema %}
+{
+  "name": "Event page coountdown",
+  "class": "shopify-section--event_page_countdown",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background",
+      "default": "#000000"
+    },
+    {
+      "type": "text",
+      "id": "end_tiem",
+      "label": "End time",
+      "info": "Eg: 2024/07/19 17:48:00"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "nav_item",
+      "name": "nav_item",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "icon_svg",
+          "label": "Icon svg code"
+        },
+        {
+          "type": "textarea",
+          "id": "context",
+          "label": "Context"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Even page countdown",
+      "blocks": []
+    }
+  ]
+}
+{% endschema %}

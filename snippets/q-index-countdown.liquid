@@ -1,0 +1,159 @@
+{%- assign img_url = img -%}
+{%- assign header = header -%}
+{%- assign endTime = endtiem -%}
+{% assign background = background %}
+{% assign font_color = font_color %}
+{% assign countdown_bgcolor = countdown_bgcolor %}
+{% assign countdown_fontcolor = countdown_fontcolor %}
+{{ 'q-index-countdown.css' | asset_url | stylesheet_tag }}
+{% style %}
+  .time-item {
+    background: {{ countdown_bgcolor }};
+    color: {{ countdown_fontcolor }};
+  }
+{% endstyle %}
+<div class="countdown-container" style="background: {{ background }};">
+  <div class="q-index-countdown-maincontainer">
+    {% if header %}
+      <div class="countdown_text">
+        <div style="color: {{ font_color }};">{{ header }}</div>
+      </div>
+    {% endif %}
+    <div class="q-index-countdown-box" style="color: {{ font_color }}">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" style="margin-right: 4px;">
+        <g clip-path="url(#clip0_14998_6386)">
+          <path d="M12.4824 7.33707H10.9824V13.2891L15.6984 16.1331L16.4544 14.8971L12.4824 12.5451V7.33707Z" fill="#FABF68"/>
+          <path d="M7.75285 4.872C11.8059 2.532 16.915 3.7253 19.5336 7.49277L20.2714 7.06677L20.6718 11.4082L17.1121 8.89077L17.798 8.49477C15.7315 5.68339 11.8294 4.80473 8.73246 6.59273C5.40692 8.51273 4.26932 12.7583 6.18932 16.0839C7.43602 18.2432 9.66324 19.4801 11.9824 19.5564C13.2349 19.5976 14.5143 19.3003 15.6805 18.627C16.6573 18.063 17.4503 17.3004 18.0209 16.4167L19.6291 17.5943C18.8943 18.6975 17.9028 19.6441 16.6765 20.3521C15.1956 21.2071 13.5733 21.5902 11.9824 21.5488C8.97354 21.4705 6.07731 19.8739 4.46419 17.0799C2.00859 12.8026 3.48162 7.338 7.75285 4.872Z" fill="#FABF68"/>
+        </g>
+        <defs>
+          <clipPath id="clip0_14998_6386">
+            <rect width="24" height="24" fill="white"/>
+          </clipPath>
+        </defs>
+      </svg>
+      <div class="index-countdown" data-end-time="{{ endTime }}">
+        <div class="index-time-box">
+          <div>
+            <div class="time-item">
+              <span class="index-days index-time-num">00</span>
+            </div>
+          </div>
+          <div>
+            <div class="time-item dot">
+              <span class="index-time-num">:</span>
+            </div>
+          </div>
+          <div>
+            <div class="time-item">
+              <span class="index-hours index-time-num">00</span>
+            </div>
+          </div>
+          <div>
+            <div class="time-item dot">
+              <span class="index-time-num">:</span>
+            </div>
+          </div>
+          <div>
+            <div class="time-item">
+              <span class="index-minutes index-time-num">00</span>
+            </div>
+          </div>
+          <div>
+            <div class="time-item dot">
+              <span class="index-time-num">:</span>
+            </div>
+          </div>
+          <div>
+            <div class="time-item">
+              <span class="index-seconds index-time-num">00</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% if img_url %}
+    <div class="img-container">
+      <img src="{{ img_url | image_url }}">
+    </div>
+  {% endif %}
+</div>
+
+<script>
+  class Countdown {
+    constructor() {
+      this.container = document.querySelector('.index-countdown');
+      if(!this.container.dataset['endTime']) return;
+      this.endTime = new Date(this.container.dataset['endTime']).getTime();
+      // 结束时间
+      this.timer = null; // 定时器
+      this.distance = null;
+      // 倒计时容器
+      this.daysEle = document.querySelector('.index-days');
+      // 天数元素
+      this.hoursEle = document.querySelector('.index-hours');
+      // 小时元素
+      this.minutesEle = document.querySelector('.index-minutes');
+      // 分钟元素
+      this.secondsEle = document.querySelector('.index-seconds');
+      // 秒数元素
+      this.init();
+      // 初始化
+    }
+
+    // 初始化
+    init() {
+      // 更新倒计时
+      this.updateCountdown();
+      // 每隔1秒更新倒计时
+      this.timer = setInterval(() => {
+        this.updateCountdown();
+      }, 1000);
+    }
+
+    // 更新倒计时
+    updateCountdown() {
+      // 计算剩余时间
+      const date = new Date();
+      const options = { timeZone: 'Asia/Shanghai' };
+      const beijingTime = date.toLocaleString('zh-CN', options);
+      let now = new Date(beijingTime)
+      this.distance = this.endTime - now.getTime();
+      this.start();
+    }
+    start() {
+      this.updateCounter();
+      this.timer = setInterval(() => {
+        this.updateCounter();
+      }, 1000);
+    }
+
+    stop() {
+      clearInterval(this.timer);
+      this.timer = null;
+    }
+
+    updateCounter() {
+      const diff = this.distance;
+      if (diff <= 0) {
+        this.stop();
+        // this.container.style.display = 'none';
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      this.daysEle.innerHTML = days < 10 ? '0' + days : days;
+      // 天数元素
+      this.hoursEle.innerHTML = hours < 10 ? '0' + hours : hours;
+      // 小时元素
+      this.minutesEle.innerHTML = minutes < 10 ? '0' + minutes : minutes;
+      // 分钟元素
+      this.secondsEle.innerHTML = seconds < 10 ? '0' + seconds : seconds;
+      // 秒数元素
+    }
+  }
+  new Countdown();
+</script>

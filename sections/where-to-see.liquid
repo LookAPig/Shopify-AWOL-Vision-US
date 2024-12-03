@@ -1,0 +1,73 @@
+<style>
+.where-to-see h3 {font-size: 36px;text-align: center; margin-top: 20px!important;}
+.where-to-see br {margin-bottom: 10px;}
+.where-to-see a {font-weight: 800;text-decoration: underline;}
+.where-to-see .item_context {font-size: 18px;padding: 40px;}
+.where-to-see .item_context p {margin-bottom: 10px;margin-top: 0;}
+.where_item {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 2fr;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  border-radius: 15px;
+  overflow: hidden;
+  gap: 40px;
+  margin: 20px 0 10px 0
+}
+@media screen and (max-width: 768px) {
+  .where-to-see h3 {font-size: 26px;}
+  .where_item {grid-template-columns: 1fr;gap: 0px;}
+  .where-to-see .item_context {font-size: 16px;padding: 20px;}
+}
+</style>
+<div class="where-to-see container">
+    <h3>{{ section.settings.title }}</h3> 
+    {% for block in section.blocks %}
+      <div class="where_item">
+        <a href="{% if block.settings.link_to %} {{ block.settings.link_to }} {% else %}javascript:; {% endif %}">
+          <img src="{{ block.settings.image_url | img_url: 'x1920' }}"/>
+        </a>
+        <div class="item_context">{{ block.settings.context }}</div>
+      </div>
+    {% endfor %}
+</div>
+<script>
+</script>
+{% schema %}
+{
+  "name": "where to see", "class": "section__color-wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Where to See AWOL VISION"
+    }
+  ],
+  "blocks":[
+    {
+      "type": "item", "name": "list item",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "context",
+          "label": "context"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_url",
+          "label": "image_url"
+        },
+        {
+          "type": "url",
+          "id": "link_to",
+          "label": "Link to"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {"name": "Where to see"}
+  ]
+}
+{% endschema %}

@@ -1,0 +1,203 @@
+{% style %}
+    @font-face {
+      font-family: "Manrope";
+      src: url("https://cdn.shopify.com/s/files/1/0554/7445/4576/files/Manrope.woff2?v=1718257995") format("woff2-variations");
+      font-weight: 400;
+    }
+    .feedback_container {
+      /* display: grid;
+      grid-template-columns: repeat({{ section.settings.grid_colums }}, 1fr);
+      gap: 60px; */
+      padding: 0px;
+      /* column-count: 2;
+      column-gap: 60px; */
+    }
+    .specification_item {
+      margin-bottom: 40px;
+      break-inside: avoid;
+    }
+    .specification_main_title {
+      font-family: 'Manrope'!important;
+      width: 100%;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+      color: #1b1d1d;
+      column-span: all;
+    }
+    .specification_title {
+      font-family: 'Manrope'!important;
+      width: 100%;
+      padding: 16px;
+      background: {{ section.settings.header_bgcolor }};
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+      color: #1b1d1d;
+    }
+    .specification_context {
+      padding: 16px;
+      background: {{ section.settings.context_bgcolor }};
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+    }
+    .specification_context:not(:last-of-type) {
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+    .specification_key {
+      color: var(--Dark-Gray, #1B1D1D);
+      font-family: Manrope;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+    }
+    .specification_val {
+      color: #9B9B9B;
+      font-family: Manrope;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+    }
+    .feedback_header {
+      font-family: Manrope;
+      font-size: 30px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    @media screen and (max-width: 749px) {
+      .feedback_container {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 16px;
+      }
+      .specification_item {
+        margin-bottom: 0px;
+      }
+      .specification_title {
+        font-size: 16px;
+      }
+      .specification_key {
+        font-size: 14px;
+      }
+      .specification_val {
+        font-size: 14px;
+      }
+      .feedback_header {
+        font-size: 20px;
+        margin-bottom: 16px;
+      }
+    }
+  {% endstyle %}
+  <section id="Feedback" class="container" style="padding-top: {{ section.settings.paddingTop }}px;padding-bottom: {{ section.settings.paddingBottom }}px;">
+    <div class="feedback_header" id="feed_header">
+      {{ section.settings.title }}
+    </div>
+    <div class="feedback_container" id="feed_container"></div>
+  </section>
+    
+  <script>
+    // 目标元素的选择器
+    const targetSelector = '._hj-widget-container';
+    let feed_c = document.getElementById('Feedback')
+    // 用于检查元素是否存在的函数
+    function checkElementExists() {
+      const element = document.querySelector(targetSelector);
+      let element2 = document.querySelector('div[isclosed="true"]');
+      if (element) {
+        console.log('元素存在', element2);
+        if (element2) {
+            feed_c.style.display = 'none'
+        } else {
+            feed_c.style.display = 'block'
+        }
+          
+      } else {
+        feed_c.style.display = 'none'
+        console.log('元素不存在');
+      }
+    }
+    
+    // 监听DOM变化的MutationObserver配置
+    const observerOptions = {
+        childList: true,
+        subtree: true,
+    };
+    
+    // 创建一个MutationObserver实例并传入回调函数
+    const observer = new MutationObserver(mutations => {
+        checkElementExists();
+    });
+    
+    // 开始监听目标元素
+    observer.observe(document, observerOptions);
+    
+    // 检查初始状态
+    checkElementExists();
+
+    setInterval(function() {
+        // 这里可以放入你想要定期执行的代码
+        checkElementExists();
+        // 这里可以调用 observer.takeRecords() 来手动获取目标节点上所有已经发生的变化
+    }, 1000);
+  </script>
+
+  {% schema %}
+  {
+    "name": "Feedback", "class": "shopify-section--feedback",
+    "settings": [
+      {
+        "type": "text",
+        "id": "id",
+        "label": "Section id",
+        "default": "Feedback"
+      },
+      {
+        "type": "range",
+        "id": "paddingTop",
+        "label": "paddingTop",
+        "min": 0,
+        "max": 100,
+        "step": 2,
+        "default": 20
+      },
+      {
+        "type": "range",
+        "id": "paddingBottom",
+        "label": "paddingBottom",
+        "min": 0,
+        "max": 100,
+        "step": 2,
+        "default": 20
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Product specification title"
+      },
+      {
+        "type": "header",
+        "content": "Color"
+      },
+      {
+        "type": "color",
+        "id": "header_bgcolor",
+        "label": "Header background color",
+        "default": "#F4F4F4"
+      },
+      {
+        "type": "color",
+        "id": "context_bgcolor",
+        "label": "Context background color",
+        "default": "#FFFFFF"
+      }
+    ],
+    "presets": [
+      {"name": "Feedback"}
+    ]
+  }
+  {% endschema %}

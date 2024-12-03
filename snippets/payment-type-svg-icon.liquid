@@ -1,0 +1,6 @@
+<div class="payment-methods-list payment-methods-list--auto">
+  {% assign enabled_payment_types = 'affirm,amazon,paypal,shopify_pay,visa,master,american_express,discover,diners_club,google_pay,apple_pay,metapay' | remove: ' ' | split: ',' %}
+  {% for type in enabled_payment_types %}
+    {{ type | payment_type_svg_tag }}
+  {% endfor %}
+</div>

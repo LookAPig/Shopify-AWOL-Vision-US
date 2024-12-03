@@ -1,0 +1,174 @@
+{% style %}
+  @font-face {
+    font-family: "Manrope";
+    src: url("https://cdn.shopify.com/s/files/1/0554/7445/4576/files/Manrope.woff2?v=1718257995") format("woff2-variations");
+    font-weight: 400;
+  }
+  .specification_container {
+    /* display: grid;
+    grid-template-columns: repeat({{ section.settings.grid_colums }}, 1fr);
+    gap: 60px; */
+    padding: 0px;
+    column-count: 2;
+    column-gap: 60px;
+  }
+  .specification_item {
+    margin-bottom: 40px;
+    break-inside: avoid;
+  }
+  .specification_main_title {
+    font-family: 'Manrope'!important;
+    width: 100%;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    color: #1b1d1d;
+    column-span: all;
+    margin-bottom: 16px
+  }
+  .specification_title {
+    font-family: 'Manrope'!important;
+    width: 100%;
+    padding: 16px;
+    background: {{ section.settings.header_bgcolor }};
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    color: #1b1d1d;
+  }
+  .specification_context {
+    padding: 16px;
+    background: {{ section.settings.context_bgcolor }};
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+  .specification_context:not(:last-of-type) {
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+  }
+  .specification_key {
+    color: var(--Dark-Gray, #1B1D1D);
+    font-family: Manrope;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+  .specification_val {
+    color: #9B9B9B;
+    font-family: Manrope;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  .specification_header {
+    font-family: Manrope;
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  @media screen and (max-width: 749px) {
+    .specification_container {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 16px;
+    }
+    .specification_item {
+      margin-bottom: 0px;
+    }
+    .specification_title {
+      font-size: 16px;
+    }
+    .specification_key {
+      font-size: 14px;
+    }
+    .specification_val {
+      font-size: 14px;
+    }
+    .specification_header {
+      font-size: 20px;
+      margin-bottom: 16px;
+    }
+  }
+{% endstyle %}
+<section id="Specification" class="container" style="padding-top: {{ section.settings.paddingTop }}px;padding-bottom: {{ section.settings.paddingBottom }}px;">
+  <div class="specification_header">
+    {{ section.settings.title }}
+  </div>
+  <div class="specification_container ">
+    {{ section.settings.liquid }}
+  </div>
+</section>
+  
+{% schema %}
+{
+  "name": "Specification", "class": "shopify-section--specification",
+  "settings": [
+    {
+      "type": "text",
+      "id": "id",
+      "label": "Section id",
+      "default": "Specification"
+    },
+    {
+      "type": "range",
+      "id": "grid_colums",
+      "label": "Grid colums",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "paddingTop",
+      "label": "paddingTop",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "paddingBottom",
+      "label": "paddingBottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "default": 20
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Product specification title"
+    },
+    {
+      "type": "liquid",
+      "id": "liquid",
+      "label": "Product metafields"
+    },
+    {
+      "type": "header",
+      "content": "Color"
+    },
+    {
+      "type": "color",
+      "id": "header_bgcolor",
+      "label": "Header background color",
+      "default": "#F4F4F4"
+    },
+    {
+      "type": "color",
+      "id": "context_bgcolor",
+      "label": "Context background color",
+      "default": "#FFFFFF"
+    }
+  ],
+  "presets": [
+    {"name": "Specification"}
+  ]
+}
+{% endschema %}

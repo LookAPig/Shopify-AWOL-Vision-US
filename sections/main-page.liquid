@@ -1,0 +1,180 @@
+<section>
+  {% if page.url contains 'shipping-policy' or page.url contains 'refund-policy' or page.url contains 'payment-policy' or page.url contains 'warranty' or page.url contains 'extended-warranty' or page.url contains 'terms-of-service' %}
+  <style>
+    @media screen and (min-width:1010px){
+  .container1{
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1350px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  .manual-navul{
+    padding-bottom: 20px;
+    width: 20%;
+   padding-left: 50px;
+    padding-top: 80px;
+  }
+  .cl-changetext{
+    position: relative;
+    padding: 20px 0;
+    display: inline-block;
+}
+  .manual-navul li{
+    list-style: none;
+    margin-bottom: 0;
+    cursor: pointer;
+  }
+    
+  .page-header{
+    font-size: 16px;
+    width: 77%;
+  }
+  .manual-navul{
+    display:block !important;
+  }
+}
+  .manual-navul{
+    display:none;
+  }
+    
+  .ret1{
+    text-align:left;
+  }
+    
+  </style>
+  
+   <div class="container container1">
+     <ul class="manual-navul">
+        <li>
+          <a class="cl-changetext" href="/pages/shipping-policy">Shipping Policy </a>
+        </li>
+        <li> 
+          <a class="cl-changetext" href="/pages/refund-policy">Refund Policy</a>
+        </li>
+       <li> 
+          <a class="cl-changetext " href="/pages/terms-of-service">Terms of Service</a>
+        </li>
+        <li> 
+          <a class="cl-changetext  active" href="/pages/payment-policy">Payment Policy </a>
+        </li>              
+        <li> 
+          <a class="cl-changetext " href="/pages/warranty">Warranty</a>
+        </li>             
+        <li> 
+          <a class="cl-changetext " href="/pages/extended-warranty">Extended Warranty</a>
+        </li>      
+        <li> 
+<!--           <a class="cl-changetext " href="/pages/specifications">Product Specifications</a> -->
+        </li>
+        <li> 
+<!--           <a class="cl-changetext " href="/pages/manual">Product Manuals</a> -->
+        </li>
+       <li> 
+<!--           <a class="cl-changetext " href="/pages/reviews">Reviews</a> -->
+        </li>
+        <div class="clear"></div> 
+      </ul>
+    
+    <div class="page-header">
+<!--       <nav aria-label="{{ 'general.breadcrumb.title' | t }}" class="breadcrumb breadcrumb--floating text--xsmall hidden-phone">
+        <ol class="breadcrumb__list" role="list">
+          <li class="breadcrumb__item">
+            <a class="breadcrumb__link" href="{{ routes.root_url }}">{{ 'general.breadcrumb.home' | t }}</a>
+          </li>
+
+          <li class="breadcrumb__item">
+            <span class="breadcrumb__link" aria-current="page">{{ page.title }}</span>
+          </li>
+        </ol>
+      </nav> -->
+
+      <div class="page-header__text-wrapper text-container">
+        {%- if section.settings.show_title -%}
+          <h1 class="heading h2">{{ page.title }}</h1>
+        {%- endif -%}
+
+        {%- if template.suffix contains 'contact' or template.suffix contains 'faq' -%}
+          {{- page.content -}}
+        {%- endif -%}
+      </div>
+    
+
+    {%- unless template.suffix contains 'contact' or template.suffix contains 'faq' -%}
+      <div class="page-content page-content--{{ section.settings.page_width }} rte ret1">
+        {{- page.content -}}
+      </div>
+    {%- endunless -%}
+    </div>
+  </div>
+    
+  {% else %} 
+  
+  <div class="container">
+    <div class="page-header">
+      <nav aria-label="{{ 'general.breadcrumb.title' | t }}" class="breadcrumb breadcrumb--floating text--xsmall hidden-phone">
+        <ol class="breadcrumb__list" role="list">
+          <li class="breadcrumb__item">
+            <a class="breadcrumb__link" href="{{ routes.root_url }}">{{ 'general.breadcrumb.home' | t }}</a>
+          </li>
+
+          <li class="breadcrumb__item">
+            <span class="breadcrumb__link" aria-current="page">{{ page.title }}</span>
+          </li>
+        </ol>
+      </nav>
+
+      <div class="page-header__text-wrapper text-container">
+        {%- if section.settings.show_title -%}
+          <h1 class="heading h2">{{ page.title }}</h1>
+        {%- endif -%}
+
+        {%- if template.suffix contains 'contact' or template.suffix contains 'faq' -%}
+          {{- page.content -}}
+        {%- endif -%}
+      </div>
+    </div>
+
+    {%- unless template.suffix contains 'contact' or template.suffix contains 'faq' -%}
+      <div class="page-content page-content--{{ section.settings.page_width }} rte">
+        {{- page.content -}}
+      </div>
+    {%- endunless -%}
+  </div>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Page",
+  "class": "shopify-section--main-page",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show page title",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "page_width",
+      "label": "Page width",
+      "options": [
+        {
+          "value": "small",
+          "label": "Small"
+        },
+        {
+          "value": "medium",
+          "label": "Medium"
+        },
+        {
+          "value": "large",
+          "label": "Large"
+        }
+      ],
+      "default": "medium"
+    }
+  ]
+}
+{% endschema %}

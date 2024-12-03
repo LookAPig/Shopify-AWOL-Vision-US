@@ -1,0 +1,90 @@
+{%- style -%}
+  .projectors-comparison-link-btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .projectors-comparison-link-btn-container .link-btn-wrap:hover {
+    opacity: 0.8;
+  }
+
+  .projectors-comparison-link-btn-container .link-btn-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 220px;
+    height: 50px;
+    flex-shrink: 0;
+    border-radius: 4px;
+    background: #ececec;
+
+    color: #1b1d1d;
+    text-align: center;
+    font-family: AWOL-DM;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%;
+    /* 20.7px */
+    letter-spacing: -0.54px;
+
+    cursor: pointer;
+
+
+  }
+
+  @media screen and (max-width: 1024px) {
+    .projectors-comparison-link-btn-container .link-btn-wrap {
+
+
+      width: 156px;
+      height: 36px;
+      flex-shrink: 0;
+
+
+      color: #1b1d1d;
+      text-align: center;
+      font-family: AWOL-DM;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 100%;
+      /* 20.7px */
+      letter-spacing: -0.42px;
+    }
+
+  }
+
+
+{%- endstyle -%}
+
+
+{% if collection.title contains '4K Laser Projector' %}
+  <div class="projectors-comparison-link-btn-container">
+    <a
+      href="https://awolvision.com/pages/projectors-comparison"
+      title="Compare Projectors"
+      target="_blank"
+      class="link-btn-wrap">Compare Projectors &gt;</a>
+  </div>
+{% endif %}
+
+<script></script>
+
+
+{% schema %}
+  {
+    "name": "projectors-comparison-btn",
+    "tag": "section",
+    "class": "projectors-comparison-link-btn-container",
+    "settings": [],
+    "blocks": [],
+    "presets": [
+      {
+        "name": "projectors comparison btn"
+      }
+    ]
+  }
+{% endschema %}

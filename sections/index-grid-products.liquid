@@ -1,0 +1,199 @@
+<style>
+  .shopify-section--shop-the-grid-products {
+    background-color: {{ section.settings.background }};
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    .shop-the-look__item {
+      background: {{ section.settings.background }};
+    }
+  }
+  @media screen and (max-width: 1024px) {
+    .shopify-section--shop-the-grid-products {
+      padding-top: 60px;
+      margin-top: -1px;
+    }
+  }
+</style>
+
+<section reveal-on-scroll class="index_shop-grid-products_container">
+  <a aria-label="{{ section.settings.header_title }}" href="{% if section.settings.header_url != blank %}{{ section.settings.header_url }}{% else %}javascript:;{% endif %}" class="shop_header">
+    <h2 class="header_title">{{ section.settings.header_title }}</h2>
+    {% if section.settings.header_subtitle != blank %}
+      <h3 class="header_subtitle">{{ section.settings.header_subtitle }}</h3>
+    {% endif %}
+  </a>
+  <div class="index_shop-grid-products">
+    {% for block in section.blocks %}
+      {% assign product_list = block.settings.product_list %}
+      <a aria-label="{{ product_list.title }}" href="{{ product_list.url }}" class="grid-porduct_item {% if block.settings.c_longer %}c_longer{% endif %} {% if block.settings.r_longer %}r_longer{% endif %}">
+        <div class="product_images">
+          <img class="pc" src="{{ block.settings.product_images | image_url }}" alt="{{ product_list.title }}" />
+          <img class="mobile" src="{% if block.settings.product_images_mobile != blank %}{{ block.settings.product_images_mobile | image_url }}{% else %}{{ block.settings.product_images | image_url }}{% endif %}" alt="{{ product_list.title }}" />
+        </div>
+        <div class="product_details {% if block.settings.c_longer %}longer_container{% endif %}">
+          <div class="{% if block.settings.c_longer %}details_container{% endif %}">
+            <div class="{% if block.settings.c_longer %}product_main_container{% endif %}">
+              <div class="product_name">
+                {% if block.settings.product_name != blank %}
+                  {{ block.settings.product_name }}
+                {% else %}    
+                  {{ product_list.title }}
+                {% endif %}
+              </div>
+              <div class="product_desc">{{ block.settings.product_desc }}</div>
+              <div class="product_price">
+                {% comment %} {% if block.settings.product_price != blank %}
+                  {{ block.settings.product_price }}
+                {% else %}
+                  {{ product_list.price | money }}
+                {% endif %} {% endcomment %}
+                {% if block.settings.c_longer %}
+                  <div class="link_arrow">
+                    <span class="learn_more_btn">learn more</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <path d="M10.7318 16.8569L17.4814 10.0001M17.4814 10.0001L10.7318 3.14331M17.4814 10.0001L2.91076 10.0001" stroke="white" stroke-width="1.5"/>
+                    </svg>
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+            {% if block.settings.c_longer %}
+              <img class="product_single_images" src="{{ block.settings.product_single_images | image_url }}" alt="" />
+            {% endif %}
+          </div>
+          <div class="link_arrow long_hide">
+            <span class="learn_more_btn">learn more</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M10.7318 16.8569L17.4814 10.0001M17.4814 10.0001L10.7318 3.14331M17.4814 10.0001L2.91076 10.0001" stroke="white" stroke-width="1.5"/>
+            </svg>
+          </div>
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+  {% if section.settings.show_compare %}
+    <div class="compare_container">
+      <a aria-label="Projectors comparison" class="compare_button" href="https://awolvision.com/pages/projectors-comparison">Compare AWOL Vision Projectors ></a>
+    </div>
+  {% endif %}
+</section>
+ 
+{% schema %}
+{
+  "name": "Index grid products",
+  "class": "shopify-section--shop-the-grid-products", 
+  "blocks": [
+    {
+      "type": "product_item",
+      "name": "product_item",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product_list",
+          "label": "Product"
+        },
+        {
+          "type": "image_picker",
+          "id": "product_images",
+          "label": "Product image"
+        },
+        {
+          "type": "image_picker",
+          "id": "product_images_mobile",
+          "label": "Product image mobile 1"
+        },
+        {
+          "type": "textarea",
+          "id": "product_name",
+          "label": "Product name"
+        },
+        {
+          "type": "textarea",
+          "id": "product_price",
+          "label": "Product price"
+        },
+        {
+          "type": "textarea",
+          "id": "product_desc",
+          "label": "Product Desc"
+        },
+        {
+          "type": "checkbox",
+          "id": "c_longer",
+          "label": "Longer columns layout",
+          "default": false
+        },
+        {
+          "type": "image_picker",
+          "id": "product_single_images",
+          "label": "Product single image"
+        },
+        {
+          "type": "checkbox",
+          "id": "r_longer",
+          "label": "Longer rows layout",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "id": "header_title",
+      "label": "Header title"
+    },
+    {
+      "type": "text",
+      "id": "header_subtitle",
+      "label": "Header subtitle"
+    },
+    {
+      "type": "url",
+      "id": "header_url",
+      "label": "Link to"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 0
+    },
+    {
+      "type": "checkbox",
+      "id": "show_compare",
+      "label": "Is show compare",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Color",
+      "info": "Color"
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background",
+      "default": "#000000"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Index grid products",
+      "blocks": []
+    }
+  ]
+}
+{% endschema %}

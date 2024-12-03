@@ -1,0 +1,505 @@
+{% comment %}
+	GEMPAGE BUILDER (https://apps.shopify.com/gempage)
+
+	You SHOULD NOT modify source code in this page because
+	It is automatically generated from GEMPAGE BUILDER
+	Try to edit page with the live editor.
+{% endcomment %}
+{% capture bsscommerce_login_require_template %}{% include 'bsscommerce_login_require' %}{% endcapture %}{% unless bsscommerce_login_require_template contains "Liquid error" %}{{ bsscommerce_login_require_template }}{% endunless %}{%- comment -%}
+------------------------------------------------------------------------------------------------------------------------
+NOTE TO DEVELOPERS: welcome to Focal theme! We hope that you will enjoy editing this theme as much as we did for
+  developing it. We have put a lot of work to make this theme as developer friendly as possible by offering you
+  hooks to integrate into critical parts of the theme. You will find the complete technical documentation (including
+  all events, dependencies...) in the "custom.js" file, located in the Assets folder.
+------------------------------------------------------------------------------------------------------------------------
+{%- endcomment -%}
+
+<!doctype html>
+
+{%- assign direction = 'ltr' -%}
+{%- case request.locale.iso_code -%}
+  {%- when 'ar' or 'arc' or 'dv' or 'fa' or 'ha' or 'he' or 'kwh' or 'ks' or 'ku' or 'ps' or 'ur' or 'yi' -%}
+    {%- assign direction = 'rtl' -%}
+{%- endcase -%}
+
+<html class="no-js" lang="{{ request.locale.iso_code }}" dir="{{ direction }}">
+  <head>
+<!-- Start of Shoplift scripts -->
+{% render 'shoplift' %}
+<!-- End of Shoplift scripts -->
+{% render 'pagefly-head' %}
+    <meta name="google-site-verification" content="ajBSJXOKU_bUhgB9wKugFdyoc8ufmYDRWzIjuK4D5XE" />
+
+
+ 
+    
+<!-- Affirm -->
+<script>
+_affirm_config = {
+   public_api_key:  "7V0BTSIU8DDW2DUM",
+   script:          "https://cdn1.affirm.com/js/v2/affirm.js"
+};
+(function(l,g,m,e,a,f,b){var d,c=l[m]||{},h=document.createElement(f),n=document.getElementsByTagName(f)[0],k=function(a,b,c){return function(){a[b]._.push([c,arguments])}};c[e]=k(c,e,"set");d=c[e];c[a]={};c[a]._=[];d._=[];c[a][b]=k(c,a,b);a=0;for(b="set add save post open empty reset on off trigger ready setProduct".split(" ");a<b.length;a++)d[b[a]]=k(c,e,b[a]);a=0;for(b=["get","token","url","items"];a<b.length;a++)d[b[a]]=function(){};h.async=!0;h.src=g[f];n.parentNode.insertBefore(h,n);delete g[f];d(g);l[m]=c})(window,_affirm_config,"affirm","checkout","ui","script","ready");
+// Use your live public API Key and https://cdn1.affirm.com/js/v2/affirm.js script to point to Affirm production environment.
+</script>
+<!-- End Affirm -->
+
+<!-- UET tag-Bing Product audience-dynamic remarketing -->
+<script>(function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){var o={ti:"343092447", enableAutoSpaTracking: true};o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");</script>
+
+{% if template contains 'index' %}
+<script>
+window.uetq = window.uetq || [];
+window.uetq.push('event', 'page_view', {'ecomm_pagetype': 'home'});
+</script>
+
+{% elsif template contains 'collection' %}
+<script>
+window.uetq = window.uetq || [];
+window.uetq.push('event', 'view_item_list', { 'ecomm_prodid': '{{ product.id }}', 'ecomm_pagetype': 'category'});
+</script>
+
+{% elsif template contains 'product' %}
+<script>
+window.uetq = window.uetq || [];
+window.uetq.push('event', 'view_item', { 'ecomm_prodid': '{{ product.id }}', 'ecomm_pagetype': 'product'});
+</script>
+
+{% elsif template contains 'cart' %}
+<script>
+window.uetq = window.uetq || [];
+window.uetq.push('event', 'add_to_cart', { 'ecomm_prodid': [{% for item in cart.items %}'{{item.product.id}}'{% unless forloop.last %},{% endunless %}{% endfor %}], 'ecomm_pagetype': 'cart'});
+</script>
+
+{% elsif template contains 'search' %}
+<script>
+window.uetq = window.uetq || [];
+window.uetq.push('event', 'view_search_results', { 'ecomm_pagetype': 'searchresults'});
+</script>
+
+{% else %}
+<script>
+window.uetq = window.uetq || [];
+window.uetq.push('event', 'other');
+</script>
+{% endif %}
+
+<!-- End UET tag-Bing Product audience-dynamic remarketing -->
+
+<meta name="msvalidate.01" content="0A2AF29235ED58F48CBA16BF71C229D8" />
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NVBLXV2');</script>
+    <!-- End Google Tag Manager -->
+    
+    <meta name="google-site-verification" content="zkYM_a6ZCRQUaFmzu0z-GeNgUG5uYdoeTIYsoAMzTzU" />    
+    <!-- Google Ads Remarketing Tag By FeedArmy Version 2.17 START -->
+    <!-- FeedArmy tutorial found at https://feedarmy.com/kb/adding-google-adwords-remarketing-tag-to-shopify/ -->
+
+    <!-- CODE SETTINGS START -->
+    <!-- CODE SETTINGS START -->
+
+    <!-- Please add your Google Ads Audience Source Tag ID -->
+    {% assign fa_google_ads_audience_tag_id = 10982917486 %}
+
+    <!-- Please add your alpha2 code, you can find it here: https://help.shopify.com/en/api/custom-storefronts/storefront-api/reference/enum/countrycode -->
+    {% assign fa_product_id_alpha2_code = 'US' %}
+
+    <!-- set your product id values are default, product_id, parent_id, sku-->
+    {% assign fa_product_id = 'SKU' %}
+
+    <!-- CODE SETTINGS END -->
+    <!-- CODE SETTINGS END -->
+
+    <!-- ==================================== -->
+    <!-- DO NOT EDIT ANYTHING BELOW THIS LINE -->
+    {% if fa_google_coding %}{% assign fa_google_coding = true %}{%- else -%}{% assign fa_google_coding = false %}{%- endif -%}
+    {% if fa_google_coding == false %}
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-{{ fa_google_ads_audience_tag_id }}"></script>
+    {%- endif -%}
+    {%- assign fa_current_variant = product.selected_or_first_available_variant -%}
+    {%- if cart.currency.iso_code == 'GBP' or cart.currency.iso_code == 'USD' or cart.currency.iso_code == 'CAD' or cart.currency.iso_code == 'AUD' or cart.currency.iso_code == 'BWP' or cart.currency.iso_code == 'BND' or cart.currency.iso_code == 'DOP' or cart.currency.iso_code == 'GTQ' or cart.currency.iso_code == 'HKD' or cart.currency.iso_code == 'INR' or cart.currency.iso_code == 'ILS' or cart.currency.iso_code == 'YEN' or cart.currency.iso_code == 'KES' or cart.currency.iso_code == 'KOR' or cart.currency.iso_code == 'LBP' or cart.currency.iso_code == 'MYR' or cart.currency.iso_code == 'MXN' or cart.currency.iso_code == 'NPR' or cart.currency.iso_code == 'NZD' or cart.currency.iso_code == 'NIO' or cart.currency.iso_code == 'NGN' or cart.currency.iso_code == 'PKR' or cart.currency.iso_code == 'CNY' or cart.currency.iso_code == 'PHP' or cart.currency.iso_code == 'SGD' or cart.currency.iso_code == 'LKR' or cart.currency.iso_code == 'CHF' or cart.currency.iso_code == 'TWD' or cart.currency.iso_code == 'TSH' or cart.currency.iso_code == 'THB' or cart.currency.iso_code == 'UGX' or cart.currency.iso_code == 'KWD' -%}
+    {% if template contains 'product' %}
+    {%- assign fa_product_price = fa_current_variant.price | money_without_currency | remove:',' -%}
+    {% elsif template contains 'cart' %}
+    {%- assign fa_product_price = cart.total_price | money_without_currency | remove:',' -%}
+    {% endif %}
+    {%- else -%}
+    {% if template contains 'product' %}
+    {%- assign fa_product_price = fa_current_variant.price | money_without_currency | remove:'.' | replace: ',', '.' -%}
+    {% elsif template contains 'cart' %}
+    {%- assign fa_product_price = cart.total_price | money_without_currency | remove:'.' | replace: ',', '.' -%}
+    {% endif %}
+    {%- endif -%}
+
+    {%- if fa_product_id == 'default' -%}
+    {%- capture fa_product_id_value -%}shopify_{{ fa_product_id_alpha2_code }}_{{ product.id }}_{{ fa_current_variant.id }}{%- endcapture -%}
+    {%- elsif fa_product_id == 'product_id' -%}
+    {%- capture fa_product_id_value -%}{{ fa_current_variant.id }}{%- endcapture -%}
+    {%- elsif fa_product_id == 'parent_id' -%}
+    {%- capture fa_product_id_value -%}{{product.id }}{%- endcapture -%}
+    {%- elsif fa_product_id == 'sku' -%}
+    {%- capture fa_product_id_value -%}{{ fa_current_variant.sku }}{%- endcapture -%}
+    {%- endif -%}
+
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-{{ fa_google_ads_audience_tag_id }}',{'allow_enhanced_conversions':true});
+    </script>
+
+    {% if template contains 'collection' %}
+      {% assign fa_event = 'view_item_list' %}
+    {% elsif template contains 'product' %}
+      {% assign fa_event = 'view_item' %}
+    {% elsif template contains 'search' %}
+      {% assign fa_event = 'view_search_results' %}
+    {% elsif template contains 'cart' %}
+      {% assign fa_event = 'add_to_cart' %}
+    {% elsif template contains 'index' %}
+      {% assign fa_event = 'home' %}
+    {% else %}
+      {% assign fa_event = 'other' %}
+    {% endif %}
+
+    <script>
+      gtag('event', '{{ fa_event }}', {
+        'send_to': 'AW-{{ fa_google_ads_audience_tag_id }}',
+          {% if template contains 'product' or template contains 'cart' %}'value': {{ fa_product_price }},{% endif %}
+      {% if template contains 'product' %}
+        'items': [{
+          'id': '{{fa_product_id_value}}',
+          'google_business_vertical': 'retail'
+        }]
+      {% elsif template contains 'cart' %}
+      'items': [
+      {% for item in cart.items %}
+      {
+        {% if fa_product_id == 'default' %}
+          'id': 'shopify_{{ fa_product_id_alpha2_code }}_{{ item.product_id }}_{{ item.variant_id }}',
+        {% elsif fa_product_id == 'product_id' %}
+          'id': '{{ item.variant_id }}',
+        {% elsif fa_product_id == 'parent_id' %}
+          'id': '{{ item.product_id }}',
+        {% elsif fa_product_id == 'sku' %}
+          'id': '{{ item.sku }}',
+        {% endif %}
+          'google_business_vertical': 'retail'
+        },
+      {% endfor %}
+      ]
+      {% endif %}
+      });
+    </script>
+    <!-- Google Ads Remarketing Tag By FeedArmy Version 2.17 END -->
+  
+    {% comment %} jq {% endcomment %}
+    <script>if(!window.jQuery){var e=jQuery=window.jQuery=window.$=function(t,e){return new jQuery.prototype.init(t,e)};jQuery.prototype={constructor:jQuery,init:function(e,n){var r=null;return "function"==typeof e && (jQuery.fn ? e() : r=setInterval((function(){jQuery.fn && (clearInterval(r),n ? jQuery(e) : setTimeout((function(){jQuery(e)}),50))}),16),window.addEventListener("libloaded",(function(t){clearInterval(r),jQuery(e)}),!1)),this.selector=e,this.trigger=function(e,n){return t.push([this.selector,e,n]),this},this}}}</script>
+    
+    {{ 'jquery-2.2.3.min.js' | asset_url | script_tag }}
+    {{ 'slick-1.8.1.min.js' | asset_url | script_tag }}
+    {{ 'slick-1.8.1.min.css' | asset_url | stylesheet_tag }}
+    {% comment %} {{ 'tiny.content.min.css' | asset_url | stylesheet_tag }} {% endcomment %}
+    {{ 'code-copy.js' | asset_url | script_tag }}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="theme-color" content="{{ settings.header_background }}">
+
+    <title>{% if page_title == blank %}{{ shop.name }}{% else %}{{ page_title }}{% if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif %}{% endif %}</title>
+
+    {%- if page_description -%}
+      <meta name="description" content="{{ page_description | escape }}">
+    {%- endif -%}
+
+    <link rel="canonical" href="{{ canonical_url }}">
+
+    {%- if settings.favicon -%}
+      <link rel="shortcut icon" href="{{ settings.favicon | img_url: '96x96' }}" type="image/png">
+    {%- endif -%}
+
+    {%- comment -%}Few prefech to increase performance on commonly used third-parties{%- endcomment -%}
+    <link rel="preconnect" href="https://cdn.shopify.com">
+    <link rel="dns-prefetch" href="https://productreviews.shopifycdn.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+
+    {%- unless settings.heading_font.system? and settings.text_font.system? -%}
+      <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+    {%- endunless -%}
+
+    {%- comment -%}Preload important resources{%- endcomment -%}
+    <link rel="preload" as="style" href="{{ 'theme.css' | asset_url }}">
+    <link rel="preload" as="script" href="{{ 'vendor.js' | asset_url }}">
+    <link rel="preload" as="script" href="{{ 'theme.js' | asset_url }}">
+    <link rel="stylesheet" href="{{ 'swiper-bundle.min.css' | asset_url }}">
+    {%- comment -%}
+      IMPLEMENTATION NOTE: for improving performance, Focal tries to preload images on known pages (such as blog page,
+      product or collection pages). In order to keep a main JS file size minimal, the theme also lazyloads non-essential
+      libraries (such as PhotoSwipe or Flickity) and only loads them on demand.
+    {%- endcomment -%}
+    {%- if request.page_type == 'product' -%}
+      {%- assign selected_media = product.selected_variant.featured_media | default: product.featured_media -%}
+
+      <link rel="preload" as="fetch" href="{{ product.url }}.js" crossorigin>
+      <link rel="preload" as="image" imagesizes="(max-width: 999px) calc(100vw - 48px), 640px" imagesrcset="{% render 'image-attributes', image: selected_media, sizes: '400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800', sizes_only: true %}">
+
+      {%- if product.media.size > 1 -%}
+        <link rel="preload" as="script" href="{{ 'flickity.js' | asset_url }}">
+      {%- endif -%}
+    {%- elsif request.page_type == 'collection' and collection.image -%}
+      <link rel="preload" as="image" media="(max-width: 740px)" imagesizes="100vw" imagesrcset="{% render 'image-attributes', image: collection.image, sizes: '400,500,600,700,800,900,1000', height_constraint: 600, crop: 'center', sizes_only: true %}">
+      <link rel="preload" as="image" media="(min-width: 741px)" imagesizes="100vw" imagesrcset="{% render 'image-attributes', image: collection.image, sizes: '600,700,800,1000,1200,1400,1600,1800,2000,2200,2400,2600', sizes_only: true %}">
+    {%- endif -%}
+
+    {% render 'social-meta-tags' %}
+    {% render 'microdata-schema' %}
+    {% render 'css-variables', direction: direction %}
+    {% render 'js-variables', direction: direction %}
+
+    <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}">
+    <link rel="stylesheet" href="{{ 'theme-plus.css' | asset_url }}">
+
+    <script src="{{ 'vendor.js' | asset_url }}" defer></script>
+    <script src="{{ 'theme.js' | asset_url }}" defer></script>
+    <script src="{{ 'custom.js' | asset_url }}" defer></script>
+    <script src="{{ 'swiper-bundle.min.js' | asset_url }}"></script>
+    <script src="{{ 'htm2canvas.js' | asset_url }}"></script>
+    {% comment %} <script src="{{ 'jquery.countdown' | asset_url }}" defer></script> {% endcomment %}
+  
+    {% include 'wlm-head' %}
+    {{ content_for_header }}
+  
+    {% capture boostersnippet %}{% include "booster-apps-common" %}{% endcapture %}{% unless boostersnippet contains "Liquid error" %}{{ boostersnippet }}{% endunless %}
+
+    {% if content_for_header contains 'bss-b2b' %}{% include 'bss-b2b-cp-header' %}{% endif %}
+    {% render 'bookthatapp-widgets' %}
+
+    <script>
+      (function () {
+        console.error('Error:');
+        const setup_init_code = function (ev) {
+          window.removeEventListener('load', setup_init_code);
+
+          // GTM GA4 Ecommerce [ view_item, add_to_cart, begin_checkout ]
+          const CURRENCY = 'USD';
+          var GA4_Ids ="G-WX1KD6S35Z" 
+
+          // begin checkout
+          function handle_begin_checkout(cartItems_additional = []) {
+            const items = [].concat(cartItems_additional);
+            console.table("handle_begin_checkout items", items);
+
+            // prevent re-sending begin checkout for the same cart items
+            let cartItems = JSON.stringify(items);
+            if (cartItems === localStorage['ga4.begin_checkout.items'])
+              throw new Error('the same begin_checkout already trigger once previously');
+
+            gtag('event', 'begin_checkout', {
+              send_to: GA4_Ids,
+              currency: CURRENCY,
+              value: items.length ? Math.round(items.map(function (x) { return x.quantity * x.price }).reduce(function (p, x) { return p + x; }) * 100) / 100 : 0,
+              items: items
+            });
+
+            // to avoid duplicate begin checkout when refreshing page
+            localStorage['ga4.begin_checkout.items'] = cartItems;
+          }
+
+          document.addEventListener('click', function (e) {
+            const Elem = e.target.closest('[name=checkout] , .btn-checkout');
+            if (Elem === null) return;
+
+            handle_begin_checkout(cartItems_additional);
+          });
+          if (location.pathname.startsWith('/cart') === true) {
+            handle_begin_checkout();
+          }
+
+          // begin_checkout (product view - direct purchase 1 item)
+          document.addEventListener('click', function (e) {
+            const Elem = e.target.closest('.shopify-payment-button__button');
+            if (Elem === null) return;
+
+            let item = {
+              item_id: "{{product.id}}",
+              item_name: "{{product.title}}",
+              price: parseInt('{{product.price}}') / 100,
+              quantity: document.querySelector('input[name=quantity]')?.value ?? 1,
+              item_category: "{{product.type}}"
+            };
+            console.warn(item);
+
+            // prevent re-sending begin checkout for the same cart items
+            let cartItems = JSON.stringify([item]);
+            if (cartItems === localStorage['ga4.begin_checkout.items'])
+              throw new Error('the same begin_checkout already trigger once previously');
+
+            gtag('event', 'begin_checkout', {
+              send_to: GA4_Ids,
+              currency: CURRENCY,
+              value: item.price,
+              items: [item]
+            });
+            // to avoid duplicate begin checkout when refreshing page
+            localStorage['ga4.begin_checkout.items'] = cartItems;
+          });
+
+        };
+        window.addEventListener('DOMContentLoaded', setup_init_code);
+        window.addEventListener('load', setup_init_code);
+      })();
+    </script>
+    <script>
+      window.addEventListener('load', function(event) {
+        if (window.location.href.includes('awolvision.com')) {
+          setTimeout(function() {
+            gtag('event', 'page_duration_2mins');
+          }, 120000);
+        }
+        if (window.location.href == 'https://awolvision.com/account/login') {
+          gtag('event', 'login_page');
+        }
+      });
+    </script>
+    
+    {% render "geo" %}
+
+    <!-- goc track start -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '578481087525148');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=578481087525148&ev=PageView&noscript=1"/></noscript>
+    <!-- goc track end -->
+
+    <!-- Hotjar Tracking Code for AWOL US, 20230706 -->
+    <script>(function(h,o,t,j,a,r){ h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)}; h._hjSettings={hjid:3562508,hjsv:6}; a=o.getElementsByTagName('head')[0]; r=o.createElement('script');r.async=1; r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv; a.appendChild(r); })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');</script>
+    
+    <!-- Meta Pixel Code, 20230711, miya -->
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '576515238011573');
+      fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=576515238011573&ev=PageView&noscript=1"/></noscript>
+    <!-- End Meta Pixel Code -->
+  {% render 'opinew_head' %}
+</head>
+	            
+  {%- assign feature_classes = '' -%}
+  {%- if settings.show_image_zoom -%}
+    {% assign feature_classes = feature_classes | append: ' features--image-zoom' %}
+  {%- endif -%}
+
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//portal.referralcandy.com/assets/widgets/refcandy-poprocks.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","refcandy-poprocks-js");</script>
+
+  <body class="no-focus-outline {{ feature_classes }}" data-instant-allow-query-string>
+    
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NVBLXV2"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+      
+    {%- comment -%}Common SVG definitions that we are re-using in several places{%- endcomment -%}
+    <svg class="visually-hidden">
+      <linearGradient id="rating-star-gradient-half">
+        <stop offset="50%" stop-color="rgb(var(--product-star-rating))" />
+        <stop offset="50%" stop-color="rgb(var(--product-star-rating))" stop-opacity="0.4" />
+      </linearGradient>
+    </svg>
+
+    <a href="#main" class="visually-hidden skip-to-content">{{ 'general.accessibility.skip_to_content' | t }}</a>
+    <loading-bar class="loading-bar"></loading-bar>
+
+    {%- if request.page_type != 'gift_card' and request.page_type != 'password' -%}
+      {%- section 'announcement-bar' -%}
+      {%- section 'popup' -%}
+      {%- comment -%}{%- section 'header' -%}{%- endcomment -%}
+      {%- section 'header-v2' -%}
+
+      {%- unless settings.cart_type == 'page' or request.page_type == 'cart' -%}
+        {%- section 'mini-cart' -%}
+      {%- endunless -%}
+    {%- endif -%}
+
+    <div id="main" role="main" class="anchor">
+      {%- comment -%}
+      IMPLEMENTATION NOTE: on collection and search page, the theme was designed to show on mobile the filter bar and/or sort
+        by at the very top of the page. However, due to the fact that sections are isolated, I had to move the code
+        here. Then, the collection section, based on the selected settings, will eventually hide those elements in CSS
+      {%- endcomment -%}
+      {%- if request.page_type == 'collection' or request.page_type == 'search' -%}
+        {%- assign active_filters_count = 0 -%}
+
+        {%- if request.page_type == 'collection' -%}
+          {%- assign filters = collection.filters -%}
+        {%- else -%}
+          {%- assign filters = search.filters -%}
+        {%- endif -%}
+
+        {%- for filter in filters -%}
+          {%- if filter.type == 'list' -%}
+            {%- assign active_filters_count = active_filters_count | plus: filter.active_values.size -%}
+          {%- elsif filter.type == 'price_range' and filter.min_value.value or filter.max_value.value -%}
+            {%- assign active_filters_count = active_filters_count | plus: 1 -%}
+          {%- endif -%}
+        {%- endfor -%}
+
+        {%- assign is_toolbar_collapsed = false -%}
+
+        {%- if request.page_type == 'search' and search.results.first.object_type != 'product' and search.results_count > 0 -%}
+          {%- assign is_toolbar_collapsed = true -%}
+        {%- endif -%}
+
+        <div id="mobile-facet-toolbar" class="mobile-toolbar {% if is_toolbar_collapsed %}is-collapsed{% endif %} hidden-lap-and-up">
+          <button is="toggle-button" class="mobile-toolbar__item mobile-toolbar__item--filters {% if active_filters_count > 0 %}has-filters{% endif %}" aria-expanded="false" aria-controls="facet-filters" style="display: none">
+            {%- render 'icon' with 'filters' -%}
+            <span class="mobile-toolbar__item-label">{{- 'collection.general.filters' | t -}}</span>
+          </button>
+
+          <button is="toggle-button" class="mobile-toolbar__item mobile-toolbar__item--sort" aria-expanded="false" aria-controls="sort-by-popover" style="display: none">
+            <span class="mobile-toolbar__item-label">{{- 'collection.general.sort_by' | t -}}</span>
+            {%- render 'icon' with 'chevron' -%}
+          </button>
+        </div>
+      {%- endif -%}
+
+      {% comment %}{{ content_for_layout }}{% endcomment %}{% include 'wlm-body' %}
+
+      {%- unless request.page_type == 'index' or request.page_type == 'password' or request.page_type == 'gift_card' -%}
+        {%- section 'static-text-with-icons' -%}
+        {%- section 'static-newsletter' -%}
+      {%- endunless -%}
+    </div>
+
+    {%- if request.page_type != 'gift_card' and request.page_type != 'password' -%}
+      {%- section 'footer' -%}
+    {%- endif -%}
+      {% render 'wholesale-now', customer: customer, template: template, product: product, cart: cart %}
+      {% capture bsscommerce_login_to_see_price_product_custom %}{% render 'bsscommerce-login-to-see-price-custom-js.liquid' %}{% endcapture %}{% unless bsscommerce_login_to_see_price_product_custom contains "Liquid error" %}{% render 'bsscommerce-login-to-see-price-custom-js.liquid' %}{% endunless %}<div class="site-overlay">
+      {% if content_for_header contains 'bss-b2b' %}{% include 'bss-b2b-jquery-341-js' %}{% include 'bss-b2b-js' %}{% endif %}{% if content_for_header contains 'bss-po' %}{% include 'bss-po-js' %}{% endif %}{% if content_for_header contains 'product_label' %}{% include 'bss-product-label-js' %}{% include 'bss-label-style-css' %}{% endif %}{% if request.path contains "/apps/customer-portal" %}{% if content_for_header contains 'bss-b2b-customer-portal' %}{% render "bss-b2b-customer-portal-styles" %}{% endif %}{% endif %}{% if content_for_header contains 'bss-b2b-customer-portal' %}{% render "bss-b2b-customer-portal-script" %}{% endif %}
+    
+  
+<!-- CRITEO START -->
+{% render 'criteo-tracking' %}
+<!-- CRITEO END -->
+</html>

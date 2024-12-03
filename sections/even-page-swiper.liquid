@@ -1,0 +1,103 @@
+{% comment %} {{- 'event_page.css' | asset_url | stylesheet_tag: true -}} {% endcomment %}
+{% style %}
+    #main {background: #000;}
+    .event_page_swiper {
+      /* padding-left: 20px;
+      padding-right: 20px; */
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+      background: {{ section.settings.background }};
+    }
+  {% endstyle %}
+  <div class="event_page_swiper" data-id="{{ section.settings.block_id }}" style="overflow: hidden;">
+    <div class="banner_header">
+      <div class="banner_header_title">
+        <h2>{{ section.settings.head_title }}</h2>
+      </div>
+    </div>
+    {% if section.settings.subtitle != blank %}
+      <div class="event_product_subtitle">
+        {{ section.settings.subtitle }}
+      </div>
+    {% endif %}
+    <div class="event_page_swiper_container swiper">
+      <div class="swiper-wrapper">
+        {% for block in section.blocks %}
+          <div class="swiper-slide swiper_item">
+            <img src="{{ block.settings.swiper_image |  image_url }}" />
+          </div>
+        {% endfor %}
+      </div>
+      <div class="event_swiper_contral">
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next"></div>
+      </div>
+    </div>
+  </div>
+  {% schema %}
+  {
+    "name": "Even page swiper",
+    "class": "shopify-section--event_page_swiper",
+    "settings": [
+      {
+        "type": "text",
+        "id": "block_id",
+        "label": "Id"
+      },
+      {
+        "type": "color",
+        "id": "background",
+        "label": "Background",
+        "default": "#000000"
+      },
+      {
+        "type": "textarea",
+        "id": "head_title",
+        "label": "Title"
+      },
+      {
+        "type": "textarea",
+        "id": "subtitle",
+        "label": "Sub title"
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "label": "Padding top",
+        "min": 0,
+        "max": 120,
+        "step": 2,
+        "default": 60
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "label": "Padding bottom",
+        "min": 0,
+        "max": 120,
+        "step": 2,
+        "default": 0
+      }
+    ],
+    "blocks": [
+      {
+        "type": "product_list",
+        "name": "product_list",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "swiper_image",
+            "label": "Image"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Even page swiper",
+        "blocks": []
+      }
+    ]
+  }
+  {% endschema %}

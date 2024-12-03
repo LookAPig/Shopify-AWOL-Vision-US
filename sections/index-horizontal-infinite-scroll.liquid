@@ -1,0 +1,137 @@
+<style>
+  .shopify-section--shop-horizontal-infinite-scroll {
+    background-color: {{ section.settings.background }};
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+  @media screen and (max-width: 1024px) {
+    .shopify-section--shop-horizontal-infinite-scroll {
+      padding-top: 60px;
+      margin-top: -1px;
+    }
+  }
+</style>
+
+<section class="index_shop-infinite-scroll">
+  <a aria-label="{{ section.settings.header_title }}" href="{% if section.settings.header_url != blank %}{{ section.settings.header_url }}{% else %}javascript:;{% endif %}" class="shop_header">
+    <h2 class="header_title">{{ section.settings.header_title }}</h2>
+    {% if section.settings.header_subtitle != blank %}
+      <h3 class="header_subtitle">{{ section.settings.header_subtitle }}</h3>
+    {% endif %}
+  </a>
+  <div class="scroller" data-animated="true"  data-direction="left" data-speed="slow">
+    <div class="scroller__inner">
+      {% for block in section.blocks %}
+        <img src="{{ block.settings.medium_icon |  image_url }}" alt="medium_icon" class="img" />
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<script>
+  const scrollers = document.querySelectorAll('.scroller');
+  addAnimation()
+  
+  function addAnimation() {
+    scrollers.forEach(scroller => {
+  
+      if (scroller.getAttribute('data-animated')) {
+        const scrollerInner = scroller.querySelector('.scroller__inner')
+        const scrollerContent = Array.from(scrollerInner.children)
+  
+        scrollerInner.addEventListener('mouseenter', () => {
+          scrollerInner.style.animationPlayState = 'paused'
+        })
+  
+        scrollerInner.addEventListener('mouseleave', () => {
+          scrollerInner.style.animationPlayState = 'running'
+        })
+  
+  
+        scrollerContent.forEach(item => {
+          const duplicatedItem = item.cloneNode(true)
+          scrollerInner.appendChild(duplicatedItem)
+        })
+      }
+    })
+  }
+</script>
+{% schema %}
+{
+  "name": "Index infinite scroll",
+  "class": "shopify-section--shop-horizontal-infinite-scroll", 
+  "blocks": [
+    {
+      "type": "endorsed_icon",
+      "name": "endorsed_icon",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "medium_icon",
+          "label": "Medium icon"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "id": "header_title",
+      "label": "Header title"
+    },
+    {
+      "type": "text",
+      "id": "header_subtitle",
+      "label": "Header subtitle"
+    },
+    {
+      "type": "url",
+      "id": "header_url",
+      "label": "Link to"
+    },
+    {
+      "type": "range",
+      "id": "grid_columns_template",
+      "label": "Grid columns template",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Color",
+      "info": "Color"
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background",
+      "default": "#000000"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Index infinite scroll",
+      "blocks": []
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,31 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "show_title": true,
+        "page_width": "medium"
+      }
+    },
+    "connect_virtually_tWeTTe": {
+      "type": "connect-virtually",
+      "settings": {
+        "reg_header": "Connect virtually and learn more",
+        "reg_context": "Submit your request to virtually connect with a Neighborhood Showroom host and a member of our Concierge team will coordinate the details of your connection. Benefits to virtual connections include:\n<br>\n<ul>\n<li>Live product demos with real AWOL Vision customers<\/li>\n<li>Connect from anywhere, with any questions<\/li>\n<li>Chat via video, phone, text, or email<\/li>\n<li>Hassle-free experience with no obligation to buy<\/li>\n<\/ul>",
+        "background_type": "boxed",
+        "text_width": "medium",
+        "text_position": "center",
+        "text_alignment": "center",
+        "background": "rgba(0,0,0,0)",
+        "text_color": "rgba(0,0,0,0)",
+        "button_background": "rgba(0,0,0,0)",
+        "button_text_color": "rgba(0,0,0,0)"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "connect_virtually_tWeTTe"
+  ]
+}

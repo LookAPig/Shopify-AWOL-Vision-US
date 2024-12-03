@@ -1,0 +1,56 @@
+{% if false %}{% if shop.permanent_domain == "b2b-packraftnorge-no.myshopify.com" %}
+    <style class="bss-b2b-collection-item-vat-style">
+        .price__regular,
+        .price__unit,
+        .price__badges,
+        .price-item.price-item--sale
+        {
+            display: none !important;
+        }
+    </style>
+{% else %}
+    <style class="bss-b2b-collection-item-vat-style">
+        .ProductItem__Price.Price,
+        .price__regular,
+        .price__sale,
+        .price__unit,
+        .price__badges,
+        .product-price,
+        .price--on-sale .price__sale,
+        #collection-main .product-content .price-wrapper,
+        .grid__item .card-information__wrapper .price,
+        .product-collection__price,
+        .gf_product-prices,
+        #shopify-section-collection-template .thumbnail__price,
+        #shopify-section-product-recommendations .thumbnail__price,
+        .collection-list .product-link .price,
+        .related__wrapper .product-link .price,
+        .collection__products .product-link .price,
+        .collection-content .collection-grid__wrapper .grid-product__price,
+        .template-search .grid-product__content .grid-product__price,
+        .productgrid--wrapper .productitem__price .price__current,
+        .product-collection .products .grid-link__meta .product_price,
+        .search-products .products .grid-link__meta .product_price,
+        .main-block .swiper-wrapper .product-grid-item .products .grid-link__meta .product_price,
+        .related-products-container .swiper-wrapper .products .grid-link__meta .product_price,
+        .grid-overflow-wrapper .grid-product__content .grid-product__meta .grid-product__price,
+        .product-details .pricing.lht,
+        .product-list .product-info .product-price .product-price__item,
+        .product-detail .content-divider .bss-fix-cp-price,
+        .price__current--hidden,
+        .rokkedal-product-price,
+        .grid-product__price,
+      	.product-list-item-price,
+        .product-item--price small,
+        .product__page .grid__item .bss-b2b-customized-compare-at-price,
+        .product-price__price,
+        .price.productitem__price,
+        .price--main .money,
+        .t4s-product-price,
+        .t4s-widget__pr-price,
+        .t4s-cart_price
+        {
+            display: none !important;
+        }
+    </style>
+{% endif %}{% endif %}

@@ -1,0 +1,516 @@
+{%- comment -%}
+IMPLEMENTATION NOTE: the header in Focal is pretty complex as it allows a lot of different layouts. In order to make
+  this code as efficient as possible and avoid as many reflows, we are using a lot of different CSS variables. If you
+  need to touch this code, make sure to do it with EXTRA CARE as it may have some unwanted side effects
+{%- endcomment -%}
+
+<style>
+  :root {
+    --brand-color: #2B6FD5; --brand-hover-color: #415790; --text-sub-color: #333;
+
+    --gap: 20px; --gap-mini: 10px; --distance-top: 20px; --distance-content: 60px;
+    --font-title: 44px; --title-line-height: 44px;
+    --font-sub-title: 18px; --sub-title-line-height: 25px;
+    --font-normal: 16px; --normal-line-height: 16px;
+    --font-small: 14px; --font-mini: 12px;
+	
+    --enable-sticky-header: {% if section.settings.enable_sticky_header %}1{% else %}0{% endif %};
+    --enable-transparent-header: {% if request.page_type == 'index' and section.settings.enable_transparent_header %}1{% else %}0{% endif %};
+    --loading-bar-background: {{ settings.header_text_color.red }}, {{ settings.header_text_color.green }}, {{ settings.header_text_color.blue }}; /* Prevent the loading bar to be invisible */
+  }
+
+  #shopify-section-{{ section.id }} {
+    {%- assign header_border_color = settings.header_background | color_mix: settings.header_text_color, 85 -%}
+
+    --header-background: {{ settings.header_background.red }}, {{ settings.header_background.green }}, {{ settings.header_background.blue }};
+    --header-text-color: {{ settings.header_text_color.red }}, {{ settings.header_text_color.green }}, {{ settings.header_text_color.blue }};
+    --header-border-color: {{ header_border_color.red }}, {{ header_border_color.green }}, {{ header_border_color.blue }};
+    --reduce-header-padding: {% if section.settings.reduce_desktop_padding %}1{% else %}0{% endif %};
+
+    z-index: 4;
+  }
+
+  /** Cancel the sticky function of desktop, but keep the sticky of mobile, 20230811, garfield */
+  {%- if section.settings.enable_sticky_header -%}
+  #shopify-section-{{ section.id }} {
+    position: -webkit-sticky; position: sticky;
+    top: calc(var(--enable-sticky-announcement-bar) * var(--announcement-bar-height, 0px));
+  }
+  {%- else -%}
+    #shopify-section-{{ section.id }} {position: relative;}
+    @media screen and (max-width: 740px) {
+      #shopify-section-{{ section.id }} {
+        position: -webkit-sticky; position: sticky;
+        top: calc(var(--enable-sticky-announcement-bar) * var(--announcement-bar-height, 0px));
+      }
+    }
+  {%- endif -%}
+
+
+  {%- if request.page_type == 'index' and section.settings.enable_transparent_header -%}
+    #shopify-section-{{ section.id }} {
+      margin-bottom: calc(-1 * (var(--header-height, 0px) + var(--enable-sticky-announcement-bar) * var(--announcement-bar-height, 0px)));
+    }
+
+    .js #shopify-section-{{ section.id }} .header--transparent {
+      {%- if settings.header_text_color == section.settings.transparent_header_text_color -%}
+        {%- assign header_bubble_text_color = settings.header_background -%}
+      {%- else -%}
+        {%- assign header_bubble_text_color = settings.header_text_color -%}
+      {%- endif -%}
+
+      --header-background: transparent;
+      --header-text-color: {{ section.settings.transparent_header_text_color.red }}, {{ section.settings.transparent_header_text_color.green }}, {{ section.settings.transparent_header_text_color.blue }};
+      --header-border-color: {{ section.settings.transparent_header_text_color.red }}, {{ section.settings.transparent_header_text_color.green }}, {{ section.settings.transparent_header_text_color.blue }}, 0.15;
+      --header-transparent-bubble-text-color: {{ header_bubble_text_color.red }}, {{ header_bubble_text_color.green }}, {{ header_bubble_text_color.blue }};
+    }
+  {%- endif -%}
+
+  #shopify-section-{{ section.id }} .header__logo-image {
+    max-width: {{ section.settings.mobile_logo_max_width }}px;
+  }
+
+  @media screen and (min-width: 741px) {
+    #shopify-section-{{ section.id }} .header__logo-image {max-width: {{ section.settings.logo_max_width }}px;}
+  }
+
+  @media screen and (min-width: 1200px) {
+    {%- if section.settings.header_layout == 'logo_left_navigation_inline' -%}
+      /* For this navigation we have to move the logo at the first and add a margin */
+      [dir="rtl"] .header__logo {margin-left: 40px;}
+      [dir="ltr"] .header__logo {margin-right: 40px;}
+      .header__logo {order: -1;}
+
+      @media screen and (min-width: 741px) {
+        .header__secondary-links {max-width: max-content; margin-inline-start: 48px;}
+      }
+    {%- endif -%}
+
+    {%- if section.settings.header_layout == 'logo_left_navigation_center' -%}
+      /* For this navigation we have to move the logo and make sure the navigation takes the whole width */
+      .header__logo {order: -1; flex: 1 1 0;}
+      .header__inline-navigation {max-width: max-content; margin-inline: 48px; flex: 1 1 auto; justify-content: center;}
+    {%- endif -%}
+  }
+
+  {%- if request.page_type == '404' -%}
+    .shopify-section--404 {
+      /* For the 404 page, we re-use the same colors as the header for design reason */
+      --background: {{ settings.header_background.red }}, {{ settings.header_background.green }}, {{ settings.header_background.blue }};
+      --heading-color: {{ settings.header_text_color.red }}, {{ settings.header_text_color.green }}, {{ settings.header_text_color.blue }};
+      --text-color: {{ settings.header_text_color.red }}, {{ settings.header_text_color.green }}, {{ settings.header_text_color.blue }};
+      --primary-button-background: {{ settings.header_text_color.red }}, {{ settings.header_text_color.green }}, {{ settings.header_text_color.blue }};
+      --primary-button-text-color: {{ settings.header_background.red }}, {{ settings.header_background.green }}, {{ settings.header_background.blue }};
+    }
+  {%- endif -%}
+
+  .nav-collection .layer-container {display: flex; display: -webkit-flex;}
+  .nav-collection .left-nav {width: 100%; text-align: left; flex: 2;}
+  .nav-collection .left-nav li {width: 80%; display: flex; justify-content: space-between; align-items: center;}
+  .nav-collection .left-nav li::after {content: ">"; font-family: serif; font-size: var(--font-mini); transform: translateY(-4px);}
+  .nav-collection .left-nav li:hover::after, .nav-collection .left-nav li.on::after {color: var(--brand-color);}
+
+  .nav-collection .nav-item {height: inherit; line-height: var(--title-line-height); color: var(--text-sub-color); font-size: var(--font-normal); margin: 0 0 var(--gap-mini) 0;}
+  .nav-collection .nav-item::before {height: 1px; background-color: transparent; bottom: 10px; transform: scale(1, 1);}
+  .nav-collection .left-nav li:hover .nav-item::before, .nav-collection .left-nav li.on .nav-item::before {background-color: var(--brand-color);}
+
+  .nav-collection .left-nav li.on .nav-item, .nav-collection .left-nav li:hover .nav-item {color: var(--brand-color);}
+
+  .nav-collection .right-product {flex: 8; font-size: var(--font-mini); text-align: center; margin: 0;}
+  .nav-collection .viewAll {width: 100%; height: 100%; text-decoration: underline; font-size: var(--font-small); color: var(--brand-color);}
+  .nav-collection .child-style {display: none; opacity: 0; transform: translateX(50px);}
+  .nav-collection .child-style.on {display: grid; animation: nav-child-open 0.3s forwards;}
+  .nav-collection .child-style-1 {grid-template-columns: repeat(5, 1fr); grid-gap: 30px;}
+  .nav-collection .child-style-1 li:hover a {color: var(--brand-color);}
+
+  @keyframes nav-child-open {
+    from {opacity: 0; transform: translateX(50px);}
+    to {opacity: 1; transform: translateX(0);}
+  }
+</style>
+
+<store-header {% if section.settings.enable_sticky_header %}sticky{% endif %} {% if request.page_type == 'index' and section.settings.enable_transparent_header %}transparent{% endif %} class="header {% if settings.background == settings.header_background %}header--bordered{% endif %} {% if request.page_type == 'index' and section.settings.enable_transparent_header %}header--transparent{% endif %}" role="banner">
+  {%- assign menu = section.settings.navigation_menu -%}
+
+  <div class="container">
+    <div class="header__wrapper">
+      <!-- LEFT PART -->
+      <nav class="header__inline-navigation" {% unless section.settings.header_layout == 'logo_center_search_open' %}role="navigation"{% endunless %}>
+        {%- if menu.links.size > 0 and section.settings.header_layout == 'logo_left_navigation_inline' or section.settings.header_layout == 'logo_left_navigation_center' or section.settings.header_layout == 'logo_center_navigation_inline' -%}
+          {%- render 'desktop-menu-v2', menu: menu -%}
+        {%- endif -%}
+
+        <div class="header__icon-list {% if section.settings.header_layout == 'logo_center_search_open' %}hidden-desk{% endif %}">
+          {%- if menu.links.size > 0 -%}
+            <button is="toggle-button" class="header__icon-wrapper tap-area {% unless section.settings.header_layout == 'drawer' %}hidden-desk{% endunless %}" aria-controls="mobile-menu-drawer" aria-expanded="false">
+              <span class="visually-hidden">{{ 'header.general.navigation' | t }}</span>
+              {%- render 'icon' with 'header-hamburger' -%}
+            </button>
+          {%- endif -%}
+
+          <a href="{{ routes.search_url }}" is="toggle-link" class="header__icon-wrapper tap-area {% if section.settings.header_layout == 'logo_center_search_open' %}hidden-lap{% endif %} hidden-desk" aria-controls="search-drawer" aria-expanded="false" aria-label="{{ 'search.general.title' | t | escape }}">
+            {%- render 'icon' with 'header-search' -%}
+          </a>
+        </div>
+
+        {%- if section.settings.header_layout == 'logo_center_search_open' -%}
+          <div class="header__search-bar predictive-search hidden-pocket">
+            <form class="predictive-search__form" action="{{ routes.search_url }}" method="get" role="search">
+              <input type="hidden" name="type" value="product">
+              <input type="hidden" name="options[prefix]" value="last">
+              <input type="hidden" name="options[unavailable_products]" value="{{ settings.search_unavailable_products }}">
+
+              {%- render 'icon' with 'header-search' -%}
+              <input class="predictive-search__input" is="predictive-search-input" type="text" name="q" autocomplete="off" autocorrect="off" aria-controls="search-drawer" aria-expanded="false" aria-label="{{ 'search.general.title' | t }}" placeholder="{{ 'search.general.search_placeholder' | t }}">
+            </form>
+          </div>
+        {%- endif -%}
+      </nav>
+
+      <!-- LOGO PART -->
+      {%- capture logo -%}
+        <a class="header__logo-link" href="{{ routes.root_url }}">
+          {%- if section.settings.logo != blank -%}
+            {%- capture logo_size -%}{{ section.settings.logo_max_width | at_least: section.settings.mobile_logo_max_width | times: 2 | append: 'x' }}{%- endcapture -%}
+            <span class="visually-hidden">{{ shop.name }}</span>
+            <img class="header__logo-image" width="{{ section.settings.logo.width }}" height="{{ section.settings.logo.height }}" src="{{ section.settings.logo | img_url: logo_size }}" alt="{{ section.settings.logo.alt | escape }}">
+
+            {%- if request.page_type == 'index' and section.settings.enable_transparent_header and section.settings.transparent_logo != blank -%}
+              <img class="header__logo-image header__logo-image--transparent" width="{{ section.settings.transparent_logo.width }}" height="{{ section.settings.transparent_logo.height }}" src="{{ section.settings.transparent_logo | img_url: logo_size }}" alt="{{ section.settings.transparent_logo.alt | escape }}">
+            {%- endif -%}
+          {%- else -%}
+            <span class="header__logo-text heading h5">{{ shop.name }}</span>
+          {%- endif -%}
+        </a>
+      {%- endcapture -%}
+
+      {%- if request.page_type == 'index' -%}
+        <h1 class="header__logo">{{ logo }}</h1>
+      {%- else -%}
+        <span class="header__logo">{{ logo }}</span>
+      {%- endif -%}
+
+      <!-- SECONDARY LINKS PART -->
+      <div class="header__secondary-links">
+        {%- if section.settings.show_country_selector and localization.available_countries.size > 1 -%}
+          {%- assign country_selector = true -%}
+        {%- endif -%}
+
+        {%- if section.settings.show_locale_selector and localization.available_languages.size > 1 -%}
+          {%- assign locale_selector = true -%}
+        {%- endif -%}
+
+        {%- if locale_selector or country_selector -%}
+          {%- form 'localization', id: 'header-localization-form', class: 'header__cross-border hidden-pocket' -%}
+            {%- if country_selector -%}
+              <div class="popover-container">
+                <input type="hidden" name="country_code" value="{{ localization.country.iso_code }}">
+                <span class="visually-hidden">{{ 'header.general.country' | t }}</span>
+
+                <button type="button" is="toggle-button" class="popover-button text--small" aria-expanded="false" aria-controls="header-localization-form-currency">
+                  {{- localization.country.name }} ({{ localization.country.currency.iso_code }} {% if localization.country.currency.symbol %}{{ localization.country.currency.symbol }}{%- endif -%})
+                  {%- render 'icon' with 'chevron', width: 9, height: 6, inline: true -%}
+                </button>
+
+                <popover-content id="header-localization-form-currency" class="popover">
+                  <span class="popover__overlay"></span>
+
+                  <header class="popover__header">
+                    <span class="popover__title heading h6">{{- 'header.general.country' | t -}}</span>
+
+                    <button type="button" class="popover__close-button tap-area tap-area--large" data-action="close" title="{{ 'general.accessibility.close' | t | escape }}">
+                      {%- render 'icon' with 'close' -%}
+                    </button>
+                  </header>
+
+                  <div class="popover__content popover__content--restrict">
+                    <div class="popover__choice-list">
+                      {%- for country in localization.available_countries -%}
+                        <button type="submit" name="country_code" value="{{ country.iso_code }}" class="popover__choice-item">
+                          <span class="popover__choice-label" {% if country.iso_code == localization.country.iso_code %}aria-current="true"{% endif %}>
+                            {{- country.name }} ({{ country.currency.iso_code }} {% if country.currency.symbol %}{{ country.currency.symbol }}{%- endif -%})
+                          </span>
+                        </button>
+                      {%- endfor -%}
+                    </div>
+                  </div>
+                </popover-content>
+              </div>
+            {%- endif -%}
+
+            {%- if locale_selector -%}
+              <div class="popover-container">
+                <input type="hidden" name="locale_code" value="{{ localization.language.iso_code }}">
+                <span class="visually-hidden">{{ 'header.general.language' | t }}</span>
+
+                <button type="button" is="toggle-button" class="popover-button text--small" aria-expanded="false" aria-controls="header-localization-form-locale">
+                  {{- localization.language.endonym_name | capitalize -}}
+                  {%- render 'icon' with 'chevron', width: 9, height: 6, inline: true -%}
+                </button>
+
+                <popover-content id="header-localization-form-locale" class="popover">
+                  <span class="popover__overlay"></span>
+
+                  <header class="popover__header">
+                    <span class="popover__title heading h6">{{- 'header.general.language' | t -}}</span>
+
+                    <button type="button" class="popover__close-button tap-area tap-area--large" data-action="close" title="{{ 'general.accessibility.close' | t | escape }}">
+                      {%- render 'icon' with 'close' -%}
+                    </button>
+                  </header>
+
+                  <div class="popover__content">
+                    <div class="popover__choice-list">
+                      {%- for language in localization.available_languages -%}
+                        <button type="submit" name="locale_code" value="{{ language.iso_code }}" class="popover__choice-item">
+                          <span class="popover__choice-label" {% if language.iso_code == localization.language.iso_code %}aria-current="true"{% endif %}>
+                            {{- language.endonym_name | capitalize -}}
+                          </span>
+                        </button>
+                      {%- endfor -%}
+                    </div>
+                  </div>
+                </popover-content>
+              </div>
+            {%- endif -%}
+          {%- endform -%}
+        {%- endif -%}
+
+        <div class="header__icon-list">
+          {%- comment -%}IMPLEMENTATION NOTE: this icon is hidden by the "popup" section if it is disabled{%- endcomment -%}
+          <button is="toggle-button" class="header__icon-wrapper tap-area hidden-phone {% unless section.settings.show_icons %}hidden-desk{% endunless %}" aria-controls="newsletter-popup" aria-expanded="false">
+            <span class="visually-hidden">{{ 'header.general.newsletter' | t }}</span>
+            {%- render 'icon' with 'header-email' -%}
+          </button>
+          <div style="display: block;" href="javascript:;" class="country_choose">
+            <svg class="world" t="1694085062554" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6180" width="23" height="23"><path d="M601.024 99.584a32 32 0 0 0-8.064 63.488 380.384 380.384 0 0 1 175.68 69.952c-115.744 26.336-150.944 106.048-158.336 175.008-10.72 99.68 60.224 151.968 107.168 186.56 16.48 12.16 41.376 30.528 42.528 39.104 0.16 1.248-0.992 5.408-6.56 12.416-61.056 76.96-83.808 140.832-67.552 189.952 4.96 14.912 15.296 32.896 36.288 47.84A381.856 381.856 0 0 1 544 928c-3.008 0-5.952-0.352-8.96-0.416 40.096-67.392 25.728-118.304 3.424-151.104-54.08-79.488-134.912-104.128-211.04-64.192-5.28 2.848-9.6 1.696-34.4-21.632-24.448-23.04-63.232-58.944-120.032-48.32-5.024-19.2-8.992-38.88-11.04-59.2a32.128 32.128 0 0 0-35.072-28.64c-17.568 1.792-30.4 17.472-28.64 35.072A446.496 446.496 0 0 0 544 992c247.04 0 448-200.96 448-448 0-225.024-168.064-416.064-390.976-444.416zM195.072 704.32c18.368 0.704 33.12 13.216 54.08 32.928 24 22.624 60.352 56.672 108 31.712 63.328-33.28 107.616 12.992 128.384 43.488 8.128 11.936 28.896 42.592-22.432 106.752a381.856 381.856 0 0 1-268.032-214.88z m589.344 138.656c-20.992-6.016-33.824-15.072-37.824-27.072-8.544-25.76 12.736-74.368 56.928-129.984 15.872-20 22.56-40.416 19.872-60.672-4.736-35.52-35.456-58.176-68-82.144-43.392-32-88.288-65.056-81.504-128.192 5.536-51.264 28.288-118.336 156.704-126.112A383.232 383.232 0 0 1 928 544c0 120.768-56.16 228.544-143.584 298.976z" p-id="6181" fill="#000000"></path><path d="M266.464 599.68a32 32 0 0 0 43.072 0C456.544 466.016 528 358.816 528 272 528 139.648 420.352 32 288 32S48 139.648 48 272c0 86.816 71.456 194.016 218.464 327.68zM288 96c97.056 0 176 78.944 176 176 0 43.872-31.232 124.128-176 260.416C143.232 396.128 112 315.872 112 272 112 174.944 190.944 96 288 96z" p-id="6182" fill="#000000"></path><path d="M288 272m-80 0a80 80 0 1 0 160 0 80 80 0 1 0-160 0Z" p-id="6183" fill="#000000"></path></svg>
+            <ul class="country_list">
+              <li class="country_list_items">
+                <a href="https://awolvision.com/">
+                  <svg t="1696756181652" class="icon" viewBox="0 0 1536 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="58436" width="24" height="24"><path d="M0 0.00064h1536.083413v1023.99872H0V0.00064z" fill="#FFFFFF" p-id="58437"></path><path d="M465.492751 2.091304V465.493391H2.069331C24.19197 219.840365 219.839725 24.213943 465.492751 2.091304z" fill="#00209F" p-id="58438"></path><path d="M1004.756077 372.480174c8.469323 29.951963 14.293315 61.055924 17.151979 93.013217H464.575419v-93.013217h540.159325zM907.006866 186.240407c23.594637 28.565298 44.138611 59.733259 61.141257 93.013217H464.575419V186.240407h442.431447zM464.575419 2.176637A518.484685 518.484685 0 0 1 511.99936 0.00064a509.652696 509.652696 0 0 1 294.356965 93.013217h-341.759572V2.197971zM1004.756077 651.519826c8.469323-29.951963 14.293315-61.055924 17.151979-93.013217H2.069331c2.879996 31.957293 8.703989 63.061255 17.173312 93.013217h985.513434zM968.148123 744.746376H55.829264a512.682026 512.682026 0 0 0 61.16259 93.013217h790.015012c23.594637-28.565298 44.138611-59.733259 61.141257-93.013217zM806.356325 930.986143H217.642395A509.652696 509.652696 0 0 0 511.99936 1023.99936a509.652696 509.652696 0 0 0 294.356965-93.013217z" fill="#EB0000" p-id="58439"></path><path d="M259.050343 108.587171l37.717286 111.637194h122.45318l-99.285209 72.554576 36.693288 110.634528-97.578545-65.813251-97.599878 65.813251 36.543954-110.634528-98.282544-72.533243h122.282514l37.055954-111.658527z" fill="#FFFFFF" p-id="58440"></path></svg>
+                  <span>US</span>
+                </a>
+              </li>
+              <li class="country_list_items">
+                <a href="https://awolvision.de/">
+                <svg t="1696755441128" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="34323" width="18" height="18"><path d="M512 512m-512 0a512 512 0 1 0 1024 0 512 512 0 1 0-1024 0Z" fill="#0052B4" p-id="34324"></path><path d="M512.002 200.348l16.578 51.018h53.64l-43.398 31.53 16.578 51.018-43.398-31.532-43.4 31.532 16.578-51.018-43.398-31.53h53.642zM291.628 291.628l47.8 24.352 37.93-37.928-8.394 52.98 47.798 24.354-52.982 8.392-8.392 52.984-24.354-47.798-52.98 8.394 37.93-37.93zM200.35 512l51.018-16.578V441.78l31.528 43.4 51.02-16.578L302.382 512l31.534 43.398-51.02-16.576-31.528 43.398v-53.642zM291.628 732.372l24.354-47.8-37.928-37.93 52.982 8.396 24.35-47.798 8.394 52.982 52.98 8.392-47.792 24.354 8.39 52.98-37.93-37.93zM512.002 823.652l-16.58-51.018h-53.64l43.4-31.53-16.58-51.014 43.4 31.528 43.398-31.528-16.578 51.014 43.398 31.53h-53.642zM732.374 732.372l-47.798-24.352-37.932 37.93 8.394-52.984-47.794-24.352 52.98-8.392 8.392-52.982 24.352 47.798 52.98-8.396-37.93 37.934zM823.652 512l-51.018 16.578v53.642l-31.53-43.4-51.014 16.578L721.62 512l-31.53-43.398 51.016 16.578 31.528-43.4v53.644zM732.374 291.628l-24.354 47.8 37.93 37.93-52.984-8.396-24.35 47.798-8.392-52.982-52.98-8.394 47.794-24.352-8.394-52.978 37.934 37.928z" fill="#FFDA44" p-id="34325"></path></svg>                  
+                <span>EU</span>
+                </a>
+              </li>
+              <li class="country_list_items">
+                <a href="https://awolvision.jp/">
+                <svg t="1720676948560" class="icon" viewBox="0 0 1045 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5523" width="22" height="22"><path d="M512.128 0c282.816 0 512.021333 229.226667 512.021333 512S794.944 1024 512.128 1024c-282.773333 0-512-229.226667-512-512s229.226667-512 512-512z" fill="#F0F0F0" p-id="5524"></path><path d="M512.106667 289.386667c122.965333 0 222.634667 99.690667 222.634666 222.613333 0 122.922667-99.690667 222.592-222.634666 222.592-122.922667 0-222.592-99.669333-222.592-222.592s99.669333-222.613333 222.592-222.613333" fill="#D80027" p-id="5525"></path></svg>
+                <span>JP</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+          {%- if section.settings.header_layout != 'logo_center_search_open' -%}
+            <a href="{{ routes.search_url }}" is="toggle-link" class="header__icon-wrapper tap-area hidden-pocket hidden-lap {% unless section.settings.show_icons %}hidden-desk{% endunless %}" aria-label="{{ 'search.general.title' | t | escape }}" aria-controls="search-drawer" aria-expanded="false">
+              {%- render 'icon' with 'header-search' -%}
+            </a>
+          {%- endif -%}
+
+          {%- if shop.customer_accounts_enabled -%}
+            <a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}" class="header__icon-wrapper tap-area hidden-phone {% unless section.settings.show_icons %}hidden-desk{% endunless %}" aria-label="{% if customer %}{{ 'header.general.account' | t | escape }}{% else %}{{ 'header.general.login' | t | escape }}{% endif %}">
+              {%- render 'icon' with 'header-customer' -%}
+            </a>
+          {%- endif -%}
+
+          <a href="{{ routes.cart_url }}" {% unless settings.cart_type == 'page' or request.page_type == 'cart' %}is="toggle-link" aria-controls="mini-cart" aria-expanded="false"{% endunless %} class="header__icon-wrapper tap-area {% unless section.settings.show_icons %}hidden-desk{% endunless %}" aria-label="{{ 'header.general.cart' | t | escape }}" data-no-instant>
+            {%- case settings.cart_icon -%}
+              {%- when 'shopping_bag' -%}
+                {%- render 'icon' with 'header-cart' -%}
+
+              {%- when 'shopping_cart' -%}
+                {%- render 'icon' with 'header-shopping-cart' -%}
+
+              {%- when 'tote_bag' -%}
+                {%- render 'icon' with 'header-tote-bag' -%}
+            {%- endcase -%}
+
+            <cart-count class="header__cart-count header__cart-count--floating bubble-count">{{ cart.item_count }}</cart-count>
+          </a>
+          
+          <div class="transcy-switcher-manual transcy-desktop hidden"></div>
+        </div>
+
+        {%- unless section.settings.show_icons -%}
+          <ul class="header__linklist list--unstyled hidden-pocket hidden-lap" role="list">
+            {%- comment -%}
+              <!-- NOTE: There is really not enough space to fit this, so this is commented by default in Liquid -->
+              <li  class="header__linklist-item">
+                <button is="toggle-button" aria-controls="newsletter-popup" aria-expanded="false">{{ 'header.general.newsletter' | t }}</button>
+              </li>
+            {%- endcomment -%}
+
+            {%- if section.settings.header_layout != 'logo_center_search_open' -%}
+              <li class="header__linklist-item">
+                <a href="{{ routes.search_url }}" is="toggle-link" aria-controls="search-drawer" aria-expanded="false">{{ 'search.general.title' | t | escape }}</a>
+              </li>
+            {%- endif -%}
+
+            {%- if shop.customer_accounts_enabled -%}
+              <li class="header__linklist-item">
+                <a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}">
+                  {%- if customer -%}
+                    {{ 'header.general.account' | t }}
+                  {%- else -%}
+                    {{ 'header.general.login' | t }}
+                  {%- endif -%}
+                </a>
+              </li>
+            {%- endif -%}
+
+            <li class="header__linklist-item">
+              <a href="{{ routes.cart_url }}" {% unless settings.cart_type == 'page' %}is="toggle-link" aria-controls="mini-cart" aria-expanded="false"{% endunless %} data-no-instant>
+                {{- 'header.general.cart' | t | escape -}}
+                <cart-count class="header__cart-count bubble-count">{{ cart.item_count }}</cart-count>
+              </a>
+            </li>
+          </ul>
+        {%- endunless -%}
+      </div>
+    </div>
+
+    {%- if menu.links.size > 0 and section.settings.header_layout == 'logo_center_search_open' -%}
+      <nav class="header__bottom-navigation hidden-pocket hidden-lap" role="navigation">
+        {% render 'desktop-menu-v2', menu: menu, bottom_navigation: true %}
+      </nav>
+    {%- endif -%}
+  </div>
+</store-header>
+
+{%- comment -%}
+------------------------------------------------------------------------------------
+  CART NOTIFICATION: it is used to show the notification when a product is added in message mode
+------------------------------------------------------------------------------------
+{%- endcomment -%}
+
+<cart-notification global hidden class="cart-notification {% unless section.settings.enable_sticky_header %}cart-notification--fixed{% endunless %}"></cart-notification>
+
+{%- comment -%}
+------------------------------------------------------------------------------------
+MOBILE MENU DRAWER
+------------------------------------------------------------------------------------
+{%- endcomment -%}
+
+{%- assign menu = section.settings.sidebar_navigation_menu | default: section.settings.navigation_menu -%}
+{%- render 'mobile-menu-v2', menu: menu -%}
+
+{%- comment -%}
+------------------------------------------------------------------------------------
+SEARCH DRAWER
+------------------------------------------------------------------------------------
+{%- endcomment -%}
+
+{%- render 'predictive-search' -%}
+
+<script>
+(() => {
+  let pathname = window.location.pathname.substr(1, window.location.pathname.length)
+  if (pathname === 'products/100-awol-vision-deposit-reservation') {
+    $("#shopify-section-header-v2").hide()
+  }
+  const headerElement = document.getElementById('shopify-section-{{ section.id }}'),
+    headerHeight = headerElement.clientHeight,
+    headerHeightWithoutBottomNav = headerElement.querySelector('.header__wrapper').clientHeight;
+
+  document.documentElement.style.setProperty('--header-height', headerHeight + 'px');
+  document.documentElement.style.setProperty('--header-height-without-bottom-nav', headerHeightWithoutBottomNav + 'px');
+
+  let menu = document.querySelectorAll(".mega-menu");
+  menu.forEach(v => {
+    let navChildNav = v.querySelectorAll(".left-nav li"), navChildProduct = v.querySelectorAll(".right-product .child-style");
+    navChildNav.forEach((item, index, arr) => {
+      item.onclick = () => {
+        arr.forEach((e, i) => {
+          e.classList.remove("on");
+          navChildProduct[i].classList.remove("on")
+        });
+        item.classList.add("on");
+        navChildProduct[index].classList.add("on")
+      }
+    })
+  })
+})()
+</script>
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": {{ shop.name | json }},
+    {% if section.settings.logo %}
+      {% assign image_size = section.settings.logo.width | append: 'x' %}
+      "logo": {{ section.settings.logo | img_url: image_size | prepend: 'https:' | json }},
+    {% endif %}
+    "url": {{ shop.url | append: page.url | json }}
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Header-v2", "class": "shopify-section--header",
+  "settings":[
+    {"type": "checkbox", "id": "enable_sticky_header", "label": "Enable sticky header (Desktop)", "default":true},
+
+    {"type": "header", "content": "Logo"},
+    {"type": "image_picker", "id": "logo", "label": "Image", "info": "280 x 80px .png recommended"},
+    {"type": "range", "id": "logo_max_width", "min":40,"max":300,"step":5,"unit": "px", "label": "Image width", "default":140},
+    {"type": "range", "id": "mobile_logo_max_width", "min":25,"max":170,"step":5,"unit": "px", "label": "Mobile image width", "default":100},
+    
+    {"type": "header", "content": "Navigation"},
+    {"type": "link_list", "id": "navigation_menu", "label": "Menu", "default": "main-menu"},
+    {"type": "link_list", "id": "sidebar_navigation_menu", "label": "Mobile menu", "info": "Select a different menu for mobile sidebar. If none is set the main menu is used."},
+    {"type": "header", "content": "Desktop", "info": "Those settings apply on large screen only"},
+    {
+      "type": "select", "id": "header_layout", "label": "Layout",
+      "options":[
+        {"value": "logo_left_navigation_inline", "label": "Logo left, navigation inline"},
+        {"value": "logo_left_navigation_center", "label": "Logo left, navigation center"},
+        {"value": "logo_center_navigation_inline", "label": "Logo center, navigation inline"},
+        {"value": "logo_center_search_open", "label": "Logo center, search highlighted"},
+        {"value": "drawer", "label": "Drawer"}
+      ],
+      "default": "logo_left_navigation_inline"
+    },
+    {"type": "checkbox", "id": "show_icons", "label": "Show icons", "default":false},
+    {"type": "checkbox", "id": "reduce_desktop_padding", "label": "Reduce padding", "default":false},
+
+    {
+      "type": "header", "content": "Language selector",
+      "info": "To add a language, go to your [language settings.](/admin/settings/languages)"
+    },
+    {"type": "checkbox", "id": "show_locale_selector", "label": "Show language selector", "default":true},
+
+    {
+      "type": "header", "content": "Country/region selector",
+      "info": "To add a country/region, go to your [currency settings.](/admin/settings/payments)"
+    },
+    {"type": "checkbox", "id": "show_country_selector", "label": "Show country/region selector", "default":false},
+
+    {"type": "header", "content": "Transparent header", "info": "Home page only. For best results, use an image section such as slideshow."},
+    {"type": "checkbox", "id": "enable_transparent_header", "label": "Enable", "default":false},
+    {"type": "color", "id": "transparent_header_text_color", "label": "Text color", "default": "#ffffff"},
+    {"type": "image_picker", "id": "transparent_logo", "label": "Logo image", "info": "Uses the dimensions set on your main logo."},
+
+    {"type": "header", "content": "Search"},
+    {"type": "link_list", "id": "search_menu", "label": "Quick links menu", "info": "Display quick links when empty. This menu has limited support for dropdown items."}
+  ],
+  "blocks":[
+    {
+      "type": "mega_menu", "name": "Mega menu",
+      "settings": [
+        {
+          "type": "text", "id": "menu_item", "label": "Menu item",
+          "info": "Enter menu item to apply a mega menu dropdown. [Learn more](https://support.maestrooo.com/article/180-navigation-enabling-and-configuring-mega-navigation)."
+        },
+        {"type": "collection", "id": "menu_collection_1", "label": "Collection"},
+        {"type": "collection", "id": "menu_collection_2", "label": "Collection"},
+        {"type": "collection", "id": "menu_collection_3", "label": "Collection"}
+      ]
+    }
+  ]
+}
+{% endschema %}

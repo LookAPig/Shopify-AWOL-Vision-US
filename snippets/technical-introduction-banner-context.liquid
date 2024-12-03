@@ -1,0 +1,81 @@
+<style>
+  @font-face {
+    font-family: "Manrope";
+    src: url("https://cdn.shopify.com/s/files/1/0554/7445/4576/files/Manrope.woff2?v=1718257995") format("woff2-variations");
+    font-weight: 200 800;
+  }
+  .banner-context {
+    margin: 0 auto;
+    width: 100%;
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+  }
+  .banner_container {
+    display: flex;
+    gap: 30px;
+    flex-direction: column;
+  }
+  .banner-context .context_header {
+    font-family: 'Manrope';
+    color: #FFFFFF;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 115%;
+  }
+  .banner-context .context_desc {
+    font-family: 'Manrope';
+    color: #F5F5F5;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 115%; /* 23px */
+  }
+  .banner-context .context_button {
+    font-family: 'Manrope';
+    border-radius: 30px;
+    border: 1px solid #F5222D;
+    background: rgba(245, 34, 45, 0.30);
+    color: #FFF;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 115%; /* 18.4px */
+    width: fit-content;
+    padding: 12px 36px;
+  }
+  @media screen and (max-width: 1024px) {
+    br {display: none;}
+    .banner-context {
+      top: 18%;
+    }
+    .banner_container {
+      gap: 20px;
+      padding: 20px;
+      align-items: center;
+      text-align: center;
+    }
+    .banner-context .context_header {
+      font-size: 24px;
+    }
+    .banner-context .context_desc {
+      font-size: 16px;
+    }
+  }
+</style>
+<div class="banner-context">
+  <div class="main-width banner_container">
+    <div class="context_header">
+      Discover the Future of Home<br> 
+      Entertainment with AWOL Vision Laser TV
+    </div>
+    <div class="context_desc">
+      Unmatched Picture Quality, Effortless Setup,<br> 
+      and Exceptional Value Await You
+    </div>
+    <a href="{{ link_to }}" class="context_button">
+      Shop Now
+    </a>
+  </div>
+</div>

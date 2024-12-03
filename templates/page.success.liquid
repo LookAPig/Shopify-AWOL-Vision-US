@@ -1,0 +1,56 @@
+<style>
+    @font-face {
+        font-family: "Manrope";
+        src: url("https://cdn.shopify.com/s/files/1/0554/7445/4576/files/Manrope.woff2?v=1718257995") format("woff2-variations");
+        font-weight: 200 800;
+    }
+    .success_container {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 20px;
+        padding: 100px 30px;
+    }
+    .success_container .success_header{
+        color: var(--Dark-Gray, #1B1D1D);
+        text-align: center;
+        font-family: Manrope;
+        font-size: 48px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 115%; /* 55.2px */
+        letter-spacing: -1.44px;
+    }
+    .success_container .success_desc{
+        color: var(--Dark-Gray, #1B1D1D);
+        text-align: center;
+        font-family: Manrope;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 150%; /* 24px */
+        letter-spacing: -0.16px;
+    }
+    @media screen and (max-width: 750px) {
+      .success_container .success_header{
+        font-size: 32px;
+      }
+      .success_container .success_desc{
+        font-size: 14px;
+      }
+    }
+</style>
+<section class="success_container">
+    <div class="success_icon">
+      <svg width="101" height="101" viewBox="0 0 101 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50.5" cy="50.5" r="49.25" fill="white" stroke="#1B1D1D" stroke-width="1.5"/>
+        <path d="M45.0303 61.5303L73.5569 33.0037L78.4448 37.9945L44.5 71.9393L26.5607 54L31.5 49.0607L43.9697 61.5303L44.5 62.0607L45.0303 61.5303Z" stroke="#1B1D1D" stroke-width="1.5"/>
+      </svg>
+    </div>
+    <div class="success_header">
+        We've received your request
+    </div>
+    <div class="success_desc">A member of our concierge team will be in touch shortly to coordinate the details of your connection. </div>
+</section>

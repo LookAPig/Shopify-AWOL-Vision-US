@@ -1,0 +1,93 @@
+{{- 'search-banner.css' | asset_url | stylesheet_tag: true -}}
+<div class="search_banner_container" style="background-image: url({{ section.settings.background | image_url }});">
+    <div class="mask" style="opacity: {{ section.settings.opacity }};"></div>
+    <div class="search_content">
+        <h1 class="header">{{ section.settings.heading }}</h1>
+        {% comment %} <div class="search">
+            <form id="predictive-search-form" action="{{ routes.search_url }}" method="get" class="predictive-search__form">
+              {%- render 'icon' with 'header-search' -%}
+        
+              <input type="hidden" name="type" value="product">
+              <input type="hidden" name="options[prefix]" value="last">
+              <input type="hidden" form="predictive-search-form" name="options[unavailable_products]" value="{{ settings.search_unavailable_products }}">
+              <input class="predictive-search__input" type="text" name="q" autocomplete="off" autocorrect="off" aria-label="{{ 'search.general.title' | t }}" placeholder="{{ 'search.general.search_placeholder' | t }}">
+            </form>
+            <button type="button" class="drawer__close-button tap-area" data-action="close" title="{{ 'general.accessibility.close' | t | escape }}">
+              {%- render 'icon' with 'close' -%}
+            </button>
+        </div>
+        <div class="popular_search">
+            <p>Popular searches:</p>
+            <div class="popular_items">
+                {% for block in section.blocks %}
+                    {% if block.type == 'popular' %}
+                        <span class="popular_item">{{ block.settings.popular }}</span>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div> {% endcomment %}
+        <div class="search_items">
+            {% for block in section.blocks %}
+                {% if block.type == 'item' %}
+                    <a href="{{ block.settings.link_to }}" title="{{ block.settings.searchItem }}" target="_blank" class="search_item">
+                        <img class="search_icon" src="{{ block.settings.searchIcon | image_url }}" alt="{{ block.settings.searchItem }}">
+                        <span>{{ block.settings.searchItem }}</span>
+                    </a>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        {% comment %} <div class="help_items">
+            {% for block in section.blocks %}
+                {% if block.type == 'help' %}
+                    <a href="{{ block.settings.link_to }}" title="{{ block.settings.helpItem }}" target="_blank" class="help_item">
+                        <img class="help_icon" src="{{ block.settings.helpIcon | image_url }}" alt="{{ block.settings.helpItem }}">
+                        <span>{{ block.settings.helpItem }}</span>
+                        <p class="help_desc">{{ block.settings.helpdesc }}</p>
+                    </a>
+                {% endif %}
+            {% endfor %}
+        </div> {% endcomment %}
+    </div>
+</div>
+<script>
+</script>
+
+{% schema %}
+{
+  "name": "SearchBanner", "class": "search-banner",
+  "settings": [
+    {"type": "text", "id": "heading", "label": "Heading", "default": "How can we help?"},
+    {"type": "image_picker", "id": "background", "label": "Background image"},
+    {"type": "range", "id": "opacity", "label": "Background image opacity", "max": 1, "min": 0, "step": 0.1, "default": 0.3}
+  ],
+  "blocks":[
+    {
+      "type": "item", "name": "search item",
+      "settings": [
+        {"type": "image_picker", "id": "searchIcon", "label": "Search Icon"},
+        {"type": "text", "id": "searchItem", "label": "Search Item"},
+        {"type": "url", "id": "link_to", "label": "Link to"}
+      ]
+    },
+    {
+      "type": "popular", "name": "popular item",
+      "settings": [
+        {"type": "text", "id": "popular", "label": "Popular searches"}
+      ]
+    },
+    {
+      "type": "help", "name": "help item",
+      "settings": [
+        {"type": "image_picker", "id": "helpIcon", "label": "Help Icon"},
+        {"type": "text", "id": "helpItem", "label": "Help Item"},
+        {"type": "textarea", "id": "helpdesc", "label": "Help desc"},
+        {"type": "url", "id": "link_to", "label": "Link to"}
+      ]
+    }
+  ],
+  "presets": [
+    {"name": "SearchBanner"}
+  ]
+}
+{% endschema %}

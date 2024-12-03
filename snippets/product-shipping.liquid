@@ -1,0 +1,159 @@
+{% style %}
+  .shipping_container {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 12px;
+    padding: 12px;
+  }
+  .shipping_item {
+    font-style: normal;
+    line-height: normal;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .shipping_item:first-of-type {
+    cursor: pointer;
+  }
+  @media screen and (max-width: 750px) {
+    #testB .shipping .shipping_container .shipping_item {
+      display: grid;
+      grid-template-columns: 10fr 1fr;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+  }
+{% endstyle %}
+{% liquid
+  assign product_metafields = product.metafields
+  assign product_variants2_metafields = product.variants
+  assign product_variants_metafields = product_variants_metafield
+%}
+<div class="shipping_container">
+  {% if product_variants_metafields %}
+    {% assign item_size = product_variants_metafields.custom.prodcut_shipping %}
+    {% for item in product_variants_metafields.custom.prodcut_shipping.value %}
+      <div class="shipping_item">
+        {% comment %} {{ item_size |  json | size }} {% endcomment %}
+        <div><span class="shipping_small_title">Order Now, </span>{{ item.product_name }} <span class="date_container"></span></div> <span class="shipping_svg">{%- render 'icon' with 'dropdown-arrow-right', height: '14'  -%}</span>
+      </div>
+    {% endfor %}
+    {% else %}
+    
+    {% for item in product_metafields.custom.prodcut_shipping.value %}
+      <div class="shipping_item all">
+        {{ item.product_name }} <span class="date_container"></span>
+      </div>
+    {% endfor %}
+    {% for item in product_variants2_metafields %}
+      {% for v_item in item.metafields.custom.prodcut_shipping.value %}
+        <div class="shipping_item" data-id="{{ item.id }}" data-v="{{ item.title |  replace: '"', "," }}" style="display: none;">
+          {{ v_item.product_name }} <span class="date_container"></span>
+        </div>
+      {% endfor %}
+    {% endfor %}
+  {% endif %}
+</div>
+<script>
+  function addDays(dateString, days) {
+    const date = new Date(dateString);
+    date.setTime(date.getTime() + (days * 24 * 3600 * 1000));
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    return `${month}/${day}`;
+  }
+  let today = new Date();
+  let year = today.getFullYear();
+  let month = (today.getMonth() + 1).toString().padStart(2, '0');
+  let day = today.getDate().toString().padStart(2, '0');
+  let currentDate = year + '/' + month + '/' +  day;
+
+  let date_container = document.querySelectorAll('.date_container')
+  let dateArray = []
+  {% if product_variants_metafields %}
+    {% for item in product_variants_metafields.custom.prodcut_shipping.value %}
+      dateArray.push(addDays(currentDate, `{{ item.early_delivery_time }}`) + ' - ' + addDays(currentDate, `{{ item.laster_delivery_time }}`))
+    {% endfor %}
+    {% else %}
+    {% for item in product_metafields.custom.prodcut_shipping.value %}
+      dateArray.push(addDays(currentDate, `{{ item.early_delivery_time }}`) + ' - ' + addDays(currentDate, `{{ item.laster_delivery_time }}`))
+    {% endfor %}
+    {% for item in product_variants2_metafields %}
+      {% for v_item in item.metafields.custom.prodcut_shipping.value %}
+        dateArray.push(addDays(currentDate, `{{ v_item.early_delivery_time }}`) + ' - ' + addDays(currentDate, `{{ v_item.laster_delivery_time }}`))
+      {% endfor %}
+    {% endfor %}
+  {% endif %}
+  for(let i = 0; i < date_container.length; i++) {
+    date_container[i].innerHTML += dateArray[i]
+  }
+  
+  function urlContainsParam(param) {
+    var urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has(param)) {
+
+    }
+    return urlParams.has(param);
+  } 
+  function getUrlParam(url, param) {
+      const searchParams = new URLSearchParams(url.split('?')[1]);
+      if (searchParams.has(param)) {
+        return searchParams.get(param);
+      } else {
+        return null;
+      }
+  }
+  $(function() {
+    let dateArray = []
+    {% for item in product_variants2_metafields %}
+      {% for v_item in item.metafields.custom.prodcut_shipping.value %}
+        dateArray.push(addDays(currentDate, `{{ v_item.early_delivery_time }}`) + ' - ' + addDays(currentDate, `{{ v_item.laster_delivery_time }}`))
+      {% endfor %}
+    {% endfor %}
+    console.log('dateArray', dateArray)
+    if (dateArray.length > 1) {
+      let v_ids;
+      let vid = document.querySelector('[oid="add-to-cart"]').id.value;
+      $(".shipping_item").hide()
+      if(urlContainsParam('variant')) {
+        v_ids = getUrlParam(window.location.search, 'variant')
+        window.localStorage.setItem('v_id', v_ids)
+      } else {
+        window.localStorage.setItem('v_id', null)
+      }
+      if (v_ids != null) {
+        console.log('has_id')
+        $(".shipping_item[data-id='"+ v_ids +"']").show()
+      } else if(v_ids == null && vid){
+        $(".shipping_item[data-id='"+ vid +"']").show()
+      } else {
+        $(".shipping_item.all").show();
+      }
+      // $('input[type="radio"]').each(function() {
+      //   if($(this).is(':checked')) {
+      //     let values = $(this).val()
+      //     $(".shipping_item[data-v='"+ values.split('"') +"']").show()
+      //   } 
+      // });
+    }
+    $(".block-swatch__item").on("click", function() {
+      if (dateArray.length > 1) {
+        // $(".shipping_item").hide()
+        // let v_name = $(this).text();
+        // let v_id = window.localStorage.getItem('v_id')
+        // if ($(".shipping_item[data-id='"+ v_id +"']").length < 1) {
+        //   $(".shipping_item.all").show()
+        // }  else {
+        //   $(".shipping_item[data-id='"+ v_id +"']").show()
+        // }
+        // if ($(".shipping_item[data-v='"+ v_name.split('"') +"']").length < 1) {
+        //   $(".shipping_item.all").show()
+        // }  else {
+        //   $(".shipping_item[data-v='"+ v_name.split('"') +"']").show()
+        // }
+      }
+    })
+  })
+</script>

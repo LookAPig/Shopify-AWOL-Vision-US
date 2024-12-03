@@ -1,0 +1,431 @@
+{{- 'show-room.css' | asset_url | stylesheet_tag: true -}}
+{%- if section.settings.background_type == 'boxed' -%}
+    {%- assign is_boxed = true -%}
+  {%- else -%}
+    {%- assign is_boxed = false -%}
+  {%- endif -%}
+  
+  {%- if section.settings.background != settings.background and section.settings.background != 'rgba(0,0,0,0)' -%}
+    {%- assign blends_with_background = false -%}
+  {%- else -%}
+    {%- assign blends_with_background = true -%}
+  {%- endif -%}
+  
+  <style>
+    #shopify-section-{{ section.id }} {
+      {%- if section.settings.background == 'rgba(0,0,0,0)' -%}
+        {%- assign section_background = settings.background -%}
+      {%- else -%}
+        {%- assign section_background = section.settings.background -%}
+      {%- endif -%}
+  
+      {%- if section.settings.text_color == 'rgba(0,0,0,0)' -%}
+        {%- assign heading_color = settings.heading_color -%}
+        {%- assign text_color = settings.text_color -%}
+      {%- else -%}
+        {%- assign heading_color = section.settings.text_color -%}
+        {%- assign text_color = section.settings.text_color -%}
+      {%- endif -%}
+  
+      {%- if section.settings.button_background == 'rgba(0,0,0,0)' -%}
+        {%- assign button_background = settings.primary_button_background -%}
+      {%- else -%}
+        {%- assign button_background = section.settings.button_background -%}
+      {%- endif -%}
+  
+      {%- if section.settings.button_text_color == 'rgba(0,0,0,0)' -%}
+        {%- assign button_text_color = settings.primary_button_text_color -%}
+      {%- else -%}
+        {%- assign button_text_color = section.settings.button_text_color -%}
+      {%- endif -%}
+  
+      --heading-color: {{ heading_color.red }}, {{ heading_color.green }}, {{ heading_color.blue }};
+      --text-color: {{ text_color.red }}, {{ text_color.green }}, {{ text_color.blue }};
+      --primary-button-background: {{ button_background.red }}, {{ button_background.green }}, {{ button_background.blue }};
+      --primary-button-text-color: {{ button_text_color.red }}, {{ button_text_color.green }}, {{ button_text_color.blue }};
+  
+      --section-background: {{ section_background.red }}, {{ section_background.green }}, {{ section_background.blue }};
+    }
+  </style>
+  <section class="section {% unless blends_with_background or is_boxed %}section--flush{% endunless %}">
+    <div {% if is_boxed %}class="container"{% endif %}>
+      <div class="section__color-wrapper {% if is_boxed %}section__color-wrapper--boxed{% endif %}">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'search_banner' %}
+              <div class="show-room_search_banner">
+                <div class="search_banner_container">
+                  <img class="pc" src="{{ block.settings.banner | image_url }}" loading="lazy" alt="{{ block.settings.title }}" />
+                  <img class="mobile" src="{{ block.settings.banner_mobile | image_url }}" loading="lazy" alt="{{ block.settings.title }}" />
+                  <div class="search_banner_context" 
+                    style="{% if block.settings.position == 'left' %}left: 0;{% else if block.settings.position == 'center' %}left: 50%;transform: translate(-50%,-50%); {% else  %}right: 0;{% endif %}">
+                    <p class="title">{{ block.settings.title }}</p>
+                    <p class="subtitle">{{ block.settings.subtitle }}</p>
+                    <div class="search_containers">
+                      {% unless block.settings.link_to %}
+                        {% comment %} <p>Query suggestions for 'pizza near Syd':</p>
+                        <ul id="results"></ul> {% endcomment %}
+                        <!-- Replace Powered By Google image src with self hosted image. https://developers.google.com/maps/documentation/places/web-service/policies#other_attribution_requirements -->
+                      <input autocomplete="off" name="ship-address" id="ship-address" type="text" placeholder="{{ block.settings.input_lable }}"/>
+                      {% endunless %}
+                      <a {% unless block.settings.link_to %}onclick="linkTo($('#autocomplete').val())"{% endunless %} href="{% if block.settings.link_to %}{{ block.settings.link_to }}{% else %}javascript:;{% endif %}" style="color: {{ block.settings.button_font_color }};background: {{ block.settings.button_color }}">
+                        {{ block.settings.button_lable }}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+                          <path d="M10.7318 17.3211L17.4815 10.4643M17.4815 10.4643L10.7318 3.60747M17.4815 10.4643L2.91079 10.4643" stroke="white" stroke-width="1.5"/>
+                        </svg>
+                      </a>
+                      <div class="search_result">
+                        {% for item in (1..3) %}
+                          <div class="result_item">
+                            1 Hotel West Hollywood, Sunset Boulevard, West Hollywood, CA, USA
+                          </div>
+                        {% endfor %}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% when 'items' %}
+            <div class="show_room_items">
+              <div class="show_item" style="background: {{ block.settings.item_bg }}">
+                <div class="item_header">
+                  {{ block.settings.item_header }}
+                </div>
+                <div class="item_subtitle">
+                  {{ block.settings.item_subtitle }}
+                </div>
+                <div class="item_context">
+                  {{ block.settings.item_context }}
+                </div>
+              </div>
+              <div class="show_item" style="background: {{ block.settings.item_bg }}">
+                <div class="item_header">
+                  {{ block.settings.item_header1 }}
+                </div>
+                <div class="item_subtitle">
+                  {{ block.settings.item_subtitle1 }}
+                </div>
+                <div class="item_context">
+                  {{ block.settings.item_context1 }}
+                </div>
+              </div>
+              <div class="show_item" style="background: {{ block.settings.item_bg }}">
+                <div class="item_header">
+                  {{ block.settings.item_header2 }}
+                </div>
+                <div class="item_subtitle">
+                  {{ block.settings.item_subtitle2 }}
+                </div>
+                <div class="item_context">
+                  {{ block.settings.item_context2 }}
+                </div>
+              </div>
+            </div>
+          {% endcase %}
+        {% endfor %}
+
+      </div>
+    </div>
+  </section>
+  <script>
+    function linkTo(searchName) {
+      console.log('searchName', searchName)
+      if(searchName) {
+        window.location.href = "https://awolvision.com/pages/visit-a-showroom?searchName="+ searchName
+      } else {
+        window.location.href = "https://awolvision.com/pages/visit-a-showroom"
+      }
+    }
+  </script>
+  {% schema %}
+  {
+    "name": "Show room for host",
+    "class": "shopify-section--show-room-host",
+    "settings": [
+      {
+        "type": "select",
+        "id": "background_type",
+        "label": "Background",
+        "options": [
+          {
+            "value": "full_width",
+            "label": "Full width"
+          },
+          {
+            "value": "boxed",
+            "label": "Boxed"
+          }
+        ],
+        "default": "full_width"
+      },
+      {
+        "type": "select",
+        "id": "text_width",
+        "label": "Text width",
+        "options": [
+          {
+            "value": "small",
+            "label": "Small"
+          },
+          {
+            "value": "medium",
+            "label": "Medium"
+          },
+          {
+            "value": "large",
+            "label": "Large"
+          },
+          {
+            "value": "fill",
+            "label": "Fill screen"
+          }
+        ],
+        "default": "medium"
+      },
+      {
+        "type": "select",
+        "id": "text_position",
+        "label": "Text position",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ],
+        "default": "center"
+      },
+      {
+        "type": "select",
+        "id": "text_alignment",
+        "label": "Text alignment",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ],
+        "default": "center"
+      },
+      {
+        "type": "header",
+        "content": "Colors"
+      },
+      {
+        "type": "color",
+        "id": "background",
+        "label": "Background",
+        "default": "rgba(0,0,0,0)"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text color",
+        "default": "rgba(0,0,0,0)"
+      },
+      {
+        "type": "color",
+        "id": "button_background",
+        "label": "Button background",
+        "default": "rgba(0,0,0,0)"
+      },
+      {
+        "type": "color",
+        "id": "button_text_color",
+        "label": "Button text",
+        "default": "rgba(0,0,0,0)"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "search_banner",
+        "name": "search_banner",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "banner",
+            "label": "Search banner"
+          },
+          {
+            "type": "image_picker",
+            "id": "banner_mobile",
+            "label": "Search banner for mobile"
+          },
+          {
+            "type": "textarea",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "textarea",
+            "id": "subtitle",
+            "label": "Sub Title"
+          },
+          {
+            "type": "text",
+            "id": "input_lable",
+            "label": "Search Input label"
+          },
+          {
+            "type": "text",
+            "id": "button_lable",
+            "label": "Search button label"
+          },
+          {
+            "type": "url",
+            "id": "link_to",
+            "label": "Search button Link to"
+          },
+          {
+            "type": "select",
+            "id": "position",
+            "label": "Context position",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              },
+              {
+                "value": "center",
+                "label": "Center"
+              },
+              {
+                "value": "right",
+                "label": "Right"
+              }
+            ]
+          },
+          {
+            "type": "header",
+            "content": "Colors"
+          },
+          {
+            "type": "color",
+            "id": "font_color",
+            "label": "Lable color",
+            "default": "#ffffff"
+          },
+          {
+            "type": "color",
+            "id": "button_color",
+            "label": "Button color",
+            "default": "#1FAEFF"
+          },
+          {
+            "type": "color",
+            "id": "button_font_color",
+            "label": "Button font color",
+            "default": "#ffffff"
+          }
+        ]
+      },
+      {
+        "type": "items",
+        "name": "items",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "item_image",
+            "label": "Itme image"
+          },
+          {
+            "type": "text",
+            "id": "item_header",
+            "label": "Itme header"
+          },
+          {
+            "type": "textarea",
+            "id": "item_subtitle",
+            "label": "Itme header"
+          },
+          {
+            "type": "textarea",
+            "id": "item_context",
+            "label": "Itme context"
+          },
+          {
+            "type": "image_picker",
+            "id": "item_image1",
+            "label": "Itme image"
+          },
+          {
+            "type": "text",
+            "id": "item_header1",
+            "label": "Itme header"
+          },
+          {
+            "type": "textarea",
+            "id": "item_subtitle1",
+            "label": "Itme header"
+          },
+          {
+            "type": "textarea",
+            "id": "item_context1",
+            "label": "Itme context"
+          },
+          {
+            "type": "image_picker",
+            "id": "item_image2",
+            "label": "Itme image"
+          },
+          {
+            "type": "text",
+            "id": "item_header2",
+            "label": "Itme header"
+          },
+          {
+            "type": "textarea",
+            "id": "item_subtitle2",
+            "label": "Itme header"
+          },
+          {
+            "type": "textarea",
+            "id": "item_context2",
+            "label": "Itme context"
+          },
+          {
+            "type": "header",
+            "content": "Colors"
+          },
+          {
+            "type": "color",
+            "id": "item_bg",
+            "label": "Item background",
+            "default": "#EEEFF1"
+          },
+          {
+            "type": "color",
+            "id": "item_header_color",
+            "label": "Item header color"
+          },
+          {
+            "type": "color",
+            "id": "item_font_color",
+            "label": "Item font color"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Show room for host",
+        "settings": {}
+      }
+    ]
+  }
+  {% endschema %}

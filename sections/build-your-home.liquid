@@ -1,0 +1,406 @@
+<style>
+body {background-color: rgb(var(--secondary-background));}
+
+.byh-banner {background: #000; position: relative;}
+.byh-banner p {
+  width: 100%; height: 100%; font-size: 46px; color: #fff; background: rgba(0,0,0,0.5);
+  position: absolute; left: 0; top: 0; z-index: 2;
+  display: flex; justify-content: center; align-items: center;
+}
+.byh-banner img {width: 100%; pointer-events: none;}
+
+
+.byh-container {
+  --brand-color: #2B6FD5;
+  width: 100%; padding: 120px 0;
+}
+.byh-container:nth-child(4), .byh-container:nth-child(6) {background-color: #f4f4f4;}
+
+.byh-item {width: 94%; max-width: 1370px; margin: 0 auto; counter-reset: no;}
+.byh-item span {width: 48px; height: 48px; margin-right: 10px; display: inline-block;}
+.byh-item dt {width: 100%; font-size: 34px; display: flex; align-items: center;}
+.byh-item dd {font-size: 20px; padding-left: 80px; margin: 80px 0 0; position: relative;}
+.byh-item dd::before {
+  counter-increment: no; content: counter(no); width: 28px; height: 28px; font-size: 16px; text-align: center; line-height: 24px;
+  color: var(--brand-color); border: 2px var(--brand-color) solid; border-radius: 50%;
+  position: absolute; left: 0; top: 5px;
+}
+.byh-item dd b {font-size: 22px; display: block;}
+.byh-item dd p {margin: 0;}
+.byh-item dd p em {font-size: 14px; color: #f00;}
+.byh-item dd a {color: var(--brand-color); text-decoration: underline;}
+
+.comparison {display: flex; justify-content: space-between;}
+.comparison img {width: 49%;}
+
+.desc li {list-style: decimal; margin-bottom: 20px;}
+
+@media screen and (max-width: 768px) {
+  .byh-container {padding: 40px 0;}
+  .byh-item span {width: 60px;}
+  .byh-item dt {font-size: 20px;}
+  .byh-item dd {font-size: 14px; padding-left: 0; margin: 20px 0 0;}
+  .byh-item dd::before {content: none;}
+  .byh-item dd b {font-size: 16px;}
+  
+  .desc {padding-left: 10px;}
+}
+
+.table-layer table {width: 100%; border-collapse: collapse;}
+.table-layer td, .table-layer th {
+  font-size: 12px; text-align: left; padding: 8px; border: 1px solid #dddddd;
+}
+.table-layer thead {background-color: #000; color: #fff;}
+.table-layer thead i {width: 100%; display: block; font-style: normal; color: rgb(255, 85, 85);}
+.table-layer td img {max-width: 194px;}
+
+@media screen and (max-width: 1200px) {
+  .table-layer {width: 100%; overflow-y: hidden; overflow-x: auto;}
+  .table-layer table {width: 1200px;}
+}
+</style>
+
+{%- if section.settings.banner -%}
+<section class="byh-banner">
+  <p>{{- page.title -}}</p>
+  <img src="{{ section.settings.banner | img_url: 'master' }}" alt="{{- page.title -}}" />
+</section>
+{%- endif -%}
+
+
+<div class="byh-container">
+  <dl class="byh-item">
+    <dt>
+      <span>
+        <svg viewBox="0 0 1024 1024" width="48"><path d="M524.32 735.52a24.917 24.917 0 0 1 8.55 8.263l32.694 51.964 33.39 53.067c7.328 11.648 3.826 27.03-7.821 34.359a24.917 24.917 0 0 1-13.27 3.827H445.778c-13.761 0-24.917-11.156-24.917-24.917 0-4.962 1.482-9.81 4.255-13.925l35.114-52.1 30.02-51.546c6.926-11.891 22.18-15.917 34.071-8.992zM767.825 137l1.97 0.016C834.705 138.069 887 191.042 887 256.24v482.04l-0.016 1.971c-1.052 64.947-54 117.268-119.159 117.268h-85.591c-16.968-0.28-30.639-14.13-30.639-31.175 0-17.218 13.948-31.176 31.154-31.176h85.076l0.94-0.008c30.975-0.502 55.928-25.778 55.928-56.88V256.24l-0.008-0.941c-0.502-30.983-25.765-55.948-56.86-55.948h-511.65l-0.94 0.008c-30.975 0.502-55.928 25.778-55.928 56.88v482.04l0.008 0.941c0.502 30.984 25.765 55.948 56.86 55.948h84.942l0.515 0.004c16.968 0.276 30.639 14.126 30.639 31.172 0 17.217-13.948 31.175-31.154 31.175h-84.942l-1.97-0.016C189.295 856.45 137 803.477 137 738.28V256.24l0.016-1.972C138.068 189.32 191.016 137 256.175 137h511.65z" fill="#000000"></path></svg>
+      </span>
+      Projector Buying Guidance
+    </dt>
+    <dd>
+      <b>Why is AWOL Vision?</b>
+      <p>AWOL Vision's mission is to elevate home entertainment to the next level and make everyone owns a never-outdated dream movie theater at home, the <a href="https://awolvision.com/products/awol-vision-4k-tri-chroma-laser-projector-ltv-2500">LTV-2500</a> and <a href="https://awolvision.com/products/awol-vision-4k-tri-chroma-laser-projector-ltv-3500">LTV-3500</a> are recognized as the most comprehensive RGB triple laser projector on the market.</p>
+      <br />
+      <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/ltv-0804.jpg?v=1691136449" alt="Why is AWOL Vision" />
+    </dd>
+    <dd>
+      <b>How to Choose between LTV-2500 and LTV-3500?</b>
+      <p>
+        <a href="https://awolvision.com/products/awol-vision-4k-tri-chroma-laser-projector-ltv-2500">LTV-2500</a>: has exactly the same performance as the LTV-3500 except for brightness.<br />
+        With True 2000 ANSI Lumens, If you want a UST projector with top performance in color, image, and details that is used in a controlled light environment, such as a bedroom, home cinema, or living room with curtain blackout, then the LTV-2500 is an excellent performance choice.
+      </p>
+      <br />
+      <p>
+        <a href="https://awolvision.com/products/awol-vision-4k-tri-chroma-laser-projector-ltv-3500">LTV-3500</a>: If you want to have premium image quality even replace your current 50"/65" TV with a large 100-150 inch screen in your living room, with 3500 ANSI Lumen ultra high brightness even during the day, LTV-3500 is the best choice for you. Paired with our ALR daylight screen, LTV-3500 delivers bright and sharp details even under high ambient light, with no need for blackout curtains.
+      </p>
+    </dd>
+  </dl>
+</div>
+
+
+<div class="byh-container">
+  <dl class="byh-item">
+    <dt>
+      <span>
+        <svg viewBox="0 0 1024 1024" width="48"><path d="M950.857143 841.142857H73.142857V43.885714h877.714286v797.257143z m-804.571429-73.142857h731.428572V117.028571H146.285714v650.971429zM731.428571 980.114286H292.571429v-73.142857h438.857142z"></path></svg>
+      </span>
+      Screens Buying Guidance
+    </dt>
+    <dd>
+      <b>Why do you need a screen?</b>
+      <p>Wavy Image on the wall: you might notice the image is wavy because many walls are not flat, which human eyes can't detect. The ultra-short throw technology easily detects unevenness better than a traditional long throw projector as it projects from the bottom to the top. Using a screen will solve this issue.</p>
+      <div class="comparison">
+        <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/night-1.jpg?v=1690796777" alt="screen 1" />
+        <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/night-2.jpg?v=1690796777" alt="screen 2" />
+      </div>
+      <br />
+      <p>Improved Projection Quality: Pairing with a good projector screen can improve your projection quality by up to 80%, The screen's gain function enhances the brightness and clarity of the picture.</p>
+      <br />
+      <p>Ambient Light Rejection: Using an ALR (Ambient Light Rejecting) screen allows you to use the UST projector in environments with ambient light, such as ceiling light and bright daylight - even in outdoor settings. It provides a clear and vivid image with contrast levels that are up to 100 times greater than projecting on a wall for premium color fidelity. Which makes it a suitable alternative to regular television.</p>
+      <div class="comparison">
+        <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/day-1.jpg?v=1690797646" alt="screen 3" />
+        <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/day-2.jpg?v=1690797646" alt="screen 4" />
+      </div>
+    </dd>
+    <dd>
+      <b>How to choose the right screen to fit your room?</b>
+      <p>Awol Vision uses the best quality materials to create screens that provide an unparalleled viewing experience. We offer a variety of screens suitable for any situation, so you can find the perfect fit for you.</p>
+      <ul class="desc">
+        <li>
+          <p>Living room in bright daylight with no curtain closed (High ambient light)</p>
+          <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/offer-1.jpg?v=1690798038" alt="offer-1">
+          In this scenario, we would recommend choosing our Daylight series ALR Screens.
+          <br /><br />
+
+          Pros: <br />
+          · Higher gain of 1.1db for increased brightness.<br />
+          · Resists 85% of ambient light from both the ceiling and sides.<br />
+          · Pairing with LTV-3500 can surpass TV-level brightness<br />
+          <br />
+          Cons:<br />
+          · The picture's brightness would decrease at angles over 90 degrees.<br />
+          · The image quality enhancement is not as good as the Cinematic series screen. <br />
+          <br />
+          <p>We highly recommend using our LTV-3500 paired with the Daylight screen, which delivers bright and sharp quality pictures even under high ambient light, without blackout curtains.</p>
+          <br />
+          <strong>Recommend Bundles:</strong><br />
+          <a href="https://awolvision.com/products/ltv3500-march-2023-version-plus-100-120-daylight-alr-screen-bundle?variant=40814426095664">LTV-3500 + 120 inches DayLight Screen</a><br />
+          <a href="https://awolvision.com/products/ltv3500-march-2023-version-plus-100-120-daylight-alr-screen-bundle?variant=40814426062896">LTV-3500 + 100 inches DayLight Screen</a>
+        </li>
+        <li>
+          <p>Living room with the curtain closed (Medium ambient light)</p>
+          <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/offer-2.jpg?v=1690798038" alt="offer-2">
+          In this scenario, we would recommend our <a href="https://awolvision.com/products/alr-120-cinematic-screen">Cinematic</a> Series Screens.
+          <br /><br />
+
+          Pros: <br />
+          · Resists 95% of ambient light from the ceiling.<br />
+          · Best image quality.<br />
+          · Wide viewing angle of 170 degrees<br />
+          <br />
+          Cons:<br />
+          · Unable to reject side ambient lights.<br />
+          <br />
+          <p>We would highly recommend using <a href="https://awolvision.com/products/awol-vision-4k-tri-chroma-laser-projector-ltv-3500">LTV-3500</a> to pair with the AWOL <a href="https://awolvision.com/products/alr-120-cinematic-screen">Cinematic</a> or <a href="https://awolvision.com/products/alr-motorized-floor-rising-screen">Floor Rising</a> screen. With controlled ambient light and 3500 Lumen ultra-high brightness, these screens will bring you the brightest, best image quality, and widest viewing angle.</p>
+          <br />
+          <p>For a more affordable option, consider pairing the <a href="https://awolvision.com/products/2500-daylight-screen">LTV-2500 with a 100" DayLight screen</a> which is also a good choice.</p>
+          <br />
+          <strong>Recommend Bundles:</strong><br />
+          <em>Top Performance: </em><br />
+          <a href="https://awolvision.com/products/awol-vision-ltv-3500-wall-mount-screens-bundle">LTV-3500 + 120 inches Cinematic Screen</a><br />
+          <a href="https://awolvision.com/products/awol-vision-ltv-3500-vividstorm-floor-rising-screens-bundle?variant=40494287650864">LTV-3500 + 120 inches Floor Rising Screen</a><br />
+          <br />
+          <em>Top Performance: </em><br />
+          <a href="https://awolvision.com/products/2500-daylight-screen">LTV-2500 + 100 inches DayLight Screen</a>
+        </li>
+        <li>
+          <p>Dedicated room for home theater with controlled light (Ceiling light on with low side light) Dedicated room for home theater with controlled light (Ceiling light on with low side light) </p>
+          <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/offer-3.jpg?v=1690798038" alt="offer-3">
+          In this scenario, we would recommend our <a href="https://awolvision.com/products/alr-120-cinematic-screen">Cinematic</a> and <a href="https://awolvision.com/products/alr-motorized-floor-rising-screen">Floor Rising</a> Screens.
+          <br /><br />
+
+          Pros: <br />
+          · Resists 95% of ambient light from the ceiling.<br />
+          · Best image quality.<br />
+          · Wide viewing angle of 170 degrees<br />
+          <br />
+          <p>Both <a href="https://awolvision.com/products/awol-vision-4k-tri-chroma-laser-projector-ltv-2500">LTV-2500</a> and <a href="https://awolvision.com/products/awol-vision-4k-tri-chroma-laser-projector-ltv-3500">LTV-3500</a> are suitable for this scenario.</p>
+          <br />
+          <strong>Recommend Bundles:</strong><br />
+          <em>Top Performance: </em><br />
+          <a href="https://awolvision.com/products/awol-vision-ltv-3500-wall-mount-screens-bundle">LTV-3500 + 120 inches Cinematic Screen</a><br />
+          <a href="https://awolvision.com/products/awol-vision-ltv-3500-vividstorm-floor-rising-screens-bundle?variant=40494287650864">LTV-3500 + 120 inches Floor Rising Screen</a><br />
+          <br />
+          <em>Good Choice: </em><br />
+          <a href="https://awolvision.com/products/ltv-2500-wall-mount-screens">LTV-2500 + 120 inches Cinematic Screen</a>
+        </li>
+        <li>
+          <p>Dedicated room for home theater with the light off</p>
+          <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/offer-4.jpg?v=1690798038" alt="offer-4">
+          In this scenario, we would highly recommend our <a href="https://awolvision.com/products/100-120-matte-white-screen">Matte White</a> series Screens. <a href="https://awolvision.com/products/alr-120-cinematic-screen">Cinematic</a> and <a href="https://awolvision.com/products/alr-motorized-floor-rising-screen">Floor Rising</a> Screen are also great choices. 
+          <br /><br />
+
+          Pros: <br />
+          · Best Image quality.<br />
+          · Wide viewing angle of 170 degrees.<br />
+          · Highest 1.3db Peak Gain.<br />
+          <br />
+          <p>Both <a href="https://awolvision.com/products/awol-vision-4k-tri-chroma-laser-projector-ltv-2500">LTV-2500</a> and <a href="https://awolvision.com/products/awol-vision-4k-tri-chroma-laser-projector-ltv-3500">LTV-3500</a> are suitable for this scenario.</p>
+          <br />
+          <strong>Recommend Bundles:</strong><br />
+          <em>Top Performance: </em><br />
+          <a href="https://awolvision.com/products/awol-vision-ltv-3500-wall-mount-screens-bundle">LTV-3500 + 120 inches Cinematic Screen</a><br />
+          <a href="https://awolvision.com/products/awol-vision-ltv-3500-vividstorm-floor-rising-screens-bundle?variant=40494287650864">LTV-3500 + 120 inches Floor Rising Screen</a><br />
+          <br />
+          <em>Good Choice: </em><br />
+          <a href="https://awolvision.com/products/ltv-2500-plus-100-120-matte-white-screen-bundle">LTV-2500 + 120 inches Matte White Screen</a>
+        </li>
+        <li>
+          <p>Conclusion</p>
+          If your viewing environment is in a dark room with no ambient light, the Matte White series is the optimal choice. For environments where the ceiling lighting and side lighting is minimal, but you still desire superior picture quality, opt for the Cinematic or Floor Rising series. Finally, if you require a screen that can function like a TV in bright daylight conditions, select the Daylight series with LTV-3500.<br />
+          <br/>
+          For more differences of the screens, you can refer to this AWOL Screen Comparison chart<br/>
+
+          <div class="table-layer">
+            <table>
+              <thead>
+                <tr>
+                  <th>Screen Comparison chart</th>
+                  <th><i>Cinematic</i> (Wall Mount)</th>
+                  <th><i>Cinematic</i> (Floor Rising)</th>
+                  <th>Daylight</th>
+                  <th>Matte White</th>
+                  <th><i>Floor Rising</i> (by Vivid Storm)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Image</td>
+                  <td><img src="https://awolvision.com/cdn/shop/files/Cinematic_194x194.jpg?v=1690689039" alt="" /></td>
+                  <td><img src="https://awolvision.com/cdn/shop/files/2_59e8218c-1498-4609-a321-cd762d13e5b1_194x.jpg?v=1687255353" alt="" /></td>
+                  <td><img src="https://awolvision.com/cdn/shop/files/daylight_194x194.jpg?v=1690688804" alt="" /></td>
+                  <td><img src="https://awolvision.com/cdn/shop/products/1_6be35beb-04f1-424f-b895-7035b86d9bdb_700x.jpg?v=1687243726" alt="" /></td>
+                  <td><img src="https://awolvision.com/cdn/shop/files/2_59e8218c-1498-4609-a321-cd762d13e5b1_194x.jpg?v=1687255353" alt="" /></td>
+                </tr>
+                <tr>
+                  <td>Brand</td>
+                  <td>AWOL Vision</td>
+                  <td>AWOL Vision</td>
+                  <td>AWOL Vision</td>
+                  <td>AWOL Vision</td>
+                  <td>Vivid Storm</td>
+                </tr>
+                <tr>
+                  <td>Type</td>
+                  <td>Wall mount</td>
+                  <td>Floor rising</td>
+                  <td>Wall mount</td>
+                  <td>Wall mount</td>
+                  <td>Floor rising</td>
+                </tr>
+                <tr>
+                  <td>Size option</td>
+                  <td>100/120/150 inches</td>
+                  <td>100/120 inches</td>
+                  <td>100/120 inches</td>
+                  <td>100/120 inches</td>
+                  <td>92/100/110/120 inches</td>
+                </tr>
+                <tr>
+                  <td>Ambient Light Resistance</td>
+                  <td>95% ceiling light</td>
+                  <td>95% ceiling light</td>
+                  <td>85% top and side light</td>
+                  <td>None</td>
+                  <td>95% ceiling light</td>
+                </tr>
+                <tr>
+                  <td>Suggest For usage</td>
+                  <td>Room with Ceiling light on</td>
+                  <td>Room with Ceiling light on</td>
+                  <td>Living room in bright Daylight</td>
+                  <td>Room with dim light</td>
+                  <td>Room with Ceiling light on</td>
+                </tr>
+                <tr>
+                  <td>Viewing Angle</td>
+                  <td>170°</td>
+                  <td>170°</td>
+                  <td>90°</td>
+                  <td>170°</td>
+                  <td>170°</td>
+                </tr>
+                <tr>
+                  <td>Peak gain</td>
+                  <td>0.6db</td>
+                  <td>0.8db</td>
+                  <td>1.1db</td>
+                  <td>1.3db</td>
+                  <td>0.6db</td>
+                </tr>
+                <tr>
+                  <td>Material</td>
+                  <td>HBSP Black-Grid TPU</td>
+                  <td>Top Premium HBSI TPU</td>
+                  <td>Fresnel PET</td>
+                  <td>High Tier PVC Matte White</td>
+                  <td>CBSP Black-Grid TPU</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <br />
+          By understanding the differences and primary application scenarios of each screen, you can choose the one that best suits your specific requirements.<br />
+          You can also refer to the table below to find the best combinations for Projector and screens:<br />
+          <div class="table-layer">
+            <table>
+              <thead>
+                <tr>
+                  <th height="50" colspan="5" style="text-align: center;">How to choose the AWOL projector + screen bundle</th>
+                </tr>
+                <tr>
+                  <th width="20%">Expect to be used for</th>
+                  <th width="20%">Living room in bright daylight with no curtain closed (High ambient light)</th>
+                  <th width="20%">Living room with the curtain closed (Medium ambient light)</th>
+                  <th width="20%">Dedicated room for home theater with controlled light (Ceiling light on with low side light) </th>
+                  <th width="20%">Dedicated room for home theater with the light off </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Environmental reference</td>
+                  <td><img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/offer-1_194x.jpg?v=1690798038" alt="" /></td>
+                  <td><img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/offer-2_194x.jpg?v=1690798038" alt="" /></td>
+                  <td><img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/offer-3_194x.jpg?v=1690798038" alt="" /></td>
+                  <td><img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/offer-4_194x.jpg?v=1690798038" alt="" /></td>
+                </tr>
+                <tr>
+                  <td><a href="https://awolvision.com/products/awol-vision-4k-tri-chroma-laser-projector-ltv-2500">LTV-2500</a>(2000 Lumen)</td>
+                  <td>/</td>
+                  <td>100" Daylight Screen</td>
+                  <td>100"-120" Cinematic & Any sizes of Floor rising screen</td>
+                  <td>Any size of Cinematic, Matte white & Floor rising screens</td>
+                </tr>
+                <tr>
+                  <td><a href="https://awolvision.com/products/awol-vision-4k-tri-chroma-laser-projector-ltv-3500">LTV-3500</a>(3500 Lumen)</td>
+                  <td>All sizes of Daylight Screen</td>
+                  <td>All sizes of Daylight, Cinematic & Floor Rising</td>
+                  <td>Any size of Cinematic Screen & Floor rising screen</td>
+                  <td>Any size of Cinematic, Matte white & Floor rising screens</td>
+                </tr>
+                <tr>
+                  <td>Top Performance recommendation</td>
+                  <td>
+                    <a href="https://awolvision.com/products/ltv3500-march-2023-version-plus-100-120-daylight-alr-screen-bundle">LTV-3500+ any size of Daylight screen</a>
+                  </td>
+                  <td>
+                    <a href="https://awolvision.com/products/awol-vision-vanish-laser-tv">Vanish TV</a><br />
+                    <a href="https://awolvision.com/products/awol-vision-ltv-3500-vividstorm-floor-rising-screens-bundle">LTV-3500+ any size of Floor rising screen</a><br />
+                    <a href="https://awolvision.com/products/awol-vision-ltv-3500-wall-mount-screens-bundle">LTV-3500+ any size of Cinematic Screen</a>
+                  </td>
+                  <td>
+                    <a href="https://awolvision.com/products/awol-vision-vanish-laser-tv">Vanish TV</a><br />
+                    <a href="https://awolvision.com/products/awol-vision-ltv-3500-vividstorm-floor-rising-screens-bundle">LTV-3500+ any size of Floor rising screen</a><br />
+                    <a href="https://awolvision.com/products/awol-vision-ltv-3500-wall-mount-screens-bundle">LTV-3500+ any size of Cinematic Screen</a>
+                  </td>
+                  <td>
+                    <a href="https://awolvision.com/products/awol-vision-vanish-laser-tv">Vanish TV</a><br />
+                    <a href="https://awolvision.com/products/awol-vision-ltv-3500-vividstorm-floor-rising-screens-bundle">LTV-3500+ any size of Floor rising screen</a><br />
+                    <a href="https://awolvision.com/products/awol-vision-ltv-3500-wall-mount-screens-bundle">LTV-3500+ any size of Cinematic Screen</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Most affordable</td>
+                  <td>/</td>
+                  <td>
+                    <a href="https://awolvision.com/products/2500-daylight-screen">LTV-2500 + 100" DayLight screen</a>
+                  </td>
+                  <td>
+                    <a href="https://awolvision.com/products/ltv-2500-wall-mount-screens">LTV-2500 + Cinematic screen</a>
+                  </td>
+                  <td>
+                    <a href="https://awolvision.com/products/ltv-2500-plus-100-120-matte-white-screen-bundle">LTV-2500 + Matte white screen</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </li>
+      </ul>
+    </dd>
+  </dl>
+</div>
+
+
+{% schema %}
+  {
+    "name": "Build your home", "class": "buildHome",
+    "settings": [
+      {"type": "image_picker", "id": "banner", "label": "Image Picker"}
+    ],
+    "blocks": [],
+    "presets": [
+      {"name": "Build your home"}
+    ]
+  }
+{% endschema %}

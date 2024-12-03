@@ -1,0 +1,232 @@
+<style>
+  .shopify-section--shop-blog {
+    background-color: {{ section.settings.background }};
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    border-bottom: 1px solid rgb(255 255 255 / 20%);
+  }
+  @media screen and (max-width: 1024px) {
+    .shopify-section--shop-blog {
+      padding-top: 60px;
+      margin-top: -1px;
+    }
+  }
+</style>
+{%- assign blog = section.settings.blog -%}
+<section class="index_shop-blog">
+  <a aria-label="{{ section.settings.header_title }}" href="{% if section.settings.header_url != blank %}{{ section.settings.header_url }}{% else %}javascript:;{% endif %}" class="shop_header">
+    <h2 class="header_title">{{ section.settings.header_title }}</h2>
+    {% if section.settings.header_subtitle != blank %}
+      <h3 class="header_subtitle">{{ section.settings.header_subtitle }}</h3>
+    {% endif %}
+  </a>
+  {%- if blog != blank and blog.articles_count > 0 -%}
+  <div class="index_blog_container swiper">
+    <div class="swiper-wrapper">
+      {% if section.settings.article_one != blank %}
+        {% assign article_one = section.settings.article_one %}
+        <a aria-label="{{ article_one.title }}" href="{{ article_one.url }}" class="index_blog_item swiper-slide">
+          <div class="index_blog_item__image-container">
+            <div class="">
+              <img src="{{ article_one.image.src |  image_url }}" alt="{{ article_one.title }}" >
+            </div>
+          </div>
+          <div class="index_blog_item__content">
+            <div class="index_blog_tags">
+              {% for item in article_one.tags %}
+                <span>{{ item }}</span>
+              {% endfor %}
+            </div>
+            <div class="index_blog_timeAndauthor">
+               {{ article_one.created_at | date: '%B %d, %Y' }} {{ article_one.author }}
+            </div>
+            <div class="index_blog_item__title">{{ article_one.title }}</div>
+            <div class="index_blog_item__linkbutton">Read more</div>
+          </div>
+        </a>
+      {% endif %}
+      {% if section.settings.article_two != blank %}
+        {% assign article_two = section.settings.article_two %}
+        <a aria-label="{{ article_two.title }}" href="{{ article_two.url }}" class="index_blog_item swiper-slide">
+          <div class="index_blog_item__image-container">
+            <div class="">
+              <img src="{{ article_two.image.src |  image_url }}" alt="{{ article_two.title }}" >
+            </div>
+          </div>
+          <div class="index_blog_item__content">
+            <div class="index_blog_tags">
+              {% for item in article_two.tags %}
+                <span>{{ item }}</span>
+              {% endfor %}
+            </div>
+            <div class="index_blog_timeAndauthor">
+               {{ article_two.created_at | date: '%B %d, %Y' }} {{ article_two.author }}
+            </div>
+            <div class="index_blog_item__title">{{ article_two.title }}</div>
+            <div class="index_blog_item__linkbutton">Read more</div>
+          </div>
+        </a>
+      {% endif %}
+      {% if section.settings.article_three != blank %}
+        {% assign article_three = section.settings.article_three %}
+        <a aria-label="{{ article_three.title }}" href="{{ article_three.url }}" class="index_blog_item swiper-slide">
+          <div class="index_blog_item__image-container">
+            <div class="">
+              <img src="{{ article_three.image.src |  image_url }}" alt="{{ article_three.title }}" >
+            </div>
+          </div>
+          <div class="index_blog_item__content">
+            <div class="index_blog_tags">
+              {% for item in article_three.tags %}
+                <span>{{ item }}</span>
+              {% endfor %}
+            </div>
+            <div class="index_blog_timeAndauthor">
+               {{ article_three.created_at | date: '%B %d, %Y' }} {{ article_three.author }}
+            </div>
+            <div class="index_blog_item__title">{{ article_three.title }}</div>
+            <div class="index_blog_item__linkbutton">Read more</div>
+          </div>
+        </a>
+      {% endif %}
+      {%- for article in blog.articles limit: section.settings.articles_count -%}
+        <a aria-label="{{ article.title }}" href="{{ article.url }}" class="index_blog_item swiper-slide">
+          <div class="index_blog_item__image-container">
+            <div class="">
+              <img src="{{ article.image.src |  image_url }}" alt="{{ article.title }}" >
+            </div>
+          </div>
+          <div class="index_blog_item__content">
+            <div class="index_blog_tags">
+              {% for item in article.tags %}
+                <span>{{ item }}</span>
+              {% endfor %}
+            </div>
+            <div class="index_blog_timeAndauthor">
+               {{ article.created_at | date: '%B %d, %Y' }} {{ article.author }}
+            </div>
+            <div class="index_blog_item__title">{{ article.title }}</div>
+            <div class="index_blog_item__linkbutton">Read more</div>
+          </div>
+        </a>
+      {%- endfor -%}
+    </div>
+    <div class="swiper_container">
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+  </div>
+  {%- endif -%}
+</section>
+<script src="{{ 'swiper-bundle.min.js' | asset_url }}"></script>
+<script>
+  var mySwiper = new Swiper('.index_blog_container', {
+  	autoplay: false,//可选选项，自动滑动
+    slidesPerView: window.innerWidth > 1024 ? 3 : 1,
+    spaceBetween : 40,
+    loop: true,
+    pagination: {
+      el: '.index_blog_container .swiper-pagination',
+    },
+    navigation: {
+      nextEl: '.index_blog_container .swiper-button-next',
+      prevEl: '.index_blog_container .swiper-button-prev',
+    }
+  })    
+</script>
+{% schema %}
+{
+  "name": "Index blog",
+  "class": "shopify-section--shop-blog", 
+  "blocks": [],
+  "settings": [
+    {
+      "type": "article",
+      "id": "article_one",
+      "label": "Top article"
+    },
+    {
+      "type": "article",
+      "id": "article_two",
+      "label": "Top article"
+    },
+    {
+      "type": "article",
+      "id": "article_three",
+      "label": "Top article"
+    },
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "Blog"
+    },
+    {
+      "type": "text",
+      "id": "header_title",
+      "label": "Header title"
+    },
+    {
+      "type": "text",
+      "id": "header_subtitle",
+      "label": "Header subtitle"
+    },
+    {
+      "type": "url",
+      "id": "header_url",
+      "label": "Link to"
+    },
+    {
+      "type": "range",
+      "id": "articles_count",
+      "label": "Blog posts to show",
+      "info": "Layout automatically adapts based on the number of blog posts.",
+      "min": 1,
+      "max": 20,
+      "step": 1,
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Color",
+      "info": "Color"
+    },
+    { 
+      "type": "color",
+      "id": "background",
+      "label": "Background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Endorsed container background color",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Index blog",
+      "blocks": []
+    }
+  ]
+}
+{% endschema %}

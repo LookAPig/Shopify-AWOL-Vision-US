@@ -1,0 +1,106 @@
+{% if false %}
+						{% assign excluded_vat_text = "exc. VAT | " %}
+						{% assign included_vat_text = "inc. VAT" %}
+				<div class="bss-b2b-product-vat" data-product-id="{{ product.id }}" data-selected-variant-id="{{ product.selected_or_first_available_variant.id }}" data-product-collections="{% for collection in product.collections %}{{ collection.id }}{% unless forloop.last %},{% endunless %}{% endfor %}">
+        <span class="bss-b2b-product-vat-price-no-vat" data-excluded-vat-text="{{ excluded_vat_text }}">
+
+        </span>
+        <span class="bss-b2b-product-vat-price-has-vat" data-included-vat-text="{{ included_vat_text }}">
+
+        </span>
+        <script id="bss-b2b-product-data" type="application/json">
+        {
+            "id": {{ product.id | json }},
+            "collections": [
+                {% for collection in product.collections %}
+                {{ collection.id | json }}{% unless forloop.last %},{% endunless %}
+                {% endfor %}
+            ],
+            "tags": [
+                {% for tag in product.tags %}
+                {{ tag | json }}{% unless forloop.last %},{% endunless %}
+                {% endfor %}
+            ],
+            "variantIdArrayMap": {
+                {% for variant in product.variants %}
+                "{{ variant.id }}": {
+                    "product_id": {{ product.id | json }},
+                    "taxable": {{ variant.taxable | json }},
+                    "price": {{ variant.price | json }},
+                    "price_formatted": {{ variant.price | money | json }},
+                    "price_formatted_without_trailing_zeros": {{ variant.price | money_without_trailing_zeros | json }},
+                    "compare_at_price_formatted": {{ variant.compare_at_price | money | json }},
+                    "compare_at_price_formatted_without_trailing_zeros": {{ variant.compare_at_price | money_without_trailing_zeros | json }}
+                }{% unless forloop.last %},{% endunless %}
+                {% endfor %}
+            }
+        }
+        </script>
+</div>
+<style id="bss-b2b-tax-inc-excl" type="text/css">
+ [data-price-container],
+.product-single__meta-list,
+.shopify-section .product__price,
+.shopify-section .product__policies.rte,
+.shopify-section .ProductMeta__PriceList.Heading ,
+.product-template-section .inline-list,
+.product-single__prices,
+.product-single__policies,
+ #shopify-section-product [data-price],
+ #shopify-section-product-template [data-price],
+ .current-price,
+ .shopify-section .price.price--large,
+ .shopify-section .product-page--pricing,
+ .product-page__policies.rte,
+ #shopify-section-product-template .product-details .offers,
+ .product-main .price-box,
+ .product-page-info__price,
+ .detail-price,
+ [data-key="p-price"] .module,
+ #shopify-section-product-template .modal_price,
+ .product-page-row .product-meta-block .product-price .price-list,
+ .product-page-row .product-meta-block .product-price #price-info,
+ .product-default .product_top .product-shop .prices,
+ .abz-main-product div[data-spark="b2c-only"] #product-price,
+ .price-container #ProductPrice
+ {
+  display: none !important;
+}
+ meta[itemprop="price"] {
+  display: none !important;
+ }
+ .bss-b2b-product-vat {
+    padding: 5px 0;
+ }
+</style>
+<script>
+    var bssB2BProduct = {{ product | json }};
+
+    bssB2BProduct.page_type = {{ request.page_type | json }};
+
+    bssB2BProduct.collections = [
+            {% for collection in product.collections %}
+                "{{ collection.id }}"{% unless forloop.last %},{% endunless %}
+            {% endfor %}
+    ] ;
+
+    bssB2BProduct.variantIdArrayMap = (function() {
+      var item = {};
+
+      {% for variant in product.variants %}
+        {% assign variant_id = variant.id %}
+        item[{{ variant_id }}] = {{ variant | json }};
+        item[{{ variant_id }}].taxable = {{ variant.taxable | json }};
+        item[{{ variant_id }}].price = {{ variant.price | json }};
+        item[{{ variant_id }}].price_formatted = {{ variant.price | money | json }};
+        item[{{ variant_id }}].price_formatted_without_trailing_zeros = {{ variant.price | money_without_trailing_zeros | json }};
+        item[{{ variant_id }}].compare_at_price_formatted = {{ variant.compare_at_price | money | json }};
+        item[{{ variant_id }}].compare_at_price_formatted_without_trailing_zeros = {{ variant.compare_at_price | money_without_trailing_zeros | json }};
+        item[{{ variant_id }}].product_id = {{ product.id | json }};
+
+      {% endfor %}
+
+      return item;
+    })();
+</script>
+{% endif %}

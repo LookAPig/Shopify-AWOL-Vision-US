@@ -1,0 +1,48 @@
+{% style %}
+    .shipping_container {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 12px;
+      padding: 12px;
+    }
+    .shipping_item {
+      font-style: normal;
+      line-height: normal;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .shipping_item:first-of-type {
+      cursor: pointer;
+    }
+    @media screen and (max-width: 750px) {
+      #testB .shipping .shipping_container .shipping_item {
+        display: grid;
+        grid-template-columns: 10fr 1fr;
+        align-items: flex-start;
+        justify-content: flex-start;
+      }
+    }
+  {% endstyle %}
+  {% liquid
+    assign product_variants_metafields = product_variants_metafield
+    assign line_variant = line_variant 
+  %}
+  <div class="shipping_container">
+    {% if product_variants_metafields %}
+      {% for item in product_variants_metafields.custom.prodcut_shipping.value %}
+        <div class="shipping_item" data-index="{{ forloop.index }}">
+          {% assign today = 'now' | date: "%s" %}
+          {% assign early_delivery_times = item.early_delivery_time |  times: 24 | times: 60 | times: 60  %}
+          {% assign laster_delivery_times = item.laster_delivery_time |  times: 24 | times: 60 | times: 60  %}
+          {% assign today1 = today | plus: early_delivery_times %}
+          {% assign today2 = today | plus: laster_delivery_times %}
+          <div><span class="shipping_small_title">Order Now, </span>{{ item.product_name }} <span class="date_container">{{ today1 | date: "%m/%d" }}-{{ today2 | date: "%m/%d" }}</span></div>
+          {% if forloop.index == 1 %}
+            <span class="shipping_svg">{%- render 'icon' with 'dropdown-arrow-right', height: '14' -%}</span>
+          {% endif %}
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>

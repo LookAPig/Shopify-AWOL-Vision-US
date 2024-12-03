@@ -1,0 +1,347 @@
+<style>
+ul,li,ol,dl,dd {list-style-type: none;}
+i, em {font-style: normal;}
+
+h2, h3 {letter-spacing: 0; text-transform: none;}
+
+input, button {border: none; border-radius: 0;}
+button:focus{outline: 0;}
+input::-webkit-input-placeholder {color: #ccc; font-size: 24px;}
+input:-moz-placeholder {color: #ccc; font-size: 12px;}
+input:-ms-input-placeholder {color: #ccc; font-size: 12px;}
+
+/* 超过隐藏 */
+.ellipsis {overflow: hidden; word-break: keep-all; white-space: nowrap; text-overflow: ellipsis;}
+
+/* webkit 内核 scrollbar 样式 */
+*::-webkit-scrollbar-track {-webkit-box-shadow: inset 0 0 4px rgba(0,0,0,0.2); background-color: #ccc;}
+*::-webkit-scrollbar {width: 8px; height: 8px; background-color: rgba(0,0,0,0.5);}
+*::-webkit-scrollbar-thumb {
+  background-image: -webkit-gradient(linear, left bottom, left top,
+  color-stop(0, rgb(150,150,150)), color-stop(0.5, rgb(150,150,150)), color-stop(1, rgb(150,150,150)));
+}
+/* webkit 内核 scrollbar 样式 */
+
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {-webkit-appearance: none;}
+
+
+.product-ltv {
+  --text-padding: 10vh;
+  
+  width: 100%; background: #000; color: #fff;
+}
+.product-ltv .heading {color: inherit; line-height: 1.2;}
+.product-ltv .text-center {text-align: center;}
+.product-ltv .absolute {position: absolute;}
+.product-ltv .relative {position: relative;}
+.product-ltv .w100 {width: 100%;}
+
+.product-ltv .layer {position: relative; overflow: hidden;}
+.product-ltv .layer .op {width: 100%; pointer-events: none; opacity: 0; transition: all 0.5s;}
+.product-ltv .layer .op img {width: 100%;}
+.product-ltv .layer .op_text {
+  padding: var(--text-padding);
+  opacity: 0; transform: translateY(100px); transition: all 1s;
+}
+.product-ltv .layer .op_text h6 {font-size: var(--heading-h6-font-size);}
+.product-ltv .layer .op_text .desc {color: #ccc;}
+.product-ltv .layer.start .op {opacity: 1;}
+.product-ltv .layer.start .op_text {opacity: 1; transform: translateY(0);}
+
+.product-ltv .layer.part1 .op_text:not(.top) {
+  background-image: linear-gradient(0deg, rgba(0,0,0,0.7) 30%, transparent 90%);
+  bottom: 0; z-index: 1;
+}
+.product-ltv .layer.part1 .op_text.top {
+  color: var(--text-sub-color); top: 10%; z-index: 1;
+}
+
+.product-ltv .layer.part3 .op_text {padding-bottom: 0;}
+.img-padding {position: relative; padding-bottom: 58.666%}
+@media(min-width: 1025px) {
+  .img-padding {padding-bottom:51.875%}
+}
+.img-padding img {
+  width: 100%; height: 100%; opacity: 0; -o-object-fit: cover; object-fit: cover;
+  position: absolute; top: 0; left: 0; transition: .3s opacity;
+}
+.img-padding img.active {opacity: 1}
+
+.control-list {display: flex; justify-content: center; align-items: center; transition: .3s opacity}
+.control-list .control-item {
+  opacity: .5; padding: 3vw 4.6vw; cursor: pointer;
+  display: flex; flex-direction: column; justify-content: flex-start; align-items: center;
+}
+.control-list .control-item.active {opacity: 1}
+.control-list .control-item svg {width: 6.7vw; height: 6.7vw; -o-object-fit: contain; object-fit: contain}
+.control-list .control-item span {margin-top: 2vw; line-height: 1; font-size: 2vw; color: #fff}
+
+@media(min-width: 1025px) {
+  .control-list .control-item {padding: 2vw 3.6vw 1.6vw;}
+  .control-list .control-item svg {width: 3.1vw; height: 3.1vw;}
+  .control-list .control-item span {font-size: 1.2vw; margin-top: 1vw;}
+}
+
+.product-ltv .layer.part4 .op video {width: 58.5vw; left: 8.13vw; top: 3vw;}
+.product-ltv .layer.part5 .op_text {top: 0; z-index: 1;}
+.product-ltv .layer.part6 .op_text h6 {width: 50%;}
+.product-ltv .layer.part7 .op .op_text {left: 0; right: 0; pointer-events: auto;}
+.product-ltv .layer.part9 .op_text {left: 0; right: 0;}
+.product-ltv .layer.part10 .op_text ul {
+  font-size: var(--heading-h4-font-size); padding-top: var(--container-gutter);
+  display: grid; grid-template-columns: repeat(3,1fr);
+}
+.product-ltv .layer.part10 .op_text ul b {font-size: var(--heading-h2-font-size);}
+
+@media screen and (max-width: 740px) {
+  .product-ltv {
+    --text-padding: 20px; --heading-h1-font-size: 24px; --heading-h2-font-size: 24px; --heading-h6-font-size: 12px;
+  }
+  .product-ltv .heading {margin: 0;}
+  .product-ltv .mb-absolute {position: relative;}
+  .product-ltv h6 {font-weight: normal; margin-top: 10px;}
+
+  .product-ltv .layer.part1 .op_text.top {color: #fff; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);}
+  
+  .product-ltv .part5_img {margin-top: 10vh;}
+  .product-ltv .layer.part6 .op_text h6 {width: 100%;}
+  .product-ltv .layer.part10 .op_text ul {font-size: 12px; padding: 0;}
+  .product-ltv .layer.part10 .op_text ul b {font-size: 18px;}
+}
+</style>
+<div id="{{ section.settings.id }}" class="layer">
+  <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/ltv3500_60fd64cd-8d69-4dd1-83ef-d1b3cc3449af.jpg?v=1692153608" alt="2" class="op" />
+</div>
+<div class="layer part1">
+  <div class="op_text w100 absolute top">
+    <h3 class="heading h2">
+      The Brightest<br />
+      <span class="h1">4K Triple-Laser</span><br />
+      Projector
+    </h3>
+    <h6>AWOL VISION LTV-3500</h6>
+  </div>
+  <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/970-600.jpg?v=1687883902" alt="1" class="op" />
+</div>
+
+<div class="layer part2">
+  <div class="op_text w100 text-center container">
+    <h3 class="heading h2">Close-to-Perfection Clarity even on 150''</h3>
+    <h6>Equipped with the Ricoh F2.0 pure glass lens, which is the largest on the market, this is the first and best UST (Ultra Short Throw) projector that provides close-to-perfect focus and clarity even on a 150" screen. ln fact, the projector's precision in both the upper corners of the image is so high that you can almost see the pixels appearing when you get too close. Such precision in the focus of a UST projector has never been achieved before.</h6>
+  </div>
+  <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/ltv-2.png?v=1687195623" alt="2" class="op" />
+</div>
+
+<div class="layer part3">
+  <div class="op_text w100 text-center container">
+    <h3 class="heading h2">3,500 Lumens Brightness</h3>
+    <h6>Brilliant Visuals, Any Time of Day</h6>
+    <h6 class="desc">Don't miss a single detail with our high-lumen projectors, delivering up to 3,500 lumens of perfect lighting for shows, movies, and games.</h6>
+    <div class="control-list">
+      <div class="control-item active" data-target="day">
+        <svg width="50" height="50" viewBox="0 0 50 50">
+        <path d="M24.9023 9.375C24.4879 9.375 24.0905 9.21038 23.7975 8.91735C23.5045 8.62433 23.3398 8.2269 23.3398 7.8125V3.90625C23.3398 3.49185 23.5045 3.09442 23.7975 2.8014C24.0905 2.50837 24.4879 2.34375 24.9023 2.34375C25.3167 2.34375 25.7142 2.50837 26.0072 2.8014C26.3002 3.09442 26.4648 3.49185 26.4648 3.90625V7.8125C26.4648 8.2269 26.3002 8.62433 26.0072 8.91735C25.7142 9.21038 25.3167 9.375 24.9023 9.375ZM35.882 13.9227C35.5891 13.6296 35.4246 13.2323 35.4246 12.818C35.4246 12.4036 35.5891 12.0063 35.882 11.7133L38.6445 8.95078C38.7887 8.80155 38.9611 8.68251 39.1517 8.60062C39.3423 8.51873 39.5474 8.47563 39.7548 8.47383C39.9623 8.47202 40.1681 8.51156 40.3601 8.59012C40.5521 8.66869 40.7266 8.78471 40.8733 8.93141C41.02 9.07812 41.136 9.25258 41.2146 9.4446C41.2931 9.63663 41.3327 9.84238 41.3309 10.0498C41.3291 10.2573 41.286 10.4623 41.2041 10.653C41.1222 10.8436 41.0031 11.016 40.8539 11.1602L38.0922 13.9219C37.9471 14.0671 37.7749 14.1823 37.5853 14.2609C37.3957 14.3396 37.1925 14.3801 36.9873 14.3801C36.782 14.3802 36.5788 14.3398 36.3891 14.2613C36.1995 14.1829 36.0272 14.0678 35.882 13.9227ZM40.4297 24.9023C40.4297 24.4879 40.5943 24.0905 40.8873 23.7975C41.1804 23.5045 41.5778 23.3398 41.9922 23.3398H45.8984C46.3128 23.3398 46.7103 23.5045 47.0033 23.7975C47.2963 24.0905 47.4609 24.4879 47.4609 24.9023C47.4609 25.3167 47.2963 25.7142 47.0033 26.0072C46.7103 26.3002 46.3128 26.4648 45.8984 26.4648H41.9922C41.5778 26.4648 41.1804 26.3002 40.8873 26.0072C40.5943 25.7142 40.4297 25.3167 40.4297 24.9023ZM35.882 35.882C36.175 35.5891 36.5724 35.4246 36.9867 35.4246C37.401 35.4246 37.7984 35.5891 38.0914 35.882L40.8531 38.6438C41.0024 38.7879 41.1214 38.9603 41.2033 39.1509C41.2852 39.3416 41.3283 39.5466 41.3301 39.7541C41.3319 39.9615 41.2923 40.1673 41.2138 40.3593C41.1352 40.5513 41.0192 40.7258 40.8725 40.8725C40.7258 41.0192 40.5513 41.1352 40.3593 41.2138C40.1673 41.2923 39.9615 41.3319 39.7541 41.3301C39.5466 41.3283 39.3416 41.2852 39.1509 41.2033C38.9603 41.1214 38.7879 41.0024 38.6438 40.8531L35.8813 38.0914C35.5884 37.7983 35.424 37.4009 35.4242 36.9866C35.4243 36.5722 35.589 36.1749 35.882 35.882ZM24.9023 40.4297C25.3167 40.4297 25.7142 40.5943 26.0072 40.8873C26.3002 41.1804 26.4648 41.5778 26.4648 41.9922V45.8984C26.4648 46.3128 26.3002 46.7103 26.0072 47.0033C25.7142 47.2963 25.3167 47.4609 24.9023 47.4609C24.4879 47.4609 24.0905 47.2963 23.7975 47.0033C23.5045 46.7103 23.3398 46.3128 23.3398 45.8984V41.9922C23.3398 41.5778 23.5045 41.1804 23.7975 40.8873C24.0905 40.5943 24.4879 40.4297 24.9023 40.4297ZM13.9227 35.882C14.2156 36.175 14.3801 36.5724 14.3801 36.9867C14.3801 37.401 14.2156 37.7984 13.9227 38.0914L11.1609 40.8531C10.8662 41.1377 10.4716 41.2952 10.0619 41.2917C9.65219 41.2881 9.2603 41.1238 8.9706 40.8341C8.6809 40.5444 8.51657 40.1525 8.51301 39.7428C8.50945 39.3331 8.66694 38.9384 8.95156 38.6438L11.7141 35.882C12.007 35.5893 12.4042 35.4249 12.8184 35.4249C13.2325 35.4249 13.6297 35.5893 13.9227 35.882ZM9.375 24.9023C9.375 25.3167 9.21038 25.7142 8.91735 26.0072C8.62433 26.3002 8.2269 26.4648 7.8125 26.4648H3.90625C3.49185 26.4648 3.09442 26.3002 2.8014 26.0072C2.50837 25.7142 2.34375 25.3167 2.34375 24.9023C2.34375 24.4879 2.50837 24.0905 2.8014 23.7975C3.09442 23.5045 3.49185 23.3398 3.90625 23.3398H7.8125C8.2269 23.3398 8.62433 23.5045 8.91735 23.7975C9.21038 24.0905 9.375 24.4879 9.375 24.9023ZM13.9227 13.9227C13.6296 14.2156 13.2323 14.3801 12.818 14.3801C12.4036 14.3801 12.0063 14.2156 11.7133 13.9227L8.95078 11.1609C8.66616 10.8662 8.50867 10.4716 8.51223 10.0619C8.51579 9.65219 8.68011 9.2603 8.96982 8.9706C9.25952 8.6809 9.65141 8.51657 10.0611 8.51301C10.4708 8.50945 10.8655 8.66694 11.1602 8.95156L13.9219 11.7141C14.2147 12.0069 14.3792 12.4041 14.3794 12.8182C14.3795 13.2323 14.2152 13.6296 13.9227 13.9227ZM24.9023 13.2812C31.3742 13.2812 36.6211 18.5281 36.6211 25C36.6211 31.4719 31.3742 36.7188 24.9023 36.7188C18.4305 36.7188 13.1836 31.4719 13.1836 25C13.1836 18.5281 18.4305 13.2812 24.9023 13.2812ZM24.9023 16.4062C20.1563 16.4062 16.3086 20.2539 16.3086 25C16.3086 29.7461 20.1563 33.5938 24.9023 33.5938C29.6484 33.5938 33.4961 29.7461 33.4961 25C33.4961 20.2539 29.6484 16.4062 24.9023 16.4062Z" fill="white"></path>
+        </svg>
+        <span>Day</span>
+      </div>
+
+      <div class="control-item" data-target="night">
+        <svg width="50" height="51" viewBox="0 0 50 51">
+        <path d="M22.0194 45.4C16.6868 45.4 11.6036 43.4235 7.70642 39.834C7.41633 39.5666 7.20398 39.2276 7.0914 38.852C6.97881 38.4764 6.97008 38.0779 7.0661 37.6979C7.16267 37.3172 7.36068 36.9688 7.63963 36.689C7.91857 36.4092 8.26829 36.2081 8.65254 36.1065C16.1082 34.1373 21.3147 27.4374 21.3147 19.8135C21.3147 15.4296 19.6177 11.2766 16.5358 8.11838C16.26 7.83564 16.0659 7.48527 15.9736 7.10359C15.8813 6.72191 15.8942 6.32282 16.0109 5.94769C16.2486 5.1853 16.8873 4.60971 17.6776 4.44547C19.1683 4.1359 20.7 3.98583 22.2311 4.00105C27.8514 4.05614 33.1037 6.25937 37.019 10.2041C40.9337 14.1483 43.0573 19.3743 42.9988 24.9204C42.9409 30.4035 40.7327 35.5493 36.7813 39.4095C32.8271 43.2729 27.5844 45.4 22.0189 45.4H22.0194ZM12.6173 38.7882C15.3902 40.5937 18.6434 41.5665 22.0194 41.5665C31.3481 41.5665 39.0165 34.0811 39.1138 24.88C39.1617 20.3581 37.4317 16.0986 34.2434 12.8863C31.0546 9.6736 26.775 7.87965 22.1928 7.83452C21.9088 7.8319 21.6253 7.83609 21.3424 7.84659C23.8478 11.3243 25.2008 15.4768 25.2008 19.8129C25.2008 28.1237 20.158 35.5403 12.6173 38.7877V38.7882Z" fill="white"></path>
+        </svg>
+        <span>Night</span>
+      </div>
+    </div>
+  </div>
+  <div class="img-padding">
+    <img class="day none-mb active" src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/day.png?v=1684305421">
+    <img class="day none-pc active" src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/day_-mb.png?v=1684305420">
+
+    <img class="night none-mb" src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/night.png?v=1684305421">
+    <img class="night none-pc" src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/night_-mb.png?v=1684305492">
+  </div>
+</div>
+
+<div class="layer part4">
+  <div class="op_text w100 text-center container">
+    <h3 class="heading h2">True-to Life One Billion Colors</h3>
+    <h6>
+      Out of this world color performance with a true coverage of 107% REC.2020.<br />
+      The color palette and behavior are handled flawlessly whether it's for SDR or HDR content.
+    </h6>
+  </div>
+  <div class="op relative">
+    <video class="absolute" type="video/mp4" src="https://cdn.shopify.com/s/files/1/0554/7445/4576/t/3/assets/----.mp4?v=1684237034" loop="" muted="" playsinline="" autoplay="" controlslist="nodownload" disablepictureinpicture=""></video>
+    <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/ltv-5.png?v=1687195623" alt="5" />
+  </div>
+</div>
+
+<div class="layer part5">
+  <div class="op_text absolute">
+    <h3 class="heading h2">Triple Laser Technology</h3>
+    <h6>Experience colors like never before</h6>
+  </div>
+  <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/ltv-7.jpg?v=1687195623" alt="5" class="op part5_img" />
+</div>
+
+<div class="layer part1">
+  <div class="op_text w100 text-center absolute mb-absolute">
+    <h3 class="heading h2">Cinematic 3D Display</h3>
+    <h6>
+      The AWOL offers an immersive "journey" with movies that is even better than IMAX 3D.<br />
+      Instead of simply enjoying an incredible movie, you feel like you're a part of it.<br />
+      Watching 3D on the AWOL is a game changer that will leave you addicted after just one viewing.
+    </h6>
+    <i>* Work with DPL Link 3D Glasses</i>
+  </div>
+  <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/ltv-8.jpg?v=1687195623" alt="5" class="op" />
+</div>
+
+<div class="layer part1 part6">
+  <div class="op_text absolute mb-absolute">
+    <h3 class="heading h2">Maximize Your<br />Gaming Experience<br />with Turbo Game Mode</h3>
+    <h6>
+      Twice as fast as Game Mode, AWOL Vision Turbo Mode design offers the lowest input lag for smooth gaming experience, allows you to explore smoothly in open world games with 15ms 4K@60Hz and 8ms 1080P@120Hz input lag. It may be the best "low input lag" performance for a 4K DLP projector currently available on the market.
+    </h6>
+  </div>
+  <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/ltv-9.jpg?v=1687195623" alt="5" class="op" />
+</div>
+
+<div class="layer part7">
+  <div class="op_text container">
+    <h3 class="heading h2 text-center">Enhanced Adaptive Black Level</h3>
+  </div>
+  <div class="op relative">
+    <div class="op_text text-center absolute container mb-absolute">
+      <h3 class="heading h2">Create a Stunning High Contrast Ratio Image</h3>
+      <h6>
+        An improved contrast with nice laser dimming technology has resulted in a significant enhancement in image quality. Every shade of black is rendered flawlessly, so you can say farewell to washed-out blacks and embrace a new level of depth and realism in your favorite movies and shows.
+      </h6>
+    </div>
+    <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/ltv-10.jpg?v=1687195623" alt="5"/>
+  </div>
+</div>
+
+<div class="layer part8">
+  <div class="op_text w100 text-center container">
+    <h3 class="heading h2">Exceptional HDR10+ HDR and SDR Performance</h3>
+    <h6>Immerse Yourself in Stunning HDR10+ HDR & SDR Quality</h6>
+    <h6 class="desc">Experience breathtaking HDR and SDR performance with AWOL. With advanced tone mapping and exceptional detail in dark areas, Awol ensures a remarkable HDR experience, showcasing exactly what movie producers intended. lts top-of-the class SDR performance and optional Full HD mode make it a versatile projector that outshines the competition. Prepare to be captivated by AWOL's immersive visuals and remarkable versatility.</h6>
+  </div>
+  <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/LTV-11-1.jpg?v=1688578412" alt="5" class="op" />
+</div>
+
+<div class="layer part1 part9">
+  <div class="op_text text-center absolute container mb-absolute">
+    <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/ltv-icon.png?v=1687195623" alt="filmmaker mode" />
+    <h3 class="heading h2">24 FPS for Cinema Purists</h3>
+    <h6>Most movies are filmed at 24 frames per second (FPS). To eliminate the 3:2 pulldown judder and preserve the purity of the original image, the AWOL projector now features a new 24 FPS mode that can accept high-definition sources at 24 FPS and display movies exactly as the director intended. This is a groundbreaking feature for a 4K DLP projector and has been eagerly anticipated by many.</h6>
+  </div>
+  <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/ltv-12.jpg?v=1687195623" alt="1" class="op" />
+</div>
+
+<div class="layer part8 part13">
+  <div class="op_text w100 text-center container">
+    <h3 class="heading h2">All-in-One Cutting-Edge<br />Streaming Technology</h3>
+    <h6>Enjoy the 4K HDR contents from your favorite Apps like Netflix, Disney + Prime Video etc, with An AMAZON 4K MAX FIRE TV STICK provided.</h6>
+  </div>
+  <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/ltv-13.jpg?v=1687630311" alt="13" class="op" />
+</div>
+
+<div class="layer part5 part9">
+  <div class="op_text text-center absolute container mb-absolute">
+    <h3 class="heading h2">Whisper-Quiet Entertainment</h3>
+    <h6>AWOL LTV-3500 UST Projector with Only 32db of Noise</h6>
+    <h6 class="desc">Experience peace with our silent operation that produces only 32db of noise, you will enjoy ninterrupted entertainment without any distractions.</h6>
+  </div>
+  <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/ltv-15.png?v=1687195623" alt="1" class="op" />
+</div>
+
+<div class="layer part1">
+  <div class="op_text w100 text-center absolute">
+    <h3 class="heading h2">Indulge in a Sensory Feast<br />with Dolby Atmos Audio Technology</h3>
+  </div>
+  <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/ltv-16.jpg?v=1687195623" alt="1" class="op" />
+</div>
+
+<div class="layer part5">
+  <div class="op_text text-center container">
+    <h3 class="heading h2">Accessibility Reimagined</h3>
+    <h6>Placed just 9.8 inches away from the wall, it can create a gigantic 100-inch projection (6" for 80" screen, 9.8" for 100" screen, 13.6" for 120" screen, 20" for 150" screen).</h6>
+  </div>
+  <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/ltv-17.png?v=1687195623" alt="1" class="op" />
+</div>
+
+<div class="layer part5 part9 part10">
+  <div class="op_text text-center absolute container mb-absolute">
+    <h3 class="heading h2">Super Energy Saving</h3>
+    <h6>Compared to a 150-inch LED TV that consumes 3000W per hour, AWOL consumes only 300W. This means AWOL's power consumption is iust 1/10th of the LED TV, costing you less than $73 per year instead of $730. Choose AWOL for both cost savings and energy efficiency.</h6>
+    <ul>
+      <li><b>300w</b><br />per hour</li>
+      <li>less than<br /><b>$73</b> per year</li>
+      <li><b>1/10th</b><br />per hour</li>
+    </ul>
+  </div>
+  <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/ltv-18.jpg?v=1687195623" alt="1" class="op" />
+</div>
+
+<div class="layer part5">
+  <div class="op_text text-center container">
+    <h3 class="heading h2">Adjustable Focus & 8-Point Keystone Correction</h3>
+    <h6>AWOL Vision equipped with electric motor lens and up to 8-Point keystone correction technology which lets you make micro-adjustments to the picture size and image quality. Tweak it to perfection without breaking a sweat !</h6>
+  </div>
+  <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/ltv-19.png?v=1687195623" alt="1" class="op" />
+</div>
+
+<div class="layer part5">
+  <div class="op_text text-center container">
+    <h3 class="heading h2">Exceptional communication and Support Directly from AWOL</h3>
+    <h6>AWOL Vision is based in the US and provides 24/7 support and local maintenance services. Our friendly phone and live chat assistants are always available to help you out. We're excited to announce that we've opened our first UST Triple Laser TV store on beautiful Delary Beach inFlorida, come visit us and experience our amazing products.</h6>
+  </div>
+  <a style="display: block;height: auto;" href="https://awolvision.com/pages/contact-us">
+    <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/product_contact.png?v=1692180128" alt="1" class="op" />
+  </a>
+</div>
+
+
+<script>
+let productLtv = {
+  init() {
+    $(document).on('click', '.control-item', function () {
+      $(`.part3 img`).removeClass('active').filter('.' + $(this).data('target')).addClass('active');
+      $('.control-item').removeClass('active');
+      $(this).addClass('active');
+    });
+    window.addEventListener("scroll", function() {
+      let top = window.pageYOffset, layers = document.querySelectorAll(".layer"), main = document.querySelector("#main");
+      
+      // response for content
+      layers.forEach(item => {
+        if (top + window.innerHeight / 2 >= item.offsetTop) {
+          item.className.indexOf("start") < 0 && item.classList.add("start")
+        } else {
+          item.classList.remove("start")
+        }
+      })
+    })
+  }
+};
+
+productLtv.init()
+</script>
+
+{% schema %}
+{
+  "name": "product ltv 3500 describe", "class": "product-ltv",
+  "settings": [
+    {
+      "type": "text",
+      "id": "id",
+      "label": "Section id"
+    }
+  ],
+  "presets": [
+    {"name": "product ltv 3500 describe"}
+  ]
+}
+{% endschema %}

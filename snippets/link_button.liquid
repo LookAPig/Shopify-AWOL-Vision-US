@@ -1,0 +1,45 @@
+{{ 'link_button.css' | asset_url | stylesheet_tag }}
+{% liquid
+    assign link_to = link_to
+    assign name = name 
+    assign desc = desc 
+    assign price_now = price_now
+    assign price_pass = price_pass
+%}
+<section class="animation_container">
+    <div class="link_card">
+        <div class="product_img">
+            <img style="width: 100%;" src="https://cdn.shopifycdn.net/s/files/1/0554/7445/4576/files/132_cac5cb81-3f8e-479f-ad28-1c344782c9ca.png?v=1713420784">
+        </div>
+        <div>
+            <div class="link_text">{{ name }}</div>
+            <div class="link_desc">{{ desc }}</div>
+            <div class="price"><span class="price_now">{{ price_now }}</span><span class="price_pass">{{ price_pass }}</span></div>
+            <a class="link_to_button" href="{{ link_to }}">Learn more</a>
+            {% comment %} <a href="{{ link_to }}" class="btn" type="button">
+                <strong>{{ name }}</strong>
+        
+                <div id="container-stars">
+                    <div id="stars"></div>
+                </div>
+        
+                <div id="glow">
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                </div>
+            </a> {% endcomment %}
+        </div>
+    </div>
+    {% comment %} <a href="{{ link_to }}" class="btn" type="button">
+        <strong>{{ name }}</strong>
+
+        <div id="container-stars">
+            <div id="stars"></div>
+        </div>
+
+        <div id="glow">
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
+    </a> {% endcomment %}
+</section>

@@ -1,0 +1,696 @@
+<style>
+    .mobile {display: none;}
+    .wrapper { display: table; }
+
+    .cell {
+        display: table-cell;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        vertical-align: middle;
+    }
+    .line {
+        width: 100%;
+        height: 2px;
+        background: radial-gradient(circle, white, transparent);
+    }
+    #holder {
+        /* background: url('https://cdn.shopify.com/s/files/1/0554/7445/4576/files/time-placeholder.png?v=1698661935') no-repeat; */
+        margin: auto;
+    }
+
+    .video_banner {width: 100%;}
+    .video_banner video {width: 100%;}
+
+    .cntSeparator { display: none; }
+
+    .cntDigit#cnt_2 { margin-left: 8px; }
+    .cntDigit#cnt_4 { margin-left: 8px; }
+    .cntDigit#cnt_6 { margin-left: 8px; }
+    .blackFriday_container img {width: 100%;}
+    .blackFriday_container {width: 100%;margin: 0 auto;}
+    .blackFriday_container .blackFriday_banner {
+        width: 100%;
+    }
+    .blackFriday_container .main_body {
+        padding: 0;
+        margin: 0 auto;
+        background-color: #000;
+        background-image: url('https://cdn.shopify.com/s/files/1/0554/7445/4576/files/bg.png?v=1712598800');
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    .blackFriday_container .countdown_BLK {display: flex;flex-direction: column;align-items: center;margin-bottom: 200px;}
+    .blackFriday_container .product_list {width: 100%;max-width: 1200px;margin: 0 auto 0px auto;margin-top: 60px;}
+    .blackFriday_container .product_list.icon_container{max-width:100%;margin: 0;position:relative;}
+    .blackFriday_container .product_body {display: grid; grid-template-columns: repeat(2, 1fr);gap: 20px;padding: 0 10px;}
+    .blackFriday_container .product_body .product_itmes {
+        background: #fff;
+        padding: 10px;
+        position: relative;
+        transition: all ease 0.5s;
+        border-radius: 20px;
+        overflow: hidden;
+    }
+    .blackFriday_container .product_body .product_itmes:hover {
+        transform:scale(1.02)
+    }
+    .blackFriday_container .product_body .product_itmes .new {position: absolute;top: 0px;left: 0px;width: 15%;}
+    .blackFriday_container .product_body .product_itmes .save_up {position: absolute;top: 0px;right: 0px;width: 30%;}
+    .blackFriday_container .product_body .product_itmes.longer {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        /* background: url('https://cdn.shopify.com/s/files/1/0554/7445/4576/files/card_bg.png?v=1701376683'); */
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    .blackFriday_container .product_body .product_itmes.longer .products{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+        padding-top: 60px;
+    }
+    .blackFriday_container .product_body .product_itmes.longer .save_up{
+        width: 10%;
+    }
+    .blackFriday_container .product_body .product_itmes.longer .product_desc ul .product_footer {flex-direction: column;align-items: flex-start;gap: 20px;}
+    .blackFriday_container .product_body .product_itmes .products {background: white;padding: 10px;}
+    .blackFriday_container .product_body .product_itmes .products img{margin-top: 20px;}
+    .blackFriday_container .product_body .product_itmes .product_desc {margin: 20px 50px;}
+    .blackFriday_container .product_body .product_itmes .product_desc h4{font-size: 32px;line-height: 40px;margin-bottom: 10px;}
+    .blackFriday_container .product_body .product_itmes .product_desc ul {margin: 0;padding: 0;font-size: 18px;}
+    .blackFriday_container .product_body .product_itmes .product_desc ul .product_point {color: #999;}
+    .blackFriday_container .product_body .product_itmes .product_desc .product_footer {margin-top: 20px;width: 100%;display: flex; align-items: flex-end;justify-content: space-between;}
+    .blackFriday_container .product_body .product_itmes .product_desc .product_footer .buy {width: fit-content;background: linear-gradient(130deg, #3fbbfe, #a541ff);text-align: center;color: white;border-radius: 60px;padding: 8px 30px 8px 30px;text-shadow: 0px 2px 2px rgba(0,0,0,1);}
+    .blackFriday_container .product_body .product_itmes .product_desc .product_footer .pric {width: 50%;}
+    .blackFriday_container .product_body .product_itmes .product_desc .price_items {display: flex;align-items: center;gap: 10px;margin-top: 20px;}
+    .blackFriday_container .product_body .product_itmes .product_desc .price_items span:nth-child(3) {background: #F44336;color: white;padding: 2px 8px;font-size: 14px;}
+    .blackFriday_container .product_body .product_itmes .product_desc .product_footer .pric p {font-size: 16px;margin: 0;margin: 10px 0;}
+    .blackFriday_container h3 {
+        text-align: center;
+        width: fit-content;
+        margin-bottom: 20px;
+        /* background: linear-gradient(45deg, #e5b454,#f786a4,#f9908d,#ec2dc6); */
+        margin: 40px auto;
+        padding: 0px 5px;
+        border-radius: 20px;
+        /* box-shadow: 0px 0px 10px rgba(255,255,255,0.8); */
+        border-bottom: 2px solid radial-gradient(circle, blue, red);
+    }
+    .blackFriday_container h3 span{
+        font-size: 48px;
+        font-weight: bolder;
+        background-image: linear-gradient(#fff, #fff);
+        background-clip: text;
+        color: transparent;
+        /* background: #1b0c48; */
+        border-radius: 20px;
+        padding: 8px 40px;
+        line-height: 75px;
+        font-style: italic;
+    }
+    .limited {
+        font-size: 20px;
+        font-weight: 600;
+        font-weight: bolder;
+        background-image: linear-gradient(#a13105, #f84905);
+        background-clip: text;
+        color: transparent;
+        margin-bottom: 12px;
+        border: none;
+        box-shadow: none;
+        padding: 1px;
+        clip-path: inset(1px);
+    }
+    .blackFriday_container .product_list .subtitle {color: white; font-size: 18px; margin-top: 10px;text-align: center;}
+    .blackFriday_container .learn_more {
+        font-size: 36px;
+        font-weight: 600;
+        /* background: linear-gradient(45deg, #eb7a27, #fc24ac); */
+        text-align: center;
+        width: fit-content;
+        display: block;
+        color: #fff;
+        margin: 0 auto;
+        border-radius: 20px;
+        padding: 0 40px;
+    }
+    .blackFriday_container .events {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+    .blackFriday_container .events .event_items {
+        width: 100%;
+        display: block;
+    }
+    .blackFriday_container .events .event_items .event_context {display: none;}
+    .blackFriday_container .events .event_items a,
+    .blackFriday_container .events .event_items .event_context a,
+    .blackFriday_container .events .event_items .event_context h4,
+    .blackFriday_container .events .event_items .event_context p {
+        color: #fff;
+        cursor: auto;
+    }
+    .blackFriday_container .events .event_items .event_context a:nth-child(2) {cursor: pointer;border: 1px solid;padding: 2px 10px;margin-top: 10px;}
+    .blackFriday_container .events .event_items img {
+        height: 140px;
+        width: 100%;
+        object-fit: cover;
+        margin-bottom: 10px;
+    }
+    .blackFriday_container .icons {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 60px;
+        text-align: center;
+    }
+    .blackFriday_container .product_list.icon_container .icons {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0px;
+        text-align: center;
+        width: 100%;
+        padding: 60px 100px;
+        background: #000;
+    }
+    .blackFriday_container .icons .icon_items{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        color: white;
+        gap: 10px;
+    }
+    .logos {
+        display: grid;
+        grid-template-columns: repeat(6,1fr);
+        gap: 60px;
+    }
+    .logos img {height: 150px}
+    .link_to {
+        position: fixed; 
+        top: 50%; 
+        right: 30px;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        text-align: end;
+        z-index: 999;
+        transition: all 0.5s ease;
+        opacity: 0;
+    }
+    .link_to.show {
+        opacity: 1;
+    }
+    .link_to a {
+        margin-bottom: 20px;
+        transition: all 0.3s ease;
+        border: 1px solid #fff;
+        padding: 5px 10px;
+        text-align: center;
+        background: transparent;
+        transform: translateX(0px);
+    }
+    .link_to a:hover {
+        background: #fff;
+        color: #000;
+        transform: translateX(0px);
+    }
+    .title_icon.footer_icon {cursor: pointer;color: #fff;text-align: left;}
+
+    .happy_card_item {width: 100%}
+    .happy_card_item.card_one {
+        /* background-image: url('https://cdn.shopify.com/s/files/1/0554/7445/4576/files/ball_2.png?v=1710924582'); */
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    .happy_card_item.card_two {
+        /* background-image: url('https://cdn.shopify.com/s/files/1/0554/7445/4576/files/ball_1.png?v=1710924582'); */
+        background-size: cover;
+        background-repeat: no-repeat;
+        /* padding-bottom: 80px; */
+    }
+    .card_3500,.card_3000 {padding: 40px 0;}
+    .product_message {width: 100%;padding: 100px;
+        /* background-image: url('https://cdn.shopify.com/s/files/1/0554/7445/4576/files/bg.png?v=1712598800'); */
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;}
+    .product_message .bg_border {max-width: 1200px;margin: 0px auto;position: relative;}
+    .product_message .bg_border .message_container{
+        background-image: url('https://cdn.shopify.com/s/files/1/0787/4651/7790/files/wood.png?v=1708313148');
+        /* background: linear-gradient(225deg, #ae4458, #600c5f, #724777); */
+        padding: 20px 100px 70px 100px;
+        border-radius: 20px;
+    }
+    .product_message .bg_border .message_container a {width: 100%;color: #2d2d2d;margin-top: 30px;text-decoration: underline;text-align: center;display: block;font-size: 36px;}
+    .product_message .bg_border .message_container h3 {background: none; color: #2d2d2d;-webkit-text-fill-color: unset;line-height: 60px;margin-bottom: 30px;margin-top: 40px!important;}
+    .decoration.one,.decoration.two {position: absolute;top: 0;width: 180px;}
+    .decoration.three {position: absolute;width: 360px;right: 50px;top: -4%;z-index: 1;}
+    .decoration.four {position: absolute;width: 240px;right: -40px;top: -6%;}
+    #Choose_Screen h3,
+    #AWOL_Events h3 {
+        font-size: 40px;
+        font-weight: 800;
+        width: 100%;
+        box-shadow: none;
+    }
+    .blackFriday_container img.second_img {width: 50%;}
+    @media screen and (max-width: 750px) {
+       .pc{display: none;}
+       .mobile {display: block;}
+       .card_3500, .card_3000 {padding: 0px;}
+       .card_3000 {margin-top: 60px!important;}
+       .blackFriday_container {padding: 0;}
+       .blackFriday_container .main_body {padding: 0px 0;}
+       .blackFriday_container .product_list.icon_container img{display: none;}
+       .blackFriday_container .product_list.icon_container .icons {position: relative;top: unset;left: unset;padding: 0;transform: translate(0,0)}
+       .blackFriday_container h3 {font-size: 20px;line-height: 28px;margin: 0px auto;padding: 0px 6px;}
+       .blackFriday_container h3 span {font-size: 20px;padding: 8px 40px;line-height: 50px;width: 100%;display: block;}
+       .blackFriday_container .product_list {margin: 10px auto 10px auto;}
+       .blackFriday_container .product_body {grid-template-columns: repeat(2, 1fr);gap: 10px;padding: 0 20px;}
+       .blackFriday_container .product_list .subtitle {font-size: 12px;}
+       .blackFriday_container .product_body .product_itmes {
+            padding: 4px;
+        }
+       .blackFriday_container .product_body .product_itmes .product_desc {margin: 0 auto;}
+       .blackFriday_container .product_body .product_itmes.longer .product_desc {margin: 0 auto;width: 100%}
+       .blackFriday_container .product_body .product_itmes.longer {
+            grid-column-start: 1;
+            grid-column-end: 3;
+       }
+       .blackFriday_container .product_body .product_itmes .product_desc h4 {
+            font-size: 22px;
+            line-height: 20px;
+            margin-bottom: 16px;
+            min-height: 60px;
+       }
+       .blackFriday_container .product_body .product_itmes .products {padding-top: 30px;}
+       /* .blackFriday_container .product_body .product_itmes .save_up_img {height: 50px;width: 131px;} */
+       /* .blackFriday_container .product_body .product_itmes.longer .save_up_img {height: 70px;width: 183px;} */
+       .blackFriday_container .product_body .product_itmes .product_desc ul {font-size: 14px;text-align: left;line-height: 18px;margin: 6px 0;}
+       .blackFriday_container .product_body .product_itmes .product_desc h4 {font-size: 14px;margin-bottom: 0px;text-align: left;}
+       .blackFriday_container .product_body .product_itmes.longer .product_desc h4 {text-align: left;font-size: 18px;margin-top: 16px!important;min-height: 100%;}
+       {% comment %} .blackFriday_container .product_body .product_itmes .product_desc .product_details li:not(:last-child) {display: none;} {% endcomment %}
+       .blackFriday_container .product_body .product_itmes .product_desc .product_footer {flex-direction: column;align-items: flex-start;margin-top: 10px;width: 100%;}
+       .blackFriday_container .product_body .product_itmes .product_desc .product_footer .buy {width: 100%;padding: 4px 0;justify-content: center;}
+       .blackFriday_container .product_body .product_itmes .product_desc .product_footer .pric {text-align: left;width: 100%;margin-bottom: 10px;}
+       .blackFriday_container .product_body .product_itmes .product_desc .price_items {display: grid;grid-template-columns: repeat(2,1fr);}
+       .blackFriday_container .product_body .product_itmes .product_desc .price_items span:nth-child(1) {font-size: 20px!important;}
+       .blackFriday_container .product_body .product_itmes .product_desc .price_items span:nth-child(3) {grid-column-start: 1;grid-column-end: 3;}
+       .blackFriday_container .product_body .product_itmes.longer .product_desc .product_footer .pric {text-align: left;}
+       .blackFriday_container .product_body .product_itmes.longer .product_desc .price_items {display: flex;justify-content: flex-start;}
+       .blackFriday_container .product_body .product_itmes .product_desc .product_footer .pric span:nth-child(1) {font-size: 20px!important;}
+        .blackFriday_container .product_body .product_itmes.longer .products {
+            display: flex;
+            flex-direction: column-reverse;
+            gap: 0px;
+            padding-top: 40px;
+        }
+        .blackFriday_container .learn_more {margin-top: 0;margin-bottom: 0px;font-size: 16px;width: 90%;padding: 10px 40px;}
+        .blackFriday_container .events {grid-template-columns: repeat(1, 1fr);padding: 0;}
+        .blackFriday_container .product_body .product_itmes.longer .product_desc ul .product_footer {gap: 6px;}
+        .blackFriday_container .events .event_items {border: 1px solid #fff;}
+        .blackFriday_container .events .event_items img {height: 150px;margin: 0;}
+        .blackFriday_container .events .event_items .event_context {padding: 10px;display: none;}
+        .blackFriday_container .icons {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0px;
+        }
+        .blackFriday_container .icons.first {
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .blackFriday_container .icons .icon_items {
+            transform: scale(0.7);
+        }
+        .logos {
+            grid-template-columns: repeat(3,1fr);
+            gap: 20px;
+        }
+        .blackFriday_container .product_body .product_itmes .products img {margin: 0;}
+        .logos img {height: 110px}
+        .blackFriday_container .product_body .product_itmes.longer .last_itmes {flex-direction: column!important;}
+        .link_to {
+            display: none;
+        }
+        .blackFriday_container .product_body .product_itmes .product_desc .product_footer .pric p {font-size: 12px;}
+        .happy_card_item.card_two {padding-bottom: 20px;}
+        .product_message {padding: 10px;}
+        .product_message .bg_border .message_container {padding: 20px 10px 30px 10px;}
+        .product_message .bg_border {padding: 10px;}
+        .product_message .bg_border .message_container h3 {line-height: 30px;}
+        .blackFriday_container .product_body .product_itmes.longer .save_up {width: 30%;}
+        .blackFriday_container .product_body .product_itmes .save_up{width: 60%;top: -10px;right: -10px;transform: scale(0.8);}
+        #Choose_Screen h3,#AWOL_Events h3 {font-size: 24px;margin-top: 10px!important;}
+        .product_message .bg_border .message_container a {font-size: 20px;margin-top: 0;}
+        .limited {font-size: 14px;}
+        #AWOL_Events {margin-top: 60px;}
+    }
+</style>
+<section class="blackFriday_container">
+    <div class="video_banner">
+        <video id="myVideo" autoplay loop playsinline muted poster="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/mothersDay-banner.png?v=1712606139" class="">
+        <source type="video/mp4; codecs=&quot;avc1.4D401E, mp4a.40.2&quot;"
+            data-layzr-src="https://cdn.shopify.com/videos/c/o/v/0cba26451a91464f94a483882a4b5a0c.mp4"
+            src="https://cdn.shopify.com/videos/c/o/v/0cba26451a91464f94a483882a4b5a0c.mp4">
+      </video>
+    </div>
+    <script>
+        const video = document.getElementById('myVideo');
+ 
+        video.addEventListener('ended', function() {
+            // 当视频播放结束时，重新加载视频来避免停顿感
+            video.load();
+            video.play();
+        });
+    </script>
+    <div class="link_to">
+        <a href="javascript:;" id="a_3500pro">Floor Rising Screen</a>
+        <a href="javascript:;" id="a_3000pro">132" Cinematic Screen</a>
+        <a href="javascript:;" id="a_Choose_Screen">Choose Screen</a>
+        <a href="javascript:;" id="a_AWOL_Events">Special Offers</a>
+    </div>
+    <div class="main_body">
+
+        <div class="product_list icon_container">
+            <div class="icons first">
+                <div class="icon_items">
+                    <svg t="1698769217835" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2577" width="64" height="64"><path d="M576.213333 149.973333a91.221333 91.221333 0 0 1 100.992 31.957334 208.981333 208.981333 0 0 0 104.533334 74.837333 87.082667 87.082667 0 0 1 61.482666 82.432c0 44.117333 14.208 86.954667 40.32 122.368a84.565333 84.565333 0 0 1 0 100.906667 205.994667 205.994667 0 0 0-40.32 122.368 87.04 87.04 0 0 1-61.525333 82.389333 208.938667 208.938667 0 0 0-104.533333 74.837333 91.264 91.264 0 0 1-100.992 32 210.816 210.816 0 0 0-128.426667 0 91.178667 91.178667 0 0 1-100.949333-32 208.981333 208.981333 0 0 0-104.533334-74.837333 87.04 87.04 0 0 1-61.482666-82.432 206.08 206.08 0 0 0-40.32-122.368 84.565333 84.565333 0 0 1 0-100.906667c26.112-35.413333 40.32-78.250667 40.32-122.368 0-36.650667 24.064-70.4 61.525333-82.389333a208.981333 208.981333 0 0 0 104.533333-74.837333 91.264 91.264 0 0 1 100.992-32 210.816 210.816 0 0 0 128.426667 0z m-18.048-57.429333a151.594667 151.594667 0 0 1-92.288 0A150.698667 150.698667 0 0 0 298.88 145.92a149.248 149.248 0 0 1-74.666667 53.376A147.2 147.2 0 0 0 121.045333 339.2a145.493333 145.493333 0 0 1-28.501333 86.4 145.194667 145.194667 0 0 0 0 172.842667 145.493333 145.493333 0 0 1 28.501333 86.4c0 63.701333 41.642667 120.149333 103.168 139.818666a149.205333 149.205333 0 0 1 74.666667 53.418667 150.613333 150.613333 0 0 0 166.954667 53.418667 151.552 151.552 0 0 1 92.288 0 150.698667 150.698667 0 0 0 166.997333-53.418667 149.248 149.248 0 0 1 74.666667-53.376 147.242667 147.242667 0 0 0 103.168-139.818667c0-31.018667 9.984-61.269333 28.501333-86.4a145.194667 145.194667 0 0 0 0-172.842666 145.493333 145.493333 0 0 1-28.501333-86.4 147.242667 147.242667 0 0 0-103.168-139.818667 149.248 149.248 0 0 1-74.666667-53.418667 150.613333 150.613333 0 0 0-166.954667-53.418666z m149.248 345.6a30.421333 30.421333 0 0 0-0.170666-42.709333 29.653333 29.653333 0 0 0-42.24-0.170667l-205.525334 207.786667-90.709333-91.690667a29.653333 29.653333 0 0 0-42.24-0.170667 30.421333 30.421333 0 0 0 0.170667 42.709334L424.448 652.8a49.408 49.408 0 0 0 70.4 0.256l212.565333-214.869333z" fill="#ffffff" p-id="2578"></path></svg>
+                    <div class="title_icon">
+                        <h4>24-Month Warranty</h4>
+                    </div>              
+                </div>
+                <div class="icon_items">
+                    <svg t="1698756413691" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2569" width="64" height="64"><path d="M1000.177 646.279l-23.146-136.962c-1.431-46.319-39.94-83.62-87.076-83.62H878.47L836.165 342.3c-9.888-19.522-29.717-31.627-51.74-31.627H627.043V281.88c0-31.684-25.813-57.498-57.527-57.498h-402.67c-31.714 0-57.526 25.814-57.526 57.498v57.554h57.527V281.88h402.669V655.8H421.628c-12.852-49.464-57.497-86.26-110.965-86.26s-98.118 36.796-110.968 86.26h-32.848v-86.26H109.32v143.818h90.374c12.851 49.462 57.5 86.261 110.968 86.261 53.466 0 98.113-36.799 110.965-86.261h267.015c12.864 49.462 57.526 86.261 110.98 86.261 53.453 0 98.114-36.799 110.977-86.261h32.416c17.162 0 33.341-7.501 44.38-20.563 10.93-12.893 15.566-29.86 12.782-46.516z m-689.514 95.839c-31.712 0-57.527-25.84-57.527-57.553s25.815-57.525 57.527-57.525c31.71 0 57.527 25.813 57.527 57.525s-25.816 57.553-57.527 57.553z m474.211-373.78l29.101 57.359h-71.88v-57.414l42.78 0.055z m14.75 373.78c-31.715 0-57.528-25.84-57.528-57.553s25.813-57.525 57.527-57.525c31.712 0 57.527 25.813 57.527 57.525s-25.815 57.553-57.527 57.553zM910.601 655.8c-12.864-49.465-57.524-86.262-110.979-86.262-53.453 0-98.115 36.797-110.98 86.262h-61.6V396.905l57.528 0.029v28.763c0 31.712 25.815 57.554 57.526 57.554h147.86c16.32 0 29.578 12.864 29.578 28.735L943.017 655.8h-32.415z" p-id="2570" fill="#ffffff"></path><path d="M23.032 368.17h230.104v57.527H23.032z m28.763 115.081h230.103v57.498H51.795z" p-id="2571" fill="#ffffff"></path></svg>
+                    <div class="title_icon">
+                        <h4>Free Shipping</h4>
+                    </div>                 
+                </div>
+                <div class="icon_items">
+                    <svg t="1698769413279" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="7161" width="64" height="64"><path d="M672 96c-141.76 0-256 114.24-256 256 0 7.52 1.184 17.696 2.016 27.008L144 652.992a160 160 0 0 0 0 227.008 160 160 0 0 0 227.008 0l273.984-274.016c9.312 0.832 19.52 2.016 27.008 2.016 141.76 0 256-114.24 256-256a243.2 243.2 0 0 0-30.016-118.016l-20-36.992-29.984 30.016-138.016 136.992-49.984-50.016L796.992 176l30.016-30.016-37.024-20A243.2 243.2 0 0 0 672 96z m0 64c15.552 0 27.136 6.688 40.992 10.016L592 290.944l-23.008 23.04 23.008 21.984 96 96 22.016 23.008 22.976-23.008 121.024-120.992c3.296 13.856 9.984 25.44 9.984 40.992 0 107.84-84.16 192-192 192-12.8 0-23.04 0-31.008-2.016l-16.992-4.992-12.992 13.024-285.024 284.992c-39.392 39.392-97.568 39.392-136.96 0l-1.024-1.024c-38.4-39.36-38.08-96.928 0.992-136l285.024-284.992 12.992-12.992-4.992-16.992C480 375.04 480 364.8 480 352c0-107.84 84.16-192 192-192z" p-id="7162" fill="#ffffff"></path></svg>
+                    <div class="title_icon">
+                        <h4>30-Day Price Match</h4>
+                    </div>   
+                </div>
+                <div class="icon_items">
+                    <svg t="1698841636888" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4177" width="64" height="64"><path d="M512 0l460.8 187.392v278.8864c0 84.736-20.0704 166.5536-60.16 245.4016a613.7344 613.7344 0 0 1-163.5328 198.5536A580.4544 580.4544 0 0 1 512 1024a580.4544 580.4544 0 0 1-237.1584-113.7664A613.7856 613.7856 0 0 1 111.4112 711.68C71.2704 632.832 51.2 551.0144 51.2 466.2784V187.392L512 0z m358.4 254.464L512 104.96 153.6 254.5152v209.664c0 68.6592 15.872 134.8608 47.8208 199.2192a519.936 519.936 0 0 0 135.8336 169.216A478.976 478.976 0 0 0 512 924.16a478.5152 478.5152 0 0 0 174.336-91.2384 519.3728 519.3728 0 0 0 135.8336-168.6528c32.4096-65.3312 48.2304-131.4304 48.2304-200.0384V254.464z m-116.0704 66.0992a44.6976 44.6976 0 0 1 0 64.3072L526.8992 703.488a47.2576 47.2576 0 0 1-33.024 13.312 47.2064 47.2064 0 0 1-32.9728-13.312l-165.632-152.8832a44.8 44.8 0 0 1 0-64.3584 47.5136 47.5136 0 0 1 65.9456 0l128.0512 115.3536 199.1168-281.0368a47.4112 47.4112 0 0 1 65.9456 0z" p-id="4178" fill="#ffffff"></path></svg>
+                    <div class="title_icon">
+                        <h4>30-Day Money-Back</h4>
+                    </div>   
+                </div>
+            </div>
+        </div>
+        {% render 'countdown' %}
+        {% comment %} 3500pro {% endcomment %}
+        <div class="happy_card_item card_one 3500pro_card">
+            <div id="3500pro" class="product_list card_3500 3500pro">
+                <h3><span>Matte White Floor Rising Screen Bundle</span></h3>
+                {% comment %} <p class="subtitle">Buy LTV-3000 Pro at $3999 to get Free 120'' Premium Wall Mount Cinematic/Daylight Screen</p> {% endcomment %}
+                <div class="product_body 3500pro">
+                    <a href="https://awolvision.com/products/ltv-3500-pro-plus-132-wall-mount-cinematic-alr-screen-bundle" class="product_itmes longer">
+                        <div class="save_up">
+                            <img class="save_up_img" src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/2000_905b657e-ee4c-4a05-a327-7a63c19110f9.png?v=1712603607" />
+                        </div>
+                        <div class="new">
+                            <img class="new_img" src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/new.png?v=1710785590" />
+                        </div>
+                        <div class="products last_itmes">
+                            <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/Matte-White-Floor-Rising-Screen.png?v=1712601782" />
+                            <div class="product_desc ">
+                                <h4>LTV-3500 Pro + <span style="background-image: linear-gradient(129deg, #3fbbfe, #a541ff);background-clip: text;color: transparent;">Free</span> 100"-120" Matte White Floor Rising screen Bundle</h4>
+                                <ul class="product_details">
+                                    {% comment %} <li>3500 Peak Lumens/Massive 150"</li>
+                                    <li>Free 3D Glasses*2</li> {% endcomment %}
+                                    {% comment %} <li>Recommended rooms: Dark rooms</li> {% endcomment %}
+                                    <li style="margin: 6px 0;"><img class="second_img" src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/icon.png?v=1712601387"></li>
+                                    <li style="margin: 6px 0;"><img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/gifts_d33fe714-a01c-4cd4-90ca-2c04cc65e928.png?v=1712601387"></li>
+                                    <li class="price_items">
+                                        <span style="color: #fc373b;font-size: 30px;font-weight: bold;">$5,998</span>
+                                        <span style="text-decoration: line-through;">$8,998</span>
+                                        {% comment %} <span>SAVE $2,599</span> {% endcomment %}
+                                    </li>
+                                    <li class="product_footer">
+                                        <div class="buy">
+                                        BUY NOW &nbsp;
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>   
+                        </div>
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+        
+        {% comment %} 3000pro {% endcomment %}
+        <div class="happy_card_item card_two 3000pro_card">
+            <div id="3000pro" class="product_list card_3000 3000pro">
+                <h3><span>132" Cinematic Screen Bundle</span></h3>
+                {% comment %} <p class="subtitle">Buy LTV-3000 Pro at $3999 to get Free 120'' Premium Wall Mount Cinematic/Daylight Screen</p> {% endcomment %}
+                <div class="product_body 3000pro">
+                    <a href="https://awolvision.com/products/ltv-3000-pro-plus-132-wall-mount-cinematic-alr-screen-bundle" class="product_itmes longer">
+                        <div class="save_up">
+                            <img class="save_up_img" src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/3000_3544619e-e692-4078-b2fc-a9c7f442c2df.png?v=1712603607" />
+                        </div>
+                        <div class="new">
+                            <img class="new_img" src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/new.png?v=1710785590" />
+                        </div>
+                        <div class="products last_itmes">
+                            <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/3000_53d005ef-35dd-4cf5-a747-67aa01dbca60.png?v=1712604271" />
+                            <div class="product_desc ">
+                                <h4>LTV-3500 Pro + <span style="background-image: linear-gradient(129deg, #3fbbfe, #a541ff);background-clip: text;color: transparent;">Free</span> 132" Cinematic Screen</h4>
+                                <ul class="product_details">
+                                    {% comment %} <li>3500 Peak Lumens/Massive 150"</li>
+                                    <li>Free 3D Glasses*2</li> {% endcomment %}
+                                    {% comment %} <li>Recommended rooms: Dark rooms</li> {% endcomment %}
+                                    <li style="margin: 6px 0;"><img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/132.png?v=1710815602"></li>
+                                    <li style="margin: 6px 0;"><img class="" src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/3500-gifts.png?v=1712604999"></li>
+                                    <li class="price_items">
+                                        <span style="color: #fc373b;font-size: 30px;font-weight: bold;">$4,498</span>
+                                        <span style="text-decoration: line-through;">$6,998</span>
+                                        {% comment %} <span>SAVE $2,599</span> {% endcomment %}
+                                    </li>
+                                    <li class="product_footer">
+                                        <div class="buy">
+                                        BUY NOW &nbsp;
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>   
+                        </div>
+                    </a>
+                    <a href="https://awolvision.com/products/ltv-3000-pro-plus-132-wall-mount-cinematic-alr-screen-bundle" class="product_itmes longer">
+                        <div class="save_up">
+                            <img class="save_up_img" src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/2500_a56c78f2-70a0-4343-b1df-cc8fc1040c81.png?v=1712603608" />
+                        </div>
+                        <div class="new">
+                            <img class="new_img" src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/new.png?v=1710785590" />
+                        </div>
+                        <div class="products last_itmes">
+                            <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/3000_53d005ef-35dd-4cf5-a747-67aa01dbca60.png?v=1712604271" />
+                            <div class="product_desc ">
+                                <h4>LTV-3000 Pro + 132" Cinematic Screen</h4>
+                                <ul class="product_details">
+                                    {% comment %} <li>3500 Peak Lumens/Massive 150"</li>
+                                    <li>Free 3D Glasses*2</li> {% endcomment %}
+                                    {% comment %} <li>Recommended rooms: Dark rooms</li> {% endcomment %}
+                                    <li style="margin: 6px 0;"><img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/132.png?v=1710815602"></li>
+                                    <li style="margin: 6px 0;"><img class="second_img" src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/3000-gifts.png?v=1712604401"></li>
+                                    <li class="price_items">
+                                        <span style="color: #fc373b;font-size: 30px;font-weight: bold;">$4,498</span>
+                                        <span style="text-decoration: line-through;">$6,998</span>
+                                        {% comment %} <span>SAVE $2,599</span> {% endcomment %}
+                                    </li>
+                                    <li class="product_footer">
+                                        <div class="buy">
+                                        BUY NOW &nbsp;
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>   
+                        </div>
+                    </a>
+                </div>
+            </div>
+            {% comment %} Leanr more {% endcomment %}
+            <a class="learn_more" href="https://awolvision.com/collections/bundles">Learn More </a>
+        </div>
+
+        
+        <div class="product_message">
+            <div class="bg_border">
+                <div class="message_container">
+                    <div id="Choose_Screen" class="product_list">
+                        <h3>Choose the Right Screen <br>to Double the Image Quality</h3>
+                        <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/8bce6c8d3698dd0d5ec5b592abf0e4de.png?v=1698743845" />
+                    </div>
+                    <div id="AWOL_Events" class="product_list">
+                        <h3>Special Offers & AWOL Events</h3>
+                        <div class="events">
+                            <div href="" class="event_items">
+                                <a style="cursor: pointer;" href="https://awolvision.com/pages/military-first-responder-discount">
+                                    <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/100_479498e3-637f-4846-ae8a-e4f1eefa416a.jpg?v=1698399979" />
+                                    <div class="event_context">
+                                        <h4>Frontline Hero & First Responder Discount</h4>
+                                        <p>We are proud to offer additional 100$ on top of any live deal to select groups.</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div href="" class="event_items">
+                                <a style="cursor: pointer;" href="https://awolvision.com/pages/where-to-see-awol-vision">
+                                <img src="https://cdn.shopifycdn.net/s/files/1/0554/7445/4576/files/20231211185830.png?v=1702292387" />
+                                <div class="event_context">
+                                    <h4>In-Home Demo</h4>
+                                    <p>Southern California, We Have In-Home Demos for You.</p>
+                                </div>
+                                </a>
+                            </div>
+                            <div href="" class="event_items">
+                                <a href="javascript:;">
+                                <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/20231108014424.jpg?v=1699379101" />
+                                <div class="event_context">
+                                    <h4>Extended 12-Month Warranty</h4>
+                                    <p>Sign up for AWOL's free 12-month delayed warranty for your projector</p>
+                                </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="product_list">
+                <div class="icons">
+                    <div class="icon_items">
+                        {% comment %} <svg t="1698769217835" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2577" width="64" height="64"><path d="M576.213333 149.973333a91.221333 91.221333 0 0 1 100.992 31.957334 208.981333 208.981333 0 0 0 104.533334 74.837333 87.082667 87.082667 0 0 1 61.482666 82.432c0 44.117333 14.208 86.954667 40.32 122.368a84.565333 84.565333 0 0 1 0 100.906667 205.994667 205.994667 0 0 0-40.32 122.368 87.04 87.04 0 0 1-61.525333 82.389333 208.938667 208.938667 0 0 0-104.533333 74.837333 91.264 91.264 0 0 1-100.992 32 210.816 210.816 0 0 0-128.426667 0 91.178667 91.178667 0 0 1-100.949333-32 208.981333 208.981333 0 0 0-104.533334-74.837333 87.04 87.04 0 0 1-61.482666-82.432 206.08 206.08 0 0 0-40.32-122.368 84.565333 84.565333 0 0 1 0-100.906667c26.112-35.413333 40.32-78.250667 40.32-122.368 0-36.650667 24.064-70.4 61.525333-82.389333a208.981333 208.981333 0 0 0 104.533333-74.837333 91.264 91.264 0 0 1 100.992-32 210.816 210.816 0 0 0 128.426667 0z m-18.048-57.429333a151.594667 151.594667 0 0 1-92.288 0A150.698667 150.698667 0 0 0 298.88 145.92a149.248 149.248 0 0 1-74.666667 53.376A147.2 147.2 0 0 0 121.045333 339.2a145.493333 145.493333 0 0 1-28.501333 86.4 145.194667 145.194667 0 0 0 0 172.842667 145.493333 145.493333 0 0 1 28.501333 86.4c0 63.701333 41.642667 120.149333 103.168 139.818666a149.205333 149.205333 0 0 1 74.666667 53.418667 150.613333 150.613333 0 0 0 166.954667 53.418667 151.552 151.552 0 0 1 92.288 0 150.698667 150.698667 0 0 0 166.997333-53.418667 149.248 149.248 0 0 1 74.666667-53.376 147.242667 147.242667 0 0 0 103.168-139.818667c0-31.018667 9.984-61.269333 28.501333-86.4a145.194667 145.194667 0 0 0 0-172.842666 145.493333 145.493333 0 0 1-28.501333-86.4 147.242667 147.242667 0 0 0-103.168-139.818667 149.248 149.248 0 0 1-74.666667-53.418667 150.613333 150.613333 0 0 0-166.954667-53.418666z m149.248 345.6a30.421333 30.421333 0 0 0-0.170666-42.709333 29.653333 29.653333 0 0 0-42.24-0.170667l-205.525334 207.786667-90.709333-91.690667a29.653333 29.653333 0 0 0-42.24-0.170667 30.421333 30.421333 0 0 0 0.170667 42.709334L424.448 652.8a49.408 49.408 0 0 0 70.4 0.256l212.565333-214.869333z" fill="#2d2d2d" p-id="2578"></path></svg> {% endcomment %}
+                        <div class="title_icon footer_icon">
+                            <h4>24-Month Warranty ></h4>
+                            <p>AWOL Vision products are covered by a 1-Year Limited Warranty & 1-Year Free Extended Warranty (Must register for extended warranty on the AWOL Vision website)</p>
+                        </div>              
+                    </div>
+                    <div class="icon_items">
+                        {% comment %} <svg t="1698756413691" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2569" width="64" height="64"><path d="M1000.177 646.279l-23.146-136.962c-1.431-46.319-39.94-83.62-87.076-83.62H878.47L836.165 342.3c-9.888-19.522-29.717-31.627-51.74-31.627H627.043V281.88c0-31.684-25.813-57.498-57.527-57.498h-402.67c-31.714 0-57.526 25.814-57.526 57.498v57.554h57.527V281.88h402.669V655.8H421.628c-12.852-49.464-57.497-86.26-110.965-86.26s-98.118 36.796-110.968 86.26h-32.848v-86.26H109.32v143.818h90.374c12.851 49.462 57.5 86.261 110.968 86.261 53.466 0 98.113-36.799 110.965-86.261h267.015c12.864 49.462 57.526 86.261 110.98 86.261 53.453 0 98.114-36.799 110.977-86.261h32.416c17.162 0 33.341-7.501 44.38-20.563 10.93-12.893 15.566-29.86 12.782-46.516z m-689.514 95.839c-31.712 0-57.527-25.84-57.527-57.553s25.815-57.525 57.527-57.525c31.71 0 57.527 25.813 57.527 57.525s-25.816 57.553-57.527 57.553z m474.211-373.78l29.101 57.359h-71.88v-57.414l42.78 0.055z m14.75 373.78c-31.715 0-57.528-25.84-57.528-57.553s25.813-57.525 57.527-57.525c31.712 0 57.527 25.813 57.527 57.525s-25.815 57.553-57.527 57.553zM910.601 655.8c-12.864-49.465-57.524-86.262-110.979-86.262-53.453 0-98.115 36.797-110.98 86.262h-61.6V396.905l57.528 0.029v28.763c0 31.712 25.815 57.554 57.526 57.554h147.86c16.32 0 29.578 12.864 29.578 28.735L943.017 655.8h-32.415z" p-id="2570" fill="#2d2d2d"></path><path d="M23.032 368.17h230.104v57.527H23.032z m28.763 115.081h230.103v57.498H51.795z" p-id="2571" fill="#2d2d2d"></path></svg> {% endcomment %}
+                        <div class="title_icon footer_icon">
+                            <h4>Free Shipping ></h4>
+                            <p>If you are located in the US, excluding Alaska and Hawaii, you get free US Domestic Shipping</p>
+                        </div>                 
+                    </div>
+                    <div class="icon_items">
+                        {% comment %} <svg t="1698769413279" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="7161" width="64" height="64"><path d="M672 96c-141.76 0-256 114.24-256 256 0 7.52 1.184 17.696 2.016 27.008L144 652.992a160 160 0 0 0 0 227.008 160 160 0 0 0 227.008 0l273.984-274.016c9.312 0.832 19.52 2.016 27.008 2.016 141.76 0 256-114.24 256-256a243.2 243.2 0 0 0-30.016-118.016l-20-36.992-29.984 30.016-138.016 136.992-49.984-50.016L796.992 176l30.016-30.016-37.024-20A243.2 243.2 0 0 0 672 96z m0 64c15.552 0 27.136 6.688 40.992 10.016L592 290.944l-23.008 23.04 23.008 21.984 96 96 22.016 23.008 22.976-23.008 121.024-120.992c3.296 13.856 9.984 25.44 9.984 40.992 0 107.84-84.16 192-192 192-12.8 0-23.04 0-31.008-2.016l-16.992-4.992-12.992 13.024-285.024 284.992c-39.392 39.392-97.568 39.392-136.96 0l-1.024-1.024c-38.4-39.36-38.08-96.928 0.992-136l285.024-284.992 12.992-12.992-4.992-16.992C480 375.04 480 364.8 480 352c0-107.84 84.16-192 192-192z" p-id="7162" fill="#2d2d2d"></path></svg> {% endcomment %}
+                        <div class="title_icon footer_icon">
+                            <h4>30-Day Price Match ></h4>
+                            <p>Shop with confidence - We offer a price match guarantee for 30 days after your purchase</p>
+                        </div>   
+                    </div>
+                    <div class="icon_items">
+                        {% comment %} <svg t="1698841636888" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4177" width="64" height="64"><path d="M512 0l460.8 187.392v278.8864c0 84.736-20.0704 166.5536-60.16 245.4016a613.7344 613.7344 0 0 1-163.5328 198.5536A580.4544 580.4544 0 0 1 512 1024a580.4544 580.4544 0 0 1-237.1584-113.7664A613.7856 613.7856 0 0 1 111.4112 711.68C71.2704 632.832 51.2 551.0144 51.2 466.2784V187.392L512 0z m358.4 254.464L512 104.96 153.6 254.5152v209.664c0 68.6592 15.872 134.8608 47.8208 199.2192a519.936 519.936 0 0 0 135.8336 169.216A478.976 478.976 0 0 0 512 924.16a478.5152 478.5152 0 0 0 174.336-91.2384 519.3728 519.3728 0 0 0 135.8336-168.6528c32.4096-65.3312 48.2304-131.4304 48.2304-200.0384V254.464z m-116.0704 66.0992a44.6976 44.6976 0 0 1 0 64.3072L526.8992 703.488a47.2576 47.2576 0 0 1-33.024 13.312 47.2064 47.2064 0 0 1-32.9728-13.312l-165.632-152.8832a44.8 44.8 0 0 1 0-64.3584 47.5136 47.5136 0 0 1 65.9456 0l128.0512 115.3536 199.1168-281.0368a47.4112 47.4112 0 0 1 65.9456 0z" p-id="4178" fill="#2d2d2d"></path></svg> {% endcomment %}
+                        <div class="title_icon footer_icon">
+                            <h4>30-Day Money-Back ></h4>
+                            <p>Unhappy with your purchase? Return undamaged products for a full refund for any reason</p>
+                        </div>   
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    let myAnimate = {
+        activeed: function (intersectionRatio, target) {
+            if (intersectionRatio > 0.1) {
+                $(".link_to ").removeClass('show')
+            } 
+            else if (intersectionRatio < 0.9){
+                $(".link_to ").addClass('show')
+            }
+        }
+    }
+    let myAnimate2 = {
+        activeed: function (intersectionRatio, target) {
+            if (intersectionRatio > 0.2) {
+                $(".link_to ").removeClass('show')
+            } 
+            else if (intersectionRatio < 0.1){
+                $(".link_to ").addClass('show')
+            }
+        }
+    }
+    window.onload = function() {
+        let io = new IntersectionObserver(entries => {
+            for (var item of entries) {
+                myAnimate['activeed'](item.intersectionRatio.toFixed(2), item.target)
+            }
+        }, {
+            root: null,
+            threshold: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
+        })
+        let fo = new IntersectionObserver(entries => {
+            for (var item of entries) {
+                myAnimate2['activeed'](item.intersectionRatio.toFixed(2), item.target)
+            }
+        }, {
+            root: null,
+            threshold: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
+        })
+        let els = document.querySelectorAll(".shopify-section--slideshow").forEach(e => io.observe(e))
+        let elsFooter = document.querySelectorAll(".shopify-section--footer").forEach(e => fo.observe(e))
+        $('.title_icon.footer_icon').on('click', function() {
+            $(this).find('p').toggle(300)
+        })
+
+        $('.title_icon.footer_icon').on('click', function() {
+            $(this).find('p').toggle(300)
+        })
+        var e = $('#3000pro').offset().top,
+            n = $('#3500pro').offset().top,
+            q = $('#Choose_Screen').offset().top,
+            s = $('#AWOL_Events').offset().top;
+        $(".link_to a").on('click', function() {
+            if ($(this).attr('id') === 'a_3000pro') {
+                $("html, body").animate({
+                        scrollTop: e - 100
+                    },
+                    600
+                )
+            }
+            if ($(this).attr('id') === 'a_3500pro') {
+                $("html, body").animate({
+                        scrollTop: n - 100
+                    },
+                    600
+                )
+            }
+            if ($(this).attr('id') === 'a_Choose_Screen') {
+                $("html, body").animate({
+                        scrollTop: q - 100
+                    },
+                    600
+                )
+            }
+            if ($(this).attr('id') === 'a_AWOL_Events') {
+                $("html, body").animate({
+                        scrollTop: s - 100
+                    },
+                    600
+                )
+            }
+        })
+    }
+</script>
+{% schema %}
+{
+  "name": "mothers-day",
+  "class": "shopify-section--mothers-day",
+  "settings": [
+    {
+      "type": "header",
+      "content": "mothers-day"
+    }
+  ],
+  "presets": [
+    {"name": "mothers-day"}
+  ]
+}
+{% endschema %}

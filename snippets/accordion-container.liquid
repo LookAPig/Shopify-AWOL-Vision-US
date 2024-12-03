@@ -1,0 +1,352 @@
+<style>
+    .accordion_title {
+        color: #FFF;
+        font-family: 'AWOL-DM-Regular';
+        font-size: 40px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 115%; /* 46px */
+        letter-spacing: -1.2px;
+        text-transform: capitalize;
+    }
+    .accordion_body {
+        transition: all 0.5s ease;
+        overflow: hidden;
+    }
+    .accordion_body .list_item {
+        padding: 16px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.20);
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        transition: all 0.5s ease;
+        opacity: 0.1;
+        .left {
+            color: #FFF;
+            font-family: 'AWOL-DM-Regular';
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 133%; /* 21.28px */
+        }
+        .main_title {
+            color: #FFF;
+            font-family: 'AWOL-DM-Regular';
+            font-size: 24px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 133%; /* 31.92px */ 
+            margin-top: 50px;
+        }
+        .right {
+            color: #6D6D6D;
+            font-family: 'AWOL-DM-Regular';
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 133%; /* 21.28px */
+        }
+    }
+    .show_more_infomation {
+        color: #1B1D1D;
+        font-family: 'AWOL-DM-Regular';
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 20px; /* 142.857% */
+        letter-spacing: 0.98px;
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        padding: 12px 22px;
+        background-color: #FFF;
+        cursor: pointer;
+        position: absolute;
+        left: 50%;
+        bottom: 30px;
+        transition: all 0.5s ease;
+        transform: translateX(-50%);
+        border-radius: 50px;
+    }
+    @media screen and (max-width: 1024px) {
+        .mobile {
+            display: block;
+        }
+        .accordion {
+            padding: 0 16px;
+        }
+        .accordion_title {
+            font-size: 22px;
+        }
+        .accordion_body .list_item {
+            grid-template-columns: 1fr 2fr;
+            gap: 10px;
+            .main_title {
+                font-size: 18px!important;
+                font-weight: 700;
+                margin-top: 20px;
+                grid-column-start: 1;
+                grid-column-end: 3;
+            }
+            .left {
+                font-size: 14px;
+            }
+            .right {
+                font-size: 14px;
+            }
+        }
+        .show_more_infomation {
+          padding: 10px;
+          font-size: 12px;
+        }
+    }
+</style>
+{% liquid
+  assign title = title 
+%}
+<div class="margin-top-160 thunder_container accordion" style="position: relative;">
+  <div class="accordion_title">
+    {{ title }}
+  </div>
+  <div class="accordion_body">
+     <div class="list_item">
+        <div class="left main_title">General Spec</div>
+     </div>
+     <div class="list_item">
+        <div class="left">Speaker Configuration</div>
+        <div class="right">4.2.2 CH （ (5.2.2 CH with Center Channel by AWOL Vision Projector)</div>
+     </div>
+     <div class="list_item">
+        <div class="left">Wireless Satellite Speaker</div>
+        <div class="right">4 units * 60W</div>
+     </div>
+     <div class="list_item">
+        <div class="left">Wireless Subwoof</div>
+        <div class="right">2 units * 120W</div>
+     </div>
+     <div class="list_item">
+        <div class="left">Wireless Dongle</div>
+        <div class="right">1 unit</div>
+     </div>
+     <div class="list_item">
+        <div class="left">Center Channel Speaker</div>
+        <div class="right">AWOL Vision UST projector local speaker</div>
+     </div>
+     <div class="list_item">
+        <div class="left">Wireless Technology</div>
+        <div class="right">Properity 5.2G&5.8GHz Frequency Hopping</div>
+     </div>
+     <div class="list_item">
+        <div class="left">Decode Technology</div>
+        <div class="right">PCM, Dolby Digital, Dolby Digital Plus, Dolby TureHD, Dolby Atmos with up firing SPK, DTS Digital Satellite, DTS-HD, DTS: X</div>
+     </div>
+     <div class="list_item">
+        <div class="left">Sound Mode Setting</div>
+        <div class="right">News/ Movie/ Music/ KTV/ Bass Level Control/ Treble Level Control/ Satellite volume control</div>
+     </div>
+     <div class="list_item">
+        <div class="left">HDMI CEC Control</div>
+        <div class="right">Yes, AWOL Vision remote control both UST projector and Audio Speakers.</div>
+     </div>
+     <div class="list_item">
+        <div class="left">BLE Remote Control</div>
+        <div class="right">1 unit</div>
+     </div>
+     <div class="list_item">
+        <div class="left">Wall Mount Bracket</div>
+        <div class="right">4 units</div>
+     </div>
+     <div class="list_item">
+        <div class="left main_title">Wireless Satellite Speaker</div>
+     </div>
+     <div class="list_item">
+        <div class="left">Power Input</div>
+        <div class="right">AC 100~240V, 50/60Hz</div>
+     </div>
+     <div class="list_item">
+        <div class="left">Audio Output</div>
+        <div class="right">60W</div>
+     </div>
+     <div class="list_item">
+        <div class="left">Speaker</div>
+        <div class="right">4" full range + 1.5" tweeter (front firing) + 2" full range (up firing)</div>
+     </div>
+     <div class="list_item">
+        <div class="left">Power Consumption</div>
+        <div class="right">60W RMS Power @ 10% THD; 0.5W StandBy;</div>
+     </div>
+     <div class="list_item">
+        <div class="left">Impendance</div>
+        <div class="right">8Ω</div>
+     </div>
+     <div class="list_item">
+        <div class="left">Frequency Response</div>
+        <div class="right">120 Hz - 20 KHz</div>
+     </div>
+     <div class="list_item">
+        <div class="left">USB port for Service</div>
+        <div class="right">Yes</div>
+     </div>
+     <div class="list_item">
+        <div class="left">Dimension (WxHxD)</div>
+        <div class="right">142 x 232 x 133mm</div>
+     </div>
+     <div class="list_item">
+        <div class="left">Weight</div>
+        <div class="right">1723g</div>
+     </div>
+     <div class="list_item">
+        <div class="left">Operating temperature</div>
+        <div class="right">0°C-45°C</div>
+     </div>
+     <div class="list_item">
+        <div class="left main_title">Wireless Subwoofer</div>
+     </div>
+     <div class="list_item">
+        <div class="left">Power</div>
+        <div class="right">AC 100~240V, 50/60Hz</div>
+     </div>
+     <div class="list_item">
+        <div class="left">Audio Output</div>
+        <div class="right">120W</div>
+     </div>
+     <div class="list_item">
+        <div class="left">Speaker</div>
+        <div class="right">8" woofer</div>
+     </div>
+     <div class="list_item">
+        <div class="left">Power Consumption</div>
+        <div class="right">120W RMS Power @ 10% THD; 0.5W StandBy;</div>
+     </div>
+     <div class="list_item">
+        <div class="left">Impendance</div>
+        <div class="right">3Ω</div>
+     </div>
+     <div class="list_item">
+        <div class="left">Frequency Response</div>
+        <div class="right">40 Hz - 120 Hz</div>
+     </div>
+     <div class="list_item">
+        <div class="left">USB port for Service</div>
+        <div class="right">Yes</div>
+     </div>
+     <div class="list_item">
+        <div class="left">Dimension (WxHxD)</div>
+        <div class="right">260 x 405 x 280mm</div>
+     </div>
+     <div class="list_item">
+        <div class="left">Weight</div>
+        <div class="right">6916g</div>
+     </div>
+     <div class="list_item">
+        <div class="left">Operating temperature</div>
+        <div class="right">0°C-45°C</div>
+     </div>
+     <div class="list_item">
+        <div class="left main_title">Dongle</div>
+     </div>
+     <div class="list_item">
+        <div class="left">Power</div>
+        <div class="right">5V-- 1.2A Type C with attached adapter</div>
+     </div>
+     <div class="list_item">
+        <div class="left">Source Input</div>
+        <div class="right">HDMI ARC/eARC; 3.5mm Jack Aux in; Bluetooth;</div>
+     </div>
+     <div class="list_item">
+        <div class="left">Audio Central Channel Output</div>
+        <div class="right">2.5mm Jack to AWOL Vision UST projector or 3rd Audio Central Channel Unit</div>
+     </div>
+     <div class="list_item">
+        <div class="left">LED Indicator</div>
+        <div class="right">Yes</div>
+     </div>
+     <div class="list_item">
+        <div class="left">Reset Button</div>
+        <div class="right">Yes </div>
+     </div>
+     <div class="list_item">
+        <div class="left">Dimension (WxHxD)</div>
+        <div class="right">70 x 18 x 154mm</div>
+     </div>
+     <div class="list_item">
+        <div class="left">Weight</div>
+        <div class="right">54g</div>
+     </div>
+     <div class="list_item">
+        <div class="left">Operating temperature</div>
+        <div class="right">0°C-45°C</div>
+     </div>
+     <div class="list_item">
+        <div class="left main_title">Remote control</div>
+     </div>
+     <div class="list_item">
+        <div class="left">Sound Mode Setting</div>
+        <div class="right">News/Movie/Music/KTV/Bass Level Control/Treble Level Control/Satellite volume control</div>
+     </div>
+     <div class="list_item">
+        <div class="left">LCD Display</div>
+        <div class="right">Yes</div>
+     </div>
+     <div class="list_item">
+        <div class="left">PWR Buttton</div>
+        <div class="right">Yes</div>
+     </div>
+     <div class="list_item">
+        <div class="left">Settings Button</div>
+        <div class="right">Yes</div>
+     </div>
+     <div class="list_item">
+        <div class="left">Volumen Button</div>
+        <div class="right">Yes, up & down </div>
+     </div>
+     <div class="list_item">
+        <div class="left">Remote Distance</div>
+        <div class="right">19.7 feet (6m)</div>
+     </div>
+     <div class="list_item">
+        <div class="left">Battery type</div>
+        <div class="right">AAA (1.5Vx 2)</div>
+     </div>
+     <div class="list_item">
+        <div class="left">Dimension (WxHxD)</div>
+        <div class="right">28  x 130x 16mm</div>
+     </div>
+     <div class="list_item">
+        <div class="left">Weight</div>
+        <div class="right">26g</div>
+     </div>
+     <div class="list_item">
+        <div class="left">Operating temperature</div>
+        <div class="right">0°C-45°C</div>
+     </div>
+  </div>
+  <div class="show_more_infomation">
+    show all details
+    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+        <path d="M3.64311 11.6976L10.4999 18.4473M10.4999 18.4473L17.3567 11.6976M10.4999 18.4473L10.4999 3.87658" stroke="black" stroke-width="1.5"/>
+    </svg>
+  </div>
+</div>
+<script>
+  const elements = document.getElementsByClassName('list_item');
+  
+  const minHeight = $(".list_item").prop('scrollHeight') * 6
+  const maxHeight = $(".list_item").prop('scrollHeight') * elements.length
+
+  $('.accordion_body').css('max-height', minHeight)
+
+  for(let i = 0; i < 10; i++) {
+    elements[i].style.opacity = (10 - i) / 10;
+  }
+  $('.show_more_infomation').on('click', function() {
+    $(this).hide() 
+    $('.accordion_body').css('max-height', maxHeight + 200)
+    for(let i = 0; i < elements.length; i++) {
+      setTimeout(() => {
+        elements[i].style.opacity = 1;
+      }, i * 60);
+    }
+  })
+</script>

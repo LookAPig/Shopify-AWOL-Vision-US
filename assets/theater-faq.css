@@ -1,0 +1,111 @@
+.theater-faq-container {
+  font-family: AWOL-DM-Regular;
+
+  .faq-main {
+    width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 86px;
+  }
+
+  .faq-title {
+    margin-bottom: 25px;
+
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 115%; /* 46px */
+    letter-spacing: -1.2px;
+    text-transform: capitalize;
+    color: #fff;
+  }
+
+  .question-wrap {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .question-title {
+    padding: 24px 0;
+
+    color: #fff;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 115%; /* 23px */
+    letter-spacing: -0.6px;
+  }
+  .question-content {
+    display: none; /* 默认收起 */
+
+    padding: 8px 0px 40px 39px;
+
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 150%; /* 24px */
+    letter-spacing: -0.48px;
+
+    span {
+      display: block;
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .theater-faq-container {
+    width: 100%;
+    font-family: AWOL-DM-Regular;
+
+    .faq-main {
+      width: 100%;
+      margin: 80px 0 0 0px;
+      padding: 0 16px;
+      padding-bottom: 60px;
+    }
+
+    .faq-title {
+      margin-bottom: 40px;
+
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 115%; /* 46px */
+      letter-spacing: -1.2px;
+      text-transform: capitalize;
+      color: #fff;
+    }
+
+    .question-wrap {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .question-title {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 24px 0;
+
+      color: #fff;
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 115%; /* 23px */
+      letter-spacing: -0.6px;
+
+      span:first-child {
+        margin-right: 16px;
+      }
+    }
+
+    .question-content {
+      display: none; /* 默认收起 */
+
+      padding: 8px 0px 40px 39px;
+
+      color: #fff;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 150%; /* 24px */
+      letter-spacing: -0.48px;
+
+      span {
+        display: block;
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{%- assign w_continue = 'no' -%}
+{% assign wlmHideItem_Search = false %}{% assign wlmLockedTags125732 = false %}
+{% for tag in customer.tags %}
+{% if tag == 'channel-partners' %}{% assign wlmLockedTags125732 = true %}{% endif %}
+{% endfor %}
+
+
+
+{% if wlmHideItem_Search == true %}{% continue %}{% endif %}
+
+{%- if wlm_is_render == 'yes' -%}{{- w_continue -}}{%-endif-%}

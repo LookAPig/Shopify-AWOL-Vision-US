@@ -1,0 +1,112 @@
+{% style %}
+.shopify-section--active_nav {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+.active_nav_container {
+    width: 100%;
+    height: 64px;
+    /* box-shadow: 0 0 20px rgb(107 107 107) inset; */
+    display: flex;
+    align-items: center;
+    position: relative;
+    top: 0px;
+    background: linear-gradient(to right, #003372 , #004df1);
+    z-index: 10;
+}
+
+.active_nav_itmes {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    transition: all 0.1s ease;
+    z-index: 1;
+}
+.active_nav_itmes a {
+    transition: all 0.1s ease;
+}
+.active_nav_itmes a.active {
+    color: #d8bf6c;
+}
+.bg_star {
+    position: absolute;
+    display: flex;
+    gap: 30px;
+}
+.bg_star.left {
+    left: 40px;
+}
+.bg_star.right {
+    right: 40px;
+}
+@media screen and (max-width: 740px) {
+    .active_nav_itmes {
+        font-size: 14px;
+    }
+    .shopify-section--active_nav {
+        top: 70px;
+    }
+    .multi-column__inner--scroller {
+        grid-template-columns: repeat(auto-fit, var(--item-width))!important;
+        grid-auto-flow: initial;
+    }
+    .multi-column__image-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .multi-column__image {
+        width: 60%;
+    }
+    .bg_star {
+        gap: 10px;
+        transform: scale(.4);
+    }
+    .bg_star.left {
+        left: -80px;
+    }
+    .bg_star.right {
+        right: -80px;
+    }
+}
+{% endstyle %}
+<div class="active_nav_container">
+    <div class="bg_star left">
+        <svg style="opacity: 0.08;" t="1724047605493" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2566" data-spm-anchor-id="a313x.search_index.0.i5.672b3a81tBUeJx" width="64" height="64"><path d="M512 736l-264.021333 160 70.016-299.989333-232.021333-201.984 306.005333-25.984 120.021333-281.984 120.021333 281.984 306.005333 25.984-232.021333 201.984 70.016 299.989333z" fill="#ffffff" p-id="2567" data-spm-anchor-id="a313x.search_index.0.i1.672b3a81tBUeJx" class=""></path></svg>
+        <svg style="opacity: 0.06;" t="1724047605493" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2566" data-spm-anchor-id="a313x.search_index.0.i5.672b3a81tBUeJx" width="64" height="64"><path d="M512 736l-264.021333 160 70.016-299.989333-232.021333-201.984 306.005333-25.984 120.021333-281.984 120.021333 281.984 306.005333 25.984-232.021333 201.984 70.016 299.989333z" fill="#ffffff" p-id="2567" data-spm-anchor-id="a313x.search_index.0.i1.672b3a81tBUeJx" class=""></path></svg>
+        <svg style="opacity: 0.04;" t="1724047605493" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2566" data-spm-anchor-id="a313x.search_index.0.i5.672b3a81tBUeJx" width="64" height="64"><path d="M512 736l-264.021333 160 70.016-299.989333-232.021333-201.984 306.005333-25.984 120.021333-281.984 120.021333 281.984 306.005333 25.984-232.021333 201.984 70.016 299.989333z" fill="#ffffff" p-id="2567" data-spm-anchor-id="a313x.search_index.0.i1.672b3a81tBUeJx" class=""></path></svg>
+        <svg style="opacity: 0.03;" t="1724047605493" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2566" data-spm-anchor-id="a313x.search_index.0.i5.672b3a81tBUeJx" width="64" height="64"><path d="M512 736l-264.021333 160 70.016-299.989333-232.021333-201.984 306.005333-25.984 120.021333-281.984 120.021333 281.984 306.005333 25.984-232.021333 201.984 70.016 299.989333z" fill="#ffffff" p-id="2567" data-spm-anchor-id="a313x.search_index.0.i1.672b3a81tBUeJx" class=""></path></svg>
+    </div>
+    <div class="active_nav_itmes container">
+        <a href="javascript:;" id="a-3500" class="active_nav_itme">LTV-3500 Pro</a>
+        <a href="javascript:;" id="a-3000" class="active_nav_itme">LTV-3000 Pro</a>
+        <a href="javascript:;" id="a-Different" class="active_nav_itme">Choose a screen</a>
+        <a href="javascript:;" id="a-Special" class="active_nav_itme">Special Offers</a>
+    </div>
+    <div class="bg_star right">
+        <svg style="opacity: 0.03;" t="1724047605493" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2566" data-spm-anchor-id="a313x.search_index.0.i5.672b3a81tBUeJx" width="64" height="64"><path d="M512 736l-264.021333 160 70.016-299.989333-232.021333-201.984 306.005333-25.984 120.021333-281.984 120.021333 281.984 306.005333 25.984-232.021333 201.984 70.016 299.989333z" fill="#ffffff" p-id="2567" data-spm-anchor-id="a313x.search_index.0.i1.672b3a81tBUeJx" class=""></path></svg>
+        <svg style="opacity: 0.04;" t="1724047605493" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2566" data-spm-anchor-id="a313x.search_index.0.i5.672b3a81tBUeJx" width="64" height="64"><path d="M512 736l-264.021333 160 70.016-299.989333-232.021333-201.984 306.005333-25.984 120.021333-281.984 120.021333 281.984 306.005333 25.984-232.021333 201.984 70.016 299.989333z" fill="#ffffff" p-id="2567" data-spm-anchor-id="a313x.search_index.0.i1.672b3a81tBUeJx" class=""></path></svg>
+        <svg style="opacity: 0.06;" t="1724047605493" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2566" data-spm-anchor-id="a313x.search_index.0.i5.672b3a81tBUeJx" width="64" height="64"><path d="M512 736l-264.021333 160 70.016-299.989333-232.021333-201.984 306.005333-25.984 120.021333-281.984 120.021333 281.984 306.005333 25.984-232.021333 201.984 70.016 299.989333z" fill="#ffffff" p-id="2567" data-spm-anchor-id="a313x.search_index.0.i1.672b3a81tBUeJx" class=""></path></svg>
+        <svg style="opacity: 0.08;" t="1724047605493" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2566" data-spm-anchor-id="a313x.search_index.0.i5.672b3a81tBUeJx" width="64" height="64"><path d="M512 736l-264.021333 160 70.016-299.989333-232.021333-201.984 306.005333-25.984 120.021333-281.984 120.021333 281.984 306.005333 25.984-232.021333 201.984 70.016 299.989333z" fill="#ffffff" p-id="2567" data-spm-anchor-id="a313x.search_index.0.i1.672b3a81tBUeJx" class=""></path></svg>
+    </div>
+</div>
+{{ 'active_nav.js' | asset_url | script_tag }}
+{% schema %}
+{
+  "name": "Active nav",
+  "class": "shopify-section--active_nav",
+  "settings": [],
+  "blocks": [],
+  "presets": [
+    {
+      "name": "Active nav",
+      "blocks": []
+    }
+  ]
+}
+{% endschema %}

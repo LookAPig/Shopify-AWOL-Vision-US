@@ -1,0 +1,311 @@
+{% comment %} {{- 'event_page.css' | asset_url | stylesheet_tag: true -}} {% endcomment %}
+{% style %}
+  #main {background: #000;}
+  #shopify-section-{{ section.id }} .event_page_product {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.background }};
+    position: relative;
+  }
+{% endstyle %}
+<div class="event_page_product" data-id="{{ section.settings.block_id }}">
+  <div class="banner_header">
+    <div class="banner_header_title">
+      {% comment %} <video autoplay="" muted="" loop="" preload=""  playsinline x5-playsinline="true" webkit-playsinline="true">
+        <source src="https://cdn.shopify.com/videos/c/o/v/9d7394b07e0247f3bb5130d1428c62d8.mp4">
+      </video> {% endcomment %}
+      <h2>{{ section.settings.head_title }}</h2>
+    </div>
+  </div>
+  <div class="event_product_subtitle">
+    {{ section.settings.subtitle }}
+  </div>
+  <div class="event_page_product_list">
+    {% if section.settings.product_type_1 != blank %}
+    <div class="product_nav">
+      {% comment %} {% assign unique_values = '' %}
+      {% for block in section.blocks %}
+        {% unless unique_values contains block.settings.product_type %}
+            <div class="nav_item">{{ block.settings.product_type | uniq }}</div>
+        {% endunless %}
+      {% endfor %} {% endcomment %}
+      {% if section.settings.product_type_1 != blank %}
+        <div class="nav_item active">{{ section.settings.product_type_1 }}</div>
+      {% endif %}
+      {% if section.settings.product_type_2 != blank %}
+        <div class="nav_item">{{ section.settings.product_type_2 }}</div>
+      {% endif %}
+      {% if section.settings.product_type_3 != blank %}
+        <div class="nav_item">{{ section.settings.product_type_3 }}</div>
+      {% endif %}
+      {% if section.settings.product_type_4 != blank %}
+        <div class="nav_item">{{ section.settings.product_type_4 }}</div>
+      {% endif %}
+    </div>
+    {% endif %}
+    <div class="product_list_container">
+      {% for block in section.blocks %}
+      {% assign variable = block.settings.product_item.metafields.custom.gifts.value | first %}
+      {% assign default_select = block.settings.product_item.metafields.custom.event_default_selected_product.value %}
+      <div data-tag="{{ block.settings.product_type }}" class="product_card {% if block.settings.longer %}longer{% endif %}" style="background-color: {{ block.settings.bg_card }};{% if section.settings.product_type_1 == block.settings.product_type %}display: block;{% else %}display: none;{% endif %}">
+          <div class="longer_left">
+            <a target="_blank" href="{{ block.settings.product_item.selected_or_first_available_variant.url }}" class="product_image">
+              {% if block.settings.product_image != blank %}
+                <img src="{{ block.settings.product_image | image_url }}" alt="" />
+              {% else %}
+                <img src="{{ block.settings.product_item.featured_image | image_url }}" alt="" />
+              {% endif %}
+            </a>
+          </div>
+          <div class="longer_right">
+            <a target="_blank" href="{{ block.settings.product_item.selected_or_first_available_variant.url }}" class="product_name">
+              {% if block.settings.product_name != blank %}
+                {{ block.settings.product_name }}
+              {% else %}
+                {{ block.settings.product_item.title }}
+              {% endif %}
+            </a>
+            {% if block.settings.product_desc != blank %}
+              <div class="product_features">
+                {{ block.settings.product_desc }}
+              </div>
+            {% endif %}
+            <div class="product_price_save">
+              <div class="product_price">
+                {% if default_select %}
+                  {{ default_select.price | money }} <span>/</span> {{ default_select.compare_at_price | money }}
+                {% else %}
+                  {{ block.settings.product_item.price | money }} <span>/</span> {{ block.settings.product_item.compare_at_price | money }}
+                {% endif %}
+              </div>
+              {% if block.settings.product_save != blank %}
+                <div class="product_save_tag">
+                  <div class="save_desc">
+                    Save {{ block.settings.product_save }}
+                  </div>
+                </div>
+              {% endif %}
+            </div>
+            <p class="affirm-as-low-as" data-page-type="product" data-amount="{{ block.settings.product_item.price }}"></p>
+            <div class="product_variants_container">
+              <select class="prodcut_variant_select">
+                {% for item in block.settings.product_item.variants %}
+                  {% comment %} <option value="">{{ item.metafields.custom.selected_product_list.value.id }}</option> {% endcomment %}
+                  <option {% if default_select and default_select.id == item.id %}selected{% endif %} {% if variable %}data-giftId="{{ variable.selected_or_first_available_variant.id }}"{% endif %} data-image="{{ item.featured_image }}" data-url="{{ item.url }}" data-price="{{ item.price | money }}" data-compareAtPrice="{{ item.compare_at_price | money }}" data-vid="{{ item.id }}" value="{{ item.id }}" data-oprice="{{ item.price }}" data-ocompareAtPrice="{{ item.compare_at_price }}">{% if item.metafields.custom.variant_name %}{{ item.metafields.custom.variant_name }}{% else %}{{ item.title }}{% endif %}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="product_buttons">
+                <div class="quick_buy">
+                  <a target="_blank"  href="https://awolvision.com/cart/{% if default_select %}{{ default_select.id }}{% else %}{{ block.settings.product_item.selected_or_first_available_variant.id }}{% endif %}:1{% if variable %},{{ variable.selected_or_first_available_variant.id }}:1{% endif %}" data-id="{% if default_select %}{{ default_select.id }}{% else %}{{ block.settings.product_item.selected_or_first_available_variant.id }}{% endif %}" data-giftId="{{ variable.selected_or_first_available_variant.id }}" class="checkout">BUY NOW</a>
+                  <div data-id="{% if default_select %}{{ default_select.id }}{% else %}{{ block.settings.product_item.selected_or_first_available_variant.id }}{% endif %}" data-giftId="{{ variable.selected_or_first_available_variant.id }}" class="add_cart">
+                      <svg width="33" height="30" viewBox="0 0 33 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M11.708 29.9446C10.2011 29.9446 8.96973 28.7896 8.96973 27.3669C8.96973 25.9441 10.193 24.7891 11.708 24.7891C13.2229 24.7891 14.4381 25.9441 14.4381 27.3669C14.4381 28.7896 13.2148 29.9446 11.708 29.9446ZM11.708 26.3113C11.0923 26.3113 10.59 26.7855 10.59 27.3592C10.59 27.9329 11.0923 28.4071 11.708 28.4071C12.3236 28.4071 12.8178 27.9329 12.8178 27.3592C12.8178 26.7855 12.3155 26.3113 11.708 26.3113Z" fill="#000"/>
+                        <path d="M24.9228 29.9446C23.416 29.9446 22.1846 28.7896 22.1846 27.3669C22.1846 25.9441 23.4079 24.7891 24.9228 24.7891C26.4377 24.7891 27.6529 25.9441 27.6529 27.3669C27.6529 28.7896 26.4296 29.9446 24.9228 29.9446ZM24.9228 26.3113C24.3071 26.3113 23.8048 26.7855 23.8048 27.3592C23.8048 27.9329 24.3071 28.4071 24.9228 28.4071C25.5385 28.4071 26.0327 27.9329 26.0327 27.3592C26.0327 26.7855 25.5304 26.3113 24.9228 26.3113Z" fill="#000"/>
+                        <path d="M29.0864 23.3323H8.49114C8.09414 23.3323 7.75386 23.0569 7.68904 22.6897L4.09175 1.52999H1.59633C1.15072 1.52999 0.786133 1.18574 0.786133 0.764994C0.786133 0.344247 1.15072 0 1.59633 0H4.78852C5.18552 0 5.5258 0.275398 5.59062 0.642595L9.18791 21.8023H29.0945C29.5401 21.8023 29.9047 22.1466 29.9047 22.5673C29.9047 22.9881 29.5401 23.3323 29.0945 23.3323H29.0864Z" fill="#000"/>
+                        <path d="M28.5995 19.4087H11.4962C11.0506 19.4087 10.686 19.0645 10.686 18.6437C10.686 18.223 11.0506 17.8787 11.4962 17.8787H27.9676L30.6331 7.91085H9.76235C9.31674 7.91085 8.95215 7.5666 8.95215 7.14585C8.95215 6.72511 9.31674 6.38086 9.76235 6.38086H31.6783C31.9294 6.38086 32.1644 6.48796 32.3183 6.67921C32.4723 6.86281 32.529 7.1076 32.4642 7.3371L29.3854 18.835C29.2963 19.1716 28.9722 19.4087 28.5995 19.4087Z" fill="#000"/>
+                        <path d="M18.248 16.146V13.738H15.63V12.156H18.248V9.762H19.858V12.156H22.462V13.738H19.858V16.146H18.248Z" fill="#000"/>
+                      </svg>                    
+                  </div>
+                </div>
+                <a target="_blank" href="{% if default_select %}{{ default_select.url }}{% else %}{{ block.settings.product_item.selected_or_first_available_variant.url }}{% endif %}" class="learn_more">
+                  LEARN MORE
+                  <svg style="transform: rotate(270deg);" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M3.14286 10.7328L9.99965 17.4824M9.99965 17.4824L16.8564 10.7328M9.99965 17.4824L9.99965 2.91174" stroke="black" stroke-width="1.5"/>
+                  </svg>
+                </a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+      {% if section.settings.show_all %}
+        <div class="view_all">
+          <a href="{{ section.settings.link_to }}">View All ></a>
+        </div>
+      {% endif %}
+    </div>
+      {% if section.settings.bottom_title != blank %}
+        <div class="banner_header bottom_title" style="margin-top: {{ section.settings.bottom_title_top }}px;">
+          <div class="banner_header_title">
+            <div class="header_subtitle">AWOL Theater</div>
+            <h2>{{ section.settings.bottom_title }}</h2>
+          </div>
+        </div>
+        <div class="event_product_subtitle">
+          {{ section.settings.bottom_subtitle }}
+        </div>
+      {% endif %}
+  </div>
+</div>
+{% comment %} <script src="{{ 'event_page.js' | asset_url }}" defer></script> {% endcomment %}
+{% schema %}
+{
+  "name": "Even page product list",
+  "class": "shopify-section--event_page_countdown",
+  "settings": [
+    {
+      "type": "text",
+      "id": "block_id",
+      "label": "Id"
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background",
+      "default": "#000000"
+    },
+    {
+      "type": "textarea",
+      "id": "head_title",
+      "label": "Title"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Sub title"
+    },
+    {
+      "type": "textarea",
+      "id": "bottom_title",
+      "label": "Title"
+    },
+    {
+      "type": "textarea",
+      "id": "bottom_subtitle",
+      "label": "Bottom Sub title"
+    },
+    {
+      "type": "range",
+      "id": "bottom_title_top",
+      "label": "Bottom desc margin top",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 0
+    },
+    {
+      "type": "text",
+      "id": "product_type_1",
+      "label": "Product type"
+    },
+    {
+      "type": "text",
+      "id": "product_type_2",
+      "label": "Product type"
+    },
+    {
+      "type": "text",
+      "id": "product_type_3",
+      "label": "Product type"
+    },
+    {
+      "type": "text",
+      "id": "product_type_4",
+      "label": "Product type"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_all",
+      "label": "Is show view all button",
+      "default": false
+    },
+    {
+      "type": "url",
+      "id": "link_to",
+      "label": "View all link to"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_list",
+      "name": "product_list",
+      "settings": [
+        {
+          "type": "text",
+          "id": "product_type",
+          "label": "Product type",
+          "info": "Eg: Floor Rising Screen"
+        },
+        {
+          "type": "text",
+          "id": "product_save",
+          "label": "Product save number"
+        },
+        {
+          "type": "product",
+          "id": "product_item",
+          "label": "Product"
+        },
+        {
+          "type": "image_picker",
+          "id": "save_image",
+          "label": "Save imaage "
+        },
+        {
+          "type": "image_picker",
+          "id": "product_image",
+          "label": "Product imaage "
+        },
+        {
+          "type": "textarea",
+          "id": "product_name",
+          "label": "Product Name"
+        },
+        {
+          "type": "textarea",
+          "id": "product_desc",
+          "label": "Product desc"
+        },
+        {
+          "type": "checkbox",
+          "id": "longer",
+          "label": "Is use longer layout?",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "show_features",
+          "label": "Is show features?",
+          "default": true
+        },
+        {
+          "type": "header",
+          "content": "Color",
+        },
+        {
+          "type": "color",
+          "id": "bg_card",
+          "label": "Background color",
+          "default": "#141414"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Even page product list",
+      "blocks": []
+    }
+  ]
+}
+{% endschema %}

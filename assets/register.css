@@ -1,0 +1,148 @@
+@font-face {
+    font-family: "Manrope";
+    src: url("https://cdn.shopify.com/s/files/1/0554/7445/4576/files/Manrope.woff2?v=1718257995") format("woff2-variations");
+    font-weight: 200 800;
+}
+
+.reg_container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 132px;
+}
+
+.reg_container .reg_header {
+    color: var(--Dark-Gray, #1B1D1D);
+    font-family: Manrope;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 115%;
+    /* 55.2px */
+    letter-spacing: -1.44px;
+    margin-bottom: 32px;
+}
+
+.reg_container ul {
+    padding: 0 0 0 16px;
+}
+
+.reg_container ul li {
+    list-style-type: disc;
+}
+
+.reg_container .reg_context {
+    color: var(--Dark-Gray, #1B1D1D);
+    font-family: Manrope;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%;
+    /* 24px */
+    letter-spacing: -0.16px;
+}
+.reg_form_container {
+    border-radius: 22px;
+    background: var(--LightGray, #EEEFF1);
+    padding: 32px;
+}
+.reg_form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px 20px;
+
+}
+
+.reg_form .reg_item label {
+    display: block;
+    margin-bottom: 16px;
+    color: #1B1D1D;
+    font-family: Manrope;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 115%; /* 13.8px */
+    letter-spacing: 0.84px;
+    text-transform: uppercase;
+}
+
+.reg_form .reg_item input,
+.reg_form .reg_item select,
+.reg_form .reg_item textarea {
+    width: 100%;
+    border-radius: 10px;
+    border: 2px solid rgba(27, 29, 29, 0.10);
+    background: #FFF;
+    display: flex;
+    padding: 16px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    flex: 1 0 0;
+    align-self: stretch;
+}
+.reg_form_desc {
+    color: rgba(27, 29, 29, 0.40);
+    font-family: Manrope;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 115%; /* 13.8px */
+    letter-spacing: -0.36px;
+    margin-top: 32px;
+}
+.submit_buttom {
+    text-align: center;
+    margin-top: 32px;
+}
+.submit_buttom .button {
+    border-radius: 40px;
+    background: var(--Cyan, #1FAEFF);
+    color: #FFF;
+    text-align: center;
+    font-family: Manrope;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px; /* 142.857% */
+    letter-spacing: 0.98px;
+    text-transform: uppercase;
+    padding: 12px 22px;
+    transition: all 0.5s ease;
+}
+.submit_buttom .button:hover {
+    background: #1fadffd7;
+}
+.reg_long {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    display: grid;
+}
+@media screen and (max-width: 750px) {
+    .reg_container {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+    .reg_form_container {
+        padding: 0;
+        background: none;
+    }
+    .reg_form {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 32px 20px;
+    }
+    .reg_long {
+        grid-column-start: 1;
+        grid-column-end: 1;
+        display: grid;
+    }
+    .reg_container .reg_header {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+  .reg_form .reg_item input, .reg_form .reg_item select, .reg_form .reg_item textarea {
+    height: 56px;
+    align-items: center;
+    flex-direction: row;
+  }
+}

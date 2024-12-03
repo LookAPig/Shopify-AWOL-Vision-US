@@ -1,0 +1,77 @@
+
+	{{ 'bss-b2b-state.js' | asset_url | script_tag }}
+	<script id="bss-b2b-wholesaler-form">
+    if (typeof BSS_B2B == 'undefined') {
+      var BSS_B2B = {};
+    }
+    BSS_B2B.formDataRender = [{"type":"header","subtype":"h3","label":"Please complete all sections:","access":false,"placement":"bottom"},{"type":"text","required":true,"label":"Business Name","className":"form-control","name":"text-1665154620888-0","access":false,"subtype":"text","placement":"bottom"},{"type":"text","required":true,"label":"Street","className":"form-control","name":"text-1665165611848","access":false,"subtype":"text","placement":"bottom"},{"type":"text","required":true,"label":"City","className":"form-control","name":"text-1665165618671","access":false,"subtype":"text","placement":"bottom"},{"type":"text","required":true,"label":"State","className":"form-control","name":"text-1665156463194","access":false,"subtype":"text","placement":"bottom"},{"type":"text","required":true,"label":"Zip","className":"form-control","name":"text-1665154925589-0","access":false,"subtype":"text","placement":"bottom"},{"type":"text","required":true,"label":"Phone","placeholder":"+1 (XXX) XXX-XXXX","className":"form-control","name":"text-1665154956906-0","access":false,"subtype":"text","placement":"bottom"},{"type":"text","required":true,"label":"Fax","className":"form-control","name":"text-1665154843654-0","access":false,"subtype":"text","placement":"bottom"},{"type":"text","required":true,"label":"Email","className":"form-control","name":"text-1665154978664-0","access":false,"subtype":"text","placement":"bottom"},{"type":"number","required":true,"label":"DBA(s) used in last ten years","className":"form-control","name":"number-1665165657871-0","access":false,"placement":"bottom"},{"type":"text","required":true,"label":"Federal Tax ID#","className":"form-control","name":"text-1665155078681-0","access":false,"subtype":"text","placement":"bottom"},{"type":"text","required":true,"label":"Resale ID# (for resellers)","className":"form-control","name":"text-1665155107442-0","access":false,"subtype":"text","placement":"bottom"},{"type":"file","required":true,"label":"(Please enclose a copy of Certificate of Resale)","className":"form-control","name":"file-1665155116423-0","access":false,"placement":"bottom"},{"type":"text","required":true,"label":"Purchasing Name/Phone/Email","className":"form-control","name":"text-1665155184698-0","access":false,"subtype":"text","placement":"bottom"},{"type":"radio-group","required":true,"label":"Type of Business","inline":false,"name":"radio-group-1665155379090-0","access":false,"other":false,"values":[{"label":"Reseller","value":"option-1","selected":false},{"label":"System","value":"option-2","selected":true},{"label":"Integrator Government","value":"option-3","selected":false},{"label":"Other","value":"new-option-3","selected":true}],"placement":"bottom"},{"type":"text","required":false,"label":"If other, please specify","className":"form-control","name":"text-1665155415595-0","access":false,"subtype":"text","placement":"bottom"},{"type":"number","required":true,"label":"Number of years in business","className":"form-control","name":"number-1665165740397","access":false,"placement":"bottom"},{"type":"number","required":true,"label":"Number of employees","className":"form-control","name":"number-1665165768263","access":false,"placement":"bottom"},{"type":"text","required":true,"label":"This Year's Estimated Annual Sales","className":"form-control","name":"text-1665155459300-0","access":false,"value":"$","subtype":"text","placement":"bottom"},{"type":"radio-group","required":true,"label":"Current Industry Memberships","inline":false,"name":"radio-group-1665155511635-0","access":false,"other":false,"values":[{"label":"NAB","value":"option-1","selected":true},{"label":"NSCA","value":"option-2","selected":false},{"label":"CEDIA","value":"option-3","selected":false},{"label":"ICIA","value":"new-option-3","selected":true},{"label":"Other","value":"new-option-4","selected":true}],"placement":"bottom"},{"type":"text","required":false,"label":"If other, please specify","className":"form-control","name":"text-1665155564935","access":false,"subtype":"text","placement":"bottom"},{"type":"radio-group","required":true,"label":"Ownership","inline":false,"name":"radio-group-1665156301286-0","access":false,"other":false,"values":[{"label":"Sole Owner","value":"option-1","selected":true},{"label":"Partnership","value":"option-2","selected":false},{"label":"Corporation","value":"option-3","selected":false}],"placement":"bottom"},{"type":"text","required":true,"label":"Principal (Name/Title)","className":"form-control","name":"text-1665156329769-0","access":false,"subtype":"text","placement":"bottom"},{"type":"text","required":false,"label":"Principal (Name/Title)","className":"form-control","name":"text-1665156354552","access":false,"subtype":"text","placement":"bottom"},{"type":"header","subtype":"h3","label":"Trade References (Please list a minimum of two manufacturers/suppliers of which you are a customer)","access":false,"placement":"bottom"},{"type":"text","required":true,"label":"Company","className":"form-control","name":"text-1665165213196-0","access":false,"subtype":"text","placement":"bottom"},{"type":"text","required":true,"label":"Address","className":"form-control","name":"text-1665165263504","access":false,"subtype":"text","placement":"bottom"},{"type":"text","required":true,"label":"City","className":"form-control","name":"text-1665165273746","access":false,"subtype":"text","placement":"bottom"},{"type":"text","required":true,"label":"State","className":"form-control","name":"text-1665165243879","access":false,"subtype":"text","placement":"bottom"},{"type":"text","required":true,"label":"Zip","className":"form-control","name":"text-1665165298596","access":false,"subtype":"text","placement":"bottom"},{"type":"text","required":true,"label":"Phone","placeholder":"+1 (XXX) XXX-XXXX","className":"form-control","name":"text-1665165159890","access":false,"subtype":"text","placement":"bottom"},{"type":"text","required":true,"label":"Fax","className":"form-control","name":"text-1665165323687","access":false,"subtype":"text","placement":"bottom"},{"type":"text","required":true,"label":"Company","className":"form-control","name":"text-1665165259698","access":false,"subtype":"text","placement":"bottom"},{"type":"text","required":true,"label":"Address","className":"form-control","name":"text-1665165225255","access":false,"subtype":"text","placement":"bottom"},{"type":"text","required":true,"label":"City","className":"form-control","name":"text-1665154905614-0","access":false,"subtype":"text","placement":"bottom"},{"type":"text","required":true,"label":"State","className":"form-control","name":"text-1665165281279","access":false,"subtype":"text","placement":"bottom"},{"type":"text","required":true,"label":"Zip","className":"form-control","name":"text-1665165291570","access":false,"subtype":"text","placement":"bottom"},{"type":"text","required":true,"label":"Phone","placeholder":"+1 (XXX) XXX-XXXX","className":"form-control","name":"text-1665165306962","access":false,"subtype":"text","placement":"bottom"},{"type":"text","required":true,"label":"Fax","className":"form-control","name":"text-1665165311014","access":false,"subtype":"text","placement":"bottom"},{"type":"header","subtype":"h3","label":"I certify that all statements made by me in this application are correct to my knowledge. I authorize AWOL Vision to investigate and verify the information I have provided herein.","access":false,"placement":"bottom"},{"type":"text","required":true,"label":"Full Name","className":"form-control","name":"text-1665165468670","access":false,"subtype":"text","placement":"bottom"},{"type":"text","required":true,"label":"Title","className":"form-control","name":"text-1665165454198","access":false,"subtype":"text","placement":"bottom"},{"type":"date","required":true,"label":"Date","className":"form-control","name":"date-1665165478590-0","access":false,"placement":"bottom"}];
+    BSS_B2B.formId = 8916;
+    BSS_B2B.reCAPCHA = 0;
+    BSS_B2B.CAPCHA_SITE_KEY = "6LcYPEgbAAAAAKEQdimI1PPA4vuOJHxNb5p6eLUo";
+    BSS_B2B.status = 1;
+    BSS_B2B.created_account = 3;
+    BSS_B2B.redirect_url = "/";
+    BSS_B2B.taxExempt = 0;
+    </script>
+	<style>h1 {
+ text-align: center;
+}
+#RegisterForm {
+  display: flex !important;
+  max-width: 460px;
+  margin: 0 auto;
+  flex-direction: column;
+}
+
+#RegisterForm input:not(.radio-group input) {
+    appearance: none;
+    width: 100%;
+    height: var(--form-input-field-height);
+    line-height: var(--form-input-field-height);
+    padding: 0 18px;
+    margin-bottom: 16px;
+    border: 1px solid rgba(var(--text-color),.15) !important;;
+    box-shadow: none;
+    background: transparent;
+    color: var(--form-input-color);
+    transition: border .2s ease-in-out,box-shadow .2s ease-in-out;
+}
+
+#RegisterForm .btn {
+    text-align: center;
+    background-image: linear-gradient(178deg,rgb(46, 158, 123),rgb(46, 158, 123) 10%,rgba(0,0,0,.07) 10%,rgba(0,0,0,.07) 100%),linear-gradient(rgb(46, 158, 123),rgb(46, 158, 123));
+    background-size: 100% 200%,100% 100%;
+    background-position: 100% -100%,100% 100%;
+    background-repeat: no-repeat;
+    transition: background-position .3s cubic-bezier(.215,.61,.355,1);
+    transform: translateZ(0);
+    color: #fff;
+    font-weight: 600;
+}
+
+#RegisterForm input:focus {
+    outline: none;
+    border-color: rgb(var(--text-color));
+    box-shadow: 0 0 0 1px rgb(var(--text-color)) inset;
+}
+
+@media screen and (max-width: 576px){
+  #RegisterForm {
+      padding: 0 24px;
+  }
+}</style>
+	
+    {% assign bss-b2b-include-password = true %}
+<div class="page-width">
+  <div class="grid">
+    <div class="grid__item medium-up--five-sixths medium-up--push-one-twelfth">
+      <div class="section-header text-center">
+        <h1>{{ page.title }}</h1>
+      </div>
+      <div class="rte">
+        {{ page.content }}
+      </div>
+    </div>
+    {% section 'bss-b2b-wholesaler-form-8916' %}
+  </div>
+</div>

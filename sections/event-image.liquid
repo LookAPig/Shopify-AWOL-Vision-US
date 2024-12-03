@@ -1,0 +1,129 @@
+{% comment %} {{- 'event_page.css' | asset_url | stylesheet_tag: true -}} {% endcomment %}
+{% style %}
+  .event_page_image {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.background }};
+  }
+  .mobile {
+    display: none;
+  }
+  @media screen and (max-width: 1024px) {
+    .pc {display: none;}
+    .mobile {
+      display: block;
+    }
+    .just_mobile {
+      width: 100%;
+    }
+    .image_container.no_scroll {
+      overflow: hidden;
+    }
+  }
+{% endstyle %}
+<div class="event_page_image" data-id="{{ section.settings.block_id }}">
+  <div class="banner_header">
+    <div class="banner_header_title">
+      {% comment %} <video autoplay="" muted="" loop="" preload="" playsinline x5-playsinline="true" webkit-playsinline="true" poster="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/loading_pic.jpg?v=1727149207">
+        <source src="https://cdn.shopify.com/videos/c/o/v/9d7394b07e0247f3bb5130d1428c62d8.mp4">
+      </video> {% endcomment %}
+      <h2>{{ section.settings.head_title }}</h2>
+    </div>
+  </div>
+  <div class="evnet_page_image_container">
+    <div class="image_container {% if section.settings.image_mobile != blank %}no_scroll{% endif %}">
+      <img class="pc" src="{{ section.settings.image | image_url }}" alt="" />
+      {% if section.settings.image_mobile != blank %}
+        <img class="just_mobile mobile" src="{{ section.settings.image_mobile | image_url }}" alt="" />
+      {% else %}
+        <img class="pc_for_mobile mobile" src="{{ section.settings.image | image_url }}" alt="" />
+      {% endif %}
+    </div>
+    {% if section.settings.link_lable != blank %}
+      <div class="image_context">
+        <div class="left">{{ section.settings.link_lable }}</div>
+        <div class="right">
+          <a target="_blank" href="{{ section.settings.link_to }}" title="{{ section.settings.link_to }}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+              <circle cx="20" cy="20" r="19.5" fill="#F3B666" stroke="#F3B666"/>
+              <path d="M8.48438 20H29.0904" stroke="black"/>
+              <path d="M25.3936 13.9395L31.3932 19.9391L25.3936 25.9388" stroke="black"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</div>
+{% comment %} <script src="{{ 'event_page.js' | asset_url }}" defer></script> {% endcomment %}
+{% schema %}
+{
+  "name": "Even page image",
+  "class": "shopify-section--event_page_image",
+  "settings": [
+    {
+      "type": "text",
+      "id": "block_id",
+      "label": "Id"
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background",
+      "default": "#000000"
+    },
+    {
+      "type": "textarea",
+      "id": "head_title",
+      "label": "Title"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "image mobile"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 60
+    },
+    {
+      "type": "textarea",
+      "id": "link_lable",
+      "label": "Link lable",
+      "default": "For more on the professional differences in screens, check out our comprehensive guide. "
+    },
+    {
+      "type": "url",
+      "id": "link_to",
+      "label": "Link to"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Even page image",
+      "blocks": []
+    }
+  ]
+}
+{% endschema %}

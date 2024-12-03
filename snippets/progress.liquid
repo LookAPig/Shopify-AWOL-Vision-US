@@ -1,0 +1,22 @@
+{{ 'progress.css' | asset_url | stylesheet_tag }}
+{% assign productlist = product %}
+{% assign context = context %}
+{% assign progress_header = progress_header %}
+{% assign start = startNumber %}
+{% assign end = endNumber %}
+{% assign progress-value-bgcolor = progress-value-bgcolor %}
+{% assign progress-bgcolor = progress-bgcolor %}
+{% style %}
+  progress::-webkit-progress-inner-element { border-radius: 50px; }
+  progress::-webkit-progress-value { border-radius: 50px;background: {{ progress-value-bgcolor }};}
+  progress::-webkit-progress-bar { border-radius: 50px;background: {{ progress-bgcolor }}; }
+{% endstyle %}
+<div class="progress_container">
+  <span class="form__label">{{ progress_header }}</span>
+  <ol class="clearfix">
+    <li>
+      <span>{{ context }}</span>
+      <progress value="{%- if start -%}{{ start }}{% else %}{{ productlist.selected_or_first_available_variant.inventory_quantity }}{%- endif -%}" max="{%- if end -%}{{ end }}{% else %}500{%- endif -%}"></progress>
+    </li>
+  </ol>
+</div>

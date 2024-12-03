@@ -1,0 +1,84 @@
+{% comment %} {{- 'event_page.css' | asset_url | stylesheet_tag: true -}} {% endcomment %}
+{% style %}
+  .event_page_icons {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.background }};
+  }
+{% endstyle %}
+<div class="event_page_icons">
+  <div class="event_icons_container">
+    {% for block in section.blocks %}
+      <div class="event_icon_item">
+        {{ block.settings.icon_svg }}
+        <div class="icon_desc">
+          {{ block.settings.context }}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Event page icons",
+  "class": "shopify-section--event_page_icons",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "grid_columns",
+      "label": "Columns",
+      "min": 1,
+      "max": 6,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "nav_item",
+      "name": "nav_item",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "icon_svg",
+          "label": "Icon svg code"
+        },
+        {
+          "type": "textarea",
+          "id": "context",
+          "label": "Context"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Even page icons",
+      "blocks": []
+    }
+  ]
+}
+{% endschema %}

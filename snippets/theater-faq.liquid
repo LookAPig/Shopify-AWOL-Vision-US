@@ -1,0 +1,150 @@
+{{ 'theater-faq.css' | asset_url | stylesheet_tag }}
+
+<div class="theater-faq-container margin-top-160">
+  <div class="faq-main">
+    <div class="faq-title">FAQ</div>
+    <div class="question-wrap">
+      <div class="question-title">
+        <span>
+          01</span>
+        <span>
+          Why should I place a deposit before the products are officially
+ 
+                launched?</span>
+
+      </div>
+      <div class="question-content">
+        <span>Placing a fully refundable deposit for AWOL Theater and AWOL ThunderBeat before the official launch in Oct 17 ensures you get the best price:</span>
+        <span>-Save an extra $500 for a total of up to $4,300 off MSRP compared to the launch price.</span>
+        <span>-Receive four pairs of premium 3D glasses (valued at $159.80) for free.</span>
+        <span>-Lock in the lowest price of the year—buy early to benefit!</span>
+        <span>Note: The 3D glasses are exclusive to the "AWOL Theater" series and not available with "ThunderBeat".</span>
+      </div>
+    </div>
+    <div class="question-wrap">
+      <div class="question-title">
+        <span>02</span>
+        <span>Can I apply this deposit discount to other AWOL Vision products?</span>
+      </div>
+      <div class="question-content">
+        No, the deposit discount is only valid for AWOL Theater series and
+ 
+          AWOL ThunderBeat, purchased directly from the AWOL Vision website. It
+          does not apply to other products or channels.
+      </div>
+    </div>
+    <div class="question-wrap">
+      <div class="question-title">
+        <span>03
+        </span>
+        <span>How do I complete the purchase with my deposit?</span>
+      </div>
+      <div class="question-content">
+        <span>Step 1: Pay Your Deposit</span><br>
+        <span>During the pre-sale period (Sept 30 - Oct 16), pay a $100 deposit to secure your reservation.</span><br>
+        <span>Step 2: Receive Your Discount Code</span><br>
+        <span>After your deposit is processed, you’ll receive a $600 discount code via email.</span><br>
+        <span>Step 3: Official Purchase Period</span><br>
+        <span>From Oct 17 to October 31, use your discount code to purchase the AWOL Theater series or ThunderBeat.</span><br>
+        <span>Step 4: Bonus Gift</span><br>
+        <span>Your order will include four pairs of 3D glasses valued at $159.80, which are exclusive to the AWOL Theater.</span><br>
+        <span>Important Deadline</span><br>
+        <span>You must redeem your deposit and use the discount code by October 31, as the $600 coupon will expire then. If not redeemed by this date, we will refund your deposit within 7 days.</span>
+
+      </div>
+    </div>
+    <div class="question-wrap">
+      <div class="question-title">
+        <span>
+          04</span>
+        <span>How can I confirm that I bought the deposit successfully?</span>
+      </div>
+      <div class="question-content">
+        After paying the deposit, you can view your order in your account and
+ 
+          will receive a confirmation email.
+      </div>
+    </div>
+    <div class="question-wrap">
+      <div class="question-title">
+        <span>05</span>
+        <span>How can I refund the deposit if I don't want to purchase the product anymore?</span>
+      </div>
+      <div class="question-content">
+        To request a refund for your deposit, please email
+ 
+          support@awolvision.com. We will process the refund within 7 days.
+      </div>
+    </div>
+    <div class="question-wrap">
+      <div class="question-title">
+        <span>06</span>
+        <span>Do I need to pay for the shipping fee?</span>
+      </div>
+      <div class="question-content">
+        No, AWOL Vision offers free shipping for AWOL Theater and ThunderBeat
+ 
+          products.
+      </div>
+    </div>
+    <div class="question-wrap">
+      <div class="question-title">
+        <span>
+          07</span>
+        <span>Does AWOL Vision provide a warranty?</span>
+      </div>
+      <div class="question-content">
+        Yes, we offer a 30-day money-back guarantee, 30-Day Price Match
+ 
+          Guarantee, a 1-year limited warranty, and a 1-year free extended
+          warranty (total of 2 years). For more details, visit
+          https://awolvision.com/pages/warranty.
+      </div>
+    </div>
+    <div class="question-wrap">
+      <div class="question-title">
+        <span>08</span>
+        <span>What is the estimated delivery time?</span>
+      </div>
+      <div class="question-content">
+        <span>The shipping times vary for different products:</span><br>
+        <span>100''-120'' Daylight Screen, 100''-150'' Cinematic Screen, 100'' Floor Rising Screen and 3D Glasses: 2-7 working days.</span><br>
+        <span>LTV-3000 Pro, LTV-3500 Pro, and 120'' Floor Rising Screen: 2-11 working days.</span><br>
+        <span>ThunderBeat: Within 11 working days after the purchase is completed.</span>
+      </div>
+    </div>
+    <div class="question-wrap">
+      <div class="question-title">
+        <span>09</span>
+        <span>Can I pay in installments?</span>
+      </div>
+      <div class="question-content">
+        Yes, you can enjoy up to 12 months of interest-free payments with
+ 
+          Affirm.
+      </div>
+    </div>
+    <div class="question-wrap">
+      <div class="question-title">
+        <span>10
+        </span>
+        <span>If I have other questions, how can I contact you?</span>
+      </div>
+      <div class="question-content">
+        You can email us at info@awolvision.com.
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function () {
+  $(".theater-faq-container .question-title").click(function () {
+    // 关闭其他打开的内容
+    $(".theater-faq-container .question-content").not($(this).next()).slideUp(500);
+    
+    // 切换当前点击的内容
+    $(this).next(".question-content").slideToggle(500);
+  });
+  });
+</script>

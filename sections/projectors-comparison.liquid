@@ -1,0 +1,160 @@
+<script src="{{ 'utils.js' | asset_url }}"></script>
+
+{{- 'projectors-comparison.css' | asset_url | stylesheet_tag: true -}}
+
+{%- style -%}
+
+
+{%- endstyle -%}
+
+
+<div class="projectors-comparison-page">
+
+  <div class="page-head">
+    <div class="w-axis head-wrap">
+      <h1>{{ section.settings.title }}</h1>
+      <h2>{{ section.settings.subTitle }}</h2>
+    </div>
+  </div>
+
+  <div class="page-body">
+    <div class="w-axis body-wrap">
+      {% comment %} 产品介绍  {% endcomment %}
+      <div class="product-introduction-container">
+        <div class="product-introduction-wrap">
+
+        {% comment %} <div class="selector-wrap">
+                                                                                                                <select id="select1">
+                                                                                                                  <option value="LTV-3500 Pro" selected>LTV-3500 Pro</option>
+                                                                                                                  <option value="LTV-3000 Pro">LTV-3000 Pro</option>
+                                                                                                                  <option value="LTV-2500 Pro">LTV-2500 Pro</option>
+                                                                                                                </select>
+                                                                                                                <select id="select2">
+                                                                                                                  <option value="LTV-3500 Pro" selected>LTV-3500 Pro</option>
+                                                                                                                  <option value="LTV-3000 Pro">LTV-3000 Pro</option>
+                                                                                                                  <option value="LTV-2500 Pro">LTV-2500 Pro</option>
+                                                                                                                </select>
+                                                                                          </div> {% endcomment %}
+
+        {% comment %} 
+                                                                                                            <div class="show-diff-wrap">
+                                                                                                             <span class="diff-check-btn"></span>
+                                                                                                                                      <img src="{{ 'icon-hook.svg' | asset_url }}" alt="Show difference">
+                                                                                                                                    </span>
+                                                                                                                                    <span class="diff-text">Only show difference</span>                       
+                                              
+                                                                                         </div> {% endcomment %}
+
+        {% comment %}
+          渲染产品列表
+          <div class="product-wrap">
+          <img
+          src=""
+          alt=""
+          class="image">
+          <span class="title">title</span>
+          <span class="sub-title">sub-titl</span>
+          <span class="price">price</span>
+          <a class="shop-now">
+          SHOP NOW
+          </a>
+          </div>
+        {% endcomment %}
+
+
+        </div>
+
+
+      </div>
+
+      <div class="product-introduction-container-fill-height"></div>
+
+      {% comment %} 对比参数 {% endcomment %}
+      <div class="product-specifications-list-container">
+        {% comment %} 
+                                                 
+                                                                                                                                                                                                                                            <div class="product-category-wrap">
+                                                                                                                                                                                                                                              <div class="category-title-wrap">
+                                                                                                                                                                                                                                                                    <span class="category-title">Key Features</span>
+                                                                                                                                                                                                                                                                    <span class="category-expand-btn">">"</span>
+                                                                                                                                                                                                                                                                  </div>
+                                                                                                                                                                                                                                                                  <div class="params-list-wrap">
+                                                                                                                                                                                                                                                                    <div class="param-items-wrap">
+                                                                                                                                                                                                                                                                      <span class="param-title">1</span>
+                                                                                                                                                                                                                                                                      <span class="param-item">2</span>
+                                                                                                                                                                                                                                                                      <span class="param-item">333333sdfsd</span>
+                                                                                                                                                                                                                                                                      <span class="param-item">4434</span>
+                                                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                               </div>
+                                                                                                                                                                                                                                            </div>
+                                                                                                                                                                                            {% endcomment %}
+      </div>
+
+
+    </div>
+
+  </div>
+
+</div>
+
+<script src="{{ 'projectors-comparison-mobile.js' | asset_url }}"></script>
+
+<script src="{{ 'projectors-comparison.js' | asset_url }}"></script>
+
+<script>
+
+
+  function detectDevice() {
+  const userAgent = navigator.userAgent;
+  const width = window.innerWidth;
+
+  if (/Mobi|Android/i.test(userAgent) || width < 768) {
+    return 'mobile';
+  } else if (/Tablet|iPad/i.test(userAgent) || width < 1024) {
+    return 'tablet';
+  } else {
+    return 'desktop';
+  }
+  }
+
+  // 设置初始状态来存储当前的宽度类别（移动端或桌面端）
+  let initialWidth = detectDevice();
+
+  window.addEventListener('resize', function() {
+  // 检查当前窗口宽度
+  const currentWidth = detectDevice();
+
+  // 如果宽度类别发生变化，刷新页面
+  if (initialWidth !== currentWidth) {
+    window.location.reload();
+  }
+  });
+</script>
+
+
+{% schema %}
+  {
+    "name": "projectors-comparison",
+    "tag": "section",
+    "class": "projectors-comparison-container",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "AWOL Vision Projectors Comparison"
+      }, {
+        "type": "text",
+        "id": "subTitle",
+        "label": "subTitle",
+        "default": "Find the best AWOL Vision project for you"
+      }
+    ],
+    "blocks": [],
+    "presets": [
+      {
+        "name": "Projectors Comparison"
+      }
+    ]
+  }
+{% endschema %}

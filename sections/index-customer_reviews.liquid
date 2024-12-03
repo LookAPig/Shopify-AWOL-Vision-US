@@ -1,0 +1,159 @@
+<style>
+  .shopify-section--shop-customer-reviews {
+    background-color: {{ section.settings.background }};
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+  @media screen and (max-width: 1024px) {
+    .shopify-section--shop-customer-reviews {
+      padding-top: 60px;
+      margin-top: -1px;
+    }
+  }
+</style>
+<section class="index_shop-customer-reviews">
+  <a aria-label="{{ section.settings.header_title }}" href="{% if section.settings.header_url != blank %}{{ section.settings.header_url }}{% else %}javascript:;{% endif %}" class="shop_header">
+    <h2 class="header_title">{{ section.settings.header_title }}</h2>
+    {% if section.settings.header_subtitle != blank %}
+      <h3 class="header_subtitle">{{ section.settings.header_subtitle }}</h3>
+    {% endif %}
+  </a>
+  <div class="index_customer_reviews_container swiper">
+    <div class="swiper-wrapper">
+      {% for block in section.blocks %}
+        <div class="customer_item swiper-slide">
+          <div class="customer_image">
+            <img class="" src="{{ block.settings.customer_image |  image_url }}" alt="" >
+          </div>
+          <div class="customer_details">
+            <div class="customer_desc">
+              {{ block.settings.customer_desc }}
+            </div>
+            <div class="customer_info">
+              <img class="customer_avatar" src="{{ block.settings.customer_avatar | image_url }}" alt="" >
+              <div class="customer_name">{{ block.settings.customer_name }}</div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <div class="swiper_container">
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+  </div>
+</section>
+<script src="{{ 'swiper-bundle.min.js' | asset_url }}"></script>
+<script>
+  var mySwiper = new Swiper('.index_customer_reviews_container', {
+    direction: window.innerWidth > 1024 ? "horizontal" : "horizontal",
+    // autoplay: {
+    //   delay: {{ section.settings.cycle_speed | times: 1000 }},
+    //   pauseOnMouseEnter: true
+    // },
+    autoplay: false,
+    slidesPerView: 1,
+    spaceBetween : 40,
+    effect: window.innerWidth > 1024 ? "fade" : "cards",
+    loop: true,
+    pagination: {
+      el: '.index_customer_reviews_container .swiper-pagination',
+      type: window.innerWidth > 1024 ? "bullets" : "fraction"
+    },
+    navigation: {
+      nextEl: '.index_customer_reviews_container .swiper-button-next',
+      prevEl: '.index_customer_reviews_container .swiper-button-prev',
+    }
+  })    
+</script>
+{% schema %}
+{
+  "name": "Index customer reviews",
+  "class": "shopify-section--shop-customer-reviews", 
+  "blocks": [
+    {
+      "type": "customer_details",
+      "name": "customer_details",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "customer_image",
+          "label": "Customer image"
+        },
+        {
+          "type": "textarea",
+          "id": "customer_desc",
+          "label": "Customer desc"
+        },
+        {
+          "type": "image_picker",
+          "id": "customer_avatar",
+          "label": "Customer avatar"
+        },
+        {
+          "type": "text",
+          "id": "customer_name",
+          "label": "Customer name"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "id": "header_title",
+      "label": "Header title"
+    },
+    {
+      "type": "text",
+      "id": "header_subtitle",
+      "label": "Header subtitle"
+    },
+    {
+      "type": "url",
+      "id": "header_url",
+      "label": "Link to"
+    },
+    {
+      "type": "range", "id": "cycle_speed", "label": "Change slides every",
+      "min": 1, "max": 60, "step": 1, "unit": "sec", "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Color",
+      "info": "Color"
+    },
+    { 
+      "type": "color",
+      "id": "background",
+      "label": "Background",
+      "default": "#000000"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Index customer reviews",
+      "blocks": []
+    }
+  ]
+}
+{% endschema %}

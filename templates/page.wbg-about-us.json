@@ -1,0 +1,509 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "show_title": true,
+        "page_width": "medium"
+      }
+    },
+    "3490c571-9bad-40d9-8601-c07831ab228a": {
+      "type": "rich-text",
+      "custom_css": [
+        ".container {margin-top: 60px;}",
+        ".heading--small {font-size: 24px; font-weight: 400;}",
+        ".h2 {margin-top: 16px;}"
+      ],
+      "settings": {
+        "subheading": "ABOUT US",
+        "title": "No.1 UST RGB Laser Projector in the USA",
+        "content": "",
+        "button_text": "",
+        "button_link": "",
+        "background_type": "full_width",
+        "text_width": "medium",
+        "text_position": "center",
+        "text_alignment": "center",
+        "background": "rgba(0,0,0,0)",
+        "text_color": "rgba(0,0,0,0)",
+        "button_background": "rgba(0,0,0,0)",
+        "button_text_color": "rgba(0,0,0,0)"
+      }
+    },
+    "ff383fcb-3b69-4b5e-be6d-56b88e1cbd32": {
+      "type": "image-with-text",
+      "blocks": {
+        "template--15245257375792__ff383fcb-3b69-4b5e-be6d-56b88e1cbd32-item-1": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/1_1_642320a8-34da-41f8-9e9b-e1aa3785ffa8.png",
+            "tab_label": "",
+            "subheading": "",
+            "title": "",
+            "content": "<p>For home entertainment enthusiasts seeking the pinnacle of cinematic experiences, AWOL Vision is the go-to brand for cutting-edge digital projectors. With a passion for transforming your living room into a movie theater, AWOL Vision's projectors deliver unparalleled clarity and immersion. Unlike other brands, our commitment to innovation and premium quality ensures that every movie night is an unforgettable journey into the world of captivating visuals and immersive sound.</p>",
+            "button_text": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--15245257375792__ff383fcb-3b69-4b5e-be6d-56b88e1cbd32-item-1"
+      ],
+      "custom_css": [
+        ".image-with-text__wrapper {align-items: flex-start; gap: 30px;}",
+        ".image-with-text__image-wrapper {border-radius: 7.5px; display: block; width: 92%; margin-left: auto; margin-right: auto;}",
+        ".image-with-text__content-wrapper {margin-left: 15px; margin-right: 120px;}",
+        ".image-with-text__text-wrapper {font-size: 18px;}",
+        "@media (max-width: 1024px) {.image-with-text__content-wrapper {margin-right: 15px; } .image-with-text {padding-left: 0px; padding-right: 0px; } .image-with-text__image-wrapper {width: 100%; }}"
+      ],
+      "settings": {
+        "show_new_style": false,
+        "reveal_on_scroll": true,
+        "background_type": "full_width",
+        "background_overlap": "image",
+        "image_position": "left",
+        "text_alignment": "left",
+        "cycle_speed": 8,
+        "accent_background": "rgba(0,0,0,0)",
+        "text_color": "rgba(0,0,0,0)",
+        "button_background": "rgba(0,0,0,0)",
+        "button_text_color": "rgba(0,0,0,0)"
+      }
+    },
+    "866ac0ef-5b29-4671-9c89-253c5f7b91e2": {
+      "type": "wbg-multi-column",
+      "blocks": {
+        "template--15245257375792__866ac0ef-5b29-4671-9c89-253c5f7b91e2-item-1": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_2_70e7281c-43b5-4021-b7ad-aa22659e1849.png",
+            "image_width": 100,
+            "image_border": "rgba(0,0,0,0)",
+            "number": "01",
+            "title": "Visionary Breakthrough",
+            "content": "<p>We believe that entertainment must be taken to a new paradigm. We are here to communicate what could be possible for home entertainment. We are building it and inviting entertainment-enthusiasts of all kinds to level-up and experience digital projectors as what is next for them.<br/></p>",
+            "link_text": "",
+            "link_url": "",
+            "link_style": "link",
+            "text_alignment": "left",
+            "vertical_alignment": "start"
+          }
+        },
+        "template--15245257375792__866ac0ef-5b29-4671-9c89-253c5f7b91e2-item-2": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_3_3140cac0-6b8a-42ec-b342-640141d47ef8.png",
+            "image_width": 100,
+            "image_border": "rgba(0,0,0,0)",
+            "number": "02",
+            "title": "Passionate Enjoyment",
+            "content": "<p>We are driven by an unwavering commitment to enjoyment and passion. We love everything about movies, games, television – the entire home entertainment experience, the sights and sounds. We live to increase, elevate and share that enjoyment for people who to experience the most.<br/></p>",
+            "link_text": "",
+            "link_url": "",
+            "link_style": "link",
+            "text_alignment": "left",
+            "vertical_alignment": "start"
+          }
+        },
+        "template--15245257375792__866ac0ef-5b29-4671-9c89-253c5f7b91e2-item-3": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_4_750af128-22fe-429a-95c3-8ceea82640f4.png",
+            "image_width": 100,
+            "image_border": "rgba(0,0,0,0)",
+            "number": "03",
+            "title": "Full-throttled Excellence",
+            "content": "<p>We don’t settle for anything but the best and we invite our customers to do the same. Watching on a phone or laptop—even flatscreen–is not an option. We stand for the full-throttle, 110% experience. Our entire brand experience is the same. We aim to leave people in awe and wonder, every step of the way.<br/></p>",
+            "link_text": "",
+            "link_url": "",
+            "link_style": "link",
+            "text_alignment": "left",
+            "vertical_alignment": "start"
+          }
+        }
+      },
+      "block_order": [
+        "template--15245257375792__866ac0ef-5b29-4671-9c89-253c5f7b91e2-item-1",
+        "template--15245257375792__866ac0ef-5b29-4671-9c89-253c5f7b91e2-item-2",
+        "template--15245257375792__866ac0ef-5b29-4671-9c89-253c5f7b91e2-item-3"
+      ],
+      "custom_css": [
+        ".container {padding-right: 160px; margin-top: 50px; margin-bottom: 50px;}",
+        ".multi-column__inner {gap: 16px;}",
+        ".section__header {text-align: left;}",
+        ".multi-column__text-container > .heading {font-weight: 400;}",
+        ".multi-column__text-container > p:not(.heading) {margin-left: 10%; font-size: 18px; font-weight: 300; line-height: 1.2;}",
+        ".multi-column__item {margin-bottom: 50px;}",
+        "@media screen and (min-width: 1024px) {.multi-column--medium {--section-items-per-row: 4; } .section__header {margin-right: 120px; }}"
+      ],
+      "settings": {
+        "reveal_on_scroll": true,
+        "stack_items": true,
+        "subheading": "",
+        "title": "What makes us different?",
+        "content": "",
+        "column_alignment": "right",
+        "mobile_item_size": "large",
+        "desktop_item_size": "medium",
+        "spacing": "tight",
+        "background": "rgba(0,0,0,0)",
+        "text_color": "rgba(0,0,0,0)"
+      }
+    },
+    "6a6d3882-23c8-4751-9f4b-b0f17855bb0b": {
+      "type": "custom-liquid",
+      "custom_css": [
+        ".container {padding: 0px; margin: 0px; max-width: 100%;}"
+      ],
+      "settings": {
+        "id": "",
+        "subheading": "",
+        "title": "",
+        "liquid": "{% render \"wbg-vision-mission\" %}",
+        "add_vertical_spacing": false,
+        "background_type": "full_width",
+        "background": "rgba(0,0,0,0)",
+        "text_color": "rgba(0,0,0,0)"
+      }
+    },
+    "4ab0141f-5275-49c0-8364-ab04341f2981": {
+      "type": "rich-text",
+      "custom_css": [
+        ".container {margin-top: 100px;}",
+        ".content-box {margin: 0px;}",
+        "@media screen and (max-width: 1024px) {.container {text-align: center; }}"
+      ],
+      "settings": {
+        "subheading": "",
+        "title": "Our Core Values",
+        "content": "",
+        "button_text": "",
+        "button_link": "",
+        "background_type": "full_width",
+        "text_width": "fill",
+        "text_position": "left",
+        "text_alignment": "left",
+        "background": "rgba(0,0,0,0)",
+        "text_color": "rgba(0,0,0,0)",
+        "button_background": "rgba(0,0,0,0)",
+        "button_text_color": "rgba(0,0,0,0)"
+      }
+    },
+    "a614b3ad-5599-4c19-9459-d522a2c6821d": {
+      "type": "text-with-icons",
+      "blocks": {
+        "template--15245257375792__a614b3ad-5599-4c19-9459-d522a2c6821d-item-1": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-box",
+            "custom_icon": "shopify://shop_images/Innovation.png",
+            "custom_icon_width": 70,
+            "title": "Innovation",
+            "content": "<p>We push the boundaries of technology to bring our customers the latest advancements in digital projectors, ensuring they enjoy the future of home entertainment.<br/></p>"
+          }
+        },
+        "template--15245257375792__a614b3ad-5599-4c19-9459-d522a2c6821d-item-2": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-phone",
+            "custom_icon": "shopify://shop_images/Customer_Care.png",
+            "custom_icon_width": 70,
+            "title": "Customer Care",
+            "content": "<p>Our customers are at the heroes of the story and we exceed their expectations by listening to their needs and giving excellent customer support. <br/></p>"
+          }
+        },
+        "template--15245257375792__a614b3ad-5599-4c19-9459-d522a2c6821d-item-3": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-lock",
+            "custom_icon": "shopify://shop_images/grommet-icons_technology.png",
+            "custom_icon_width": 70,
+            "title": "Excellence",
+            "content": "<p>We provide top-notch technology that goes 100% of the way, ensuring full-quality, glitch-free experiences to our customers.<br/></p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--15245257375792__a614b3ad-5599-4c19-9459-d522a2c6821d-item-1",
+        "template--15245257375792__a614b3ad-5599-4c19-9459-d522a2c6821d-item-2",
+        "template--15245257375792__a614b3ad-5599-4c19-9459-d522a2c6821d-item-3"
+      ],
+      "custom_css": [
+        ".text-with-icons__content-wrapper > .heading {font-size: 27px; text-transform: none; font-weight: 400; letter-spacing: normal; margin-bottom: 10px;}",
+        ".text-with-icons__content-wrapper > p:not(.heading) {font-size: 16px;}",
+        ".text-with-icons__list {grid-gap: 108px;}"
+      ],
+      "settings": {
+        "background": "rgba(0,0,0,0)",
+        "text_color": "rgba(0,0,0,0)",
+        "trust_global": false
+      }
+    },
+    "90a95787-5c56-4616-b5a3-f58e25fc2392": {
+      "type": "text-with-icons",
+      "blocks": {
+        "template--15245257375792__90a95787-5c56-4616-b5a3-f58e25fc2392-item-1": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-box",
+            "custom_icon": "shopify://shop_images/Passion_for_Fun.png",
+            "custom_icon_width": 70,
+            "title": "Passion for Fun",
+            "content": "<p>We share a deep passion for the world of entertainment and a belief in its power to bring joy and connection to people's lives.</p>"
+          }
+        },
+        "template--15245257375792__90a95787-5c56-4616-b5a3-f58e25fc2392-item-2": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-phone",
+            "custom_icon": "shopify://shop_images/sustainability.png",
+            "custom_icon_width": 70,
+            "title": "Sustainability",
+            "content": "<p> We minimize our environmental footprint by making energy efficient and space saving entertainment technologies that save power and money.<br/></p>"
+          }
+        },
+        "template--15245257375792__90a95787-5c56-4616-b5a3-f58e25fc2392-item-3": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-lock",
+            "custom_icon": "shopify://shop_images/community.png",
+            "custom_icon_width": 70,
+            "title": "Community",
+            "content": "<p>We are here to be part of and contribute to the community of entertainment-lovers, by elevating the conversation and what is possible.<br/></p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--15245257375792__90a95787-5c56-4616-b5a3-f58e25fc2392-item-1",
+        "template--15245257375792__90a95787-5c56-4616-b5a3-f58e25fc2392-item-2",
+        "template--15245257375792__90a95787-5c56-4616-b5a3-f58e25fc2392-item-3"
+      ],
+      "custom_css": [
+        ".text-with-icons__content-wrapper > .heading {font-size: 27px; text-transform: none; font-weight: 400; letter-spacing: normal; margin-bottom: 10px;}",
+        ".text-with-icons__content-wrapper > p:not(.heading) {font-size: 16px;}",
+        ".text-with-icons__list {grid-gap: 108px;}",
+        ".container {margin-bottom: 100px;}"
+      ],
+      "settings": {
+        "background": "rgba(0,0,0,0)",
+        "text_color": "rgba(0,0,0,0)",
+        "trust_global": false
+      }
+    },
+    "c4c443ac-49b4-42cd-8af4-673059e1388b": {
+      "type": "custom-liquid",
+      "custom_css": [
+        ".container {padding-top: 150px; padding-bottom: 150px;}"
+      ],
+      "settings": {
+        "id": "",
+        "subheading": "",
+        "title": "",
+        "liquid": "{% render 'wbg-about-statements' %}",
+        "add_vertical_spacing": false,
+        "background_type": "full_width",
+        "background": "#171717",
+        "text_color": "#f5f6f9"
+      }
+    },
+    "7e9ad5fd-5902-482b-8273-e3130a5de5ca": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "custom_css": [
+        ".container {padding: 0px;}"
+      ],
+      "settings": {
+        "id": "",
+        "subheading": "",
+        "title": "",
+        "liquid": "{% render \"wbg-about-story\"%}",
+        "add_vertical_spacing": false,
+        "background_type": "full_width",
+        "background": "rgba(0,0,0,0)",
+        "text_color": "rgba(0,0,0,0)"
+      }
+    },
+    "about_story_rV6Mkc": {
+      "type": "about-story",
+      "blocks": {
+        "time_line_details_yqPbAD": {
+          "type": "time_line_details",
+          "settings": {
+            "month": "Today",
+            "desc": "AWOL Vision remains steadfast in its mission to craft superior, intelligent, and accessible products, aimed at elevating home entertainment. We strive to ensure that everyone can enjoy an unforgettable home theater experience, driven by a relentless pursuit of pushing boundaries and embracing innovation. Our commitment is to transform living rooms into extraordinary cinematic environments, all while enjoying the journey of redefining entertainment."
+          }
+        },
+        "time_line_details_gXTp3z": {
+          "type": "time_line_details",
+          "settings": {
+            "month": "Sept.",
+            "desc": "AWOL Vision won the ProjectorCentral CEDIA 2024 Best Award."
+          }
+        },
+        "time_line_details_AANNRc": {
+          "type": "time_line_details",
+          "settings": {
+            "month": "Sept.",
+            "desc": "AWOL Vision partnered with SONOS, becoming their exclusive projector supplier for all future exhibitions."
+          }
+        },
+        "time_line_details_wpBkQi": {
+          "type": "time_line_details",
+          "settings": {
+            "month": "Aug.",
+            "desc": "The AWOL Vision Vanish Laser TV Home Theatre System won the Projector Central Best of Show Award at the 2024 CEDIA Expo."
+          }
+        },
+        "time_line_details_NkUKaw": {
+          "type": "time_line_details",
+          "settings": {
+            "month": "Jun.",
+            "desc": "LTV-2500 and LTV-3500 Pro were awarded the Japan VGP 2024 SUMMER Very Good Product Award."
+          }
+        },
+        "time_line_details_mhk9tG": {
+          "type": "time_line_details",
+          "settings": {
+            "month": "Mar.",
+            "desc": "AWOL Vision introduced the 132-inch Cinematic Screen, the world's largest seamless premium ALR screen."
+          }
+        },
+        "time_line_details_WrmxGB": {
+          "type": "time_line_details",
+          "settings": {
+            "month": "Jan.",
+            "desc": "At CES, prominent entrepreneur Daymond John praised AWOL Vision's products and became a supporter, creating a surge of excitement."
+          }
+        }
+      },
+      "block_order": [
+        "time_line_details_yqPbAD",
+        "time_line_details_gXTp3z",
+        "time_line_details_AANNRc",
+        "time_line_details_wpBkQi",
+        "time_line_details_NkUKaw",
+        "time_line_details_mhk9tG",
+        "time_line_details_WrmxGB"
+      ],
+      "settings": {
+        "background": "#ffffff",
+        "head_title": "Our Story",
+        "context": "AWOL Vision was founded in 2020 by a group of TV enthusiasts with a mission to revolutionize home entertainment. We are committed to eliminating compromises by offering TVs that are larger, brighter, and easier to set up. Through innovative technology and design, we aim to provide every home with a cinematic viewing experience. We believe that home entertainment should be boundless and deliver unparalleled visual and auditory enjoyment. Our goal is to continuously push the boundaries of the industry, bringing users superior and convenient home entertainment solutions.",
+        "year": "2024"
+      }
+    },
+    "about_story_kWRM9K": {
+      "type": "about-story",
+      "blocks": {
+        "time_line_details_e6qYKE": {
+          "type": "time_line_details",
+          "settings": {
+            "month": "Oct.",
+            "desc": "AWOL Vision showcased core projectors at GITEX Global."
+          }
+        },
+        "time_line_details_VcAbnQ": {
+          "type": "time_line_details",
+          "settings": {
+            "month": "Sept.",
+            "desc": "All AWOL Vision laser projectors are Dolby Vision certified."
+          }
+        },
+        "time_line_details_ycbftg": {
+          "type": "time_line_details",
+          "settings": {
+            "month": "Sept.",
+            "desc": "At IFA 2023, AWOL Vision launched the Pro Series triple laser projectors, including the LTV-3000 Pro and LTV-3500 Pro."
+          }
+        }
+      },
+      "block_order": [
+        "time_line_details_e6qYKE",
+        "time_line_details_VcAbnQ",
+        "time_line_details_ycbftg"
+      ],
+      "settings": {
+        "background": "#ffffff",
+        "head_title": "",
+        "context": "",
+        "year": "2023"
+      }
+    },
+    "about_story_MXaj7F": {
+      "type": "about-story",
+      "blocks": {
+        "time_line_details_Pkp6nb": {
+          "type": "time_line_details",
+          "settings": {
+            "month": "Jun.",
+            "desc": "We opened our first UST Triple Laser TV retail store in the US."
+          }
+        },
+        "time_line_details_qkji7N": {
+          "type": "time_line_details",
+          "settings": {
+            "month": "Mar.",
+            "desc": "The LTV-3500 and LTV-2500 4K 3D laser projectors were introduced to the market."
+          }
+        }
+      },
+      "block_order": [
+        "time_line_details_Pkp6nb",
+        "time_line_details_qkji7N"
+      ],
+      "settings": {
+        "background": "#ffffff",
+        "head_title": "",
+        "context": "",
+        "year": "2022"
+      }
+    },
+    "about_story_rA3BfT": {
+      "type": "about-story",
+      "blocks": {
+        "time_line_details_eGUNyj": {
+          "type": "time_line_details",
+          "settings": {
+            "month": "Mar.",
+            "desc": "AWOL Vision was founded."
+          }
+        }
+      },
+      "block_order": [
+        "time_line_details_eGUNyj"
+      ],
+      "settings": {
+        "background": "#ffffff",
+        "head_title": "",
+        "context": "",
+        "year": "2020"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "3490c571-9bad-40d9-8601-c07831ab228a",
+    "ff383fcb-3b69-4b5e-be6d-56b88e1cbd32",
+    "866ac0ef-5b29-4671-9c89-253c5f7b91e2",
+    "6a6d3882-23c8-4751-9f4b-b0f17855bb0b",
+    "4ab0141f-5275-49c0-8364-ab04341f2981",
+    "a614b3ad-5599-4c19-9459-d522a2c6821d",
+    "90a95787-5c56-4616-b5a3-f58e25fc2392",
+    "c4c443ac-49b4-42cd-8af4-673059e1388b",
+    "7e9ad5fd-5902-482b-8273-e3130a5de5ca",
+    "about_story_rV6Mkc",
+    "about_story_kWRM9K",
+    "about_story_MXaj7F",
+    "about_story_rA3BfT"
+  ]
+}

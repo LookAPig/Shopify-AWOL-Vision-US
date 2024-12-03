@@ -1,0 +1,83 @@
+{{ 'thunder-room.css' | asset_url | stylesheet_tag }}
+{{ 'thunder-room-products-and-dialog.css' | asset_url | stylesheet_tag }}
+<style>
+  #ThunderBeat {display: none;margin-top: 0;}
+  .show_container .commitments_icons {
+    margin-top: 0;
+  }
+  .show_container .promotion_container {width: 100%;}
+</style>
+<div class="awol-theater-thunderbeat-redeem_container">
+  <div class="banner_header_title">
+    <video autoplay muted loop preload  playsinline x5-playsinline="true" webkit-playsinline="true" poster="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/loading_pic.jpg?v=1727149207">
+      <source src="https://cdn.shopify.com/videos/c/o/v/9d7394b07e0247f3bb5130d1428c62d8.mp4" />
+    </video>
+    <h2>Redeem Your AWOL Vision Now!</h2>
+  </div>
+  <div class="awol-theater-thunderbeat-subtitle">
+    Thank you for placing your deposit. You can now choose any AWOL Theater or the<br> ThunderBeat Speakers system below. Don't forget to use your deposit code (worth<br> $600, found in the email we sent you) at the Checkout page.
+  </div>
+  <div class="awol-theater-thunderbeat-nav">
+    <div data-id="ThunderTheater" class="nav_button active">
+        AWOL Theater
+    </div>
+    <div data-id="ThunderBeat" class="nav_button">
+        AWOL ThunderBeat
+    </div>
+  </div>
+</div>
+<div class="show_container">
+  <div id="ThunderTheater" class="thunder_rooms thunder_context">
+    {% render 'thunder-room' %}
+  </div>
+  <div id="ThunderBeat" class="thunder_beat thunder_context">
+    {% render 'thunder-beat' %}
+  </div>
+</div>
+<script>
+  $(function() {
+    var elements = document.getElementsByClassName('list_item');
+    var minHeight = $(".list_item").prop('scrollHeight') * 6 == 0 ? 500 : $(".list_item").prop('scrollHeight') * 6
+    var maxHeight = $(".list_item").prop('scrollHeight') * elements.length
+    $('.nav_button').on('click', function() {
+      $('.nav_button').removeClass('active')
+      $('.thunder_context').hide();
+      $(this).addClass('active')
+      let id = $(this).attr('data-id')
+      $('#' + id).show()
+      elements = document.getElementsByClassName('list_item');
+    
+      minHeight = $(".list_item").prop('scrollHeight') * 6 == 0 ? 500 : $(".list_item").prop('scrollHeight') * 6
+      maxHeight = $(".list_item").prop('scrollHeight') * elements.length
+  
+      $('.accordion_body').css('max-height', minHeight)
+  
+      for(let i = 0; i < 10; i++) {
+        elements[i].style.opacity = (10 - i) / 10;
+      }
+    })
+    $('.show_more_infomation').on('click', function() {
+      $(this).hide() 
+      $('.accordion_body').css('max-height', maxHeight + 200)
+      for(let i = 0; i < elements.length; i++) {
+        setTimeout(() => {
+          elements[i].style.opacity = 1;
+        }, i * 60);
+      }
+    })
+  })
+</script>
+{% schema %}
+{
+  "name": "theater-thunderbeat",
+  "class": "shopify-section--awol-theater",
+  "settings": [],
+  "blocks": [],
+  "presets": [
+    {
+      "name": "theater-thunderbeat",
+      "blocks": []
+    }
+  ]
+}
+{% endschema %}

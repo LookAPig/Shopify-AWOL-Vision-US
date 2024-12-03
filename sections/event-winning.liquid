@@ -1,0 +1,133 @@
+{% comment %} {{- 'event_page.css' | asset_url | stylesheet_tag: true -}} {% endcomment %}
+{% style %}
+  .event_page_winning {
+    margin-top: {{ section.settings.padding_top }}px;
+    background: {{ section.settings.background }};
+  }
+{% endstyle %}
+<div class="event_page_winning container">
+  <div class="event_page_winning_header">
+    <div class="header">Win a Full Order Refund!</div>
+    <div class="subtitle">Subscribe and order now for a chance to win a Full Order Refund!</div>
+  </div>
+  <div class="event_page_scription">
+    <div class="event_subscription_body">
+      {%- assign newsletter_id = 'newsletter-' | append: section.id -%}
+      {%- form 'customer', id: newsletter_id, class: 'form newsletter__form' -%}
+        {%- if form.posted_successfully? -%}
+          <script>
+            window.addEventListener('DOMContentLoaded', () => {
+              if (history.scrollRestoration) {
+                history.scrollRestoration = 'manual'; // Prevent the browser to scroll on captcha page
+              }
+    
+              document.getElementById('shopify-section-{{ section.id }}').scrollIntoView();
+            });
+            </script>
+    
+          <div class="form__banner banner banner--success">
+            <span class="banner__ribbon">{% render 'icon' with 'form-success' %}</span>
+            <p class="banner__content">{{ 'general.newsletter.success' | t }}</p>
+          </div>
+        {%- else -%}
+          {%- if form.errors -%}
+            <div class="form__banner banner banner--error">
+              <span class="banner__ribbon">{% render 'icon' with 'form-error' %}</span>
+              <p class="banner__content">{{ form.errors.messages['email'] }}</p>
+            </div>
+          {%- endif -%}
+          
+          {% if request.path contains 'awol-theater' %}
+            <input type="hidden" name="contact[tags]" value="newsletter_theater_middle">
+          {% else %}
+            <input type="hidden" name="contact[tags]" value="Newsletter_2024BlackFriday_page">
+          {% endif %}
+            <input type="hidden" name="contact[context]" value="{{ newsletter_id }}">
+    
+          <div class="input-row">
+            <div class="input">
+              <input placeholder="your@email.com" type="email" id="newsletter[{{ section.id }}][contact][email]" name="contact[email]" class="input__field" required>
+              {% comment %} <label for="newsletter[{{ section.id }}][contact][email]" class="input__label">{{ 'general.newsletter.email' | t }}</label> {% endcomment %}
+            </div>
+    
+            <div class="input">
+              <button type="submit" is="loader-button" class="button button--primary event_button">Get Lucky!</button>
+            </div>
+          </div>
+          {%- endif -%}
+          <div class="checked_desc">
+            <span class="checkbox">
+              <svg xmlns="http://www.w3.org/2000/svg" width="8" height="7" viewBox="0 0 8 7" fill="none"><path d="M1 3.85714L2.76803 6L7 1" stroke="#CF1322" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </span>
+            <div class="checkbox_context">
+              You have read our <a target="_blank" title="privacy policy" href="https://awolvision.com/policies/privacy-policy">privacy policy</a> and consent to receiving marketing communication.
+            </div>
+          </div>
+      {%- endform -%}
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Event page winning",
+  "class": "shopify-section--event_page_winning",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background",
+      "default": "#000000"
+    },
+    {
+      "type": "textarea",
+      "id": "head_title",
+      "label": "Head title"
+    },
+    {
+      "type": "textarea",
+      "id": "awards_1",
+      "label": "Awards message"
+    },
+    {
+      "type": "textarea",
+      "id": "awards_2",
+      "label": "Awards message"
+    },
+    {
+      "type": "textarea",
+      "id": "awards_3",
+      "label": "Awards message"
+    },
+    {
+      "type": "textarea",
+      "id": "awards_4",
+      "label": "Awards message"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 0
+    }
+  ],
+  "blocks": [],
+  "presets": [
+    {
+      "name": "Even page winning",
+      "blocks": []
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,129 @@
+<style>
+  .shopify-section--shop-icons {
+    background-color: {{ section.settings.background }};
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+  @media screen and (max-width: 1024px) {
+    .shopify-section--shop-icons {
+      padding-top: 40px;
+      margin-top: -1px;
+    }
+  }
+</style>
+
+<section class="index_shop-icons">
+  {% comment %} <a href="{% if block.settings.header_url != blank %}{{ section.settings.header_url }}{% else %}javascript:;{% endif %}" class="shop_header">
+    <h2 class="header_title">{{ section.settings.header_title }}</h2>
+    {% if section.settings.header_subtitle != blank %}
+      <h3 class="header_subtitle">{{ section.settings.header_subtitle }}</h3>
+    {% endif %}
+  </a> {% endcomment %}
+  <div class="icons_container" style="grid-template-columns: repeat({{ section.settings.grid_columns_template }}, 1fr)">
+    {% for block in section.blocks %}
+      <div class="index_icons_item">
+        <div class="icon_image_or_svg">
+          {% if block.settings.icon != blank %}
+            <img src="{{ block.settings.icon | image_url }}" alt="" />
+          {% else %}
+            {{ block.settings.icon_svg }}
+          {% endif %}
+        </div>
+        <div class="icon_desc">
+          {{ block.settings.icon_desc }}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+ 
+{% schema %}
+{
+  "name": "Index icons",
+  "class": "shopify-section--shop-icons", 
+  "blocks": [
+    {
+      "type": "icons",
+      "name": "icons",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "textarea",
+          "id": "icon_svg",
+          "label": "Icon svg code"
+        },
+        {
+          "type": "textarea",
+          "id": "icon_desc",
+          "label": "Icon desc"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "id": "header_title",
+      "label": "Header title"
+    },
+    {
+      "type": "text",
+      "id": "header_subtitle",
+      "label": "Header subtitle"
+    },
+    {
+      "type": "url",
+      "id": "header_url",
+      "label": "Link to"
+    },
+    {
+      "type": "range",
+      "id": "grid_columns_template",
+      "label": "Grid columns template",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Color",
+      "info": "Color"
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background",
+      "default": "#000000"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Index icons",
+      "blocks": []
+    }
+  ]
+}
+{% endschema %}

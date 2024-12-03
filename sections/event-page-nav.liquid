@@ -1,0 +1,80 @@
+{% comment %} {{- 'event_page.css' | asset_url | stylesheet_tag: true -}} {% endcomment %}
+{% style %}
+  .event_page_nav {
+    background: {{ section.settings.background }};
+  }
+  .event_nav_container {
+    grid-template-columns: repeat({{ section.settings.grid_columns }}, 1fr);
+  }
+  @media screen and (max-width: 1024px) {
+    .event_nav_container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+{% endstyle %}
+<div class="event_page_nav">
+  <div class="event_nav_container">
+    {% for block in section.blocks %}
+      <div data-name="{{ block.settings.text }}" id="{{ block.settings.id }}" class="event_nav_item">
+        <div>
+          {{ block.settings.text }}
+          {% if block.settings.show_tag %}
+            <span class="tag">NEW</span>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Event page nav",
+  "class": "shopify-section--event_page_nav",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "grid_columns",
+      "label": "Columns",
+      "min": 1,
+      "max": 6,
+      "default": 4
+    }
+  ],
+  "blocks": [
+    {
+      "type": "nav_item",
+      "name": "nav_item",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "text",
+          "id": "id",
+          "label": "Id"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_tag",
+          "label": "Is show tag",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Even page nav",
+      "blocks": []
+    }
+  ]
+}
+{% endschema %}

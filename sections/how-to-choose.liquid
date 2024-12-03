@@ -1,0 +1,467 @@
+<style>
+  body {background-color: rgb(var(--secondary-background));}
+
+  .yToast {
+    min-width: 150px; height: 40px; line-height: 40px; color: #fff; font-size: 14px; text-align: center; padding: 0 20px; border-radius: 20px;
+    position: fixed; top: calc(50% - 20px); left: 50%; z-index: 99999999; background: rgba(0, 0, 0, 0.7); opacity: 0;
+    animation: toastOpacity 0.3s 0.1s ease-in-out forwards;
+  }
+  @keyframes toastOpacity {
+    0% {opacity: 0; transform: translate(-50%, 0) scale(0.2);}
+    100% {opacity: 1; transform: translate(-50%, 0) scale(1);}
+  }
+
+  .howToChoose {
+    --img-h: 192px;
+    width: 100%; padding: var(--distance-content) 0;
+  }
+  .howToChoose figcaption {text-align: center; margin-bottom: var(--gap);}
+  .howToChoose figcaption h2 {margin: 0;}
+  .howToChoose .item {
+    margin: 0; padding: 0;
+    display: grid; grid-template-columns: repeat(4, 1fr); grid-gap: var(--gap);
+  }
+  .howToChoose .item li {background: rgb(var(--background)); border-radius: 8px; cursor: pointer; overflow: hidden; position: relative;}
+  .howToChoose .item li:hover, .howToChoose .item li.active {box-shadow: 0 2px 8px 0 rgba(0,0,0,0.1);}
+  .howToChoose .item li.active::before, .howToChoose .item li.active::after {content: ""; position: absolute;}
+  .howToChoose .item li.active::before {width: 100%; height: var(--img-h); background: rgba(0,0,0,0.5); top: 0; z-index: 1;}
+  .howToChoose .item li.active::after {
+    width: 40px; height: 80px; transform: rotate(45deg);
+    border: 10px #fff solid; border-top: none; border-left: none;
+    top: calc((var(--img-h) - 90px) / 2); left: calc(50% - 25px); z-index: 2;
+  }
+
+  .howToChoose .item.small li.active {border: 1px #000 solid;}
+  .howToChoose .item.small li.active::before {content: none;}
+  .howToChoose .item.small li.active::after {
+    width: 10px; height: 20px; border-width: 5px; border-color: #000;
+    top: calc(50% - 12px); right: 20px; left: auto;
+  }
+
+
+  .howToChoose .item img {width: 100%; height: var(--img-h); object-fit: cover;}
+  .howToChoose .item p {padding: var(--gap) var(--gap-mini);}
+
+  @media screen and (max-width: 768px) {
+    .howToChoose .item {grid-template-columns: 1fr;}
+  }
+
+  .howToChoose button {
+    min-width: 188px; height: 50px; line-height: 50px; text-align: center; font-size: var(--heading-h6-font-size); color: #fff; cursor: pointer; background-color: #000;
+    padding: 0 var(--gap); margin: var(--gap) auto; border-radius: 25px; display: block;
+  }
+
+  .qa {max-height: 0; overflow: hidden; transition: all 0.3;}
+  .qa.on {max-height: 2000px;}
+
+  .result .top, .result .most {margin-bottom: var(--distance-content);}
+  .result .content {
+    width: 100%; background-color: #fff; border-radius: 8px; padding: 10px; overflow: hidden;
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,0.1); display: flex; flex-wrap: wrap;
+  }
+  .result .content img, .result .content .info {width: 50%; height: 400px;}
+  .result .content img {object-fit: contain; background-color: #f0f0f0;}
+  .result .content .info {padding: 0 5%; display: flex; align-items: center;}
+  .result .content .btn a {height: 40px; line-height: 40px; padding: 0 24px; border-radius: 999px; display: inline-block;}
+  .result .content .btn a:first-child {background-color: #000; color: #fff; margin-right: var(--gap);}
+  .result .content .btn a:last-child {background-color: #ccc; color: #000;}
+
+  .result .good .item img {height: auto;}
+  @media screen and (max-width: 768px) {
+    .result .content img, .result .content .info {width: 100%; height: auto;}
+    .result .content .info {padding: 10px 0;}
+  }
+</style>
+
+
+<figure class="container">
+  <figcaption>
+    <h2>1. Where will the projector be used for?</h2>
+    <p>Select an item</p>
+  </figcaption>
+
+  <div class="qa q1 on">
+    <ul class="item">
+      <li data-answer="a0">
+        <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/ltv-12.jpg?v=1687195623" alt="" />
+        <p>Living room needs TV-level brightness in bright daylight with no curtains closed.</p>
+      </li>
+      <li data-answer="a1">
+        <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/ltv-12.jpg?v=1687195623" alt="" />
+        <p>Should also work during the daytime living room, controlling a specific light source like semi-transparent curtains.</p>
+      </li>
+      <li data-answer="a2">
+        <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/ltv-12.jpg?v=1687195623" alt="" />
+        <p>Suitable for ceiling-lit environments, with very few side light.</p>
+      </li>
+      <li data-answer="a3">
+        <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/ltv-12.jpg?v=1687195623" alt="" />
+        <p>For use in dim environments.</p>
+      </li>
+    </ul>
+    <button data-q="q1" data-next="q2" type="button">Next</button>
+  </div>
+
+  <div class="qa q2">
+    <ul class="item small"></ul>
+    <button data-q="q2" data-next="q3" type="button">Next</button>
+  </div>
+
+  <div class="qa q3">
+    <ul class="item small"></ul>
+    <button data-q="q3" data-next="result" type="button">Next</button>
+  </div>
+
+  <div class="qa result">
+    <div class="top">
+      <h2>Top Performance</h2>
+      <div class="content"></div>
+    </div>
+
+    <div class="most" style="display: none;">
+      <h2>Most Affordable</h2>
+      <ul></ul>
+      <div class="content"></div>
+    </div>
+
+    <div class="good" style="display: none;">
+      <h2>Good Choice</h2>
+      <ul class="item"></ul>
+    </div>
+  </div>
+</figure>
+
+<script>
+$(function() {
+  const toast = (msg, duration, _class, db) => {
+    var m = document.createElement('aside');
+    m.className = "yToast " + _class;
+    m.innerHTML = msg;
+    document.body.appendChild(m);
+    setTimeout(function() { document.body.removeChild(m); db && db() }, duration || 3000)
+  }
+
+  let current = 'q1', title = document.querySelector('.howToChoose figcaption h2');
+  let arr = {
+    "2509R": "https://awolvision.com/products/awol-vision-ltv-2500-vividstorm-floor-rising-screens-bundle",
+    "2510C": "https://awolvision.com/products/ltv-2500-wall-mount-screens?variant=40494281949232",
+    "2510D": "https://awolvision.com/products/2500-daylight-screen?variant=40814427963440",
+    "2510M": "https://awolvision.com/products/ltv-2500-plus-100-120-matte-white-screen-bundle?variant=40848995450928",
+    "2510R": "https://awolvision.com/products/awol-vision-ltv-2500-vividstorm-floor-rising-screens-bundle?variant=40494283948080",
+    "2511R": "https://awolvision.com/products/awol-vision-ltv-2500-vividstorm-floor-rising-screens-bundle?variant=40494283980848",
+    "2512C": "https://awolvision.com/products/ltv-2500-wall-mount-screens?variant=40494281982000",
+    "2512D": "https://awolvision.com/products/2500-daylight-screen?variant=40814427996208",
+    "2512M": "https://awolvision.com/products/ltv-2500-plus-100-120-matte-white-screen-bundle?variant=40848995483696",
+    "2512R": "https://awolvision.com/products/awol-vision-ltv-2500-vividstorm-floor-rising-screens-bundle?variant=40494284013616",
+    "3509R": "https://awolvision.com/products/awol-vision-ltv-3500-vividstorm-floor-rising-screens-bundle?variant=40494287552560",
+    "3510C": "https://awolvision.com/products/awol-vision-ltv-3500-wall-mount-screens-bundle?variant=40494285127728",
+    "3510D": "https://awolvision.com/products/ltv3500-march-2023-version-plus-100-120-daylight-alr-screen-bundle?variant=40814426062896",
+    "3510R": "https://awolvision.com/products/awol-vision-ltv-3500-vividstorm-floor-rising-screens-bundle?variant=40494287585328",
+    "3511R": "https://awolvision.com/products/awol-vision-ltv-3500-vividstorm-floor-rising-screens-bundle?variant=40494287618096",
+    "3512C": "https://awolvision.com/products/awol-vision-ltv-3500-wall-mount-screens-bundle?variant=40494285160496",
+    "3512D": "https://awolvision.com/products/ltv3500-march-2023-version-plus-100-120-daylight-alr-screen-bundle?variant=40814426095664",
+    "3512R": "https://awolvision.com/products/awol-vision-ltv-3500-vividstorm-floor-rising-screens-bundle?variant=40494287650864",
+    "3515C": "https://awolvision.com/products/awol-vision-ltv-3500-wall-mount-screens-bundle?variant=40669494313008",
+    "VTV-100": "https://awolvision.com/products/awol-vision-vanish-laser-tv?variant=40452023484464",
+    "VTV-120": "https://awolvision.com/products/awol-vision-vanish-laser-tv?variant=40452023517232"
+  };
+  let question = {
+    q1: {
+      t: '1. Where will the projector be used for?',
+      a0: {
+        image: '',
+        title: 'Living room needs TV-level brightness in bright daylight with no curtains closed.'
+      },
+      a1: {
+        image: '',
+        title: 'Should also work during the daytime living room, controlling a specific light source like semi-transparent curtains.0'
+      },
+      a2: {
+        image: '',
+        title: 'Suitable for ceiling-lit environments, with very few side light.'
+      },
+      a3: {
+        image: '',
+        title: 'For use in dim environments.'
+      }
+    },
+    q2: {
+      t: 'What size of picture would you like to project?',
+      a0: [
+        {image: '', title: '100"'},
+        {image: '', title: '120"'},
+        {image: '', title: 'Not decide yet'}
+      ],
+      a1: [
+        {image: '', title: '92"-100"'},
+        {image: '', title: '110"-120"'},
+        {image: '', title: '150"'},
+        {image: '', title: 'Not decide yet'}
+      ],
+      a2: [
+        {image: '', title: '92"-100"'},
+        {image: '', title: '110"-120"'},
+        {image: '', title: '150"'},
+        {image: '', title: 'Not decide yet'}
+      ],
+      a3: [
+        {image: '', title: '92"-100"'},
+        {image: '', title: '110"-120"'},
+        {image: '', title: '150"'},
+        {image: '', title: 'Not decide yet'}
+      ]
+    },
+    q3: {
+      t: `What's your budget range?`,
+      a0: null,
+      a1: {
+        '92"-100"': [
+          {image: '', title: '$3000-$5000'},
+          {image: '', title: '$5000-$7000'},
+          {image: '', title: '$7000+'}
+        ],
+        '110"-120"': [
+          {image: '', title: '$3000-$5000'},
+          {image: '', title: '$5000-$7000'},
+          {image: '', title: '$7000+'}
+        ],
+        '150"': null,
+        'Not decide yet': [
+          {image: '', title: '$3000-$5000'},
+          {image: '', title: '$5000-$7000'},
+          {image: '', title: '$7000+'}
+        ]
+      },
+      a2: {
+        '92"-100"': [
+          {image: '', title: '$3000-$5000'},
+          {image: '', title: '$5000-$7000'},
+          {image: '', title: '$7000+'}
+        ],
+        '110"-120"': [
+          {image: '', title: '$5000-$7000'},
+          {image: '', title: '$7000+'}
+        ],
+        '150"': null,
+        'Not decide yet': [
+          {image: '', title: '$3000-$5000'},
+          {image: '', title: '$5000-$7000'},
+          {image: '', title: '$7000+'}
+        ]
+      },
+      a3: {
+        '92"-100"': [
+          {image: '', title: '$2000-$3000'},
+          {image: '', title: '$3000-$5000'},
+          {image: '', title: '$5000-$7000'},
+          {image: '', title: '$7000+'}
+        ],
+        '110"-120"': [
+          {image: '', title: '$2000-$3000'},
+          {image: '', title: '$3000-$5000'},
+          {image: '', title: '$5000-$7000'},
+          {image: '', title: '$7000+'}
+        ],
+        '150"': null,
+        'Not decide yet': [
+          {image: '', title: '$2000-$3000'},
+          {image: '', title: '$3000-$5000'},
+          {image: '', title: '$5000-$7000'},
+          {image: '', title: '$7000+'}
+        ]
+      }
+    },
+    result: {
+      a0: {
+        '100"': {top: '3510D', most: null, good: null},
+        '120"': {top: '3512D', most: null, good: null},
+        'Not decide yet': {top: '3512D', most: null, good: ['3510D']}
+      },
+      a1: {
+        '92"-100"': {
+          '$3000-$5000': {top: '2510D', most: null, good: null},
+          '$5000-$7000': {top: '3510R', most: '2510D', good: ['3510C', '3509R', '3510D']},
+          '$7000+': {top: 'VTV-100', most: null, good: ['3510D', '3510R', '3509R', '3510C']}
+        },
+        '110"-120"': {
+          '$3000-$5000': {top: '2512D', most: null, good: null},
+          '$5000-$7000': {top: '3512R', most: '2512D', good: ['3512C', '3511R']},
+          '$7000+': {top: 'VTV-120', most: null, good: ['3512R', '3511R', '3512D', '3512C']}
+        },
+        '150"': {top: '3515C', most: null, good: null},
+        'Not decide yet': {
+          '$3000-$5000': {top: '2512D', most: '2510D', good: null},
+          '$5000-$7000': {top: '3512R', most: '2510D', good: ['3512C', '3511R', '3510D', '3510C', '3509R', '2512D']},
+          '$7000+': {top: 'VTV-120', most: null, good: ['VTV-100', '3515C', '3512R', '3511R', '3512C', '3510D', '3510R', '3509R', '3510C']}
+        }
+      },
+      a2: {
+        '92"-100"': {
+          '$3000-$5000': {top: '2510D', most: '2510C', good: null},
+          '$5000-$7000': {top: '3510R', most: '3510C', good: ['3509R']},
+          '$7000+': {top: 'VTV-100', most: null, good: ['3510R', '3509R', '3510C']}
+        },
+        '110"-120"': {
+          '$5000-$7000': {top: '3512R', most: '2512C', good: ['3511R', '2512R', '2511R']},
+          '$7000+': {top: 'VTV-120', most: null, good: ['3515C', '3512R', '3511R', '3512C']}
+        },
+        '150"': {top: '3515C', most: null, good: null},
+        'Not decide yet': {
+          '$3000-$5000': {top: '2510R', most: '2510C', good: ['2509R']},
+          '$5000-$7000': {top: '3512R', most: '3510D', good: ['3510R', '3511R', '2512R', '2511R', '3509R']},
+          '$7000+': {top: 'VTV-120', most: null, good: ['VTV-100', '3515C', '3512R', '3511R', '3512C', '3510R', '3509R', '3510C']}
+        }
+      },
+      a3: {
+        '92"-100"': {
+          '$2000-$3000': {top: '2510M', most: null, good: null},
+          '$3000-$5000': {top: '2510R', most: null, good: ['2509R', '2510C', '2510M']},
+          '$5000-$7000': {top: '3510R', most: '2510R', good: ['3510C', '3509R']},
+          '$7000+': {top: 'VTV-100', most: null, good: ['3509R', '3510C']}
+        },
+        '110"-120"': {
+          '$2000-$3000': {top: '2512M', most: null, good: null},
+          '$3000-$5000': {top: '2512R', most: null, good: ['2512C', '2511R']},
+          '$5000-$7000': {top: '3512R', most: '2512C', good: ['3512C', '3511R', '2512R', '2511R']},
+          '$7000+': {top: 'VTV-120', most: null, good: ['3515C', '3512R', '3511R', '3512C']}
+        },
+        '150"': {top: '3515C', most: null, good: null},
+        'Not decide yet': {
+          '$2000-$3000': {top: '2512M', most: '2510M', good: null},
+          '$3000-$5000': {top: '2512R', most: null, good: ['2512C', '2511R', '2509R', '2510C', '2510M']},
+          '$5000-$7000': {top: '3512R', most: '2510R', good: ['3512C', '3511R', '2512R', '2511R', '3510C', '3509R', '2512C']},
+          '$7000+': {top: 'VTV-120', most: null, good: ['VTV-100', '3515C', '3512C', '3512R', '3511R', '3510C']}
+        }
+      }
+    }
+  }
+
+  const init = () => {
+    title.innerHTML = question[current].t;
+    document.querySelectorAll(`.${current} .item li`).forEach((v, i, arr) => {
+      v.onclick = function() {
+        arr.forEach(vv => vv.classList.remove("active"));
+        v.classList.add("active")
+      }
+    })
+  }
+
+  document.querySelectorAll(".qa button").forEach(item => {
+    item.onclick = function() {
+      let { q, next } = item.dataset, c = document.querySelector(`.${q} .item .active`), f = $(".howToChoose figcaption");
+      if (!c) {
+        toast('Please Select An Item ^_^'); return
+      }
+
+      current = next;
+      document.querySelector(`.${q}`).classList.remove("on");
+
+      // get prev answer
+      let prev = c.dataset.answer, li = "", obj = null;
+      
+      if (current === 'q3' || current === 'result') {
+        obj = question[current][prev] ? question[current][prev][c.innerText] : null
+      } else {
+        obj = question[current][prev]
+      }
+
+      console.log("current, prev, obj, c.innerText", current, prev, obj, c.innerText);
+
+      // if left blank, directly obtain the result page
+      if (obj) {
+        obj.forEach((v, i) => {
+          li += `<li data-answer="${prev}"><p>${v.title}</p></li>`;
+        });
+        let nextDom = document.querySelector(`.${next}`);
+        nextDom.querySelector(".item").innerHTML = li;
+        nextDom.classList.add("on");
+        init()
+      } else {
+        f.hide();
+        document.querySelector(`.result`).classList.add("on");
+        let q2_answer = document.querySelector(".q2 .item .active").innerText, o_result;
+        o_result = question.result[prev][c.innerText] ? question.result[prev][c.innerText] : question.result[prev][q2_answer][c.innerText];
+        console.log("result", o_result);
+
+        /** Top Performance, Most Affordable, Good Choice */
+        const getProduct = (r, dom) => {
+          let url = r.split("?");
+
+          fetch(`${url[0]}.json`).then(res => res.json()).then(res => {
+            console.log("----------------res", res);
+            let variant = null;
+            if (url[1]) {
+              let id = new URLSearchParams(url[1]).get('variant');
+              variant = res.product.variants.find(item => item.id === +id)
+            } else {
+              variant = res.variants[0]
+            }
+
+            document.querySelector(dom).innerHTML = `
+              <img src="${res.product.image.src}" alt="${res.product.image.alt}" />
+              <div class="info">
+                <div>
+                  <h3>${res.product.title}</h3>
+                  <p>$ ${variant.price}</p>
+                  <div class="btn">
+                    <a href="/cart/${variant.id}:1">Buy it now</a>
+                    <a href="${r}">Learn More</a>
+                  </div>
+                </div>
+              </div>
+            `
+          })
+        }
+
+        o_result.top && getProduct(arr[o_result.top], ".result .top .content");
+
+        if (o_result.most) {
+          getProduct(arr[o_result.most], ".result .most .content");
+          $(".result .most").show()
+        }
+
+        if (o_result.good) {
+          let urls = o_result.good.map(item => {
+            let r = arr[item].split("?")[0] + ".json";
+            return r
+          });
+
+          const requests = urls.map(url => fetch(url));
+          Promise.all(requests).then(r => Promise.all(r.map(res => res.json()))).then(data => {
+            let html = "";
+            data.forEach((v, i) => {
+              html += `<li>
+                <a href="/products/${v.product.handle}">
+                  <img src="${v.product.image.src}" alt="${v.product.image.alt}" />
+                  <p>${v.product.title}</p>
+                </a>
+              </li>`
+            })
+            document.querySelector(".result .good .item").innerHTML = html;
+            $(".result .good").show()
+          })
+        }
+
+      }
+    }
+  })
+
+  init()
+})
+</script>
+
+{% schema %}
+  {
+    "name": "How To Choose", "class": "howToChoose",
+    "settings": [],
+    "blocks":[
+      {
+        "type": "Q1", "name": "Q1",
+        "settings": []
+      }
+    ],
+    "presets": [
+      {"name": "How To Choose"}
+    ]
+  }
+{% endschema %}

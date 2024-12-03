@@ -1,0 +1,390 @@
+{% capture section_css %}
+    {% render 'shpln-quiz__css', section: section %}
+{% endcapture %}
+{% unless section_css contains 'Liquid error' %}
+    {{ section_css }}
+{% endunless %}
+
+{%- capture blocks_json -%}
+    {%- render 'shpln-quiz__fn__get-blocks-settings', blocks: section.blocks -%}
+{%- endcapture -%}
+
+<link rel="prefetch" href="{{ 'shpln-preflight.css' | asset_url }}">
+<link rel="prefetch" href="{{ 'shpln-tailwind.css' | asset_url }}">
+
+<style>
+    .shpln-quiz-wrapper {
+        width: 100%;
+        height: 85vh;
+    }
+    @media (min-width: 640px) {
+        .shpln-quiz-wrapper {
+            height: 500px;
+        }
+    }
+
+    shpln-quiz {
+        width: 100;
+        height: 100%;
+    }
+</style>
+
+<div class="shpln-quiz-wrapper">
+    <shpln-quiz
+        data-props='
+                  {
+            "shopifySectionId": "shopify-section-{{ section.id }}",
+            "timerDurationInSeconds": {{ section.settings.timer_duration }},
+            {% if section.settings.config != blank %}
+            "config": {{ section.settings.config }},
+            {% endif %}
+            {% if section.settings.bg_img != blank %}
+            "backgroundImage": {
+            "src": "{{ section.settings.bg_img | image_url: width: 8000 }}",
+            "width": {{ section.settings.bg_img.width }},
+            "height": {{ section.settings.bg_img.height }},
+            "alt": "{{ section.settings.bg_img.alt }}"
+            },
+            {% endif %}
+            {% if section.settings.logo != blank %}
+            "logo": {
+            "src": "{{ section.settings.logo | image_url: width: section.settings.max_logo_size }}",
+            "width": {{ section.settings.logo.width }},
+            "height": {{ section.settings.logo.height }},
+            "alt": "{{ section.settings.logo.alt }}",
+            "maxSize": {{ section.settings.max_logo_size }}
+            },
+            {% endif %}
+            {% if section.settings.cover_image != blank %}
+            "coverImage": {
+            "src": "{{ section.settings.cover_image | image_url: height: 500 }}",
+            "width": {{ section.settings.cover_image.width }},
+            "height": {{ section.settings.cover_image.height }},
+            "alt": "{{ section.settings.cover_image.alt }}"
+            },
+            {% endif %}
+            "blocks": {{ blocks_json }},
+            "prize": {
+            "discountValue": {{ section.settings.prize_discount_value }},
+            "discountType": "{{ section.settings.prize_discount_type }}"
+            },
+            "theme": {
+            "primaryColor": "{{ section.settings.primary_color }}",
+            "textOnPrimaryColor": "{{ section.settings.text_on_primary }}",
+            "secondaryColor": "{{ section.settings.secondary_color }}",
+            "accentColor": "{{ section.settings.accent_color }}",
+            "backgroundColor": "{{ section.settings.background_color }}",
+            "errorColor": "{{ section.settings.error_color }}"
+            }
+            }
+        '
+        data-css-sources='
+            [
+            "{{ 'shpln-preflight.css' | asset_url }}",
+            "{{ 'shpln-tailwind.css' | asset_url }}"
+            ]
+        '
+    >
+        <template shadowrootmode="open">
+            <slot></slot>
+        </template>
+    </shpln-quiz>
+</div>
+
+<script type="module">
+    import "{{ 'shpln-quiz.js' | asset_url }}";
+</script>
+
+{% schema %}
+{
+    "name": "Shoplanding Quiz",
+    "class": "shoplanding shpln-quiz",
+    "settings": [
+        {
+            "id": "bg_img",
+            "label": "Background Image",
+            "type": "image_picker"
+        },
+        {
+            "id": "cover_image",
+            "label": "Cover Image",
+            "type": "image_picker"
+        },
+        {
+            "label": "Logo",
+            "id": "logo",
+            "type": "image_picker"
+        },
+        {
+            "label": "Max Logo Size",
+            "id": "max_logo_size",
+            "type": "number",
+            "default": 196
+        },
+        {
+            "label": "Prize Discount",
+            "id": "prize_discount_value",
+            "type": "number",
+            "default": 20
+        },
+        {
+            "label": "Prize Discount Type",
+            "id": "prize_discount_type",
+            "type": "select",
+            "options": [
+                { "value": "percentage", "label": "Percentage" },
+                { "value": "fixed", "label": "Fixed Amount" }
+            ],
+            "default": "percentage"
+        },
+        {
+            "label": "Timer Duration (Seconds)",
+            "id": "timer_duration",
+            "type": "number",
+            "default": 300
+        },
+        {
+            "id": "primary_color",
+            "type": "color",
+            "label": "Primary Color",
+            "default": "#0c4a6e"
+        },
+        {
+            "id": "text_on_primary",
+            "type": "color",
+            "label": "Text on Primary Color",
+            "default": "#f4f4f4"
+        },
+        {
+            "id": "secondary_color",
+            "type": "color",
+            "label": "Secondary Color",
+            "default": "#3a708f"
+        },
+        {
+            "id": "accent_color",
+            "type": "color",
+            "label": "Accent Color",
+            "default": "#f28e2b"
+        },
+        {
+            "id": "background_color",
+            "type": "color",
+            "label": "Background Color",
+            "default": "#f4f4f4"
+        },
+        {
+            "id": "config",
+            "type": "textarea",
+            "label": "Config"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "intro",
+            "name": "Step: Intro",
+            "settings": [
+                {
+                    "label": "Title",
+                    "id": "title",
+                    "type": "text",
+                    "default": "Got 5 minutes?"
+                },
+                {
+                    "label": "Subtitle",
+                    "id": "subtitle",
+                    "type": "html",
+                    "default": "Do the quiz and get <span class=\"prize-text\">20% off</span> your ideal product"
+                },
+                {
+                    "label": "Footer",
+                    "id": "footer",
+                    "type": "richtext",
+                    "default": "<p>There are really good reasons why you should take this quiz.</p>"
+                },
+                {
+                    "label": "CTA Button Text",
+                    "id": "cta_button_text",
+                    "type": "text",
+                    "default": "Do the quiz. Get a Discount!"
+                }
+            ]
+        },
+        {
+            "type": "multiple_choice",
+            "name": "Step: Multiple Choice",
+            "settings": [
+                {
+                    "label": "Style",
+                    "id": "style",
+                    "type": "select",
+                    "options": [
+                        {
+                            "label": "Grid",
+                            "value": "grid"
+                        },
+                        {
+                            "label": "Stack",
+                            "value": "stack"
+                        }
+                    ],
+                    "default": "grid"
+                },
+                {
+                    "label": "Title",
+                    "id": "title",
+                    "type": "text",
+                    "default": "Multiple Choice"
+                },
+                {
+                    "label": "Adds Discount Code Suffix",
+                    "id": "adds_discount_code_suffix",
+                    "type": "checkbox",
+                    "default": false
+                },
+                {
+                    "label": "Option 1 Answer ID (optional)",
+                    "id": "option_1_answer_id",
+                    "type": "text"
+                },
+                {
+                    "label": "Option 1: Title",
+                    "id": "option_1_title",
+                    "type": "text",
+                    "default": "Option 1"
+                },
+                {
+                    "label": "Option 1: Icon",
+                    "id": "option_1_icon",
+                    "type": "image_picker"
+                },
+                {
+                    "label": "Option 2 Answer ID (optional)",
+                    "id": "option_2_answer_id",
+                    "type": "text"
+                },
+                {
+                    "label": "Option 2: Title",
+                    "id": "option_2_title",
+                    "type": "text",
+                    "default": "Option 2"
+                },
+                {
+                    "label": "Option 2: Icon",
+                    "id": "option_2_icon",
+                    "type": "image_picker"
+                },
+                {
+                    "label": "Option 3 Answer ID (optional)",
+                    "id": "option_3_answer_id",
+                    "type": "text"
+                },
+                {
+                    "label": "Option 3: Title",
+                    "id": "option_3_title",
+                    "type": "text",
+                    "default": "Option 3"
+                },
+                {
+                    "label": "Option 3: Icon",
+                    "id": "option_3_icon",
+                    "type": "image_picker"
+                },
+                {
+                    "label": "Option 4 Answer ID (optional)",
+                    "id": "option_4_answer_id",
+                    "type": "text"
+                },
+                {
+                    "label": "Option 4: Title",
+                    "id": "option_4_title",
+                    "type": "text",
+                    "default": "Option 4"
+                },
+                {
+                    "label": "Option 4: Icon",
+                    "id": "option_4_icon",
+                    "type": "image_picker"
+                }
+            ]
+        },
+        {
+            "type": "educational",
+            "name": "Step: Educational",
+            "settings": [
+                {
+                    "label": "Title",
+                    "id": "title",
+                    "type": "text",
+                    "default": "Educational"
+                },
+                {
+                    "label": "Body",
+                    "id": "body",
+                    "type": "richtext",
+                    "default": "<p>Did you know that our brand is the best?</p>"
+                },
+                {
+                    "label": "Wait Until Can Proceed (Seconds)",
+                    "id": "wait_until_can_proceed",
+                    "type": "number",
+                    "default": 5
+                }
+            ]
+        },
+        {
+            "type": "loading",
+            "name": "Step: Loading",
+            "settings": [
+                {
+                    "label": "Message",
+                    "id": "message",
+                    "type": "text",
+                    "default": "Finding your ideal product"
+                },
+                {
+                    "label": "Artificial Wait (Seconds)",
+                    "id": "duration",
+                    "type": "number",
+                    "default": 3
+                }
+            ]
+        },
+        {
+            "type": "result",
+            "name": "Step: Result",
+            "settings": [
+                {
+                    "label": "Title",
+                    "id": "title",
+                    "type": "text",
+                    "default": "Your Perfect Choice"
+                },
+                {
+                    "label": "Buy Button Text",
+                    "id": "buy_button_text",
+                    "type": "text",
+                    "default": "Buy Now"
+                }
+            ]
+        },
+        {
+            "type": "segment_result",
+            "name": "Segment Result",
+            "settings": [
+                {
+                    "label": "Segment ID",
+                    "id": "segment_id",
+                    "type": "text"
+                },
+                {
+                    "label": "Title",
+                    "id": "title",
+                    "type": "text",
+                    "default": "You got a discount!"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

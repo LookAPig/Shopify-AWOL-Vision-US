@@ -1,0 +1,640 @@
+{%- if product.media.size > 0 -%}
+    {%- assign selected_media = product.selected_variant.featured_media | default: product.featured_media -%}
+  
+    {%- comment -%}
+    IMPLEMENTATION NOTE: Shopify does not natively offers a way to create a set of images per variant. This is often
+      pretty limited when you have a lot of colors and would like to only see the images specific to a given color. To
+      goes around that, Focal offers a hack using alt tags whose usage is described here: https://support.maestrooo.com/article/187-product-creating-variant-image-set
+      The implementation is rather complex and inefficient due to lot of string parsings, but it is, unfortunately, the
+      only way to do it on Shopify right now.
+    {%- endcomment -%}
+    
+  
+    {% assign filtered_media_ids = '' %}
+  
+    {%- for media in product.media -%}
+      {%- if media.alt contains '#' -%}
+        {%- assign alt_parts = media.alt | split: '#' -%}
+  
+        {%- assign media_group_parts = alt_parts.last | split: '_' -%}
+        {%- assign option = product.options_by_name[media_group_parts.first] -%}
+        {%- assign option_value = option.selected_value | downcase -%}
+  
+        {%- assign downcase_group_value = media_group_parts.last | strip | downcase -%}
+  
+        {%- if option_value != downcase_group_value and media != selected_media -%}
+          {%- assign filtered_media_ids = filtered_media_ids | append: media.id | append: ',' -%}
+        {%- endif -%}
+      {%- endif -%}
+    {%- endfor -%}
+  
+    {%- assign filtered_media_ids = filtered_media_ids | split: ',' | compact -%}
+  
+    {%- assign max_width = 0 -%}
+    {%- assign largest_image_aspect_ratio = 999 -%}
+  
+    {%- for media in product.media -%}
+      {%- assign max_width = max_width | at_least: media.preview_image.width -%}
+      {%- assign largest_image_aspect_ratio = largest_image_aspect_ratio | at_most: media.preview_image.aspect_ratio -%}
+    {%- endfor -%}
+    
+    <style>
+      #product-media-{{ section.id }}-{{ product.id }} {
+        position: sticky;
+        top: 0;
+        left:-24px;
+        
+        z-index: 2;
+
+        width:100vw;
+      }
+      .festival_tag {
+        color: #fff;
+        background: #c13939;;
+        padding: 5px 10px;
+        border-radius: 50px;
+        width: max-content;
+        position: absolute;
+        left: 50px;
+        top: 15px;
+        z-index: 99;
+      }
+      .product__media-list-wrapper:hover .pc.next,
+      .product__media-list-wrapper:hover .pc.prve{
+        opacity: 1;
+      }
+      .pc.next,
+      .pc.prve {
+        opacity: 0;
+        transition: all 0.5s ease;
+        position: absolute;
+        top: 50%;
+        width: 40px;
+        height: 40px;
+        background: #fff;
+        filter: drop-shadow(0px 0px 6px rgba(0, 0, 0, 0.1));
+        z-index: 1;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .pc.next {
+        right: 10px;
+      }
+      .pc.prve {
+        left: 10px;
+      }
+
+      .pagination_container{
+        display: none;
+      }
+      @media screen and (max-width: 749px) {
+        .pc.next,
+        .pc.prve {display: none;}
+        #product-media-{{ section.id }}-{{ product.id }} {
+          position: relative;
+          top: 0;
+
+          padding-right:0px;
+        }
+        .festival_tag {left: 10px;}
+
+        .product__media-list {
+          margin-left: 0;
+          margin-right: 0;
+        }
+          
+
+        /* 旧放大按钮隐藏 */
+
+        .product__media-list-wrapper .product__zoom-button {
+          display: none;
+        }
+        .pagination_container {
+          position: absolute;
+          right: 15px;
+          bottom: 15px;
+
+          display: flex;
+          padding: 4px 10px 5px 10px;
+          justify-content: center;
+          align-items: center;
+          border-radius: 40px;
+          background: rgba(0, 0, 0, 0.50);
+
+          span {
+            color: #FFF;
+            font-family: Manrope;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+          }
+        }
+
+        .product__media-nav {
+          display: none;
+        }
+
+        .flickity-viewport {
+          
+          height: 100vw !important;
+          /* width: 100vw; */
+        }
+
+        
+        .icons_container {
+          display: none; 
+        }
+
+      }
+      /* 全屏设备 */
+      @media only screen and (min-width: 768px) and (max-width: 1024px) {
+        #product-media-{{ section.id }}-{{ product.id }} {
+          position: relative;
+          top: 0;
+          z-index: 2;
+        }
+      }
+    </style>
+    <product-media id="product-media-{{ section.id }}-{{ product.id }}" form-id="product-form-{{ section.id }}-{{ product.id }}" {% if section.settings.enable_video_autoplay %}autoplay-video{% endif %} thumbnails-position="{{ section.settings.desktop_thumbnails_position }}" {% if settings.reveal_product_media %}reveal-on-scroll{% endif %} product-handle="{{ product.handle }}" class="product__media" style="--largest-image-aspect-ratio: {{ largest_image_aspect_ratio }}">
+      {% comment %} <div class="product-item__label-list label-list" style="left: auto;right: 10px;transform: rotate(14deg);animation: shake 0.5s ease 2; ">
+        <svg t="1696842082776" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5514" width="52" height="52"><path d="M703.132 213.888c132.876 0 245.088 103.444 262.088 241.608l16.572 134.676c9.652 78.448-12.628 157.536-61.388 217.896-48.764 60.36-119.5 96.416-194.896 99.344l-2.12 0.084c-10.152 0.396-20.26-1.6-29.58-5.84-21.816-10.036-59.288-33.024-74.98-77.656h-213.656c-15.692 44.632-53.164 67.62-74.98 77.656a65.228 65.228 0 0 1-29.58 5.84l-2.12-0.084c-75.396-2.928-146.132-38.984-194.896-99.344-48.76-60.36-71.04-139.448-61.388-217.896l16.572-134.676c17-138.164 129.212-241.608 262.088-241.608h382.264z" fill="#FF7549" p-id="5515"></path><path d="M429.14 184c5.212-5.572 21.212-44.64 34.1-77.456a73.372 73.372 0 0 1 68.288-46.54L610.996 60a14.144 14.144 0 0 1 14.144 14.144v47.712A14.132 14.132 0 0 1 610.996 136h-28.764a8.096 8.096 0 0 0-7.236 11.708L601.14 200s-181.196-6.168-172-16z" fill="#00CA60" p-id="5516"></path><path d="M741.14 394c0-126.94-103.06-230-230-230s-230 103.06-230 230v340c0 126.94 103.06 230 230 230s230-103.06 230-230v-340z" fill="#FE8C58" p-id="5517"></path><path d="M366.444 377.256a18.244 18.244 0 0 1 30.432 0l53.672 81.06a18.248 18.248 0 0 1-15.216 28.32H327.988a18.248 18.248 0 0 1-15.216-28.32l53.672-81.06z" fill="#FF5C38" p-id="5518"></path><path d="M366.444 398.72a18.244 18.244 0 0 1 30.432 0l53.672 81.056a18.256 18.256 0 0 1-15.216 28.324H327.988a18.248 18.248 0 0 1-15.216-28.324L366.444 398.72z" fill="#2B3F61" p-id="5519"></path><path d="M625.408 377.256a18.244 18.244 0 0 1 30.428 0l53.672 81.06a18.24 18.24 0 0 1-15.212 28.32h-107.348a18.248 18.248 0 0 1-15.212-28.32l53.672-81.06z" fill="#FF5C38" p-id="5520"></path><path d="M625.408 398.72a18.244 18.244 0 0 1 30.428 0l53.672 81.056a18.248 18.248 0 0 1-15.212 28.324h-107.348a18.248 18.248 0 0 1-15.212-28.324l53.672-81.056z" fill="#2B3F61" p-id="5521"></path><path d="M659.952 596h81.156a18.704 18.704 0 0 1 15.968 28.444C704.912 708.396 614.58 764 511.952 764c-102.632 0-192.964-55.604-245.044-139.608a18.616 18.616 0 0 1 15.884-28.296c19.96-0.02 48.196-0.036 81.16-0.048v58.852A13.104 13.104 0 0 0 377.048 668h57.804a13.108 13.108 0 0 0 13.1-13.1v-58.876l128-0.02v58.896a13.104 13.104 0 0 0 13.096 13.1h57.804a13.108 13.108 0 0 0 13.1-13.1V596z" fill="#FF5C38" p-id="5522"></path><path d="M659.952 608h81.156a18.704 18.704 0 0 1 15.968 28.444C704.912 720.396 614.58 776 511.952 776c-102.632 0-192.964-55.604-245.044-139.608a18.616 18.616 0 0 1 15.884-28.296c19.96-0.02 48.196-0.036 81.16-0.048v58.852A13.104 13.104 0 0 0 377.048 680h57.804a13.108 13.108 0 0 0 13.1-13.1v-58.876l128-0.02v58.896a13.104 13.104 0 0 0 13.096 13.1h57.804a13.108 13.108 0 0 0 13.1-13.1V608z" fill="#2B3F61" p-id="5523"></path></svg>
+      </div> {% endcomment %}
+      {%- if product.metafields.custom.festival_tag -%}
+      <div class="festival_tag">
+        {{ product.metafields.custom.festival_tag }}
+      </div>
+      {%- endif -%}
+      <div class="product__media-list-wrapper" style="max-width: {{ max_width }}px">
+        {%- capture flickity_config -%}
+        {
+          "adaptiveHeight": true,
+          "dragThreshold": 10,
+          "initialIndex": ".is-initial-selected",
+          "fade": {% if section.settings.transition_effect == 'fade' %}true{% else %}false{% endif %},
+          "draggable": ">1",
+          "contain": true,
+          "cellSelector": ".product__media-item:not(.is-filtered)",
+          "percentPosition": false,
+          "pageDots": false,
+          "prevNextButtons": false
+        }
+        {%- endcapture -%}
+  
+        <flickity-carousel controls="product-{{ section.id }}-{{ product.id }}-media-list" click-nav flickity-config="{{ flickity_config | escape }}" id="product-{{ section.id }}-{{ product.id }}-media-list" class="product__media-list">
+          <button class="pc prve product__media-prev-next {% if section.settings.show_thumbnails_on_mobile %}hidden-pocket{% endif %} tap-area tap-area--large" aria-label="{{ 'general.accessibility.previous' | t }}" data-action="prev">
+            <svg style="transform: translateX(-1px);" xmlns="http://www.w3.org/2000/svg" width="10" height="17" viewBox="0 0 10 17" fill="none">
+                <path d="M8.84424 15.6667L1.67757 8.50008L8.84424 1.33342" stroke="#6B6B6B" stroke-width="2"/>
+            </svg>
+          </button>
+          {%- for media in product.media -%}
+            {%- assign alt = media.alt -%}
+            {%- assign is_media_filtered = false -%}
+            {%- assign media_id_as_string = media.id | append: '' -%}
+  
+            {% if media.alt contains '#' %}
+              {%- assign alt = product.title -%}
+            {%- endif -%}
+  
+            {%- if filtered_media_ids contains media_id_as_string and media.alt != product.title -%}
+              {%- assign is_media_filtered = true -%}
+            {%- endif -%}
+  
+            <div id="product-{{ section.id }}-{{ media.id }}" class="product__media-item {% if is_media_filtered %}is-filtered{% endif %} {% if selected_media.id == media.id %}is-initial-selected is-selected{% endif %}" data-media-type="{{ media.media_type }}" data-media-id="{{ media.id }}" data-original-position="{{ forloop.index0 }}">
+              {%- case media.media_type -%}
+                {%- when 'image' -%}
+                  <div class="product__media-image-wrapper aspect-ratio aspect-ratio--natural" style="padding-bottom: {{ 100.0 | divided_by: media.aspect_ratio }}%; --aspect-ratio: {{ media.aspect_ratio }}">
+                    <img {% if selected_media.id == media.id and settings.reveal_product_media %}reveal{% endif %} {% if selected_media.id != media.id or request.page_type != 'product' %}loading="lazy"{% endif %} sizes="(max-width: 999px) calc(100vw - 48px), 640px" {% render 'image-attributes', image: media, alt: alt, sizes: '400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800' %}>
+                  </div>
+  
+                {%- when 'video' -%}
+                  <native-video class="video-wrapper video-wrapper--native" style="--aspect-ratio: {{ media.aspect_ratio }}">
+                    {%- unless section.settings.enable_video_autoplay -%}
+                      <div class="video-wrapper__poster">
+                        <img class="video-wrapper__poster-image" {% if selected_media.id != media.id or request.page_type != 'product' %}loading="lazy"{% endif %} sizes="(max-width: 999px) calc(100vw - 48px), 640px" {% render 'image-attributes', image: media.preview_image, sizes: '400,500,600,700,800,900,1000,1200,1400,1600,1800,2000,2200' %}>
+  
+                        <div class="video-wrapper__poster-content">
+                          <button type="button" class="video-wrapper__play-button" title="{{ 'general.accessibility.play_video' | t | escape }}">
+                            {%- render 'icon' with 'play', width: 72, height: 72 -%}
+                          </button>
+                        </div>
+                      </div>
+                    {%- endunless -%}
+  
+                    <template>
+                      {{- media | video_tag: image_size: '1024x', controls: true, autoplay: true, muted: section.settings.enable_video_autoplay, loop: section.settings.enable_video_looping -}}
+                    </template>
+                  </native-video>
+  
+                {%- when 'external_video' -%}
+                  <external-video provider="{{ media.host | escape }}" class="video-wrapper">
+                    {%- unless section.settings.enable_video_autoplay -%}
+                      <div class="video-wrapper__poster">
+                        <img class="video-wrapper__poster-image" {% if selected_media.id != media.id or request.page_type != 'product' %}loading="lazy"{% endif %} sizes="(max-width: 999px) calc(100vw - 48px), 640px" {% render 'image-attributes', image: media.preview_image, sizes: '400,500,600,700,800,900,1000,1200,1400,1600,1800,2000,2200' %}>
+  
+                        <div class="video-wrapper__poster-content">
+                          <button type="button" class="video-wrapper__play-button" title="{{ 'general.accessibility.play_video' | t | escape }}">
+                            {%- render 'icon' with 'play', width: 72, height: 72 -%}
+                          </button>
+                        </div>
+                      </div>
+                    {%- endunless -%}
+  
+                    <template>
+                      {%- if media.host == 'youtube' -%}
+                        {{- media | external_video_url: enablejsapi: true, loop: section.settings.enable_video_looping, mute: section.settings.enable_video_autoplay, autoplay: true, playlist: media.external_id | external_video_tag -}}
+                      {%- elsif media.host == 'vimeo' -%}
+                        {{- media | external_video_url: autopause: true, loop: section.settings.enable_video_looping, muted: section.settings.enable_video_autoplay, autoplay: true | external_video_tag -}}
+                      {%- else -%}
+                        {{- media | external_video_tag: image_size: '1024x' -}}
+                      {%- endif -%}
+                    </template>
+                  </external-video>
+  
+                {%- when 'model' -%}
+                  <model-media product-handle="{{ product.handle }}" class="model-wrapper">
+                    {{- media | model_viewer_tag: image_size: '1024x', reveal: 'interaction', toggleable: true -}}
+                  </model-media>
+              {%- endcase -%}
+            </div>
+          {%- endfor -%}
+          
+          <button class="pc next product__media-prev-next {% if section.settings.show_thumbnails_on_mobile %}hidden-pocket{% endif %} tap-area tap-aera--large" aria-label="{{ 'general.accessibility.next' | t }}" data-action="next">
+            <svg style="transform: translateX(1px);" xmlns="http://www.w3.org/2000/svg" width="10" height="17" viewBox="0 0 10 17" fill="none">
+                <path d="M1.15576 1.33325L8.32243 8.49992L1.15576 15.6666" stroke="#6B6B6B" stroke-width="2"/>
+            </svg>
+          </button>
+        </flickity-carousel>
+        {%- if section.settings.enable_image_zoom -%}
+          <button {% if selected_media.media_type != 'image' %}hidden{% endif %} is="toggle-button" aria-controls="product-{{ section.id }}-{{ product.id }}-zoom" aria-expanded="false" class="tap-area product__zoom-button">
+            <span class="visually-hidden">{{ 'product.general.zoom' | t }}</span>
+            {%- render 'icon' with 'image-zoom' -%}
+          </button>
+        {%- endif -%}
+      </div>
+  
+      {%- comment -%}Add the "view in your space" button, which allows to show the product in customer's environment (if the device supports it){%- endcomment -%}
+      {%- assign first_3d_model = product.media | where: 'media_type', 'model' | first -%}
+  
+      {%- if first_3d_model -%}
+        <button class="product__view-in-space button button--ternary button--full" data-shopify-xr data-shopify-model3d-id="{{ first_3d_model.id }}" data-shopify-model3d-default-id="{{ first_3d_model.id }}" data-shopify-title="{{ product.title | escape }}" data-shopify-xr-hidden>
+          {%- render 'icon', icon: 'media-view-in-space' -%} {{- 'product.general.view_in_space' | t -}}
+        </button>
+      {%- endif -%}
+  
+      {%- if product.media.size > 1 -%}
+        <flickity-controls controls="product-{{ section.id }}-{{ product.id }}-media-list" class="product__media-nav">
+          <button class="product__media-prev-next {% if section.settings.show_thumbnails_on_mobile %}hidden-pocket{% endif %} hidden-lap-and-up tap-area tap-area--large" aria-label="{{ 'general.accessibility.previous' | t }}" data-action="prev">
+            {%- render 'icon' with 'nav-arrow-left', direction_aware: true -%}
+          </button>
+  
+          {%- unless section.settings.show_thumbnails_on_mobile -%}
+            <div class="dots-nav dots-nav--centered hidden-lap-and-up">
+              {%- for media in product.media -%}
+                {%- assign is_media_filtered = false -%}
+                {%- assign media_id_as_string = media.id | append: '' -%}
+  
+                {%- if filtered_media_ids contains media_id_as_string -%}
+                  {%- assign is_media_filtered = true -%}
+                {%- endif -%}
+  
+                <button type="button" tabindex="-1" class="dots-nav__item {% if is_media_filtered %}is-filtered{% endif %} tap-area" {% if selected_media.id == media.id %}aria-current="true"{% endif %} aria-controls="product-{{ section.id }}-{{ media.id }}" data-media-id="{{ media.id }}" data-action="select">
+                    <span class="visually-hidden">{{ 'general.accessibility.go_to_slide' | t: num: forloop.index }}</span>
+                </button>
+              {%- endfor -%}
+            </div>
+          {%- endunless -%}
+  
+          <scroll-shadow class="product__thumbnail-scroll-shadow {% unless section.settings.show_thumbnails_on_mobile %}hidden-pocket{% endunless %}">
+            <div class="product__thumbnail-list hide-scrollbar">
+              <div class="product__thumbnail-list-inner">
+                {%- for media in product.media -%}
+                  {%- assign alt = media.alt -%}
+                  {%- assign is_media_filtered = false -%}
+                  {%- assign media_id_as_string = media.id | append: '' -%}
+  
+                  {% if media.alt contains '#' %}
+                    {%- assign alt = product.title -%}
+                  {%- endif -%}
+  
+                  {%- if filtered_media_ids contains media_id_as_string and media.alt != product.title -%}
+                    {%- assign is_media_filtered = true -%}
+                  {%- endif -%}
+  
+                  <button type="button" tabindex="-1" {% if settings.reveal_product_media and is_media_filtered == false %}reveal{% endif %} class="product__thumbnail-item {% if is_media_filtered %}is-filtered{% endif %} {% unless section.settings.show_thumbnails_on_mobile %}hidden-pocket{% endunless %}" {% if selected_media.id == media.id %}aria-current="true"{% endif %} aria-controls="product-{{ section.id }}-{{ media.id }}" data-media-id="{{ media.id }}" data-action="select">
+                    <div class="product__thumbnail">
+                      <img loading="lazy" sizes="(max-width: 999px) 72px, 60px" {% render 'image-attributes', image: media.preview_image, alt: alt, sizes: '60,72,120,144,180,216,240,288' %}>
+  
+                      {%- case media.media_type -%}
+                        {%- when 'model' -%}
+                          <span class="product__thumbnail-badge">{% render 'icon', icon: 'media-model-badge', width: 18, height: 18 %}</span>
+  
+                        {%- when 'video' or 'external_video' -%}
+                          <span class="product__thumbnail-badge">{% render 'icon', icon: 'media-video-badge', width: 18, height: 18 %}</span>
+                      {%- endcase -%}
+                    </div>
+                  </button>
+                {%- endfor -%}
+              </div>
+            </div>
+          </scroll-shadow>
+  
+          <button class="product__media-prev-next {% if section.settings.show_thumbnails_on_mobile %}hidden-pocket{% endif %} hidden-lap-and-up tap-area tap-aera--large" aria-label="{{ 'general.accessibility.next' | t }}" data-action="next">
+            {%- render 'icon' with 'nav-arrow-right', direction_aware: true -%}
+          </button>
+        </flickity-controls>
+      {%- endif -%}
+      {% comment %} prodcut shipping icons {% endcomment %}
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'product_earranty' -%}
+            <div  class="icons_container pcIconsContainer">
+              <div class="icons_item">
+                <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path id="Vector" d="M22.3491 6.4186H21.2642V22.1977C21.2642 22.303 21.2473 22.4074 21.2146 22.5047C21.1819 22.6021 21.1339 22.6905 21.0735 22.765C21.013 22.8395 20.9413 22.8986 20.8623 22.9389C20.7833 22.9792 20.6987 23 20.6132 23H2.38679C2.21415 23 2.04858 22.9155 1.92651 22.765C1.80443 22.6145 1.73585 22.4105 1.73585 22.1977V6.4186H0.650943C0.478302 6.4186 0.312732 6.33407 0.190657 6.18361C0.0685814 6.03314 0 5.82907 0 5.61628V0.802325C0 0.589535 0.0685814 0.385461 0.190657 0.234996C0.312732 0.0845305 0.478302 0 0.650943 0H22.3491C22.5217 0 22.6873 0.0845305 22.8093 0.234996C22.9314 0.385461 23 0.589535 23 0.802325V5.61628C23 5.82907 22.9314 6.03314 22.8093 6.18361C22.6873 6.33407 22.5217 6.4186 22.3491 6.4186ZM3.03774 21.3953H19.9623V6.4186H3.03774V21.3953ZM21.6981 1.60465H1.30189V4.81395H21.6981V1.60465ZM15.8787 16.3851L13.7262 19.0221C13.5985 19.172 13.4279 19.2537 13.2515 19.2494C13.0752 19.2451 12.9074 19.1551 12.7845 18.9991C12.6577 18.8498 12.5842 18.6446 12.5802 18.4285C12.5761 18.2125 12.6418 18.0033 12.7628 17.8469L13.7957 16.5814H7.59434C7.50886 16.5814 7.42421 16.5606 7.34523 16.5203C7.26626 16.48 7.1945 16.4209 7.13405 16.3464C7.07361 16.2719 7.02566 16.1834 6.99295 16.0861C6.96023 15.9888 6.9434 15.8844 6.9434 15.7791C6.9434 15.6737 6.96023 15.5694 6.99295 15.472C7.02566 15.3747 7.07361 15.2862 7.13405 15.2117C7.1945 15.1372 7.26626 15.0781 7.34523 15.0378C7.42421 14.9975 7.50886 14.9767 7.59434 14.9767H15.4057C15.5783 14.9767 15.7439 15.0613 15.8659 15.2117C15.988 15.3622 16.0566 15.5663 16.0566 15.7791C16.0692 16.0027 16.0045 16.223 15.8787 16.3851ZM15.4057 13.3721H7.59434C7.50886 13.3721 7.42421 13.3513 7.34523 13.311C7.26626 13.2707 7.1945 13.2116 7.13405 13.1371C7.07361 13.0626 7.02566 12.9741 6.99295 12.8768C6.96023 12.7795 6.9434 12.6751 6.9434 12.5698C6.93638 12.4591 6.94875 12.3478 6.97967 12.2435C7.01059 12.1392 7.05935 12.0444 7.12262 11.9653L9.27334 9.32891C9.40101 9.17909 9.57148 9.09741 9.74772 9.10162C9.92396 9.10582 10.0917 9.19557 10.2146 9.35137C10.478 9.66 10.4893 10.1735 10.2389 10.4987L10.2346 10.5046L9.2026 11.7674H15.4057C15.5783 11.7674 15.7439 11.852 15.8659 12.0024C15.988 12.1529 16.0566 12.357 16.0566 12.5698C16.0566 12.7826 15.988 12.9866 15.8659 13.1371C15.7439 13.2876 15.5783 13.3721 15.4057 13.3721Z" fill="#666666"/>
+                </svg>
+                <div class="icon_context">
+                  30-Day Money Back<br> Guarantee
+                </div>
+              </div>
+              <div class="icons_item">
+                <svg width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g id="Frame" clip-path="url(#clip0_4387_520)">
+                    <path id="Vector" d="M21.2171 1.99154L11.6864 0H11.3127L1.78205 1.99154C1.63506 2.02338 1.50373 2.10865 1.41156 2.23209C1.31938 2.35554 1.27237 2.50912 1.27892 2.66536V11.3203C1.27892 17.9089 6.32455 22.6257 11.3414 23.9583H11.6002C16.5883 22.6257 21.6627 17.9688 21.6627 11.3203V2.66536C21.6722 2.51717 21.6333 2.36997 21.5525 2.24766C21.4716 2.12534 21.3534 2.03509 21.2171 1.99154ZM20.4408 11.3203C20.4408 17.1003 15.9702 21.3678 11.4996 22.6257C7.02893 21.3678 2.5583 17.1751 2.5583 11.3203V3.18945L11.4996 1.33268L20.4408 3.18945V11.3203Z" fill="#666666"/>
+                    <path id="Vector_2" d="M17.7386 15.6777L17.2498 15.2135L13.6561 11.5449C13.936 10.7174 13.9887 9.82494 13.8084 8.96788C13.6281 8.11082 13.2219 7.32314 12.6354 6.69336C12.2325 6.249 11.7467 5.89498 11.2079 5.65295C10.6691 5.41093 10.0885 5.286 9.50168 5.28581C8.79047 5.29921 8.09187 5.4837 7.46043 5.82488C7.37191 5.87465 7.29606 5.94569 7.23918 6.03212C7.1823 6.11854 7.14603 6.21786 7.13338 6.32181C7.12073 6.42576 7.13207 6.53136 7.16645 6.62983C7.20083 6.72831 7.25726 6.81682 7.33106 6.88803L9.50168 9.14909L8.73981 9.94271L6.55481 7.68165C6.50056 7.61485 6.4319 7.56239 6.35444 7.52856C6.27699 7.49472 6.19294 7.48048 6.10918 7.48698C5.98595 7.48869 5.86587 7.52786 5.76372 7.59969C5.66157 7.67152 5.58179 7.77287 5.53418 7.89128C5.11722 8.76843 4.97344 9.75925 5.1229 10.7256C5.27236 11.6919 5.7076 12.5856 6.36793 13.2819C6.77699 13.7127 7.26549 14.0529 7.80404 14.2819C8.34259 14.5109 8.92005 14.6241 9.50168 14.6146C9.99299 14.6214 10.481 14.5299 10.9392 14.3451L14.6048 17.9688L15.0648 18.433C15.1214 18.4974 15.1902 18.5489 15.2669 18.5841C15.3437 18.6193 15.4266 18.6375 15.5104 18.6375C15.5943 18.6375 15.6772 18.6193 15.7539 18.5841C15.8307 18.5489 15.8995 18.4974 15.9561 18.433L17.7386 16.5762C17.7959 16.5176 17.8415 16.4477 17.8726 16.3706C17.9037 16.2935 17.9198 16.2106 17.9198 16.127C17.9198 16.0433 17.9037 15.9605 17.8726 15.8833C17.8415 15.8062 17.7959 15.7363 17.7386 15.6777ZM15.5679 17.0703L11.9311 13.4766C11.8159 13.3506 11.6778 13.25 11.5247 13.1805C11.3716 13.1111 11.2068 13.0743 11.0398 13.0723C10.8875 13.0466 10.7321 13.0466 10.5798 13.0723C10.2367 13.2136 9.87064 13.2847 9.50168 13.2819C9.08157 13.2856 8.66531 13.1983 8.27929 13.0256C7.89326 12.8529 7.54589 12.5985 7.25918 12.2787C6.88127 11.8975 6.60154 11.4234 6.44578 10.9C6.29002 10.3766 6.26325 9.82085 6.36793 9.28386L7.80543 10.7813C7.92304 10.9049 8.06299 11.003 8.21719 11.0699C8.3714 11.1369 8.53681 11.1713 8.70387 11.1713C8.87093 11.1713 9.03634 11.1369 9.19055 11.0699C9.34475 11.003 9.4847 10.9049 9.60231 10.7813L10.3642 9.97266C10.486 9.85362 10.5832 9.70982 10.6496 9.55014C10.7159 9.39046 10.7502 9.21829 10.7502 9.04428C10.7502 8.87026 10.7159 8.6981 10.6496 8.53841C10.5832 8.37873 10.486 8.23493 10.3642 8.11589L8.92668 6.6185C9.11674 6.58189 9.31163 6.58189 9.50168 6.6185C9.92017 6.61131 10.3353 6.69706 10.7195 6.87005C11.1037 7.04304 11.4481 7.29929 11.7298 7.62175C12.16 8.06282 12.4613 8.62193 12.5987 9.23418C12.7361 9.84644 12.704 10.4867 12.5061 11.0807C12.4124 11.3182 12.3926 11.5802 12.4493 11.83C12.506 12.0798 12.6365 12.3048 12.8223 12.4733L16.4592 16.1419L15.5679 17.0703Z" fill="#666666"/>
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_4387_520">
+                      <rect width="23" height="23.9583" fill="white"/>
+                    </clipPath>
+                  </defs>
+                </svg>            
+                <div class="icon_context">
+                  24-Month Hassle-<br> Free Warranty
+                </div>
+              </div>
+              <div class="icons_item">
+                <svg width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g id="Frame" clip-path="url(#clip0_4387_525)">
+                    <path id="Vector" d="M21.2171 1.99154L11.6864 0H11.3127L1.78205 1.99154C1.63506 2.02338 1.50373 2.10865 1.41156 2.23209C1.31938 2.35554 1.27237 2.50912 1.27892 2.66536V11.3203C1.27892 17.9089 6.32455 22.6257 11.3414 23.9583H11.6002C16.5883 22.6257 21.6627 17.9688 21.6627 11.3203V2.66536C21.6722 2.51717 21.6333 2.36997 21.5525 2.24766C21.4716 2.12534 21.3534 2.03509 21.2171 1.99154ZM20.4408 11.3203C20.4408 17.1003 15.9702 21.3678 11.4996 22.6257C7.02893 21.3678 2.5583 17.1751 2.5583 11.3203V3.18945L11.4996 1.33268L20.4408 3.18945V11.3203Z" fill="#666666"/>
+                    <path id="Vector 18" d="M6.3252 11.7446L10.1897 15.7701L17.279 8.38541" stroke="#666666" stroke-width="1.5" stroke-linecap="round"/>
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_4387_525">
+                      <rect width="23" height="23.9583" fill="white"/>
+                    </clipPath>
+                  </defs>
+                </svg>
+                <div class="icon_context">
+                  30-Day Price<br> Match Guarantee
+                </div>
+              </div>
+              <div class="icons_item">
+                <svg width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g id="Frame" clip-path="url(#clip0_4387_530)">
+                    <path id="Vector" d="M1.2113 12.923V15.4516C1.2113 15.9535 1.40273 16.4349 1.74348 16.7899C2.08422 17.1448 2.54637 17.3442 3.02826 17.3442C3.51015 17.3442 3.9723 17.1448 4.31304 16.7899C4.65379 16.4349 4.84522 15.9535 4.84522 15.4516V12.923C4.84522 12.421 4.65379 11.9396 4.31304 11.5847C3.9723 11.2297 3.51015 11.0303 3.02826 11.0303C2.54637 11.0303 2.08422 11.2297 1.74348 11.5847C1.40273 11.9396 1.2113 12.421 1.2113 12.923ZM17.911 17.7455C17.61 17.4513 17.3701 17.096 17.2063 16.7014C17.0424 16.3069 16.958 15.8815 16.9583 15.4516V12.923C16.9589 12.0906 17.2753 11.2922 17.8386 10.7018C18.4018 10.1114 19.1663 9.77688 19.9653 9.77106C19.6546 5.18766 15.9862 1.56951 11.5074 1.56951C7.02799 1.56951 3.36016 5.18766 3.04946 9.77106C3.84836 9.77738 4.61253 10.1121 5.17569 10.7024C5.73885 11.2927 6.05543 12.0908 6.05652 12.923V15.4516C6.05652 16.2882 5.73747 17.0905 5.16957 17.6821C4.60166 18.2737 3.83141 18.606 3.02826 18.606C2.22512 18.606 1.45487 18.2737 0.886957 17.6821C0.319048 17.0905 0 16.2882 0 15.4516L0 12.923C0.00034547 12.3083 0.173065 11.7072 0.496933 11.1934C0.820801 10.6796 1.28171 10.2756 1.82301 10.031C2.01077 4.62806 6.27456 0.307739 11.5074 0.307739C16.7402 0.307739 21.004 4.62806 21.1918 10.031C21.7329 10.2758 22.1937 10.6799 22.5176 11.1936C22.8414 11.7073 23.0142 12.3084 23.0148 12.923V15.4516C23.0145 15.9566 22.8977 16.4542 22.6744 16.9025C22.451 17.3508 22.1276 17.7366 21.7313 18.0276C21.3351 18.3186 20.8775 18.5063 20.3971 18.5747C19.9167 18.6432 19.4276 18.5906 18.9708 18.4212C17.8272 19.6758 16.4092 20.6239 14.8379 21.1844C14.8238 21.7612 14.5935 22.3092 14.1962 22.7112C13.799 23.1132 13.2665 23.3371 12.7126 23.3351H10.9066C9.73162 23.3351 8.78135 22.351 8.78135 21.127C8.78135 19.905 9.72859 18.9189 10.9072 18.9189H12.712C13.477 18.9189 14.1462 19.3353 14.5205 19.963C15.7946 19.4955 16.9527 18.7379 17.9103 17.7455H17.911ZM18.1696 12.923V15.4516C18.1696 15.9535 18.361 16.4349 18.7017 16.7899C19.0425 17.1448 19.5046 17.3442 19.9865 17.3442C20.4684 17.3442 20.9306 17.1448 21.2713 16.7899C21.6121 16.4349 21.8035 15.9535 21.8035 15.4516V12.923C21.8035 12.421 21.6121 11.9396 21.2713 11.5847C20.9306 11.2297 20.4684 11.0303 19.9865 11.0303C19.5046 11.0303 19.0425 11.2297 18.7017 11.5847C18.361 11.9396 18.1696 12.421 18.1696 12.923ZM10.9078 22.0734H12.7126C13.2226 22.0734 13.6272 21.6519 13.6272 21.127C13.6272 20.6015 13.2208 20.1807 12.7126 20.1807H10.9078C10.3978 20.1807 9.99326 20.6021 9.99326 21.127C9.99326 21.6526 10.3997 22.0734 10.9078 22.0734Z" fill="#666666" stroke="#666666" stroke-width="0.1"/>
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_4387_530">
+                      <rect width="23" height="23.9583" fill="white"/>
+                    </clipPath>
+                  </defs>
+                </svg>
+                <div class="icon_context">
+                  Lifetime Customer<br> Support
+                </div>
+              </div>
+            </div>
+            <div class="dialog_bg">
+              <dialog class="dialog">
+                <div class="dialog_header">
+                  <div class="main_title">{{ block.settings.dialog_title }}</div>
+                  <div class="close">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
+                      <path d="M13.5 1L1 13.5" stroke="#1B1D1D" stroke-width="1.5"/>
+                      <path d="M1 1L13.5 13.5" stroke="#1B1D1D" stroke-width="1.5"/>
+                    </svg>
+                  </div>
+                </div>
+                <div class="dialog_context">
+                  {{ block.settings.dialog_context }}
+                </div>
+              </dialog>
+            </div>
+            <script defer >
+              $('.dialog').on('click', function(){
+                event.stopPropagation();
+              })
+              $('.pcIconsContainer').on('click', function() {
+                // $('body').css('overflow', 'hidden')
+                $(this).next().show();
+                $(this).next().find('.dialog').attr('open', 'open')
+              })
+              $('.view_gift').on('click', function() {
+                // $('body').css('overflow', 'hidden')
+                $(this).next().show();
+                $(this).next().find('.dialog').attr('open', 'open')
+              })
+              $('.dialog_bg').on('click', function() {
+                // $('body').css('overflow', 'visible')
+                $('.dialog_bg').hide();
+                $('.dialog').removeAttr('open')
+              })
+              $('.close').on('click', function() {
+                // $('body').css('overflow', 'visible')
+                $('.dialog_bg').hide();
+                $('.dialog').removeAttr('open')
+              })
+            </script>
+
+        {%- endcase -%}
+
+      {%- endfor -%}
+      {%- if section.settings.enable_image_zoom -%}
+        {%- comment -%}This code MUST NOT be changed, and is part of the PhotoSwipe required interface{%- endcomment -%}
+        <product-image-zoom product-handle="{{ product.handle }}" id="product-{{ section.id }}-{{ product.id }}-zoom" class="pswp" tabindex="-1" role="dialog">
+          <div class="pswp__bg"></div>
+  
+          <div class="pswp__scroll-wrap">
+            <div class="pswp__container">
+              <div class="pswp__item"></div>
+              <div class="pswp__item"></div>
+              <div class="pswp__item"></div>
+            </div>
+  
+            <div class="pswp__ui pswp__ui--hidden">
+              <div class="pswp__top-bar preview_close">
+                <button class="pswp__button pswp__button--close prev-next-button" data-action="pswp-close" title="{{ 'general.accessibility.close' | t | escape }}">{% render 'icon' with 'close' %}</button>
+              </div>
+  
+              <div class="pswp__prev-next-buttons hidden-pocket">
+                <button class="pswp__button prev-next-button prev-next-button--prev" data-action="pswp-prev" title="{{ 'general.accessibility.previous' | t | escape }}">{% render 'icon' with 'nav-arrow-left', direction_aware: true %}</button>
+                <button class="pswp__button prev-next-button prev-next-button--next" data-action="pswp-next" title="{{ 'general.accessibility.next' | t | escape }}">{% render 'icon' with 'nav-arrow-right', direction_aware: true %}</button>
+              </div>
+  
+              <div class="pswp__dots-nav-wrapper hidden-lap-and-up">
+                <button class="tap-area tap-area--large" data-action="pswp-prev">
+                  <span class="visually-hidden">{{ 'general.accessibility.previous' | t }}</span>
+                  {%- render 'icon' with 'nav-arrow-left', direction_aware: true -%}
+                </button>
+  
+                <div class="dots-nav dots-nav--centered">
+                  <!-- This will be fill at runtime as the number of items will be dynamic -->
+                </div>
+  
+                <button class="tap-area tap-area--large" data-action="pswp-next">
+                  <span class="visually-hidden">{{ 'general.accessibility.next' | t }}</span>
+                  {%- render 'icon' with 'nav-arrow-right', direction_aware: true -%}
+                </button>
+              </div>
+            </div>
+          </div>
+        </product-image-zoom>
+      {%- endif -%}
+      <div class="pagination_container">
+        <span class="pagination_current">-</span>
+        <span>/</span>
+        <span class="pagination_total">-</span>
+      </div>
+      <script defer>
+        //  移动端分页新样式
+        (function () {
+          if (!(window.innerWidth < 1024)) return;
+      
+          /**
+           * @等待直到指定类名的元素存在
+           * @param {string} className - 目标元素的类名
+           * @param {function} callback - 元素存在时执行的回调函数
+           */
+          const waitForElement = (selectorClass, attrName, callback) => {
+            if (!selectorClass) {
+              return console.error("waitForElement >>>>>>>> 未传入类名");
+            }
+      
+            const observer = new MutationObserver(() => {
+              const targetElement = document.querySelector(selectorClass);
+      
+              if (attrName) {
+                if (targetElement && targetElement[attrName]) {
+                  observer.disconnect(); // 停止观察
+      
+                  callback(targetElement); // 执行回调函数
+                }
+              } else {
+                if (targetElement && targetElement.innerHTML.trim()) {
+                  observer.disconnect(); // 停止观察
+      
+                  callback(targetElement); // 执行回调函数
+                }
+              }
+            });
+      
+            // 开始观察文档主体以检测DOM变化
+            observer.observe(document.body, {
+              childList: true, // 观察子节点变化
+              subtree: true, // 观察所有后代节点
+            });
+          };
+      
+          const caculateNum = () => {
+            const imgDotsControlWrapEle = document.querySelector("flickity-controls");
+      
+            const dotEles = imgDotsControlWrapEle.querySelectorAll(
+              ".dots-nav .dots-nav__item"
+            );
+      
+            const index = [...dotEles].findIndex(
+              (element) => element.getAttribute("aria-current") === "true"
+            );
+      
+            const currentNumEle = document.querySelector(
+              ".pagination_container .pagination_current"
+            );
+      
+            const totalEle = document.querySelector(
+              ".pagination_container .pagination_total"
+            );
+      
+            currentNumEle.innerText = String(index + 1);
+      
+            totalEle.innerText = String(dotEles.length);
+          };
+      
+          console.log("图片分页器逻辑init >>>>>>>>>>>>>>>>");
+      
+          // 创建一个 MutationObserver
+          const observerElement = (dotEle, observerOptions, callback) => {
+            // 定义一个 MutationObserver 回调
+            const observerCallback = function (mutationsList) {
+              mutationsList.forEach((mutation) => {
+                // 检查是否为属性变化，并且是 aria-current 属性
+                if (
+                  mutation.type === "attributes" &&
+                  mutation.attributeName === "aria-current"
+                ) {
+                  const target = mutation.target;
+      
+                  // 判断 aria-current 是否为 true
+                  if (target.getAttribute("aria-current") === "true") {
+                    callback();
+                  }
+                }
+              });
+            };
+      
+            const instance = new MutationObserver(observerCallback);
+      
+            instance.observe(dotEle, observerOptions);
+          };
+      
+          // 配置 MutationObserver 选项，监听属性的变化
+          const observerOptions = {
+            attributes: true, // 监听属性
+            attributeFilter: ["aria-current"], // 只监听 aria-current 属性
+          };
+      
+          waitForElement(
+            'flickity-controls .dots-nav .dots-nav__item[aria-current="true"]',
+            null,
+            (targetEle) => {
+              // console.log(
+              //   "图片分页器加载完毕>>>>>>>>> >>>>>>> 目标元素",
+              //   targetEle,
+              //   "这是按钮容器",
+              //   document.querySelector("product-media flickity-controls")
+              // );
+      
+              caculateNum();
+      
+              const dotEles = document.querySelectorAll(
+                "flickity-controls .dots-nav .dots-nav__item"
+              );
+      
+              // 监听 dot 滚动变化，更新数字
+              dotEles.forEach((dotEle) =>
+                observerElement(dotEle, observerOptions, (targetEle2) => {
+                  console.log("aria-current is true for:", targetEle2);
+      
+                  caculateNum();
+                })
+              );
+      
+              // 监听列表图片点击事件，放大
+              const mediaItems = document.querySelectorAll(".product__media-item");
+      
+              mediaItems.forEach((item) => {
+                item.addEventListener("click", (event) => {
+                  // 打印触发事件的元素
+                  document.querySelector('.product__zoom-button').click()
+                });
+              });
+            }
+          );
+        })();
+      </script>
+      {% comment %} End Script {% endcomment %}
+    </product-media>
+
+  {%- endif -%}

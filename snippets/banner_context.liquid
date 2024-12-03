@@ -1,0 +1,162 @@
+<style>
+  @font-face {
+    font-family: "Manrope";
+    src: url("https://cdn.shopify.com/s/files/1/0554/7445/4576/files/Manrope.woff2?v=1718257995") format("woff2-variations");
+    font-weight: 200 800;
+  }
+  @font-face {
+    font-family: "AWOL-DM-SemiBold";
+    src: url("https://cdn.shopify.com/s/files/1/0554/7445/4576/files/AWOL-DM-SemiBold.otf?v=1727076025")
+      format("opentype");
+    font-weight: normal;
+  }
+  @font-face {
+    font-family: "AWOL-DM-Medium";
+    src: url("https://cdn.shopify.com/s/files/1/0554/7445/4576/files/AWOL-DM-Medium.otf?v=1727076025")
+      format("opentype");
+    font-weight: normal;
+  }
+  .banner_context_continer {
+    position: absolute;
+    top: 50%;
+    left: 164px;
+    transform: translateY(-50%);
+  }  
+  .banner_context_continer img {border-radius: 0;}
+  .banner_context_continer .banner_header {
+    color: #EDC580;
+    font-family: "Manrope", sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 2.24px;
+    text-transform: uppercase;
+  }
+  .banner_context_continer .banner_desc {
+    color: #FFF;
+    font-family: "Manrope", sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 36px; /* 112.5% */
+    letter-spacing: -0.96px;
+  }
+  .banner_context_continer .banner_innerImage {
+    width: 100%;
+    margin-top: 20px;
+  }
+  .banner_context_continer .banner_btn_container {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-top: 30px;
+  }
+  .banner_context_continer .banner_btn_container .leran_more_btn {
+    color: var(--Dark-Gray, #1B1D1D);
+    font-family: "AWOL-DM-SemiBold", sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px; /* 142.857% */
+    letter-spacing: 0.98px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 38px;
+    background: linear-gradient(90deg, #FBE29F 0%, #F3B666 100%);
+    padding: 10px 20px 10px 20px;
+  }
+  .banner_context_continer .banner_btn_container {
+    margin-top: 30px;
+    align-items: center;
+  }
+  .banner_context_continer .banner_date {
+    color: #FFF;
+    font-family: "AWOL-DM-Medium", sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 21.76px; /* 108.8% */
+  }
+  .banner_context_continer .banner_date .mobile {
+      display: none;
+    }
+  @media screen and (min-width: 1920px) {
+
+  }
+  @media screen and (max-width: 1680px) {
+    .banner_context_continer {
+      transform: translateY(-50%) scale(0.9);
+      left: 0px;
+    }
+  }
+  @media screen and (max-width: 1366px) {
+    .banner_context_continer {
+      transform: translateY(-50%) scale(0.7);
+      left: 0px;
+    }
+  }
+  @media screen and (max-width: 1024px) {
+    br {
+      display: none;
+    }
+    .banner_date { display: block; }
+    .banner_context_continer {
+      transform: translate(-50%, -50%) scale(0.85);
+      left: 50%;
+      top: 36%;
+      width: 400px;
+    }
+    .banner_context_continer .banner_header {
+      font-size: 22px;
+    }
+    .banner_context_continer .banner_desc {
+      font-size: 20px;
+    }
+    .banner_context_continer .banner_innerImage {
+      margin-top: 2px;
+    }
+    .banner_context_continer .banner_btn_container {
+      margin-top: 10px;
+      align-items: center;
+      justify-content: center;
+    }
+    .banner_context_continer .banner_btn_container .banner_date {
+      display: none;
+    }
+  }
+  @media screen and (max-width: 390px) {
+    .banner_context_continer {
+      transform: translate(-50%, -50%) scale(0.75);
+      left: 50%;
+      top: 36%;
+      width: 400px;
+    }
+  }
+</style>
+<div class="banner_context_continer">
+  <div class="banner_date mobile">Dec 2nd</div>
+  <div class="banner_header">
+    CYBER MONDAY DEALS NOW LIVE!
+  </div>
+  <div class="banner_desc">
+    Buy a Projector - Get a Free Screen, Plus Optional<br> Speakers at 50% Off!
+  </div>
+  <div class="banner_innerImage">
+    <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/banner_inner_image.png?v=1732280240" alt="">
+  </div>
+  {% render 'countdown_banner' %}
+  <div class="banner_btn_container">
+    {% if template contains 'index' %}
+    <div class="leran_more_btn">
+      learn more
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <path d="M10.7318 16.8567L17.4815 9.99986M17.4815 9.99986L10.7319 3.14307M17.4815 9.99986L2.91082 9.99986" stroke="black" stroke-width="1.5"/>
+      </svg>
+    </div>
+    {% endif %}
+    <div class="banner_date">Dec 2nd</div>
+  </div>
+</div>

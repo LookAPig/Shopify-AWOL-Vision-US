@@ -1,0 +1,22 @@
+
+.wbg-multi-column-content-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center; 
+}
+
+.wbg-multi-column-content-left {
+  width: 12%;
+}
+
+.wbg-multi-column-content-right {
+  margin-top: 0px !important;
+  width: 88%;
+}
+
+@media screen and (max-width: 1024px) {
+  .wbg-multi-column-content-container {
+    width: 90%;
+    margin: auto;
+  }
+}

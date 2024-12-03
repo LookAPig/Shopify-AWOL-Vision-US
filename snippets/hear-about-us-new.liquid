@@ -1,0 +1,228 @@
+<style>
+#how-did-you-hear-about-us--label,
+#how-did-you-hear-about-us-other--label {
+    font-weight: bold;
+}
+
+select#how-did-you-hear-about-us,
+input#how-did-you-hear-about-us-other {
+    width: 100%;
+    padding: 8px 10px 8px 10px;
+    line-height: 1.2;
+}
+
+#how-did-you-hear-about-us,
+#how-did-you-hear-about-us-other,
+#how-did-you-hear-about-us--label,
+#how-did-you-hear-about-us--error,
+#how-did-you-hear-about-us-other--label,
+#how-did-you-hear-about-us-other--error {
+    display:block;
+    margin-bottom: 1px;
+}
+
+#how-did-you-hear-about-us-other.error,
+#how-did-you-hear-about-us.error {
+    border: 2px solid {{ settings.hau_error_color }};
+}
+
+#how-did-you-hear-about-us--error,
+#how-did-you-hear-about-us-other--error {
+    color: {{ settings.hau_error_color }};
+}
+.why_choose_us {
+    background: #F8F8F8;
+    /* margin-top: 20px; */
+    padding: 20px 24px;
+}
+.choose_title {
+    color: var(--Dark-Gray, #1B1D1D);
+    font-family: Manrope;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-bottom: 26px;
+}
+.choose_container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: baseline;
+}
+.choose_item {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+.item_context {
+    color: var(--Dark-Gray, #1B1D1D);
+    text-align: center;
+    font-family: Manrope;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+.container.vertical-breather {
+        padding: 0;
+    }
+@media screen and (max-width: 768px) {
+    .choose_container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px 20px;
+    }
+    .choose_title {
+        font-size: 18px;
+    }
+
+}
+</style>
+
+<div class="form-vertical">
+{% comment %} <p>
+    <label id="how-did-you-hear-about-us--label" for="how-did-you-hear-about-us">How did you hear about us?</label>
+    <span id="how-did-you-hear-about-us--error" style="display:none">{{ settings.hau_error_message }}</span>
+    <select id="how-did-you-hear-about-us" name="attributes[how-did-you-hear-about-us]">
+    <option value=""{% if cart.attributes.how-did-you-hear-about-us == "" %} selected{% endif %}>Please make a selection</option>
+    {% assign optionsArray = settings.hau_form_options | split: ',' %}
+    {% for o in optionsArray %}
+    {% assign option = o | strip %}
+    <option value="{{ option }}"{% if cart.attributes.how-did-you-hear-about-us == option %} selected{% endif %}>{{ option }}</option>
+    {% endfor %}
+    <option value="Other"{% if cart.attributes.how-did-you-hear-about-us == "Other" %} selected{% endif %}>Other</option>
+    </select>
+</p>
+<p id="otherFormWrapper" style="{% unless cart.attributes.how-did-you-hear-about-us == 'Other' %}display:none{% endunless %}">
+    <label id="how-did-you-hear-about-us-other--label" for="how-did-you-hear-about-us-other">Other</label>
+    <span id="how-did-you-hear-about-us-other--error" style="display:none">{{ settings.hau_error_message_other }}</span>
+    <input id="how-did-you-hear-about-us-other" type="text" name="attributes[how-did-you-hear-about-us-other]" value="{{ cart.attributes.how-did-you-hear-about-us-other }}"/>
+</p> {% endcomment %}
+<div class="why_choose_us">
+    <p class="choose_title">Why choose AWOL Vision</p>
+    <div class="choose_container">
+        <div class="choose_item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="29" viewBox="0 0 35 29" fill="none">
+                <path d="M33.233 8.07907H31.6198V27.9401C31.6198 28.0727 31.5947 28.2041 31.5461 28.3266C31.4974 28.4491 31.4261 28.5604 31.3363 28.6542C31.2464 28.748 31.1397 28.8224 31.0222 28.8731C30.9048 28.9239 30.7789 28.95 30.6518 28.95H3.54916C3.29244 28.95 3.04624 28.8436 2.86471 28.6542C2.68319 28.4648 2.5812 28.208 2.5812 27.9401V8.07907H0.967952C0.711235 8.07907 0.465033 7.97267 0.283507 7.78328C0.10198 7.59389 0 7.33702 0 7.06919V1.00988C0 0.742046 0.10198 0.485178 0.283507 0.295788C0.465033 0.106398 0.711235 0 0.967952 0H33.233C33.4897 0 33.7359 0.106398 33.9175 0.295788C34.099 0.485178 34.201 0.742046 34.201 1.00988V7.06919C34.201 7.33702 34.099 7.59389 33.9175 7.78328C33.7359 7.97267 33.4897 8.07907 33.233 8.07907ZM4.51711 26.9302H29.6839V8.07907H4.51711V26.9302ZM32.2651 2.01977H1.9359V6.0593H32.2651V2.01977ZM23.6116 20.6238L20.4109 23.943C20.2209 24.1317 19.9672 24.2345 19.705 24.2291C19.4428 24.2237 19.1932 24.1104 19.0106 23.914C18.822 23.7262 18.7127 23.4679 18.7067 23.1959C18.7006 22.924 18.7983 22.6607 18.9783 22.4639L20.5141 20.8709H11.2928C11.1657 20.8709 11.0398 20.8448 10.9224 20.7941C10.8049 20.7433 10.6982 20.6689 10.6083 20.5751C10.5184 20.4814 10.4471 20.37 10.3985 20.2475C10.3499 20.125 10.3248 19.9937 10.3248 19.861C10.3248 19.7284 10.3499 19.5971 10.3985 19.4746C10.4471 19.3521 10.5184 19.2407 10.6083 19.147C10.6982 19.0532 10.8049 18.9788 10.9224 18.928C11.0398 18.8773 11.1657 18.8512 11.2928 18.8512H22.9082C23.1649 18.8512 23.4111 18.9576 23.5926 19.147C23.7742 19.3363 23.8761 19.5932 23.8761 19.861C23.8949 20.1425 23.7987 20.4198 23.6116 20.6238ZM22.9082 16.8314H11.2928C11.1657 16.8314 11.0398 16.8053 10.9224 16.7545C10.8049 16.7038 10.6982 16.6294 10.6083 16.5356C10.5184 16.4418 10.4471 16.3305 10.3985 16.208C10.3499 16.0855 10.3248 15.9541 10.3248 15.8215C10.3144 15.6822 10.3328 15.5421 10.3788 15.4109C10.4247 15.2796 10.4972 15.1602 10.5913 15.0607L13.7894 11.7423C13.9793 11.5537 14.2328 11.4509 14.4948 11.4562C14.7569 11.4615 15.0064 11.5744 15.1891 11.7705C15.5808 12.159 15.5976 12.8053 15.2252 13.2147L15.2188 13.2221L13.6843 14.8116H22.9082C23.1649 14.8116 23.4111 14.918 23.5926 15.1074C23.7742 15.2968 23.8761 15.5537 23.8761 15.8215C23.8761 16.0893 23.7742 16.3462 23.5926 16.5356C23.4111 16.725 23.1649 16.8314 22.9082 16.8314Z" fill="#1B1D1D"/>
+            </svg>
+            <div class="item_context">30-Day Money Back <br>Guarantee</div>
+        </div>
+        <div class="choose_item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="34" viewBox="0 0 35 34" fill="none">
+                <path d="M31.9891 2.82625L17.9003 0H17.3478L3.25905 2.82625C3.04175 2.87144 2.84762 2.99244 2.71136 3.16763C2.5751 3.34282 2.5056 3.56077 2.5153 3.7825V16.065C2.5153 25.415 9.97405 32.1087 17.3903 34H17.7728C25.1466 32.1087 32.6478 25.5 32.6478 16.065V3.7825C32.6619 3.57219 32.6044 3.3633 32.4849 3.18972C32.3653 3.01614 32.1906 2.88806 31.9891 2.82625ZM30.8416 16.065C30.8416 24.2675 24.2328 30.3237 17.6241 32.1087C11.0153 30.3237 4.40655 24.3738 4.40655 16.065V4.52625L17.6241 1.89125L30.8416 4.52625V16.065Z" fill="#1B1D1D"/>
+                <path d="M26.8465 22.2488L26.124 21.59L20.8115 16.3838C21.2253 15.2094 21.3033 13.9429 21.0367 12.7266C20.7702 11.5103 20.1697 10.3925 19.3027 9.49875C18.7071 8.86815 17.989 8.36574 17.1925 8.02227C16.3959 7.67881 15.5377 7.50152 14.6702 7.50125C13.6189 7.52026 12.5862 7.78208 11.6527 8.26625C11.5219 8.33688 11.4098 8.43771 11.3257 8.56036C11.2416 8.68301 11.188 8.82394 11.1693 8.97146C11.1506 9.11899 11.1673 9.26884 11.2182 9.40859C11.269 9.54834 11.3524 9.67395 11.4615 9.775L14.6702 12.9838L13.544 14.11L10.314 10.9013C10.2338 10.8065 10.1323 10.732 10.0178 10.684C9.9033 10.636 9.77906 10.6158 9.65524 10.625C9.47307 10.6274 9.29557 10.683 9.14456 10.7849C8.99355 10.8869 8.87562 11.0307 8.80524 11.1988C8.18886 12.4435 7.97632 13.8496 8.19726 15.221C8.4182 16.5923 9.0616 17.8605 10.0377 18.8488C10.6424 19.4601 11.3646 19.9429 12.1607 20.2679C12.9568 20.5929 13.8104 20.7535 14.6702 20.74C15.3965 20.7497 16.1179 20.6199 16.7952 20.3575L22.214 25.5L22.894 26.1588C22.9776 26.2502 23.0794 26.3233 23.1928 26.3733C23.3062 26.4233 23.4288 26.4491 23.5527 26.4491C23.6767 26.4491 23.7993 26.4233 23.9127 26.3733C24.0261 26.3233 24.1279 26.2502 24.2115 26.1588L26.8465 23.5238C26.9313 23.4407 26.9987 23.3415 27.0447 23.232C27.0907 23.1225 27.1144 23.005 27.1144 22.8863C27.1144 22.7675 27.0907 22.65 27.0447 22.5405C26.9987 22.431 26.9313 22.3319 26.8465 22.2488ZM23.6377 24.225L18.2615 19.125C18.0913 18.9463 17.887 18.8034 17.6608 18.7049C17.4345 18.6063 17.1908 18.5541 16.944 18.5513C16.7188 18.5148 16.4892 18.5148 16.264 18.5513C15.7568 18.7518 15.2157 18.8528 14.6702 18.8488C14.0492 18.854 13.4339 18.7301 12.8632 18.485C12.2926 18.2399 11.7791 17.879 11.3552 17.425C10.7966 16.8841 10.3831 16.2113 10.1528 15.4685C9.92258 14.7258 9.883 13.9371 10.0377 13.175L12.1627 15.3C12.3366 15.4754 12.5435 15.6146 12.7714 15.7096C12.9994 15.8047 13.2439 15.8536 13.4909 15.8536C13.7378 15.8536 13.9823 15.8047 14.2103 15.7096C14.4383 15.6146 14.6451 15.4754 14.819 15.3L15.9452 14.1525C16.1254 13.9836 16.2689 13.7795 16.3671 13.5529C16.4652 13.3263 16.5159 13.082 16.5159 12.835C16.5159 12.5881 16.4652 12.3437 16.3671 12.1171C16.2689 11.8905 16.1254 11.6864 15.9452 11.5175L13.8202 9.3925C14.1012 9.34055 14.3893 9.34055 14.6702 9.3925C15.2889 9.3823 15.9026 9.504 16.4705 9.74949C17.0385 9.99498 17.5476 10.3586 17.964 10.8163C18.5999 11.4422 19.0453 12.2356 19.2484 13.1045C19.4515 13.9734 19.404 14.882 19.1115 15.725C18.9731 16.0619 18.9437 16.4338 19.0276 16.7883C19.1114 17.1428 19.3043 17.462 19.579 17.7013L24.9552 22.9075L23.6377 24.225Z" fill="#1B1D1D"/>
+            </svg>
+            <div class="item_context">24-Month Hassle-Free <br>Warranty</div>
+        </div>
+        <div class="choose_item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="34" viewBox="0 0 35 34" fill="none">
+                <path d="M31.7 2.82625L17.6112 0H17.0587L2.96998 2.82625C2.75269 2.87144 2.55856 2.99244 2.4223 3.16763C2.28604 3.34282 2.21654 3.56077 2.22623 3.7825V16.065C2.22623 25.415 9.68499 32.1087 17.1012 34H17.4837C24.8575 32.1087 32.3587 25.5 32.3587 16.065V3.7825C32.3728 3.57219 32.3154 3.3633 32.1958 3.18972C32.0762 3.01614 31.9015 2.88806 31.7 2.82625ZM30.5525 16.065C30.5525 24.2675 23.9437 30.3237 17.335 32.1087C10.7262 30.3237 4.11748 24.3738 4.11748 16.065V4.52625L17.335 1.89125L30.5525 4.52625V16.065Z" fill="#1B1D1D"/>
+                <path d="M9.68494 16.6671L15.3976 22.3798L25.8774 11.9" stroke="#1B1D1D" stroke-width="2.21" stroke-linecap="round"/>
+            </svg>
+            <div class="item_context">30-Day Price Match <br>Guarantee</div>
+        </div>
+        <div class="choose_item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="34" viewBox="0 0 35 34" fill="none">
+                <g clip-path="url(#clip0_2776_242)">
+                <path d="M2.67978 18.3394V21.9278C2.67978 22.6402 2.96277 23.3233 3.46648 23.8271C3.97019 24.3308 4.65337 24.6137 5.36572 24.6137C6.07807 24.6137 6.76125 24.3308 7.26496 23.8271C7.76867 23.3233 8.05166 22.6402 8.05166 21.9278V18.3394C8.05166 17.627 7.76867 16.9439 7.26496 16.4402C6.76125 15.9364 6.07807 15.6535 5.36572 15.6535C4.65337 15.6535 3.97019 15.9364 3.46648 16.4402C2.96277 16.9439 2.67978 17.627 2.67978 18.3394ZM27.3662 25.1832C26.9213 24.7657 26.5667 24.2615 26.3245 23.7015C26.0823 23.1416 25.9575 22.5379 25.9579 21.9278V18.3394C25.9588 17.1582 26.4266 16.0252 27.2592 15.1873C28.0919 14.3495 29.2219 13.8747 30.4031 13.8664C29.9438 7.36198 24.5209 2.22736 17.9001 2.22736C11.2784 2.22736 5.85635 7.36198 5.39706 13.8664C6.57804 13.8754 7.70768 14.3504 8.54018 15.1881C9.37268 16.0258 9.84066 17.1584 9.84228 18.3394V21.9278C9.84228 23.1151 9.37064 24.2537 8.53113 25.0932C7.69161 25.9327 6.55298 26.4044 5.36572 26.4044C4.17846 26.4044 3.03983 25.9327 2.20031 25.0932C1.3608 24.2537 0.88916 23.1151 0.88916 21.9278L0.88916 18.3394C0.889671 17.4671 1.14499 16.614 1.62376 15.8849C2.10252 15.1558 2.78386 14.5824 3.58405 14.2353C3.8616 6.56783 10.1646 0.436737 17.9001 0.436737C25.6356 0.436737 31.9386 6.56783 32.2161 14.2353C33.0161 14.5827 33.6973 15.1562 34.176 15.8852C34.6547 16.6143 34.9102 17.4672 34.911 18.3394V21.9278C34.9105 22.6445 34.738 23.3507 34.4078 23.9869C34.0776 24.623 33.5996 25.1706 33.0138 25.5836C32.4279 25.9966 31.7515 26.2628 31.0414 26.36C30.3313 26.4572 29.6082 26.3824 28.933 26.142C27.2424 27.9226 25.1463 29.268 22.8234 30.0635C22.8026 30.8819 22.4621 31.6597 21.8749 32.2301C21.2877 32.8006 20.5004 33.1185 19.6818 33.1156H17.0119C15.275 33.1156 13.8703 31.7189 13.8703 29.982C13.8703 28.2478 15.2706 26.8484 17.0128 26.8484H19.6809C20.8116 26.8484 21.801 27.4394 22.3543 28.3302C24.2378 27.6667 25.9496 26.5916 27.3653 25.1832H27.3662ZM27.7485 18.3394V21.9278C27.7485 22.6402 28.0315 23.3233 28.5352 23.8271C29.0389 24.3308 29.7221 24.6137 30.4345 24.6137C31.1468 24.6137 31.83 24.3308 32.3337 23.8271C32.8374 23.3233 33.1204 22.6402 33.1204 21.9278V18.3394C33.1204 17.627 32.8374 16.9439 32.3337 16.4402C31.83 15.9364 31.1468 15.6535 30.4345 15.6535C29.7221 15.6535 29.0389 15.9364 28.5352 16.4402C28.0315 16.9439 27.7485 17.627 27.7485 18.3394ZM17.0137 31.325H19.6818C20.4356 31.325 21.0337 30.7269 21.0337 29.982C21.0337 29.2362 20.4329 28.6391 19.6818 28.6391H17.0137C16.2599 28.6391 15.6618 29.2371 15.6618 29.982C15.6618 30.7278 16.2626 31.325 17.0137 31.325Z" fill="#1B1D1D" stroke="#1B1D1D" stroke-width="0.1"/>
+                </g>
+                <defs>
+                <clipPath id="clip0_2776_242">
+                    <rect width="34" height="34" fill="white" transform="translate(0.88916)"/>
+                </clipPath>
+                </defs>
+            </svg>
+            <div class="item_context">Lifetime Customer <br>Support</div>
+        </div>
+    </div>
+</div>
+</div>
+
+<script>
+(function() {
+
+    document.addEventListener("DOMContentLoaded", initForm);
+    document.addEventListener("shopify:section:load", initForm);
+
+    function initForm(){
+
+    var formElement = document.querySelector('#how-did-you-hear-about-us');
+    var formError = document.querySelector('#how-did-you-hear-about-us--error');
+    var otherFormElement = document.querySelector('#how-did-you-hear-about-us-other');
+    var otherFormError = document.querySelector('#how-did-you-hear-about-us-other--error');
+    var otherFormWrapper = document.querySelector('#otherFormWrapper');
+    var checkoutButtons = document.querySelectorAll('[name="checkout"], [name="goto_pp"], [name="goto_gc"]');
+
+    function showOrHideForm(){
+        if (formElement.value == 'Other'){
+        otherFormWrapper.style.display = '';
+        } else {
+        otherFormWrapper.style.display = 'none';
+        }
+    }
+
+    function checkFormElement(){
+        if (formElement.value.length == 0){
+        formElement.classList.add('error');
+        formError.style.display = '';
+        } else {
+        if (formElement.classList.contains('error')){
+            formElement.classList.remove('error');
+            formError.style.display = 'none';
+        }
+        }
+    }
+
+    function checkOtherFormElement(){
+        if (otherFormElement.value.length == 0){
+        otherFormElement.classList.add('error');
+        otherFormError.style.display = '';
+        } else {
+        if (otherFormElement.classList.contains('error')){
+            otherFormElement.classList.remove('error');
+            otherFormError.style.display = 'none';
+        }
+        }
+    }
+
+    otherFormElement.addEventListener("input", function() {
+        {% if settings.hau_form_validation %}
+        checkOtherFormElement();
+        {% endif %}
+    });
+
+    formElement.addEventListener("change", function() {
+        showOrHideForm();
+        {% if settings.hau_form_validation %}
+        checkFormElement();
+        {% endif %}
+    });
+
+    checkoutButtons.forEach(function(element){
+        element.addEventListener("click", function(evt) {
+
+        {% if settings.hau_form_validation %}
+        var validated = true;
+        if (formElement.value.length == 0){
+            checkFormElement();
+            validated = false;
+        }
+        if (formElement.value == 'Other'){
+            if (otherFormElement.value.length == 0){
+            checkOtherFormElement();
+            validated = false;
+            }
+        }
+        if (!validated) {
+            evt.preventDefault();
+            evt.stopPropagation();
+        }
+        {% endif %}
+        });
+    });
+
+    }
+})()
+</script>

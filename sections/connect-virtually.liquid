@@ -1,0 +1,298 @@
+{{- 'register.css' | asset_url | stylesheet_tag: true -}}
+{%- if section.settings.background_type == 'boxed' -%}
+    {%- assign is_boxed = true -%}
+  {%- else -%}
+    {%- assign is_boxed = false -%}
+  {%- endif -%}
+  
+  {%- if section.settings.background != settings.background and section.settings.background != 'rgba(0,0,0,0)' -%}
+    {%- assign blends_with_background = false -%}
+  {%- else -%}
+    {%- assign blends_with_background = true -%}
+  {%- endif -%}
+  
+  <style>
+    #shopify-section-{{ section.id }} {
+      {%- if section.settings.background == 'rgba(0,0,0,0)' -%}
+        {%- assign section_background = settings.background -%}
+      {%- else -%}
+        {%- assign section_background = section.settings.background -%}
+      {%- endif -%}
+  
+      {%- if section.settings.text_color == 'rgba(0,0,0,0)' -%}
+        {%- assign heading_color = settings.heading_color -%}
+        {%- assign text_color = settings.text_color -%}
+      {%- else -%}
+        {%- assign heading_color = section.settings.text_color -%}
+        {%- assign text_color = section.settings.text_color -%}
+      {%- endif -%}
+  
+      {%- if section.settings.button_background == 'rgba(0,0,0,0)' -%}
+        {%- assign button_background = settings.primary_button_background -%}
+      {%- else -%}
+        {%- assign button_background = section.settings.button_background -%}
+      {%- endif -%}
+  
+      {%- if section.settings.button_text_color == 'rgba(0,0,0,0)' -%}
+        {%- assign button_text_color = settings.primary_button_text_color -%}
+      {%- else -%}
+        {%- assign button_text_color = section.settings.button_text_color -%}
+      {%- endif -%}
+  
+      --heading-color: {{ heading_color.red }}, {{ heading_color.green }}, {{ heading_color.blue }};
+      --text-color: {{ text_color.red }}, {{ text_color.green }}, {{ text_color.blue }};
+      --primary-button-background: {{ button_background.red }}, {{ button_background.green }}, {{ button_background. blue }};
+      --primary-button-text-color: {{ button_text_color.red }}, {{ button_text_color.green }}, {{ button_text_color.blue }};
+  
+      --section-background: {{ section_background.red }}, {{ section_background.green }}, {{ section_background.blue }};
+    }
+  </style>
+  
+  <section class="section {% unless blends_with_background or is_boxed %}section--flush{% endunless %}">
+    <div {% if is_boxed %}class="container"{% endif %}>
+      <div class="section__color-wrapper {% if is_boxed %}section__color-wrapper--boxed{% endif %}">
+        <div class="reg_container">
+          <div class="reg_context">
+            <div class="reg_header">
+              {{ section.settings.reg_header }}
+            </div>
+            <div class="reg_context">
+              {{ section.settings.reg_context }}
+            </div>
+          </div>
+          <div class="reg_form_container">
+            <div class="reg_form">
+              <div class="reg_item first_name">
+                <label for="first_name">First Name*</label>
+                <input type="text" required name="first_name" id="first_name"/>
+              </div>
+              <div class="reg_item last_name">
+                <label for="last_name">Last Name*</label>
+                <input type="text" required name="last_name" id="last_name"/>
+              </div>
+              <div class="reg_item email">
+                <label for="email">Email*</label>
+                <input type="email" required name="email" id="email"/>
+              </div>
+              <div class="reg_item phone_number">
+                <label for="phone_number">Phone Number*</label>
+                <input type="text" required name="phone_number" id="phone_number" />
+              </div>
+              <div class="reg_item how_to_connect reg_long">
+                <label for="how_to_connect">How would you like to connect?*</label>
+                <select id="how_to_connect" required name="how_to_connect">
+                  <option value="Video Chat">Video Chat</option>
+                  <option value="Phone Call">Phone Call</option>
+                  <option value="Text Message">Text Message</option>
+                  <option value="Email">Email</option>
+                </select>
+              </div>
+              <div class="reg_item when_do_you_plan reg_long">
+                <label for="when_do_you_plan">When do you plan on purchasing AWOL projector?*</label>
+                <select id="when_do_you_plan" required name="when_do_you_plan">
+                  <option value="Within a week">Within a week</option>
+                  <option value="Within a month">Within a month</option>
+                  <option value="Within three month">Within three month</option>
+                  <option value="Next year">Next year</option>
+                  <option value="Other time<">Other time</option>
+                </select>
+              </div>
+              <div class="reg_item reason reg_long">
+                <label for="reason">What is your primary reason for purchasing AWOL projector?*</label>
+                <select id="reason" required name="reason">
+                  <option value="I need a projector to create a home theater.">I need a projector to create a home theater.</option>
+                  <option value="I need a high-performance projector to replace my old equipment.">I need a high-performance projector to replace my old equipment.</option>
+                  <option value="I need a projector for professional work presentations and multimedia displays.">I need a projector for professional work presentations and multimedia displays.</option>
+                  <option value="I need a projector for high-quality gaming experiences.">I need a projector for high-quality gaming experiences.</option>
+                  <option value="Other reason">Other reason</option>
+                </select>
+              </div>
+              <div class="reg_item learn_about reg_long">
+                <label for="learn_about">Is there anything specific you would like to learn about?</label>
+                <textarea name="learn_about" id="learn_about"></textarea>
+              </div>
+            </div>
+            <div class="reg_form_desc">
+              You may receive text messages and/or phone calls from one of our community managers during the application process.
+              <br><br>
+              By applying you agree to AWOL's <a style="text-decoration: underline;" href="https://awolvision.com/pages/terms-of-service">Terms of Use</a> and <a style="text-decoration: underline;" href="https://awolvision.com/policies/privacy-policy">Privacy Policy</a>.
+            </div>
+            <div class="submit_buttom">
+              <button class="button" id="submit_button">submit request</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+    $("#submit_button").on('click', function() {
+      let first_name = $("#first_name").val(), last_name = $("#last_name").val(), email = $("#email").val(), phone_number = $("#phone_number").val(), when_do_you_plan = $("#when_do_you_plan").val(), reason = $("#reason").val(), learn_about = $("#learn_about").val(), connect = $("#how_to_connect").val();
+      if (first_name && last_name && email && phone_number) {
+        $.ajax({
+          url: 'https://admin.awolvision.com/prod-api/system/request', // 替换为你的API端点
+          type: 'POST', // 请求类型，可以是GET、POST等
+          dataType: 'json', // 期望从服务器返回的数据类型
+          contentType: "application/json",
+          data: JSON.stringify({
+            firstName: first_name,
+            lastName: last_name, 
+            email: email,
+            phoneNumber: phone_number,
+            purchaseTime: when_do_you_plan,
+            reason: reason,
+            about: learn_about,
+            connect: connect,
+            showroomId: shopCommon.getQueryParams('showroomId'),
+            type: "Connect Virtually"
+          }),
+          success: function(response) {
+            // 请求成功时的回调函数
+            console.log('Response:', response);
+            window.location.href = "https://awolvision.com/pages/success"
+          },
+          error: function(xhr, status, error) {
+            // 请求失败时的回调函数
+            console.error('Error:', error);
+          }
+        });
+      } else {
+        console.log('Each message are required')
+      }
+    })
+  </script>
+  {% schema %}
+  {
+    "name": "connect-virtually",
+    "class": "shopify-section--show-room",
+    "settings": [
+      {
+        "type": "text",
+        "id": "reg_header",
+        "label": "Header",
+        "default": "Become a Host"
+      },
+      {
+        "type": "textarea",
+        "id": "reg_context",
+        "label": "Context",
+        "default": "Become a Host desc"
+      },
+      {
+        "type": "select",
+        "id": "background_type",
+        "label": "Background",
+        "options": [
+          {
+            "value": "full_width",
+            "label": "Full width"
+          },
+          {
+            "value": "boxed",
+            "label": "Boxed"
+          }
+        ],
+        "default": "full_width"
+      },
+      {
+        "type": "select",
+        "id": "text_width",
+        "label": "Text width",
+        "options": [
+          {
+            "value": "small",
+            "label": "Small"
+          },
+          {
+            "value": "medium",
+            "label": "Medium"
+          },
+          {
+            "value": "large",
+            "label": "Large"
+          },
+          {
+            "value": "fill",
+            "label": "Fill screen"
+          }
+        ],
+        "default": "medium"
+      },
+      {
+        "type": "select",
+        "id": "text_position",
+        "label": "Text position",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ],
+        "default": "center"
+      },
+      {
+        "type": "select",
+        "id": "text_alignment",
+        "label": "Text alignment",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ],
+        "default": "center"
+      },
+      {
+        "type": "header",
+        "content": "Colors"
+      },
+      {
+        "type": "color",
+        "id": "background",
+        "label": "Background",
+        "default": "rgba(0,0,0,0)"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text color",
+        "default": "rgba(0,0,0,0)"
+      },
+      {
+        "type": "color",
+        "id": "button_background",
+        "label": "Button background",
+        "default": "rgba(0,0,0,0)"
+      },
+      {
+        "type": "color",
+        "id": "button_text_color",
+        "label": "Button text",
+        "default": "rgba(0,0,0,0)"
+      }
+    ],
+    "blocks": [],
+    "presets": [
+      {
+        "name": "connect-virtually",
+        "settings": {}
+      }
+    ]
+  }
+  {% endschema %}

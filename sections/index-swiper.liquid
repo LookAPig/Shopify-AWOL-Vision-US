@@ -1,0 +1,151 @@
+{% style %}
+  .new_index_banner {
+    background: {{ section.settings.background }};
+  }
+{% endstyle %}
+<div class="new_index_banner">
+  <div class="banner_container swiper">
+    <div class="swiper-wrapper">
+      {% for block in section.blocks %}
+        {%- assign image = block.settings.banner -%}
+        {%- assign mobile_image = block.settings.banner_mobile -%}
+        <a aria-label="Banner link url" href="{{ block.settings.banner_link }}" class="swiper-slide banner_item">
+          {% comment %} <img class="pc_img" src="{{ image | img_url: '3000x' }}"> {% endcomment %}
+          {%- if forloop.index > 2 -%}
+            {%- assign loading_attribute_value = 'lazy' -%}
+            {%- assign preload_image = false -%}
+          {%- else -%}
+            {%- assign loading_attribute_value = 'eager' -%}
+            {%- assign preload_image = true -%}
+          {%- endif -%}
+          <div class="banner_context">
+            {{ block.settings.banner_liquid }}
+          </div>
+          <div
+            class="slideshow__image-wrapper {% if mobile_image != blank %}hidden-pocket{% endif %}"
+            {% if section.settings.transition_type == 'reveal' %}
+              reveal-visibility
+            {% endif %}
+          >
+            {%- if image != blank -%}
+              {{-
+                image
+                | image_url: width: 3000
+                | image_tag:
+                  loading: loading_attribute_value,
+                  draggable: false,
+                  class: 'slideshow__image',
+                  sizes: '100vw',
+                  widths: '600,700,800,1000,1200,1400,1600,1800,2000,2200,2400,2600,2800,3000',
+                  preload: preload_image,
+                  alt: 'Banner'
+              -}}
+            {%- else -%}
+              {% capture image_name %}lifestyle-{% cycle '1', '2' %}{%- endcapture -%}
+              {{- image_name | placeholder_svg_tag: 'slideshow__image slideshow__image--placeholder' -}}
+            {%- endif -%}
+          </div>
+
+          {%- if mobile_image != blank -%}
+            <div
+              class="slideshow__image-wrapper hidden-lap-and-up"
+              {% if section.settings.transition_type == 'reveal' %}
+                reveal-visibility
+              {% endif %}
+            >
+              {{-
+                mobile_image
+                | image_url: width: 3000
+                | image_tag:
+                  loading: loading_attribute_value,
+                  draggable: false,
+                  class: 'slideshow__image',
+                  sizes: '100vw',
+                  widths: '600,700,800,1000,1200,1400,1600,1800,2000,2200,2400,2600,2800,3000',
+                  preload: preload_image,
+                  alt: 'Banner for mobile'
+              -}}
+            </div>
+          {%- endif -%}
+        </a>
+      {% endfor %}
+    </div>
+    <div class="swiper_container">
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+  </div>
+</div>
+<script src="{{ 'swiper-bundle.min.js' | asset_url }}"></script>
+<script>
+  var bannerSwiper = new Swiper('.banner_container', {
+  	autoplay: {
+      delay: {{ section.settings.cycle_speed | times: 1000 }},
+      pauseOnMouseEnter: true
+    },//可选选项，自动滑动
+    slidesPerView: 1,
+    spaceBetween : 0,
+    loop: true,
+    effect: 'fade',
+    pagination: {
+      el: '.banner_container .swiper-pagination',
+    },
+    navigation: {
+      nextEl: '.banner_container .swiper-button-next',
+      prevEl: '.banner_container .swiper-button-prev',
+    }
+  })    
+</script>
+{% schema %}
+{
+  "name": "Index new swiper banner",
+  "class": "shopify-section--index_swiper_banner",
+  "settings": [
+    {
+      "type": "range", "id": "cycle_speed", "label": "Change slides every",
+      "min": 1, "max": 20, "step": 1, "unit": "sec", "default": 5
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background",
+      "default": "#000000"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "banner",
+      "name": "banner",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "banner",
+          "label": "Banner"
+        },
+        {
+          "type": "image_picker",
+          "id": "banner_mobile",
+          "label": "Banner for mobile"
+        },
+        {
+          "type": "liquid",
+          "id": "banner_liquid",
+          "label": "Banner liquid"
+        },
+        {
+          "type": "url",
+          "id": "banner_link",
+          "label": "Banner link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Index new swiper banner",
+      "blocks": []
+    }
+  ]
+}
+{% endschema %}

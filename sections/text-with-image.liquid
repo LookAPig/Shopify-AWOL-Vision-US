@@ -1,0 +1,67 @@
+<style>
+  .text-with-image__image.mobile {display: none;}
+  .text-image {text-align: center; padding-top: var(--container-gutter);}
+  .text-image h3 {font-size: 52px; line-height: 1; margin: 0;}
+  .text-content {font-size: var(--heading-h5-font-size); margin-top: var(--container-gutter);}
+  @media screen and (max-width: 768px) {
+  .text-with-image__image {display: none;}
+    .text-with-image__image.mobile {display: block;}
+    .text-image h3 {font-size: 24px;}
+    .text-content {font-size: 12px;}
+  }
+</style>
+
+<div class="container">
+  {%- if section.settings.heading != blank -%}
+    <h3>{{ section.settings.heading | escape }}</h3>
+  {%- endif -%}
+
+  <div class="text-content">
+    {%- if section.settings.content != blank -%}
+      {{- section.settings.content -}}
+    {%- endif -%}
+
+    {%- if section.settings.button_text != blank -%}
+      <div class="button-wrapper">
+        <a href="{{ section.settings.button_link }}" class="button button--primary">{{ section.settings.button_text | escape }}</a>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{%- if section.settings.image != blank -%}
+  {%- if section.settings.link_to -%}<a href="{{ section.settings.link_to }}">{%- endif -%}
+  <img class="text-with-image__image" loading="lazy" sizes="(max-width: 999px) 100vw, 100vw" {% render 'image-attributes', image: section.settings.image, sizes: '600,700,800,1000,1200,1400,1600,1800,2000,2200,2400,2600,2800,3000' %}>
+  {%- if section.settings.link_to -%}</a>{%- endif -%}
+{%- endif -%}
+
+{%- if section.settings.image_mobile != blank -%}
+  <img class="text-with-image__image mobile" loading="lazy" sizes="(max-width: 999px) 100vw, 100vw" {% render 'image-attributes', image: section.settings.image_mobile, sizes: '600,700,750,800,1000,1200,1400,1600,1800,2000,2200,2400,2600,2800,3000' %}>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "text with image", "class": "text-image",
+  "settings": [
+    {
+      "type": "image_picker", "id": "image", "label": "Image",
+      "info": "1920 x 940px .jpg recommended"
+    },
+    {
+      "type": "image_picker", "id": "image_mobile", "label": "Image Mobile",
+      "info": "750 x  .jpg recommended"
+    },
+    {"type": "url", "id": "link_to", "label": "Link to"},
+    {"type": "text", "id": "heading", "label": "Heading", "default": "Heading"},
+    {
+      "type": "richtext", "id": "content", "label": "Content",
+      "default": "<p>content.</p>"
+    },
+    {"type": "text", "id": "button_text", "label": "Button text"},
+    {"type": "url", "id": "button_link", "label": "Button link"}
+  ],
+  "presets": [
+    {"name": "text with image"}
+  ]
+}
+{% endschema %}

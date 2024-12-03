@@ -1,0 +1,80 @@
+{{- 'about.css' | asset_url | stylesheet_tag: true -}}
+{% style %}
+  .about_story_timeLine {
+    background: {{ section.settings.background }};
+  }
+{% endstyle %}
+<div class="about_story_contianer container">
+  {% if section.settings.head_title != blank %}
+    <div class="about_story_header">
+      <div class="about_title">{{ section.settings.head_title }}</div>
+      <div class="about_contex">{{ section.settings.context }}</div>
+    </div>
+  {% endif %}
+  <div class="about_story_timeLine">
+    <div class="about_time_year">
+      {{ section.settings.year }}
+    </div>
+    <div class="about_time_details">
+      {% for block in section.blocks %}
+        <div class="about_time_itme">
+          <div class="item_month">{{ block.settings.month }}</div>
+          <div class="item_desc">{{ block.settings.desc }}</div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "About Us Story",
+  "class": "shopify-section--about_us_story",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "textarea",
+      "id": "head_title",
+      "label": "Head"
+    },
+    {
+      "type": "textarea",
+      "id": "context",
+      "label": "Context"
+    },
+    {
+      "type": "textarea",
+      "id": "year",
+      "label": "Year"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "time_line_details",
+      "name": "time_line_details",
+      "settings": [
+        {
+          "type": "text",
+          "id": "month",
+          "label": "Month for timeline"
+        },
+        {
+          "type": "textarea",
+          "id": "desc",
+          "label": "Desc"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Us Story",
+      "blocks": []
+    }
+  ]
+}
+{% endschema %}

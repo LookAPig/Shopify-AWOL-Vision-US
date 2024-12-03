@@ -1,0 +1,290 @@
+<style>
+.section__color-wrapper {background: #f5f5f5;}
+.vertical-breather {
+  overflow: hidden;
+  --padding: 40px; --height: 460px;
+}
+.mobile{display: none!important;}
+.vertical-breather a {padding: 0;}
+.vertical-breather h3 {color: {{ section.settings.header_title_color }}; text-align:center;font-size: {{ section.settings.header_title_size }}px;}
+.image-width-link-3x {display: grid;grid-template-columns: repeat({{ section.settings.grid_template_columns }}, 1fr);grid-template-rows: auto;gap: 10px;}
+.link-itemx3 {width: 100%; height: auto; padding: 0; margin: 0; background-color: inherit; position: relative;}
+.Header {width: 100%;}
+.Header .product_tags {padding: 10px 0; text-align: center;}
+.Header .product_imgs {position: relative;width: 100%;}
+.Header .product_imgs .product_title,
+.Header .product_imgs .product_price { margin: 0;position: absolute; left: 50%; transform: translateX(-50%);}
+.Header .product_imgs .product_title {top: 2%;}
+.Header .product_imgs .product_price {bottom: 10%;}
+.Lumen,.Control {width: 100%; padding: 26px 0; display: flex; align-items: center; flex-direction: column;margin-top: 10px; border-radius: 10px;}
+.Lumen-prograss {margin-top: 10px;}
+@media screen and (max-width: 768px) {
+  .vertical-breather {
+    --padding: 10px; --height: 40vw;
+    --heading-h6-font-size: 12px; --button-height: 24px;
+  }
+  .mobile{display: block!important;}
+  .pc {display: none!important;}
+  .vertical-breather h3 {font-size: 24px;}
+  .image-width-link-3x {grid-template-columns: 1fr;grid-template-rows: auto;}
+  .product_title {font-size: 20px!important;}
+  .product_price {font-size: 16px!important;}
+  .link-item .button {padding-left: var(--padding); padding-right: var(--padding);}
+}
+</style>
+<div style="width: 100%; background: {{ section.settings.background_color }};margin: 0;">
+<div class="container vertical-breather swiper_new">
+  {%- if section.settings.header_title -%}
+  <h3>{{ section.settings.header_title }}</h3>
+  {%- endif -%}
+  {% comment %} <div class="image-width-link-3x swiper-wrapper mobile">
+    {%- for block in section.blocks -%}
+      <a href="{{ block.section.link }}" class="link-itemx3 swiper-slide">
+        <div class="Header">
+          <div class="product_tags" style="font-size: {{ block.settings.product_tags_context_size }}px;background-image: url('{{ block.settings.product_tags_bg | img_url: '700x' }}');color: {{ block.settings.product_tags_context_color }}">
+            {{ block.settings.product_tags_context }}
+          </div>
+          <div class="product_imgs">
+            <h4 class="product_title" style="color: {{ block.settings.product_title_color }};font-size: {{ block.settings.product_title_size }}px;">{{ block.settings.product_title }}</h4>
+            <div class="product_price" style="color: {{ block.settings.product_title_color }};font-size: {{ block.settings.product_price_size }}px;">{{ block.settings.product_price }}</div>
+            <img class="" src="{{ block.settings.product_imgs | img_url: '700x' }}" />
+          </div>
+        </div>
+        <div class="Lumen" style="background: {{ block.settings.Lumen_bg_color }}">
+          <img class="Lumen-imgs" src="{{ block.settings.product_lumen_imgs | img_url: '300x' }}" />
+          <img class="Lumen-prograss" src="{{ block.settings.product_progress_imgs | img_url: '270x' }}" />
+        </div>
+        <div class="Control" style="background: {{ block.settings.control_bg_color }}">
+          <img class="Lumen-prograss" src="{{ block.settings.product_control_imgs | img_url: '250x' }}" />
+        </div>
+      </a>
+    {%- endfor -%}
+  </div> {% endcomment %}
+  <div class="image-width-link-3x mobile">
+    <a href="{{ section.settings.link }}">
+    <img src="{{ section.settings.image_mobile | img_url: '750x' }}" />
+    </a>
+  </div>
+  <div class="image-width-link-3x pc">
+    {%- for block in section.blocks -%}
+      <a href="{{ block.settings.link }}" class="link-itemx3">
+        <div class="Header">
+          <div class="product_tags" style="font-size: {{ block.settings.product_tags_context_size }}px;background-image: url('{{ block.settings.product_tags_bg | img_url: '700x' }}');color: {{ block.settings.product_tags_context_color }}">
+            {{ block.settings.product_tags_context }}
+          </div>
+          <div class="product_imgs">
+            <h4 class="product_title" style="color: {{ block.settings.product_title_color }};font-size: {{ block.settings.product_title_size }}px;">{{ block.settings.product_title }}</h4>
+            <div class="product_price" style="color: {{ block.settings.product_title_color }};font-size: {{ block.settings.product_price_size }}px;">{{ block.settings.product_price }}</div>
+            <img class="" src="{{ block.settings.product_imgs | img_url: '700x' }}" />
+          </div>
+        </div>
+        <div class="Lumen" style="background: {{ block.settings.Lumen_bg_color }}">
+          <img class="Lumen-imgs" src="{{ block.settings.product_lumen_imgs | img_url: '300x' }}" />
+          <img class="Lumen-prograss" src="{{ block.settings.product_progress_imgs | img_url: '270x' }}" />
+        </div>
+        <div class="Control" style="background: {{ block.settings.control_bg_color }}">
+          <img class="Lumen-prograss" src="{{ block.settings.product_control_imgs | img_url: '250x' }}" />
+        </div>
+      </a>
+    {%- endfor -%}
+  </div>
+  {%- if section.settings.bottom_params -%}
+  <div class="bottom_params pc" style="margin-top: 10px">
+    <img src="{{ section.settings.bottom_params | img_url: '1920x' }}" />
+  </div>
+  {%- endif -%}
+</div>
+</div>
+<script>
+  $(function() {
+    var mySwiper = new Swiper('.swiper_new', {
+      autoplay: false,//可选选项，自动滑动
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      }
+    });
+  })
+</script>
+{% schema %}
+{
+  "name": "image with link 3x", "class": "section__color-wrapper",
+  "settings": [
+    {
+      "type": "range",
+      "id": "grid_template_columns",
+      "label": "Grid template columns",
+      "min": 0,
+      "max": 6,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Image Mobile"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link To"
+    },
+    {
+      "type": "image_picker",
+      "id": "bottom_params",
+      "label": "Params"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color"
+    },
+    {
+      "type": "text",
+      "id": "header_title",
+      "label": "Header Title"
+    },
+    {
+      "type": "color",
+      "id": "header_title_color",
+      "label": "Header Title Color"
+    },
+    {
+      "type": "range",
+      "id": "header_title_size",
+      "label": "Header Title Font Size",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 60
+    }
+  ],
+  "blocks":[
+    {
+      "type": "item", "name": "list item",
+      "settings": [
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link To"
+        },
+        {
+          "type": "header",
+          "content": "Product Tags"
+        },
+        {
+          "type": "image_picker",
+          "id": "product_tags_bg",
+          "label": "Product Tags Background"
+        },
+        {
+          "type": "richtext",
+          "id": "product_tags_context",
+          "label": "Product Tags Context"
+        },
+        {
+          "type": "range",
+          "id": "product_tags_context_size",
+          "label": "Product Tags Context Font Size",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "px",
+          "default": 30
+        },
+        {
+          "type": "color",
+          "id": "product_tags_context_color",
+          "label": "Product Tags Context Font Color"
+        },
+        {
+          "type": "header",
+          "content": "Product Main Context"
+        },
+        {
+          "type": "image_picker",
+          "id": "product_imgs",
+          "label": "Product Images"
+        },
+        {
+          "type": "text",
+          "id": "product_title",
+          "label": "Product Title"
+        },
+        {
+          "type": "range",
+          "id": "product_title_size",
+          "label": "Product Title Font Size",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "px",
+          "default": 30
+        },
+        {
+          "type": "color",
+          "id": "product_title_color",
+          "label": "Product Title Color"
+        },
+        {
+          "type": "text",
+          "id": "product_price",
+          "label": "Product Price"
+        },
+        {
+          "type": "range",
+          "id": "product_price_size",
+          "label": "Product Price Font Size",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "px",
+          "default": 30
+        },
+        {
+          "type": "color",
+          "id": "product_price_color",
+          "label": "Product Price Color"
+        },
+        {
+          "type": "header",
+          "content": "Product Lumen"
+        },
+        {
+          "type": "color",
+          "id": "Lumen_bg_color",
+          "label": "Product Lumen Background Color"
+        },
+        {
+          "type": "image_picker",
+          "id": "product_lumen_imgs",
+          "label": "Product Lumen Images"
+        },
+        {
+          "type": "image_picker",
+          "id": "product_progress_imgs",
+          "label": "Product Lumen Porgress Images"
+        },
+        {
+          "type": "header",
+          "content": "Product Control"
+        },
+        {
+          "type": "color",
+          "id": "control_bg_color",
+          "label": "Product Control Background Color"
+        },
+        {
+          "type": "image_picker",
+          "id": "product_control_imgs",
+          "label": "Product Control Images"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {"name": "image with link 3x"}
+  ]
+}
+{% endschema %}

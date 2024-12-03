@@ -1,0 +1,132 @@
+<style>
+  .shopify-section--shop-the-endorsed {
+    background-color: {{ section.settings.background }};
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    .shop-the-look__item {
+      background: {{ section.settings.background }};
+    }
+  }
+  @media screen and (max-width: 1024px) {
+    .shopify-section--shop-the-endorsed {
+      padding-top: 60px;
+      margin-top: -1px;
+    }
+  }
+</style>
+
+<section class="index_shop-endorsed">
+  <a aria-label="{{ section.settings.header_title }}" href="{% if section.settings.header_url != blank %}{{ section.settings.header_url }}{% else %}javascript:;{% endif %}" class="shop_header">
+    <h2 class="header_title">{{ section.settings.header_title }}</h2>
+    {% if section.settings.header_subtitle != blank %}
+      <h3 class="header_subtitle">{{ section.settings.header_subtitle }}</h3>
+    {% endif %}
+  </a>
+  <div class="endorsed_container" style="background: {{ section.settings.bg_color }};grid-template-columns: repeat({{ section.settings.grid_columns_template }}, 1fr)">
+    {% for block in section.blocks %}
+      <div class="icons_item">
+        <img class="mobile" src="{{ block.settings.icon_mobile | image_url }}" alt="" />
+        <img class="pc" src="{{ block.settings.icon | image_url }}" alt="" />
+      </div>
+    {% endfor %}
+  </div>
+</section>
+ 
+{% schema %}
+{
+  "name": "Index endorsed",
+  "class": "shopify-section--shop-the-endorsed", 
+  "blocks": [
+    {
+      "type": "endorsed_icon",
+      "name": "endorsed_icon",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_mobile",
+          "label": "Icon mobile",
+          "info": "It's not necessary"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "id": "header_title",
+      "label": "Header title"
+    },
+    {
+      "type": "text",
+      "id": "header_subtitle",
+      "label": "Header subtitle"
+    },
+    {
+      "type": "url",
+      "id": "header_url",
+      "label": "Link to"
+    },
+    {
+      "type": "range",
+      "id": "grid_columns_template",
+      "label": "Grid columns template",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 0
+    },
+    {
+      "type": "checkbox",
+      "id": "show_compare",
+      "label": "Is show compare",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Color",
+      "info": "Color"
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Endorsed container background color",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Index endorsed",
+      "blocks": []
+    }
+  ]
+}
+{% endschema %}

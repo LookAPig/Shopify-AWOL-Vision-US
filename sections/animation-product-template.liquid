@@ -1,0 +1,177 @@
+{{ 'animation-product-template.css' | asset_url | stylesheet_tag }}
+<section class="animation_container">
+  {%- for block in section.blocks -%}
+    {% case block.type %}
+      {% when 'image_with_text' %}
+        <div class="section-common-sectionzoomout">
+          {% if block.settings.headerTitle %}
+            <div class="common_title hide common_title_animate">
+              <h2>{{ block.settings.headerTitle }}</h2>
+              <p>{{ block.settings.subTitle }}</p>
+            </div>
+          {% endif %}
+          <div class="common_image">
+            <div class="common_image_container common_image_animate" style="background-image: url('{{ block.settings.image | img_url: '1920x' }}');">
+              {% comment %} <img src="{{ block.settings.image | img_url: '1920x' }}"> {% endcomment %}
+              {% if block.settings.show_wave_animate %}
+                <div class="circle_container">
+                  <div class="circle-btn1 pa"></div>
+                  <div class="circle-btn2 pa"></div>
+                  <div class="circle-btn3 pa"></div>
+                  <div class="circle-btn4 pa"></div>
+                  <div class="circle-btn5 pa"></div>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% when 'video_part' %}
+        <div class="section-common-sectionzoomout">
+          {% if block.settings.headerTitle %}
+            <div class="common_title hide common_title_animate">
+              <h2>{{ block.settings.headerTitle }}</h2>
+              <p>{{ block.settings.subTitle }}</p>
+            </div>
+          {% endif %}
+          <div class="common_video">
+              <div class="video_container common_video_animate">
+                <video autoplay {% if block.settings.is_loop %}loop{% endif %} playsinline muted poster="{{ block.settings.video_loading_img |  img_url: 'x1920' }}" class="">
+                  <source type="video/mp4; codecs=&quot;avc1.4D401E, mp4a.40.2&quot;"
+                      data-layzr-src="{{ block.settings.video_url }}"
+                      src="{{ block.settings.video_url }}">
+                </video>
+              </div>
+              <div style="height: 600px;" class="sticky_height"></div>
+              {% if block.settings.desc %}
+                <div class="animation_fonts_show-desc">{{ block.settings.desc }}</div>
+              {% endif %}
+          </div>
+        </div>
+      {% when 'animation_fonts_show' %}
+        <div class="animation_item animation_fonts_show" id="animation_fonts_show">
+          <div class="animation_fonts_show-image">
+            <div class="image_container">
+              <img src="{{ block.settings.image_pc | img_url: '1920x' }}">
+            </div>
+          </div>
+          <div class="animation_fonts_show-title">
+            <div class="img_title_container">
+              <h2>{{ block.settings.headerTitle }}</h2>
+            </div>
+          </div>
+          <div class="animation_fonts_show-desc">
+            <p class="desc_context">{{ block.settings.subTitle }}</p>
+          </div>
+        </div>
+      {% when 'canvas_animation' %}
+        <div class="product_animate" id="product_animate">
+          <div class="common" style="background: url({{ '1_0009_0000.png' | asset_url }}) no-repeat;">
+            <canvas id="canvas" width="1920" height="960"></canvas>
+          </div>
+        </div>
+    {% endcase %}
+  {%- endfor -%}
+</section>
+<script src="{{ 'animation-template.js' | asset_url }}"></script>
+
+{% schema %}
+  {
+    "name": "Animation template",
+    "class": "shopify-section--animationProductTemplate",
+    "settings": [],
+    "blocks": [
+      {
+        "type": "image_with_text", "name": "image_with_text",
+        "settings": [
+          {
+            "type": "checkbox",
+            "id": "show_wave_animate",
+            "label": "show_wave_animate",
+            "default": false
+          },
+          {
+            "type": "textarea",
+            "id": "headerTitle",
+            "label": "Title"
+          },
+          {
+            "type": "textarea",
+            "id": "subTitle",
+            "label": "Sub title"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Img"
+          }
+        ]
+      },
+      {
+        "type": "video_part", "name": "video_item",
+        "settings": [
+          {
+            "type": "checkbox",
+            "id": "is_loop",
+            "label": "Loop"
+          },
+          {
+            "type": "textarea",
+            "id": "headerTitle",
+            "label": "Title"
+          },
+          {
+            "type": "textarea",
+            "id": "subTitle",
+            "label": "Sub title"
+          },
+          {
+            "type": "textarea",
+            "id": "desc",
+            "label": "Descs" 
+          },
+          {
+            "type": "url",
+            "id": "video_url",
+            "label": "Video url"
+          },
+          {
+            "type": "image_picker",
+            "id": "video_loading_img",
+            "label": "Video loading img"
+          }
+        ]
+      },
+      {
+        "type": "animation_fonts_show", "name": "animation_fonts_show",
+        "settings": [
+          {
+            "type": "textarea",
+            "id": "headerTitle",
+            "label": "Title"
+          },
+          {
+            "type": "textarea",
+            "id": "subTitle",
+            "label": "Sub title"
+          },
+          {
+            "type": "image_picker",
+            "id": "image_pc",
+            "label": "img"
+          }
+        ]
+      },
+      {
+        "type": "canvas_animation", "name": "canvas_animation",
+        "settings": []
+      }
+    ],
+    "presets": [
+      {
+        "name": "Animation product template",
+        "settings": {},
+        "blocks": []
+      }
+    ]
+  }
+{% endschema %}

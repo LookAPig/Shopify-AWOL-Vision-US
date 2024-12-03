@@ -1,0 +1,21 @@
+{% comment %}
+  Function to iterate over all the products assigned to quiz options and return a
+  JSON containing each individual product.
+
+  @param blocks - The list of section blocks
+{% endcomment %}
+
+{%- assign json = '[' -%}
+
+{%- for block in blocks -%}
+  {%- assign settings_json = block.settings | json | escape -%}
+  {%- capture block_item -%}{"type": "{{ block.type }}", "settings": {{ settings_json }}}{%- endcapture -%}
+  {%- assign json = json | append: block_item -%}
+  {%- if forloop.last == false -%}
+    {%- assign json = json | append: ',' -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- assign json = json | append: ']' -%}
+
+{{ json }}

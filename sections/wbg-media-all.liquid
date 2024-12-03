@@ -1,0 +1,260 @@
+
+
+{% javascript %}
+{% endjavascript %}<style>
+    #shopify-section-{{ section.id }} .swiper-button-next::after {
+        content: "";
+    }
+    #shopify-section-{{ section.id }} .swiper-button-prev::after {
+
+        content: "";
+    }
+      
+    .media_body {width: 100%;background: {{ section.settings.backgroundColor }};}
+    .media_container {
+        --vertical-breather: 100px;
+        width: 100%;
+        max-width: var(--container-max-width);
+        margin-left: auto;
+        margin-right: auto;
+        padding: var(--vertical-breather) 0;
+    }
+    .media_container h3 {text-align: center;}
+    .media_context {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+    }
+    .media_img {position: absolute;top: -10px;opacity: 0.2;}
+    .media_evaluate {margin-left: 100px;margin-right: 100px;}
+    .media_evaluate h3 {text-align: left;margin-bottom: 10px;font-size: 32px;}
+    .media_evaluate, .media_logo {width: 50%;overflow: hidden;position: relative;}
+    .media_logo img {width: 150px;}
+    .media_logo_itmes {display: grid;grid-template-columns: repeat(2, 1fr);}
+    .media_logo_itmes div {text-align: center;cursor: pointer;display: flex;align-items: center;justify-content: center;}
+    .evaluate{ display: none; }
+    .evaluate h3, .evaluate a{font-weight: 400; font-size: var(--heading-h3-font-size); opacity: 0;transition: all ease 0.3s;}
+    .evaluate p {font-size: 18px}
+    .evaluate.active {display: block;}
+    .evaluate.active h3, .evaluate.active a {opacity: 1;}
+    .media_evaluate h2 {}
+    
+
+    @media screen and (max-width: 749px) {
+        .media_container {--vertical-breather: 60px;}
+        .media_context {flex-direction: column;}
+        .media_evaluate, .media_logo {width: 100%; padding: 0 20px;}
+        .media_evaluate h3,.evaluate{text-align: center;}
+        .media_evaluate h2 {text-align: center; margin-bottom: 40px;}
+        .media_logo img {width: 100px!important;}
+        .evaluate p {font-size: 14px}
+    }
+</style>
+{% comment %} <div class="customer-review-slick-container">
+  {%- for block in section.blocks -%}
+    <div class="customer-review-slick-item">
+      <div class="img-padding">
+        <img src="{{ block.settings.image | img_url: 'master' }}" loading="lazy" alt="{{ block.settings.title }}">
+      </div>
+
+      <div class="text-content">
+        {% if block.settings.name %}
+            <h5>{{ block.settings.name }}</h5>
+        {% endif %}
+        {% if block.settings.title %}
+            <h4>{{ block.settings.title }}</h4>
+        {% endif %}
+        {% if block.settings.content %}
+            {{ block.settings.content }}
+        {% endif %}       
+        <span><a href="{{ block.settings.button_link }}" title="{{ block.settings.button_text }}" target="_blank" tabindex="-1">{{ block.settings.button_text }}</a></span>
+      </div>
+    </div>
+  {%- endfor -%}
+</div> {% endcomment %}
+<div class="media_body">
+    <div class="media_container">
+        <div class="media_context">
+            <div class="media_evaluate">
+                <h3 class="heading h2">{{ section.settings.heading }}</h3>
+                <div class="evaluate CBS active">
+                    <p>{{ section.settings.outlet }}</p>
+                    <a>
+                      {{ section.settings.content }}
+                    </a>
+                </div>
+                <div class="evaluate wired">
+                    <h4>Wired</h4>
+                    <a>
+                        <p>Arguably, the only reason to go this hard on your entertainment system is to replicate what most people can only get in theaters: a gigantic screen that's so overwhelming that it transports you into the world of the movie you're watching.</p>
+                    </a>
+                </div>
+                <div class="evaluate theverge">
+                    <h4>The verge</h4>
+                    <a>
+                        <p>The LTV-3500’s star feature is its brightness. At 3,500 lumens, it’s extremely bright and the projector sits so close to the display surface, most of that light actually reaches the screen to create a highly viewable image even when moderate amounts of ambient light try to interfere.</p>
+                    </a>
+                </div>
+                <div class="evaluate trusted">
+                    <h4>Trusted Reviews</h4>
+                    <a>
+                        <p>It's impossible not to be impressed by the AWOL Vision LTV-3500. It gives a true TV experience and a huge screen. After using it for a few weeks, I got used to the 100-inch picture, and it made every other screen in my house seem small; it’s hard to go back to watching a regular TV after this</p>
+                    </a>
+                </div>
+                <div class="evaluate robb_report">
+                    <h4>Projector Review</h4>
+                    <a>
+                        <p>If you want a UST projector that beats the competition in overall brightness, AWOL's LTV-3500 could very well be the right choice for you. It is notable how it maintains its high brightness under the scrutiny of a meter. It took a bit of work to ascertain how to get the most performance out of it, but once I figured that out, it became clear this projector is a top performer.</p>
+                    </a>
+                </div>
+                <div class="evaluate tech_up_your_life">
+                    <h4>Tech Up Your Life</h4>
+                    <a>
+                        <p>With high 3500 lumens of brightness, low 30ms input lag, and excellent color accuracy plus contrast, the Awol LTV-3500 is one of the best 4K ultra-short throw laser projectors on the market. It offers a lush, lifelike image out-of-the-box with nearly unrivaled versatility as a projector for cinephiles and gamers. The built-in soundbar alongside advanced features such as eARC make the LTV-3500 a phenomenal value. 3D support would be nice, as would Dolby Vision HDR.</p>
+                    </a>
+                </div>
+                <div class="evaluate projector_central">
+                    <h4>Robb Report</h4>
+                    <a>
+                        <p>Technically, you don’t need a screen to use an ultra-short-throw laser projector. As long as you have enough wall space, you can use the device to watch whatever TV show, movie or game you want. But to really get the most out of high-quality projector you need an ambient light rejecting (ALR) screen, which enhances brightness and contrast so that nothing looks washed out. And rather than making you go through the trouble of finding one of your own, the Vanish comes with it.</p>
+                    </a>
+                </div>
+                <div class="evaluate makeuseof">
+                    <h4>MakeUseOf</h4>
+                    <a>
+                        <p>The AWOL Vision LTV-3500 Pro, when combined with the ALR floor rise screen, provides an unparalleled cinematic experience, suitable for 4K HDR movies, TV shows, and even high-end gaming. Its impressive 3300 ANSI lumens brightness ensures clear and vibrant visuals even during the daytime.</p>
+                    </a>
+                </div>
+                <div class="evaluate gizmodo">
+                    <h4>Gizmodo</h4>
+                    <a>
+                        <p>AWOL’s Vision Vanish Projector: Want the big screen movie theater experience at home but don’t want to lose an entire wall to a screen? This short-throw projector has its own built-right-in that extends and retracts at the push of a button.</p>
+                    </a>
+                </div>
+                <div class="evaluate trendhunter">
+                    <h4>Trendhunter</h4>
+                    <a>
+                        <p>The Vanish TV is a streamlined piece of entertainment equipment for the modern living room that's engineered to provide a powerful user experience. The TV is characterized by its all-in-one design that will reveal its display at the press of a button and hide it away when not in use. </p>
+                    </a>
+                </div>
+                <div class="evaluate techradar">
+                    <h4>Techradar</h4>
+                    <a>
+                        <p>There’s a lot here to like – the projector puts out a staggering 3500 lumens of brightness, enough to make for a very visible picture even in a well-light room during the daytime. It’s also one of the few projectors that has impressive picture and color output right out of the box.</p>
+                    </a>
+                </div>
+                <div class="evaluate notebookcheck">
+                    <h4>Notebookcheck</h4>
+                    <a>
+                        <p>UST or ultra-short throw projectors offer an interesting take as an alternative to large traditional TVs. While I’ve tried a few, the AWOL LTV-3500 is the first time I’ve actually thought this could replace a TV.</p>
+                    </a>
+                </div>
+            </div>
+            <a href="https://awolvision.com/pages/reviews" class="media_logo swiper">
+                <div class="swiper-wrapper" style="align-items: center;">
+                    <div class="media_logo_itmes swiper-slide">
+                        <div class="media_logo_img">
+                            <img style="width: 200px;" src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/cbs-news.png?v=1697722102" alt="CBS" />
+                        </div>
+                        <div class="media_logo_img">
+                            <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/q1.png?v=1692263718" alt="wired" />
+                        </div>
+                        <div class="media_logo_img">
+                            <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/q3.png?v=1692263718" alt="theverge" />
+                        </div>
+                        <div class="media_logo_img">
+                            <img style="width: 200px;" src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/trusted_logo.png?v=1692340790" alt="trusted" />
+                        </div>
+                    </div>
+                    <div class="media_logo_itmes swiper-slide">
+                        <div class="media_logo_img">
+                            <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/TechUpYourLife.png?v=1697724585" alt="tech up your life logo image" />
+                        </div>
+                        <div class="media_logo_img">
+                            <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/projectorcentral.png?v=1697722102" alt="projector central logo image" />
+                        </div>
+                        <div class="media_logo_img">
+                            <img src="https://cdn.shopify.com/s/files/1/0787/4651/7790/files/media.png?v=1695370812" alt="makeuseof" />
+                        </div>
+                        <div class="media_logo_img">
+                            <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/q7.png?v=1692263718" alt="gizmodo" />
+                        </div>
+                        
+                    </div>
+                    <div class="media_logo_itmes swiper-slide">
+                        <div class="media_logo_img">
+                            <img style="width: 200px;" src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/q2.png?v=1692263718" alt="trendhunter" />
+                        </div>
+                        <div class="media_logo_img">
+                            <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/q4.png?v=1692263718" alt="techradar" />
+                        </div>
+                        <div class="media_logo_img">
+                            <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/q6.png?v=1692263718" alt="notebookcheck" />
+                        </div>
+                        <div class="media_logo_img">
+                            <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/63e53668299350d97add0ec4c872579.png?v=1697722102" alt="robb report logo image" />
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-button-prev" style="color: #000;transform: scale(0.6);"></div><!--左箭头。如果放置在swiper外面，需要自定义样式。-->
+                <div class="swiper-button-next" style="color: #000;transform: scale(0.6);"></div><!--右箭头。如果放置在swiper外面，需要自定义样式。-->
+            </a>
+        </div>
+    </div>
+</div>
+<script>
+$(function () {
+    var mySwiper = new Swiper('#shopify-section-{{ section.id }} .swiper', {
+        autoplay: {
+          delay: {{ section.settings.cycle_speed | times: 1000}},
+          disableOnInteraction: false,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    })
+    $('.media_logo_img img').on('click', function() {
+        $('.evaluate').removeClass('active')
+        $('.' + $(this).attr('alt')).addClass('active')
+    })
+});
+</script>
+
+{% schema %}
+{
+  "name": "WBG Media evaluate", "class": "customer-media",
+  "settings": [
+    {"type": "text", "id": "outlet", "label": "Outlet", "default": "outlet"},
+    {"type": "text", "id": "heading", "label": "Heading", "default": "Media Highlights"},
+    {"type": "color", "id": "backgroundColor", "label": "Background", "default": "#fff"},
+    {
+      "type": "richtext", "id": "content", "label": "Content",
+      "default": "<p>Media evaluate</p>"
+    },
+    {
+      "type": "range", "id": "cycle_speed", "label": "Change slides every",
+      "min": 1, "max": 20, "step": 1, "unit": "sec", "default": 5
+    }
+  ],
+  "blocks":[
+    {
+      "type": "item", "name": "review item",
+      "settings": [
+        {
+          "type": "image_picker", "id": "image", "label": "Image",
+          "info": "1:1 recommended"
+        },
+        {
+          "type": "richtext", "id": "content", "label": "Content",
+          "default": "<p>content.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {"name": "WBG Media evaluate"}
+  ]
+}
+{% endschema %}

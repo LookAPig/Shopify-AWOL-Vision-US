@@ -1,0 +1,844 @@
+{% capture bsscommerce_login_require_template %}{% include 'bsscommerce_login_require' %}{% endcapture -%}
+  {%- unless bsscommerce_login_require_template contains 'Liquid error' -%}
+    {{- bsscommerce_login_require_template -}}
+  {%- endunless %}
+  {%- comment -%}
+    ------------------------------------------------------------------------------------------------------------------------
+    NOTE TO DEVELOPERS: welcome to Focal theme! We hope that you will enjoy editing this theme as much as we did for
+      developing it. We have put a lot of work to make this theme as developer friendly as possible by offering you
+      hooks to integrate into critical parts of the theme. You will find the complete technical documentation (including
+      all events, dependencies...) in the "custom.js" file, located in the Assets folder.
+    ------------------------------------------------------------------------------------------------------------------------
+  {%- endcomment -%}
+  
+  <!doctype html>
+  
+  {%- assign direction = 'ltr' -%}
+  {%- case request.locale.iso_code -%}
+    {%- when 'ar', 'arc', 'dv', 'fa', 'ha', 'he', 'kwh', 'ks', 'ku', 'ps', 'ur', 'yi' -%}
+      {%- assign direction = 'rtl' -%}
+  {%- endcase -%}
+  
+  <html class="no-js" lang="{{ request.locale.iso_code }}" dir="{{ direction }}">
+    <head>
+      <!-- Start of Shoplift scripts -->
+      {% render 'shoplift' %}
+      <!-- End of Shoplift scripts -->
+  
+      <!-- Hotjar Tracking Code for https://awolvision.com/ -->
+      <script>
+        (function(h,o,t,j,a,r){
+            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+            h._hjSettings={hjid:4974817,hjsv:6};
+            a=o.getElementsByTagName('head')[0];
+            r=o.createElement('script');r.async=1;
+            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+            a.appendChild(r);
+        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+      </script>
+      {% comment %} Google maps api {% endcomment %}
+      {% comment %}
+        <script>
+          (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
+            key: "AIzaSyAOavTIWq4qRgppoQYzktYy5j0Yshb3HRI",
+            v: "weekly",
+            // Use the 'v' parameter to indicate the version to use (weekly, beta, alpha, etc.).
+            // Add other bootstrap parameters as needed, using camel case.
+          });
+        </script>
+      {% endcomment %}
+      <script>
+        // Define dataLayer and the gtag function.
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+  
+        // Set default consent to 'denied' as a placeholder
+        // Determine actual values based on your own requirements
+        gtag('consent', 'default', {
+          'ad_storage': 'denied',
+          'ad_user_data': 'denied',
+          'ad_personalization': 'denied',
+          'analytics_storage': 'denied',
+          'wait_for_update': 500,
+          'region': ['AT', 'BE', 'BG', 'CY', 'CZ', 'DE', 'DK', 'EE', 'ES', 'FI', 'FR', 'GR', 'HR', 'HU', 'IE', 'IS', 'IT', 'LI', 'LT', 'LU', 'LV', 'MT', 'NL', 'NO', 'PL', 'PT', 'RO', 'SE', 'SI', 'SK']
+        });
+        // 1.a 其它可选的设置
+        gtag('set', 'url_passthrough', true); // improve tracking via querystring info when consent is denied
+        gtag('set', 'ads_data_redaction', true); // further remove ads click info when ad_storage is denied
+      </script>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-NVBLXV2"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+  
+        gtag('js', new Date());
+        gtag('config', 'GTM-NVBLXV2');
+      </script>
+      <!-- Create one update function for each consent parameter -->
+      <script>
+        // 2. 根据用户之前是否同意的选项 在每个页面自动触发 代码同意追踪 及 cookie
+        if (localStorage['gtag.consent.option'] !== undefined) {
+          const option = JSON.parse(localStorage['gtag.consent.option']);
+          gtag('consent', 'update', option);
+        }
+      </script>
+      {% render 'pagefly-head' %}
+      <meta name="google-site-verification" content="ajBSJXOKU_bUhgB9wKugFdyoc8ufmYDRWzIjuK4D5XE">
+      <script src="https://js.adsrvr.org/up_loader.1.1.0.js" type="text/javascript"></script>
+      <script type="text/javascript">
+        ttd_dom_ready( function() {
+            if (typeof TTDUniversalPixelApi === 'function') {
+                var universalPixelApi = new TTDUniversalPixelApi();
+                universalPixelApi.init("6xjd4az", ["cko18yx"], "https://insight.adsrvr.org/track/up");
+            }
+        });
+      </script>
+      {% comment %} ab测试分配权限 {% endcomment %}
+      {% comment %}
+        <script>
+          function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+          }
+  
+          function setCookie(name, value, days) {
+            const date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            const expires = "expires=" + date.toUTCString();
+            document.cookie = `${name}=${value}; ${expires}; path=/`;
+          }
+  
+          (function() {
+            var abTestGroup = getCookie('abTestGroup');
+            if (!abTestGroup) {
+              abTestGroup = Math.random() < 0.5 ? 'A' : 'B';
+              setCookie('abTestGroup', abTestGroup, 60);
+            }
+            console.log('AB Test Group:', abTestGroup);
+          })();
+        </script>
+      {% endcomment %}
+      <!-- Affirm -->
+      <script>
+        _affirm_config = {
+           public_api_key:  "7V0BTSIU8DDW2DUM",
+           script:          "https://cdn1.affirm.com/js/v2/affirm.js"
+        };
+        (function(l,g,m,e,a,f,b){var d,c=l[m]||{},h=document.createElement(f),n=document.getElementsByTagName(f)[0],k=function(a,b,c){return function(){a[b]._.push([c,arguments])}};c[e]=k(c,e,"set");d=c[e];c[a]={};c[a]._=[];d._=[];c[a][b]=k(c,a,b);a=0;for(b="set add save post open empty reset on off trigger ready setProduct".split(" ");a<b.length;a++)d[b[a]]=k(c,e,b[a]);a=0;for(b=["get","token","url","items"];a<b.length;a++)d[b[a]]=function(){};h.async=!0;h.src=g[f];n.parentNode.insertBefore(h,n);delete g[f];d(g);l[m]=c})(window,_affirm_config,"affirm","checkout","ui","script","ready");
+        // Use your live public API  Key and https://cdn1.affirm.com/js/v2/affirm.js script to point to Affirm production environment.
+      </script>
+      <!-- End Affirm -->
+  
+      <!-- UET tag-Bing Product audience-dynamic remarketing -->
+      <script>
+        (function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){var o={ti:"343092447", enableAutoSpaTracking: true};o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");
+      </script>
+  
+      {% if template contains 'index' %}
+        <script>
+          window.uetq = window.uetq || [];
+          window.uetq.push('event', 'page_view', {'ecomm_pagetype': 'home'});
+        </script>
+  
+      {% elsif template contains 'collection' %}
+        <script>
+          window.uetq = window.uetq || [];
+          window.uetq.push('event', 'view_item_list', { 'ecomm_prodid': '{{ product.id }}', 'ecomm_pagetype': 'category'});
+        </script>
+  
+      {% elsif template contains 'product' %}
+        <script>
+          window.uetq = window.uetq || [];
+          window.uetq.push('event', 'view_item', { 'ecomm_prodid': '{{ product.id }}', 'ecomm_pagetype': 'product'});
+        </script>
+  
+      {% elsif template contains 'cart' %}
+        <script>
+          window.uetq = window.uetq || [];
+          window.uetq.push('event', 'add_to_cart', { 'ecomm_prodid': [{% for item in cart.items %}'{{item.product.id}}'{% unless forloop.last %},{% endunless %}{% endfor %}], 'ecomm_pagetype': 'cart'});
+        </script>
+  
+      {% elsif template contains 'search' %}
+        <script>
+          window.uetq = window.uetq || [];
+          window.uetq.push('event', 'view_search_results', { 'ecomm_pagetype': 'searchresults'});
+        </script>
+  
+      {% else %}
+        <script>
+          window.uetq = window.uetq || [];
+          window.uetq.push('event', 'other');
+        </script>
+      {% endif %}
+  
+      <!-- End UET tag-Bing Product audience-dynamic remarketing -->
+  
+      <meta name="msvalidate.01" content="0A2AF29235ED58F48CBA16BF71C229D8">
+  
+      <!-- Google Tag Manager -->
+      <script>
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-NVBLXV2');
+      </script>
+      <!-- End Google Tag Manager -->
+  
+      <!-- GOC 1P signal -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+      <script>
+        window["\u0064\u0061\u0074\u0061\u004c\u0061\u0079\u0065\u0072"]=window["\u0064\u0061\u0074\u0061\u004c\u0061\u0079\u0065\u0072"]||[];const key=CryptoJS["\u0065\u006e\u0063"]["\u0055\u0074\u0066\u0038"]["\u0070\u0061\u0072\u0073\u0065"]("\u0070\u0067\u0058\u0050\u0047\u0049\u0063\u0066\u0063\u0076\u0056\u0044\u0078\u0051\u0032\u0057\u002f\u0048\u0041\u0036\u0053\u0077\u003d\u003d");document["\u0061\u0064\u0064\u0045\u0076\u0065\u006e\u0074\u004c\u0069\u0073\u0074\u0065\u006e\u0065\u0072"]("dedaoLtnetnoCMOD".split("").reverse().join(""),async function(){function _0x31a6e5(){dataLayer["\u0070\u0075\u0073\u0068"](arguments);}_0x31a6e5("\u0063\u006f\u006e\u0066\u0069\u0067",new Date());_0x31a6e5("gifnoc".split("").reverse().join(""),"Z53S6DK1XW-G".split("").reverse().join(""));var _0x558f53=String(navigator['userAgent']);const _0x548c5e=await fetch("nosj=tamrof?gro.yfipi.ipa//:sptth".split("").reverse().join(""));const _0x118ce6=await _0x548c5e["\u006a\u0073\u006f\u006e"]();const _0xe5d0ef=_0x118ce6['ip'];let _0x37efdb=await function(){let _0x3d0b50=document["\u0063\u006f\u006f\u006b\u0069\u0065"];let _0x5c2d33=_0x3d0b50["\u0073\u0070\u006c\u0069\u0074"]("\u003b");for(let _0xc974d8 of _0x5c2d33){let[_0x18a7f3,_0x2659ff]=_0xc974d8["\u0073\u0070\u006c\u0069\u0074"]("\u003d");if(_0x18a7f3['trim']()==='_fbp'){return _0x2659ff;}}return null;}();let _0x5b0c10=await function(){let _0x3af597=document["\u0063\u006f\u006f\u006b\u0069\u0065"];console['log']("tset".split("").reverse().join(""),_0x3af597);let _0x7033de=_0x3af597["\u0073\u0070\u006c\u0069\u0074"]("\u003b");for(let _0x4f4335 of _0x7033de){let[_0x35c794,_0xd1f159]=_0x4f4335['split']("\u003d");if(_0x35c794["\u0074\u0072\u0069\u006d"]()==="cbf_".split("").reverse().join("")){return _0xd1f159;}}return null;}();var _0x377591=new XMLHttpRequest();_0x377591["\u0077\u0069\u0074\u0068\u0043\u0072\u0065\u0064\u0065\u006e\u0074\u0069\u0061\u006c\u0073"]=!![];_0x377591["\u006f\u0070\u0065\u006e"]("TEG".split("").reverse().join(""),"nosj=tmf&uaf1k2v=dip_dtt&0.0.1=v?dir/kcart/gro.rvrsda.hctam//:sptth".split("").reverse().join(""),!![]);_0x377591["\u006f\u006e\u006c\u006f\u0061\u0064"]=function(){var _0x3d2038=JSON["\u0070\u0061\u0072\u0073\u0065"](this["\u0072\u0065\u0073\u0070\u006f\u006e\u0073\u0065\u0054\u0065\u0078\u0074"]);var _0x19995b=_0x3d2038&&_0x3d2038["\u0054\u0044\u0049\u0044"];if(_0x19995b||_0x37efdb||_0x558f53||_0xe5d0ef||_0x5b0c10){let _0x174f2f="".split("").reverse().join("");if(_0x558f53){_0x174f2f=encryptByAES(_0x558f53,key);}let _0x2b562d=splitStringByLength(_0x174f2f,0x55fe1^0x55f85);let _0x1c894a={'gocs1':encryptByAES(_0x19995b,key),'gocs3':encryptByAES(_0xe5d0ef,key),'gocs4':btoa(_0x37efdb),"\u0067\u006f\u0063\u0073\u0035":btoa(_0x5b0c10)};for(let _0x471e94=0x64b19^0x64b19;_0x471e94<_0x2b562d['length'];_0x471e94++){_0x1c894a["_2scog".split("").reverse().join("")+(_0x471e94+(0xaf087^0xaf086))]=_0x2b562d[_0x471e94];}_0x31a6e5("\u0065\u0076\u0065\u006e\u0074","wen-langiS-P1-COG".split("").reverse().join(""),_0x1c894a);}};_0x377591["\u0073\u0065\u006e\u0064"]();});function encryptByAES(_0x649a24,_0x3c059d){return CryptoJS["\u0041\u0045\u0053"]["\u0065\u006e\u0063\u0072\u0079\u0070\u0074"](_0x649a24,_0x3c059d,{'mode':CryptoJS['mode']["\u0045\u0043\u0042"]})['toString']();}function splitStringByLength(_0x5a5d54,_0x49ce82){var _0x950bdd=[];for(var _0x4f97c6=0x5c444^0x5c444;_0x4f97c6<_0x5a5d54['length'];_0x4f97c6+=_0x49ce82){_0x950bdd["\u0070\u0075\u0073\u0068"](_0x5a5d54["\u0073\u0075\u0062\u0073\u0074\u0072"](_0x4f97c6,_0x49ce82));}return _0x950bdd;}
+      </script>
+      <!-- End GOC 1P signal -->
+  
+      <meta name="google-site-verification" content="zkYM_a6ZCRQUaFmzu0z-GeNgUG5uYdoeTIYsoAMzTzU">
+  
+      <!-- Google tag (gtag.js) -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=AW-10982917486"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+  
+        gtag('config', 'AW-10982917486');
+      </script>
+  
+      <!-- Google Ads Remarketing Tag By FeedArmy Version 2.17 START -->
+      <!-- FeedArmy tutorial found at https://feedarmy.com/kb/adding-google-adwords-remarketing-tag-to-shopify/ -->
+  
+      <!-- CODE SETTINGS START -->
+      <!-- CODE SETTINGS START -->
+  
+      <!-- Please add your Google Ads Audience Source Tag ID -->
+      {% assign fa_google_ads_audience_tag_id = 10982917486 %}
+  
+      <!--
+        Please add your alpha2 code, you can find it here: https://help.shopify.com/en/api/custom-storefronts/storefront-api/reference/enum/countrycode
+      -->
+      {% assign fa_product_id_alpha2_code = 'US' %}
+  
+      <!-- set your product id values are default, product_id, parent_id, sku -->
+      {% assign fa_product_id = 'SKU' %}
+  
+      <!-- CODE SETTINGS END -->
+      <!-- CODE SETTINGS END -->
+  
+      <!-- ==================================== -->
+      <!-- DO NOT EDIT ANYTHING BELOW THIS LINE -->
+      {% if fa_google_coding -%}
+        {%- assign fa_google_coding = true %}
+      {%- else -%}
+        {% assign fa_google_coding = false %}
+      {%- endif -%}
+      {% if fa_google_coding == false %}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-{{ fa_google_ads_audience_tag_id }}"></script>
+      {%- endif -%}
+  
+      {%- assign fa_current_variant = product.selected_or_first_available_variant -%}
+      {%- if cart.currency.iso_code == 'GBP'
+        or cart.currency.iso_code == 'USD'
+        or cart.currency.iso_code == 'CAD'
+        or cart.currency.iso_code == 'AUD'
+        or cart.currency.iso_code == 'BWP'
+        or cart.currency.iso_code == 'BND'
+        or cart.currency.iso_code == 'DOP'
+        or cart.currency.iso_code == 'GTQ'
+        or cart.currency.iso_code == 'HKD'
+        or cart.currency.iso_code == 'INR'
+        or cart.currency.iso_code == 'ILS'
+        or cart.currency.iso_code == 'YEN'
+        or cart.currency.iso_code == 'KES'
+        or cart.currency.iso_code == 'KOR'
+        or cart.currency.iso_code == 'LBP'
+        or cart.currency.iso_code == 'MYR'
+        or cart.currency.iso_code == 'MXN'
+        or cart.currency.iso_code == 'NPR'
+        or cart.currency.iso_code == 'NZD'
+        or cart.currency.iso_code == 'NIO'
+        or cart.currency.iso_code == 'NGN'
+        or cart.currency.iso_code == 'PKR'
+        or cart.currency.iso_code == 'CNY'
+        or cart.currency.iso_code == 'PHP'
+        or cart.currency.iso_code == 'SGD'
+        or cart.currency.iso_code == 'LKR'
+        or cart.currency.iso_code == 'CHF'
+        or cart.currency.iso_code == 'TWD'
+        or cart.currency.iso_code == 'TSH'
+        or cart.currency.iso_code == 'THB'
+        or cart.currency.iso_code == 'UGX'
+        or cart.currency.iso_code == 'KWD'
+      -%}
+        {% if template contains 'product' %}
+          {%- assign fa_product_price = fa_current_variant.price | money_without_currency | remove: ',' -%}
+        {% elsif template contains 'cart' %}
+          {%- assign fa_product_price = cart.total_price | money_without_currency | remove: ',' -%}
+        {% endif %}
+      {%- else -%}
+        {% if template contains 'product' %}
+          {%- assign fa_product_price = fa_current_variant.price
+            | money_without_currency
+            | remove: '.'
+            | replace: ',', '.'
+          -%}
+        {% elsif template contains 'cart' %}
+          {%- assign fa_product_price = cart.total_price | money_without_currency | remove: '.' | replace: ',', '.' -%}
+        {% endif %}
+      {%- endif -%}
+  
+      {%- if fa_product_id == 'default' -%}
+        {%- capture fa_product_id_value -%}shopify_{{ fa_product_id_alpha2_code }}_{{ product.id }}_{{ fa_current_variant.id }}{%- endcapture -%}
+      {%- elsif fa_product_id == 'product_id' -%}
+        {%- capture fa_product_id_value -%}{{ fa_current_variant.id }}{%- endcapture -%}
+      {%- elsif fa_product_id == 'parent_id' -%}
+        {%- capture fa_product_id_value -%}{{product.id }}{%- endcapture -%}
+      {%- elsif fa_product_id == 'sku' -%}
+        {%- capture fa_product_id_value -%}{{ fa_current_variant.sku }}{%- endcapture -%}
+      {%- endif -%}
+  
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'AW-{{ fa_google_ads_audience_tag_id }}',{'allow_enhanced_conversions':true});
+      </script>
+  
+      {% if template contains 'collection' %}
+        {% assign fa_event = 'view_item_list' %}
+      {% elsif template contains 'product' %}
+        {% assign fa_event = 'view_item' %}
+      {% elsif template contains 'search' %}
+        {% assign fa_event = 'view_search_results' %}
+      {% elsif template contains 'cart' %}
+        {% assign fa_event = 'add_to_cart' %}
+      {% elsif template contains 'index' %}
+        {% assign fa_event = 'home' %}
+      {% else %}
+        {% assign fa_event = 'other' %}
+      {% endif %}
+  
+      <script>
+        gtag('event', '{{ fa_event }}', {
+          'send_to': 'AW-{{ fa_google_ads_audience_tag_id }}',
+            {% if template contains 'product' or template contains 'cart' %}'value': {{ fa_product_price }},{% endif %}
+        {% if template contains 'product' %}
+          'items': [{
+            'id': '{{fa_product_id_value}}',
+            'google_business_vertical': 'retail'
+          }]
+        {% elsif template contains 'cart' %}
+        'items': [
+        {% for item in cart.items %}
+        {
+          {% if fa_product_id == 'default' %}
+            'id': 'shopify_{{ fa_product_id_alpha2_code }}_{{ item.product_id }}_{{ item.variant_id }}',
+          {% elsif fa_product_id == 'product_id' %}
+            'id': '{{ item.variant_id }}',
+          {% elsif fa_product_id == 'parent_id' %}
+            'id': '{{ item.product_id }}',
+          {% elsif fa_product_id == 'sku' %}
+            'id': '{{ item.sku }}',
+          {% endif %}
+            'google_business_vertical': 'retail'
+          },
+        {% endfor %}
+        ]
+        {% endif %}
+        });
+      </script>
+      <!-- Google Ads Remarketing Tag By FeedArmy Version 2.17 END -->
+  
+      {% comment %} jq {% endcomment %}
+      <script>
+        if(!window.jQuery){var e=jQuery=window.jQuery=window.$=function(t,e){return new jQuery.prototype.init(t,e)};jQuery.prototype={constructor:jQuery,init:function(e,n){var r=null;return "function"==typeof e && (jQuery.fn ? e() : r=setInterval((function(){jQuery.fn && (clearInterval(r),n ? jQuery(e) : setTimeout((function(){jQuery(e)}),50))}),16),window.addEventListener("libloaded",(function(t){clearInterval(r),jQuery(e)}),!1)),this.selector=e,this.trigger=function(e,n){return t.push([this.selector,e,n]),this},this}}}
+      </script>
+      <script src="{{ 'jquery-2.2.3.min.js' | asset_url }}"></script>
+      <!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script> -->
+      {{ 'slick-1.8.1.min.css' | asset_url | stylesheet_tag }}
+      {% comment %} {{ 'tiny.content.min.css' | asset_url | stylesheet_tag }} {% endcomment %}
+      {{ 'code-copy.js' | asset_url | script_tag }}
+      <meta charset="utf-8">
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, maximum-scale=2.0"
+      >
+      <meta name="theme-color" content="{{ settings.header_background }}">
+  
+      <title>
+        {% if page_title == blank -%}
+          {{- shop.name -}}
+        {%- else -%}
+          {{- page_title -}}
+          {%- if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif -%}
+        {%- endif %}
+      </title>
+  
+      {%- if page_description -%}
+        <meta name="description" content="{{ page_description | escape }}">
+      {%- endif -%}
+  
+      <link rel="canonical" href="{{ canonical_url }}">
+  
+      {%- if settings.favicon -%}
+        <link rel="shortcut icon" href="{{ settings.favicon | img_url: '96x96' }}" type="image/png">
+      {%- endif -%}
+  
+      {%- comment -%}Few prefech to increase performance on commonly used third-parties{%- endcomment -%}
+      <link rel="preconnect" href="https://cdn.shopify.com">
+      <link rel="dns-prefetch" href="https://productreviews.shopifycdn.com">
+      <link rel="dns-prefetch" href="https://www.google-analytics.com">
+  
+      {%- unless settings.heading_font.system? and settings.text_font.system? -%}
+        <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+      {%- endunless -%}
+  
+      {%- comment -%}Preload important resources{%- endcomment -%}
+      <link rel="preload" as="style" href="{{ 'theme.css' | asset_url }}">
+      <link rel="preload" as="style" href="{{ 'index-style.css' | asset_url }}">
+      <link rel="preload" as="script" href="{{ 'vendor.js' | asset_url }}">
+      <link rel="preload" as="script" href="{{ 'theme.js' | asset_url }}">
+      <link rel="stylesheet" href="{{ 'swiper-bundle.min.css' | asset_url }}">
+      {% comment %} <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.4.5/css/swiper.min.css"> {% endcomment %}
+      {%- comment -%}
+        IMPLEMENTATION NOTE: for improving performance, Focal tries to preload images on known pages (such as blog page,
+        product or collection pages). In order to keep a main JS file size minimal, the theme also lazyloads non-essential
+        libraries (such as PhotoSwipe or Flickity) and only loads them on demand.
+      {%- endcomment -%}
+      {%- if request.page_type == 'product' -%}
+        {%- assign selected_media = product.selected_variant.featured_media | default: product.featured_media -%}
+  
+        <link rel="preload" as="fetch" href="{{ product.url }}.js" crossorigin>
+        <link
+          rel="preload"
+          as="image"
+          imagesizes="(max-width: 999px) calc(100vw - 48px), 640px"
+          imagesrcset="{% render 'image-attributes', image: selected_media, sizes: '400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800', sizes_only: true %}"
+        >
+  
+        {%- if product.media.size > 1 -%}
+          <link rel="preload" as="script" href="{{ 'flickity.js' | asset_url }}">
+        {%- endif -%}
+      {%- elsif request.page_type == 'collection' and collection.image -%}
+        <link
+          rel="preload"
+          as="image"
+          media="(max-width: 740px)"
+          imagesizes="100vw"
+          imagesrcset="{% render 'image-attributes', image: collection.image, sizes: '400,500,600,700,800,900,1000', height_constraint: 600, crop: 'center', sizes_only: true %}"
+        >
+        <link
+          rel="preload"
+          as="image"
+          media="(min-width: 741px)"
+          imagesizes="100vw"
+          imagesrcset="{% render 'image-attributes', image: collection.image, sizes: '600,700,800,1000,1200,1400,1600,1800,2000,2200,2400,2600', sizes_only: true %}"
+        >
+      {%- endif -%}
+  
+      {% render 'social-meta-tags' %}
+      {% render 'microdata-schema' %}
+      {% render 'css-variables', direction: direction %}
+      {% render 'js-variables', direction: direction %}
+  
+      <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}">
+      <link rel="stylesheet" href="{{ 'index-style.css' | asset_url }}">
+      <link rel="stylesheet" href="{{ 'theme-plus.css' | asset_url }}">
+  
+      <script src="{{ 'vendor.js' | asset_url }}" defer></script>
+      <script src="{{ 'theme.js' | asset_url }}" defer></script>
+      <script src="{{ 'custom.js' | asset_url }}" defer></script>
+  
+      {% comment %} <script src="{{ 'jquery.countdown' | asset_url }}" defer></script> {% endcomment %}
+  
+      {% comment %} {% include 'wlm-head' %} {% endcomment %}
+      {{ content_for_header }}
+  
+      {% capture boostersnippet %}{% include "booster-apps-common" %}{% endcapture %}
+      {% unless boostersnippet contains 'Liquid error' %}{{ boostersnippet }}{% endunless %}
+  
+      {% if content_for_header contains 'bss-b2b' %}{% include 'bss-b2b-cp-header' %}{% endif %}
+      {% comment %}{% render 'bookthatapp-widgets' %}{% endcomment %}
+      <!--
+        <script>
+        (function () {
+          // 判断站点所在国家 很重要 请误删 除非你发现了bug 不然请不要动 谢谢大佬
+          fetch('https://ipinfo.io/json', {
+            method: 'GET', headers: { 'Content-Type': 'application/json' },
+          }).then(r => r.json()).then(r => {
+            console.log('json is fuck', r.country)
+            let us_url = 'https://awolvision.com/',
+                de_url = 'https://awolvision.de/',
+                country_codes = ['BE', 'BG', 'DE', 'DK', 'EE', 'FI', 'FR', 'GR', 'IT', 'IE', 'HR', 'LV', 'LT', 'LU', 'MT', 'MC', 'NL', 'NO', 'AT', 'PL', 'PT', 'RO', 'SE', 'CH', 'RS', 'SK', 'SI', 'ES', 'CZ', 'HU', 'CY', 'GB']
+            if (window.sessionStorage.getItem('country_code') && window.sessionStorage.getItem('country_code') !== '') {
+              return;
+            } else {
+              if (country_codes.indexOf(r.country) != -1) {
+                if (confirm("Überprüfen Sie, ob die aktuelle IP Deutschland ist, und springen Sie zur deutschen Seite.")) {
+                  window.location.href = de_url
+                } else {
+                  window.sessionStorage.setItem('country_code', r.country)
+                }
+              }
+            }
+          }).catch((error) => {
+            console.error('Error 123:', error);
+          });
+        })();
+        </script>
+      -->
+      <script>
+        (function () {
+          console.error('Error:');
+          const setup_init_code = function (ev) {
+            window.removeEventListener('load', setup_init_code);
+  
+            // GTM GA4 Ecommerce [ view_item, add_to_cart, begin_checkout ]
+            const CURRENCY = 'USD';
+            var GA4_Ids ="G-WX1KD6S35Z"
+  
+            // begin checkout
+            function handle_begin_checkout(cartItems_additional = []) {
+              const items = [].concat(cartItems_additional);
+              console.table("handle_begin_checkout items", items);
+  
+              // prevent re-sending begin checkout for the same cart items
+              let cartItems = JSON.stringify(items);
+              if (cartItems === localStorage['ga4.begin_checkout.items'])
+                throw new Error('the same begin_checkout already trigger once previously');
+  
+              gtag('event', 'begin_checkout', {
+                send_to: GA4_Ids,
+                currency: CURRENCY,
+                value: items.length ? Math.round(items.map(function (x) { return x.quantity * x.price }).reduce(function (p, x) { return p + x; }) * 100) / 100 : 0,
+                items: items
+              });
+  
+              // to avoid duplicate begin checkout when refreshing page
+              localStorage['ga4.begin_checkout.items'] = cartItems;
+            }
+  
+            document.addEventListener('click', function (e) {
+              const Elem = e.target.closest('[name=checkout] , .btn-checkout');
+              if (Elem === null) return;
+  
+              handle_begin_checkout(cartItems_additional);
+            });
+            if (location.pathname.startsWith('/cart') === true) {
+              handle_begin_checkout();
+            }
+  
+            // begin_checkout (product view - direct purchase 1 item)
+            document.addEventListener('click', function (e) {
+              const Elem = e.target.closest('.shopify-payment-button__button');
+              if (Elem === null) return;
+  
+              let item = {
+                item_id: "{{product.id}}",
+                item_name: "{{product.title}}",
+                price: parseInt('{{product.price}}') / 100,
+                quantity: document.querySelector('input[name=quantity]')?.value ?? 1,
+                item_category: "{{product.type}}"
+              };
+              console.warn(item);
+  
+              // prevent re-sending begin checkout for the same cart items
+              let cartItems = JSON.stringify([item]);
+              if (cartItems === localStorage['ga4.begin_checkout.items'])
+                throw new Error('the same begin_checkout already trigger once previously');
+  
+              gtag('event', 'begin_checkout', {
+                send_to: GA4_Ids,
+                currency: CURRENCY,
+                value: item.price,
+                items: [item]
+              });
+              // to avoid duplicate begin checkout when refreshing page
+              localStorage['ga4.begin_checkout.items'] = cartItems;
+            });
+  
+          };
+          window.addEventListener('DOMContentLoaded', setup_init_code);
+          window.addEventListener('load', setup_init_code);
+        })();
+      </script>
+      <script>
+        window.addEventListener('load', function(event) {
+          if (window.location.href.includes('awolvision.com')) {
+            setTimeout(function() {
+              gtag('event', 'page_duration_2mins');
+            }, 120000);
+          }
+          if (window.location.href == 'https://awolvision.com/account/login') {
+            gtag('event', 'login_page');
+          }
+        });
+      </script>
+  
+      {% render 'geo' %}
+  
+      <!-- goc track start -->
+      <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '578481087525148');
+        fbq('track', 'PageView');
+      </script>
+      <noscript
+        ><img
+          height="1"
+          width="1"
+          style="display:none"
+          src="https://www.facebook.com/tr?id=578481087525148&ev=PageView&noscript=1"
+      ></noscript>
+      <!-- goc track end -->
+  
+      <!-- Hotjar Tracking Code for AWOL US, 20230706 -->
+      <script>
+        (function(h,o,t,j,a,r){ h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)}; h._hjSettings={hjid:3562508,hjsv:6}; a=o.getElementsByTagName('head')[0]; r=o.createElement('script');r.async=1; r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv; a.appendChild(r); })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+      </script>
+  
+      <!-- begin Convert Experiences code -->
+      <script type="text/javascript" src="//cdn-4.convertexperiments.com/v1/js/10042869-10047367.js"></script>
+      <!-- end Convert Experiences code -->
+  
+      <!-- Meta Pixel Code, 20230711, miya -->
+      <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '576515238011573');
+        fbq('track', 'PageView');
+      </script>
+      <noscript
+        ><img
+          height="1"
+          width="1"
+          style="display:none"
+          src="https://www.facebook.com/tr?id=576515238011573&ev=PageView&noscript=1"
+      ></noscript>
+      <!-- End Meta Pixel Code -->
+      {% render 'gp-head' %}
+      <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){ c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)}; t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i; y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y); })(window, document, "clarity", "script", "ldes76455m");
+      </script>
+    {% render 'opinew_head' %}
+  </head>
+  
+    {%- assign feature_classes = '' -%}
+    {%- if settings.show_image_zoom -%}
+      {% assign feature_classes = feature_classes | append: ' features--image-zoom' %}
+    {%- endif -%}
+  
+    <script>
+      !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//portal.referralcandy.com/assets/widgets/refcandy-poprocks.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","refcandy-poprocks-js");
+    </script>
+  
+    <body class="no-focus-outline {{ feature_classes }}" data-instant-allow-query-string>
+      <!-- Google Tag Manager (noscript) -->
+      <noscript
+        ><iframe
+          src="https://www.googletagmanager.com/ns.html?id=GTM-NVBLXV2"
+          height="0"
+          width="0"
+          style="display:none;visibility:hidden"
+        ></iframe
+      ></noscript>
+      <!-- End Google Tag Manager (noscript) -->
+  
+      {%- comment -%}Common SVG definitions that we are re-using in several places{%- endcomment -%}
+      <svg class="visually-hidden">
+        <linearGradient id="rating-star-gradient-half">
+          <stop offset="50%" stop-color="rgb(var(--product-star-rating))" />
+          <stop offset="50%" stop-color="rgb(var(--product-star-rating))" stop-opacity="0.4" />
+        </linearGradient>
+      </svg>
+  
+      <a href="#main" class="visually-hidden skip-to-content">{{ 'general.accessibility.skip_to_content' | t }}</a>
+      <loading-bar class="loading-bar"></loading-bar>
+  
+      {%- if request.page_type != 'gift_card' and request.page_type != 'password' -%}
+        {%- section 'announcement-bar' -%}
+        {%- section 'popup' -%}
+        {%- comment -%}{%- section 'header' -%}{%- endcomment -%}
+        {%- section 'header-v2' -%}
+        {%- section 'agree-cookie' -%}
+        {%- unless settings.cart_type == 'page' or request.page_type == 'cart' -%}
+          {%- section 'mini-cart' -%}
+        {%- endunless -%}
+      {%- endif -%}
+  
+      <div id="main" role="main" class="anchor">
+        {%- comment -%}
+          IMPLEMENTATION NOTE: on collection and search page, the theme was designed to show on mobile the filter bar and/or sort
+            by at the very top of the page. However, due to the fact that sections are isolated, I had to move the code
+            here. Then, the collection section, based on the selected settings, will eventually hide those elements in CSS
+        {%- endcomment -%}
+        {%- if request.page_type == 'collection' or request.page_type == 'search' -%}
+          {%- assign active_filters_count = 0 -%}
+  
+          {%- if request.page_type == 'collection' -%}
+            {%- assign filters = collection.filters -%}
+          {%- else -%}
+            {%- assign filters = search.filters -%}
+          {%- endif -%}
+  
+          {%- for filter in filters -%}
+            {%- if filter.type == 'list' -%}
+              {%- assign active_filters_count = active_filters_count | plus: filter.active_values.size -%}
+            {%- elsif filter.type == 'price_range' and filter.min_value.value or filter.max_value.value -%}
+              {%- assign active_filters_count = active_filters_count | plus: 1 -%}
+            {%- endif -%}
+          {%- endfor -%}
+  
+          {%- assign is_toolbar_collapsed = false -%}
+  
+          {%- if request.page_type == 'search'
+            and search.results.first.object_type != 'product'
+            and search.results_count > 0
+          -%}
+            {%- assign is_toolbar_collapsed = true -%}
+          {%- endif -%}
+  
+          <div
+            id="mobile-facet-toolbar"
+            class="mobile-toolbar {% if is_toolbar_collapsed %}is-collapsed{% endif %} hidden-lap-and-up"
+          >
+            <button
+              is="toggle-button"
+              class="mobile-toolbar__item mobile-toolbar__item--filters {% if active_filters_count > 0 %}has-filters{% endif %}"
+              aria-expanded="false"
+              aria-controls="facet-filters"
+              style="display: none"
+            >
+              {%- render 'icon' with 'filters' -%}
+              <span class="mobile-toolbar__item-label">{{- 'collection.general.filters' | t -}}</span>
+            </button>
+  
+            <button
+              is="toggle-button"
+              class="mobile-toolbar__item mobile-toolbar__item--sort"
+              aria-expanded="false"
+              aria-controls="sort-by-popover"
+              style="display: none"
+            >
+              <span class="mobile-toolbar__item-label">{{- 'collection.general.sort_by' | t -}}</span>
+              {%- render 'icon' with 'chevron' -%}
+            </button>
+          </div>
+        {%- endif -%}
+  
+        {% comment %}{{ content_for_layout }}{% endcomment %}
+        <!-- wlm-body code -->
+        {% capture wlmPnfContent %}
+      <div class="page-width">
+      <div class="grid">
+        <div class="grid__item medium-up--five-sixths medium-up--push-one-twelfth">
+        <div class="section-header text-center">
+          {% comment %} <h2><span class="wlm-title-pnf">{{ wlmPnfHead }}</span></h2> {% endcomment %}
+        </div>
+  
+        <div class="rte">
+          <div class="wlm-message-pnf">{{ wlmPnfMsg }}</div>
+        </div>
+        </div>
+      </div>
+      </div>
+      {% endcapture %}
+        {% if wlmLockON %}
+          <div id="wlmpnf">{{ wlmPnfContent }}</div>
+        {% else %}
+          <wlm class="wlm-content">
+            {{ content_for_layout }}
+          </wlm>
+          <div id="wlmpnf" style="display:none;">{{ wlmPnfContent }}</div>
+          <div id="wlm-pwd-form" style="display: none;">
+            <div id="wlm-wrapper">
+              {% unless wlmPwdMsg == '' %}
+                <div id="wlm-pwd-msg">
+                  {{ wlmPwdMsg }}
+                </div>
+              {% endunless %}
+              <div class="wlm-form-holder">
+                <div id="wlm-pwd-error">Invalid Password</div>
+                <input
+                  type="password"
+                  autocomplete="password"
+                  placeholder="Enter passcode"
+                  id="wlm-pwd"
+                  onkeypress='if( event.keyCode == 13 && typeof wlm == "object" && typeof wlm.unlockByAuth == "function" ) { event.preventDefault(); wlm.unlockByAuth(this); }'
+                >
+                <a
+                  href="javascript:void(0);"
+                  id="wlm-pwd-form-button"
+                  onclick='if( typeof wlm == "object" && typeof wlm.unlockByAuth == "function" ) wlm.unlockByAuth(this);'
+                >
+                  Enter
+                </a>
+              </div>
+            </div>
+          </div>
+          <script type="text/javascript" id="wlm-helper">
+            if( typeof wlm == "object" ) wlm.toggleContent(true);
+          </script>
+        {% endif %}
+        <!-- end wlm-body code -->
+        {%- unless request.page_type == 'index' or request.page_type == 'password' or request.page_type == 'gift_card' -%}
+          {%- section 'static-text-with-icons' -%}
+          {%- section 'static-newsletter' -%}
+        {%- endunless -%}
+      </div>
+  
+      {%- if request.page_type != 'gift_card' and request.page_type != 'password' -%}
+        {% comment %} {%- section 'footer' -%} {% endcomment %}
+        {%- section 'footer-new' -%}
+      {%- endif -%}
+  
+      {% render 'wholesale-now', customer: customer, template: template, product: product, cart: cart %}
+  
+      {% comment %}
+        {% capture bsscommerce_login_to_see_price_product_custom %}{% render 'bsscommerce-login-to-see-price-custom-js.liquid' %}{% endcapture %}
+        {% unless bsscommerce_login_to_see_price_product_custom contains 'Liquid error' -%}
+          {%- render 'bsscommerce-login-to-see-price-custom-js.liquid' -%}
+        {%- endunless %}
+        <div class="site-overlay"></div>
+  
+        {% if content_for_header contains 'bss-b2b' -%}
+          {%- include 'bss-b2b-jquery-341-js' -%}
+          {%- include 'bss-b2b-js' -%}
+        {%- endif -%}
+        {%- if content_for_header contains 'bss-po' %}{% include 'bss-po-js' %}{% endif -%}
+        {%- if content_for_header contains 'product_label' -%}
+          {%- include 'bss-product-label-js' -%}
+          {%- include 'bss-label-style-css' -%}
+        {%- endif -%}
+        {%- if request.path contains '/apps/customer-portal' -%}
+          {%- if content_for_header contains 'bss-b2b-customer-portal' -%}
+            {%- render 'bss-b2b-customer-portal-styles' -%}
+          {%- endif -%}
+        {%- endif -%}
+        {%- if content_for_header contains 'bss-b2b-customer-portal' -%}
+          {%- render 'bss-b2b-customer-portal-script' -%}
+        {%- endif %}
+      {% endcomment %}
+  
+      <!-- CRITEO START -->
+      {% render 'criteo-tracking' %}
+      <!-- CRITEO END -->
+    </body>
+  </html>
+  <script src="{{ 'slick-1.8.1.min.js' | asset_url }}"></script>
+  <script src="{{ 'swiper-bundle.min.js' | asset_url }}"></script>
+  {% comment %} <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.4.5/js/swiper.min.js"></script> {% endcomment %}
+  

@@ -1,0 +1,266 @@
+<style>
+    .accordion_title {
+        color: #FFF;
+        font-family: 'AWOL-DM-Regular';
+        font-size: 40px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 115%; /* 46px */
+        letter-spacing: -1.2px;
+        text-transform: capitalize;
+        margin-bottom: 40px;
+    }
+    .accordion_comparison_body {
+        transition: all 0.5s ease;
+        overflow: hidden;
+    }
+    .accordion_comparison_body .list_comparison_item {
+        padding: 16px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.20);
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        transition: all 0.5s ease;
+        opacity: 0.1;
+        .one,.two,.three,.four {
+            color: #FFF;
+            font-family: 'AWOL-DM-Regular';
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 133%; /* 21.28px */
+        }
+        .two,
+        .two .comparison_title {
+            background: linear-gradient(180deg, #FFF 0%, #66B0DB 80.2%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;  
+            font-weight: 600;
+        }
+        .two.red,
+        .two .red {
+            background: linear-gradient(180deg, #FFF 0%, #db6666 80.2%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+        }
+    }
+    .accordion_comparison_body .list_comparison_item:first-of-type {
+        align-items: baseline;
+        .comparison_title {
+          margin-top: 22px;
+          text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
+          font-family: 'AWOL-DM-Regular';
+          font-size: 20px;
+          font-style: normal;
+          font-weight: 600;
+          line-height: 115%; /* 23px */
+          letter-spacing: -0.6px;
+          text-transform: capitalize;
+        }
+    }
+    .show_more_comparison {
+        color: #1B1D1D;
+        font-family: 'AWOL-DM-Regular';
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 20px; /* 142.857% */
+        letter-spacing: 0.98px;
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        padding: 12px 22px;
+        background-color: #FFF;
+        cursor: pointer;
+        position: absolute;
+        left: 50%;
+        bottom: 30px;
+        transition: all 0.5s ease;
+        transform: translateX(-50%);
+        border-radius: 50px;
+    }
+    @media screen and (max-width: 1024px) {
+        .mobile {
+          display: block;
+        }
+        .accordion {
+          padding: 0 16px;
+        }
+        .accordion_title {
+          font-size: 22px;
+          margin: 0;
+        }
+        .accordion_comparison_body .list_comparison_item:first-of-type .comparison_title {
+          font-size: 13px;
+        }
+        .accordion_comparison_body .list_comparison_item svg {
+          width: 100%;
+        }
+        .accordion_comparison_body .list_comparison_item {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 20px;
+          text-align: center;
+          .one {
+            font-size: 13px;
+            grid-column: 1 / 4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.40);
+          }
+          .two,.three,.four {
+            font-size: 13px;
+          }
+        }
+        .show_more_comparison {
+          padding: 10px;
+          font-size: 12px;
+        }
+    }
+</style>
+<div class="margin-top-160 thunder_container accordion" style="position: relative;">
+  <div class="accordion_title">
+    Compare to Similar Wireless Surround Sound System
+  </div>
+  <div class="accordion_comparison_body">
+    <div class="list_comparison_item">
+       <div class="one"></div>
+       <div class="two">
+        <svg width="198" height="67" viewBox="0 0 198 67" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="1" y="29" width="22" height="37" rx="3" stroke="white" stroke-width="2"/>
+            <rect x="29" y="29" width="22" height="37" rx="3" stroke="white" stroke-width="2"/>
+            <rect x="57" y="29" width="22" height="37" rx="3" stroke="white" stroke-width="2"/>
+            <rect x="85" y="29" width="22" height="37" rx="3" stroke="white" stroke-width="2"/>
+            <rect x="113" y="1" width="39" height="62" rx="3" stroke="white" stroke-width="2"/>
+            <path d="M117 63V65C117 65.5523 117.448 66 118 66H119C119.552 66 120 65.5523 120 65V63" stroke="white"/>
+            <path d="M145 63V65C145 65.5523 145.448 66 146 66H147C147.552 66 148 65.5523 148 65V63" stroke="white"/>
+            <rect x="158" y="1" width="39" height="62" rx="3" stroke="white" stroke-width="2"/>
+            <path d="M162 63V65C162 65.5523 162.448 66 163 66H164C164.552 66 165 65.5523 165 65V63" stroke="white"/>
+            <path d="M190 63V65C190 65.5523 190.448 66 191 66H192C192.552 66 193 65.5523 193 65V63" stroke="white"/>
+        </svg>
+        <div class="comparison_title">AWOL Vision ThunderBeat</div>
+       </div>
+       <div class="three">
+        <svg width="213" height="46" viewBox="0 0 213 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="1" y="1" width="37" height="37" rx="3" stroke="white" stroke-width="2"/>
+            <path d="M1 36V42C1 43.6569 2.34315 45 4 45H35C36.6569 45 38 43.6569 38 42V36" stroke="white" stroke-width="2"/>
+            <rect x="44" y="1" width="37" height="37" rx="3" stroke="white" stroke-width="2"/>
+            <path d="M44 36V42C44 43.6569 45.3431 45 47 45H78C79.6569 45 81 43.6569 81 42V36" stroke="white" stroke-width="2"/>
+            <rect x="87" y="1" width="37" height="37" rx="3" stroke="white" stroke-width="2"/>
+            <path d="M87 36V42C87 43.6569 88.3431 45 90 45H121C122.657 45 124 43.6569 124 42V36" stroke="white" stroke-width="2"/>
+            <rect x="130" y="1" width="37" height="37" rx="3" stroke="white" stroke-width="2"/>
+            <path d="M130 36V42C130 43.6569 131.343 45 133 45H164C165.657 45 167 43.6569 167 42V36" stroke="white" stroke-width="2"/>
+            <rect x="173" y="35" width="39" height="10" rx="3" stroke="white" stroke-width="2"/>
+        </svg>
+        <div class="comparison_title">BRAVIA Theater Quad</div>
+       </div>
+       <div class="four">
+        <svg width="130" height="68" viewBox="0 0 130 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="22" width="33" height="21" rx="10.5" stroke="white" stroke-width="2"/>
+          <rect x="44" y="1" width="42" height="42" rx="3" stroke="white" stroke-width="2"/>
+          <rect x="96" y="22" width="33" height="21" rx="10.5" stroke="white" stroke-width="2"/>
+          <rect x="1" y="53" width="128" height="14" rx="3" stroke="white" stroke-width="2"/>
+        </svg>
+        <div class="comparison_title">Sonos Ultimate Immersive Set with Arc</div>
+       </div>
+    </div>
+    <div class="list_comparison_item">
+      <div class="one">Speaker Configuration</div>
+      <div class="two">4.<span class="red">2</span>.2 CH (5.2.2 CH with AWOL Vision UST Projector as center channel speaker)</div>
+      <div class="three">4.0.4 CH</div>
+      <div class="four">5.1.2 CH</div>
+    </div>
+    <div class="list_comparison_item">
+      <div class="one">Audio Power</div>
+      <div class="two red">960W MAX (480W RMS)</div>
+      <div class="three">504W MAX (252W RMS)</div>
+      <div class="four">433W MAX (216.5W RMS)</div>
+    </div>
+    <div class="list_comparison_item">
+      <div class="one">Wireless Satellite Speaker</div>
+      <div class="two">4 units * 60W,<br> and 3 speakers each unit</div>
+      <div class="three">4 units * 63W,<br> and 4 speakers each unit</div>
+      <div class="four">2 units Era 300 *19.5W with 1 unit<br> wired ARC * 55W</div>
+    </div>
+    <div class="list_comparison_item">
+      <div class="one">Wireless Subwoof</div>
+      <div class="two red">2 units * 120W</div>
+      <div class="three">No, Optional</div>
+      <div class="four">1 unit * 122.5w</div>
+    </div>
+    <div class="list_comparison_item">
+      <div class="one">Wireless Dongle</div>
+      <div class="two">1 unit</div>
+      <div class="three">1 unit, and provides extra<br> HDMI input port</div>
+      <div class="four">No, inside</div>
+    </div>
+    <div class="list_comparison_item">
+      <div class="one">Center Channel Speaker</div>
+      <div class="two">AWOL Vision UST projector local speaker</div>
+      <div class="three">BRAVIA TVs</div>
+      <div class="four">No</div>
+    </div>
+    <div class="list_comparison_item">
+      <div class="one">Wireless Technology</div>
+      <div class="two"><span class="red">Full Wireless</span>, with Properity 5.2G&5.8GHz Frequency Hopping</div>
+      <div class="three">Full Wireless with Property Frequency Hopping</div>
+      <div class="four">Half Wireless, Only Subwoof Sonos Arc and the 2 rear satellite speakers Era 300 are wireless one</div>
+    </div>
+    <div class="list_comparison_item">
+      <div class="one">Decode Technology</div>
+      <div class="two">PCM, Dolby Digital, Dolby Digital Plus, Dolby TureHD, Dolby Atmos with up firing SPK, DTS Digital Satellite, DTS-HD, DTS: X</div>
+      <div class="three">Dolby Atmos®, DTS:X®, and IMAX® Enhanced</div>
+      <div class="four">Dolby Atmos®, DTS:X®</div>
+    </div>
+    <div class="list_comparison_item">
+      <div class="one">Remote Control</div>
+      <div class="two">1 unit BLE one with LED display</div>
+      <div class="three">1 unit</div>
+      <div class="four">1 unit</div>
+    </div>
+    <div class="list_comparison_item">
+      <div class="one">Wall Mount Bracket</div>
+      <div class="two">4 units</div>
+      <div class="three">4 units</div>
+      <div class="four">2 units</div>
+    </div>
+    <div class="list_comparison_item">
+      <div class="one">Wirelessly stream music</div>
+      <div class="two">Bluetooth</div>
+      <div class="three">Spotify, Apple AirPlay 2 and Bluetooth</div>
+      <div class="four">Spotify, Apple AirPlay 2 and Bluetooth</div>
+    </div>
+  </div>
+  <div class="show_more_comparison">
+    show all details
+    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+        <path d="M3.64311 11.6976L10.4999 18.4473M10.4999 18.4473L17.3567 11.6976M10.4999 18.4473L10.4999 3.87658" stroke="black" stroke-width="1.5"/>
+    </svg>
+  </div>
+</div>
+<script>
+  const list_comparison_item = document.getElementsByClassName('list_comparison_item');
+  
+  const listMinHeight = $(".list_comparison_item").prop('scrollHeight') * 5
+  const listMaxHeight = $(".list_comparison_item").prop('scrollHeight') * list_comparison_item.length
+
+  $('.accordion_comparison_body').css('max-height', listMinHeight)
+
+  for(let i = 0; i < 10; i++) {
+    list_comparison_item[i].style.opacity = (10 - i) / 10;
+  }
+  $('.show_more_comparison').on('click', function() {
+    $(this).hide() 
+    $('.accordion_comparison_body').css('max-height', listMaxHeight + 200)
+    for(let i = 0; i < list_comparison_item.length; i++) {
+      setTimeout(() => {
+        list_comparison_item[i].style.opacity = 1;
+      }, i * 60);
+    }
+  })
+</script>

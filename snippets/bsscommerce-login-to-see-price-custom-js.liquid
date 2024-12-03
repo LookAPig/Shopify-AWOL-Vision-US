@@ -1,0 +1,2621 @@
+{% if true %}
+<script id="bss-ltap-hide-price" type="text/javascript">
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+// ESM COMPAT FLAG
+__webpack_require__.r(__webpack_exports__);
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, "default", function() { return /* binding */ InitFunction; });
+
+// CONCATENATED MODULE: ./src/js/src/login-to-see-price/quick-view.js
+function handleQuickView(BSS_LTAP) {
+    BSS_LTAP.ltsp.quickView = function () {
+        // fix bug haydenla by XuTho
+        document.querySelectorAll('.quickview-button').forEach(function (e) {
+            e.addEventListener('click', function () {
+                setTimeout(function () {
+                    let parentElement = document.getElementById('add-to-cart-quickview-form')
+                    if (parentElement) {
+                        let comparePrice = parentElement.querySelector('.groups-btn')
+                        if (comparePrice) {
+                            comparePrice.remove()
+                        }
+                        let comparePrice2 = parentElement.querySelector('.pieces')
+                        if (comparePrice2) {
+                            comparePrice2.remove()
+                        }
+                        let comparePrice3 = parentElement.querySelector('.bsscommerce-ltsp-message')
+                        if (comparePrice3) {
+                            comparePrice3.remove()
+                        }
+                    }
+
+                    // fix for sugimoto-wholesale by DangNM
+                    parentElement = document.querySelector('[data-quickview-modal] .halo-modal-body');
+                    if (parentElement) {
+                        let quantitySelector = parentElement.querySelector('.quantity');
+                        if (quantitySelector) {
+                            quantitySelector.remove();
+                        }
+                    }
+                }, 1000)
+            })
+        })
+        // fix for Azucren-Usa by XuTho
+        document.querySelectorAll('.shop-now-button').forEach(function (e) {
+            e.addEventListener('click', function () {
+                setTimeout(function () {
+                    let parentElement = document.getElementById('ShopNowContainer')
+                    if (parentElement) {
+                        let comparePrice = parentElement.querySelector('#AddToCart')
+                        if (comparePrice) {
+                            comparePrice.remove()
+                        }
+                    }
+                }, 2000)
+            })
+        })
+        // fix for rivendell-distribution by hoaduong
+        document.querySelectorAll('.collection__filter').forEach(function (e) {
+            e.addEventListener('click', function () {
+                setTimeout(function () {
+                    let messageElement = document.getElementsByClassName('bsscommerce-ltsp-message')
+                    for (let i = 0; i < messageElement.length; i++) {
+                        let parentElement = messageElement[i].closest('.product-grid-item');
+                        if (parentElement) {
+                            let quickview = parentElement.querySelector('.btn--quick-view');
+                            if (quickview) {
+                                quickview.remove()
+                            }
+                        }
+                    }
+                }, 1500)
+            })
+        })
+
+        //fix for internationalbeauty by CuongNVM
+        document.querySelectorAll('.btn--icon.quick-product__btn').forEach(function (e) {
+            e.addEventListener('click', function () {
+                setTimeout(function () {
+                    let messageElement = document.getElementsByClassName('bsscommerce-ltsp-message')
+                    for (let i = 0; i < messageElement.length; i++) {
+                        let parentElement = messageElement[i].closest('.product-grid__content');
+                        if (parentElement) {
+                            let cartBtnSelector = parentElement.querySelector('.payment-buttons');
+                            if (cartBtnSelector) {
+                                cartBtnSelector.remove()
+                            }
+                        }
+                    }
+                }, 2000)
+            })
+        })
+
+        // fix for b.salonpremium by hoaduong
+        document.querySelectorAll('.product-facet__aside').forEach(function (e) {
+            e.addEventListener('click', function () {
+                setTimeout(function () {
+                    let messageElement = document.getElementsByClassName('bsscommerce-ltsp-message')
+                    for (let i = 0; i < messageElement.length; i++) {
+                        let parentElement = messageElement[i].closest('.product-item');
+                        if (parentElement) {
+                            let cartBtnSelector = parentElement.querySelector('form[action="/cart/add"]');
+                            if (cartBtnSelector) {
+                                cartBtnSelector.remove()
+                            }
+                            let quickview = parentElement.querySelector('.product-item__quick-form');
+                            if (quickview) {
+                                quickview.remove()
+                            }
+                        }
+                    }
+                }, 1500)
+            })
+        })
+        // fix for b.salonpremium by hoaduong
+        document.querySelectorAll('.pagination').forEach(function (e) {
+            e.addEventListener('click', function () {
+                setTimeout(function () {
+                    let messageElement = document.getElementsByClassName('bsscommerce-ltsp-message')
+                    for (let i = 0; i < messageElement.length; i++) {
+                        let parentElement = messageElement[i].closest('.product-item');
+                        if (parentElement) {
+                            let cartBtnSelector = parentElement.querySelector('form[action="/cart/add"]');
+                            if (cartBtnSelector) {
+                                cartBtnSelector.remove()
+                            }
+                            let quickview = parentElement.querySelector('.product-item__quick-form');
+                            if (quickview) {
+                                quickview.remove()
+                            }
+                        }
+                    }
+                }, 1800)
+            })
+        })
+        // fix for vashbeautylabs by hoaduong
+        document.querySelectorAll('.collection-filters__sort').forEach(function (e) {
+            e.addEventListener('change', function () {
+                setTimeout(function () {
+                    let messageElement = document.getElementsByClassName('bsscommerce-ltsp-message')
+                    for (let i = 0; i < messageElement.length; i++) {
+                        let parentElement = messageElement[i].closest('.indiv-product');
+                        if (parentElement) {
+                            let cartBtnSelector = parentElement.querySelector('form[action="/cart/add"]');
+                            if (cartBtnSelector) {
+                                cartBtnSelector.remove()
+                            }
+                        }
+                    }
+                }, 1500)
+            })
+        })
+        // fix for valleys-group by hoaduong
+        document.querySelectorAll('.slideout__drawer-right, .sidebar_leftside_wapper, .filtering__results').forEach(function (e) {
+            e.addEventListener('click', function () {
+                setTimeout(function () {
+                    let messageElement = document.getElementsByClassName('bsscommerce-ltsp-message')
+                    for (let i = 0; i < messageElement.length; i++) {
+                        let parentElement = messageElement[i].closest('.product-index');
+                        if (parentElement) {
+                            let quickview = parentElement.querySelector('.js-quickview-trigger');
+                            if (quickview) {
+                                quickview.remove();
+                            }
+                        }
+                    }
+                }, 1500)
+            })
+        })
+        // fix for studyphones by XuTho
+        document.querySelectorAll('a.product-loop__quickview').forEach(function (e) {
+            e.addEventListener('click', function () {
+                setTimeout(function () {
+                    let messageElement = document.getElementsByClassName('bsscommerce-ltsp-message')
+                    for (let i = 0; i < messageElement.length; i++) {
+                        let parentElement = messageElement[i].closest('.large--one-half');
+                        if (parentElement) {
+                            let addToCartButton = parentElement.querySelector('.quick-smart-wrapper')
+                            if (addToCartButton) {
+                                addToCartButton.remove()
+                            }
+
+                            let quantityElement = parentElement.querySelector('#quantity-container')
+                            if (quantityElement) {
+                                quantityElement.remove()
+                            }
+                            // fix by Leorio
+                            let buttonSoldOut = parentElement.querySelector('.js-prod-show-soldout');
+                            if (buttonSoldOut) {
+                                buttonSoldOut.remove();
+                            }
+                        }
+                    }
+                }, 2000)
+            })
+        })
+        // Fixed for shop-sandra-velandia by Leorio
+        document.querySelectorAll('.quick-product__btn').forEach(function (e) {
+            e.addEventListener('click', function () {
+                setTimeout(function () {
+                    let loginToSeePriceMessageTest = document.getElementsByClassName("bsscommerce-ltsp-message");
+                    for (let i = 0; i < loginToSeePriceMessageTest.length; i++) {
+                        let e = loginToSeePriceMessageTest[i];
+
+                        let parentElement = e.closest('.product-single__meta')
+                        if (parentElement) {
+                            let addtocartBtnSelector = parentElement.querySelector('div.payment-buttons');
+                            if (addtocartBtnSelector) {
+                                addtocartBtnSelector.remove();
+                            }
+                        }
+                    }
+                }, 1000)
+            })
+        })
+        // endfix haydenla
+        // fix for toysrevolution by Leorio
+        document.querySelectorAll('.btn--load-more').forEach(function (e) {
+            e.addEventListener('click', function () {
+                setTimeout(function () {
+                    let loginToSeePriceMessage = document.getElementsByClassName("bsscommerce-ltsp-message");
+                    for (let i = 0; i < loginToSeePriceMessage.length; i++) {
+                        let e = loginToSeePriceMessage[i];
+
+                        let parentElement = e.closest('.grid-view-item')
+                        if (parentElement) {
+                            let addtocartBtnSelector = parentElement.querySelector('.quick-add-button');
+                            if (addtocartBtnSelector) {
+                                addtocartBtnSelector.remove();
+                            }
+                        }
+                    }
+                }, 1000)
+            })
+        })
+        // end fix for toysrevolution
+        // fix for Quick View of voyage-trade by Leorio
+        document.querySelectorAll('.qs-button ').forEach(function (e) {
+            e.addEventListener('click', function () {
+                setTimeout(function () {
+                    let loginToSeePriceMessageTest = document.getElementsByClassName("bsscommerce-ltsp-message");
+                    for (let i = 0; i < loginToSeePriceMessageTest.length; i++) {
+                        let e = loginToSeePriceMessageTest[i];
+                        let parentElement = e.closest('.product-info-main');
+
+                        if (parentElement) {
+                            let quantitySelector = parentElement.querySelector('.qty-box');
+                            if (quantitySelector) {
+                                quantitySelector.remove();
+                            }
+
+                            let cartBtnSelector = parentElement.querySelector('.btn.btn-cart');
+                            if (cartBtnSelector) {
+                                cartBtnSelector.remove();
+                            }
+
+                            let comparePriceSelector = parentElement.querySelector('.product-single__sale-price');
+                            if (comparePriceSelector) {
+                                comparePriceSelector.remove();
+                            }
+                            //fix by XuTho support Leorio
+                            let addToWishlist = parentElement.querySelector('.product-addto-links');
+                            if (addToWishlist) {
+                                addToWishlist.remove();
+                            }
+                        }
+                    }
+                }, 1000)
+            })
+        })
+        // fix melagio for XuTho
+        let clickMiniCart = document.querySelector('a[data-js-cart-icon]'); //click mini cart
+        if (clickMiniCart) {
+            clickMiniCart.addEventListener('click', function () {
+                let parent = document.querySelector('.quick-cart__control');
+                if (parent) {
+                    parent.remove()
+                }
+                let parent2 = document.querySelector('.quick-cart__item-right');
+                if (parent2.childNodes[3]) {
+                    parent2.childNodes[3].innerHTML = "Login to seen price"
+                }
+            })
+        }
+        // end fix melagio for XuTho
+        // fix for kemelimportswholesale by Leorio
+        document.querySelectorAll('.quick-add-button-variants').forEach(function (e) {
+            e.addEventListener('click', function () {
+                setTimeout(function () {
+                    let loginToSeePriceMessageTest = document.getElementsByClassName("bsscommerce-ltsp-message");
+                    for (let i = 0; i < loginToSeePriceMessageTest.length; i++) {
+                        let e = loginToSeePriceMessageTest[i];
+                        let parentElement = e.closest('#AddToCartForm');
+
+                        if (parentElement) {
+                            let cartBtnSelector = parentElement.querySelector('.paymentButtonsWrapper');
+                            if (cartBtnSelector) {
+                                cartBtnSelector.remove();
+                            }
+                        }
+                    }
+                }, 1000)
+            })
+        })
+
+        document.querySelectorAll('.product-thumbnail__quickshop-button').forEach(function (e) {
+            e.addEventListener('click', function () {
+                setTimeout(function () {
+                    let loginToSeePriceMessageTest = document.getElementsByClassName("bsscommerce-ltsp-message");
+                    for (let i = 0; i < loginToSeePriceMessageTest.length; i++) {
+                        let e = loginToSeePriceMessageTest[i];
+                        let parentElement = e.closest('.product-details');
+
+                        if (parentElement) {
+                            let bsscommerceLtspMessage = parentElement.querySelectorAll('.bsscommerce-ltsp-message');
+                            if (bsscommerceLtspMessage.length > 1) {
+                                bsscommerceLtspMessage.forEach(function (item, i) {
+                                    if (i > 0) {
+                                        item.remove();
+                                    }
+                                })
+                            }
+
+                            let cartBtnSelector = parentElement.querySelector('.product-form__cart-buttons');
+                            if (cartBtnSelector) {
+                                cartBtnSelector.remove();
+                            }
+
+                            let quantitySelector = parentElement.querySelector('.product-form__quantity-box-wrapper');
+                            if (quantitySelector) {
+                                quantitySelector.remove();
+                            }
+                        }
+                    }
+                }, 800)
+            })
+        })
+
+    }
+}
+// CONCATENATED MODULE: ./src/js/src/login-to-see-price/remove-parten-by-ltsp-message.js
+function handleRemoveElementByLTSPMessage(BSS_LTAP) {
+    BSS_LTAP.ltsp.removeElementByLTSPMessage = function () {
+        let loginToSeePriceMessage = document.getElementsByClassName("bsscommerce-ltsp-message");
+        let toRemoveElement = [];
+
+        for (let i = 0; i < loginToSeePriceMessage.length; i++) {
+            let e = loginToSeePriceMessage[i];
+            let toRemovePatterns = [
+                ".grid-product__on-sale",
+                ".product-unit-price",
+                ".product-price-unit",
+                ".grid-link__sale_price",
+                "s",
+                ".price__compare",
+                ".product__compare-price",
+                ".price__unit",
+                ".card__price--regular",
+                ".sale-tag",
+                ".compare-price",
+                ".old-price",
+                ".savings",
+                ".was_price",
+                '.price--compare',
+                '.price-compare',
+                '.was'
+            ];
+
+            //Fixed for autmatin pro
+            let parentElement = e.closest('.product-parent');
+            if (parentElement) {
+                let cartButton = parentElement.querySelector('form .tt-btn-addtocart');
+                if (cartButton) {
+                    toRemoveElement.push(cartButton);
+                }
+                let quickViewSelector = parentElement.querySelector('.tt-btn-quickview');
+
+                if (quickViewSelector) {
+                    toRemoveElement.push(quickViewSelector);
+                }
+
+            }
+
+            // fix for trademix.eu by thang
+            parentElement = e.closest('.thubnail-desc');
+            if (parentElement) {
+                let cartBtnSelector = parentElement.querySelector('.quatity-stock');
+                if (cartBtnSelector) {
+                    toRemoveElement.push(cartBtnSelector);
+                }
+                let buyItNowSelector = parentElement.querySelector('.Payment_button');
+                if (buyItNowSelector) {
+                    toRemoveElement.push(buyItNowSelector);
+                }
+            }
+            parentElement = e.closest('.single-ponno-product');
+            if (parentElement) {
+                let cartBtnSelector = parentElement.querySelector('.pro-actions-link');
+                if (cartBtnSelector) {
+                    toRemoveElement.push(cartBtnSelector);
+                }
+                let buyItNowSelector = parentElement.querySelector('.pro-add-cart');
+                if (buyItNowSelector) {
+                    toRemoveElement.push(buyItNowSelector);
+                }
+            }
+
+            // fix for leadthedisruption by ThaBi
+            parentElement = e.closest('.product-single__meta');
+            if (parentElement) {
+                let cartBtnSelector = parentElement.querySelector('div.product-form__controls-group.product-form__controls-group--submit');
+                if (cartBtnSelector) {
+                    cartBtnSelector.setAttribute('style', 'visibility:hidden');
+                }
+            }
+
+            //Fixed for Moremotr (madu)
+            parentElement = e.closest('.product-item__info');
+            if (parentElement) {
+                let cartBtnSelector = parentElement.querySelector('form.product-item__action-list.button-stack');
+                if (cartBtnSelector) {
+                    cartBtnSelector.remove();
+                }
+            }
+
+            //Fixed for panam-decor-and-gift (madu)
+            parentElement = e.closest('.product-form');
+            if (parentElement) {
+                let cartButton = parentElement.querySelector('.quantity-submit-row__submit');
+                if (cartButton) {
+                    cartButton.remove();
+                }
+            }
+
+            //Fixed for lollipuff8 (madu)
+            parentElement = e.closest('.product-grid__detail');
+            if (parentElement) {
+                let cartButton = parentElement.querySelector('.product-form-block form');
+                if (cartButton) {
+                    cartButton.remove();
+                }
+            }
+
+            //madu fix rademakersports
+            parentElement = e.closest('.tab-body');
+            if (parentElement) {
+                let hasCartBtnSelector = parentElement.querySelector('.purchase-section button, .btn.add-to-cart');
+                if (hasCartBtnSelector) {
+                    let intervalRemoveAddToCartBtn = setInterval(function () {
+                        let cartBtnSelector = document.querySelector('.tab-body .purchase-section button, .tab-body .btn.add-to-cart');
+                        let btnWishList = document.querySelector('.swym-button-bar.swym-wishlist-button-bar');
+                        if (cartBtnSelector) {
+                            cartBtnSelector.remove();
+                        }
+                        if (btnWishList) {
+                            btnWishList.remove();
+                        }
+                    }, 200);
+                    setTimeout(function () {
+                        clearInterval(intervalRemoveAddToCartBtn)
+                    }, 10000)
+                }
+            }
+
+            parentElement = e.closest('.item.relative.product-id.item-row');
+            if (parentElement) {
+                let cartBtnSelector = parentElement.querySelector('.quantity.form');
+                if (cartBtnSelector) {
+                    cartBtnSelector.remove();
+                }
+            }
+            // fix for mayorista.lens.cl by hoaduong
+            parentElement = e.closest('.product-form');
+            if (parentElement) {
+                let buyButtons = parentElement.querySelector('.buy-buttons-row');
+                if (buyButtons) {
+                    toRemoveElement.push(buyButtons);
+                }
+            }
+            // fix for rivendell-distribution by hoaduong
+            parentElement = e.closest('.product-grid-item');
+            if (parentElement) {
+                let quickview = parentElement.querySelector('.btn--quick-view');
+                if (quickview) {
+                    toRemoveElement.push(quickview);
+                }
+            }
+            // fix for valleys-group by hoaduong
+            parentElement = e.closest('.featured__collection-product');
+            if (parentElement) {
+                let quickview = parentElement.querySelector('.js-quickview-trigger');
+                if (quickview) {
+                    toRemoveElement.push(quickview);
+                }
+            }
+            parentElement = e.closest('.product-index');
+            if (parentElement) {
+                let quickview = parentElement.querySelector('.js-quickview-trigger');
+                if (quickview) {
+                    toRemoveElement.push(quickview);
+                }
+            }
+            parentElement = e.closest('.product-bottom');
+            if (parentElement) {
+                let cartBtnSelector = parentElement.querySelector('.quantity-selector, .product-add');
+                if (cartBtnSelector) {
+                    toRemoveElement.push(cartBtnSelector);
+                }
+            }
+            parentElement = e.closest('.js-sticky-cart');
+            if (parentElement) {
+                let stickyAdd = parentElement.querySelector('.sticky-add');
+                if (stickyAdd) {
+                    toRemoveElement.push(stickyAdd);
+                }
+            }
+            // end fix for valleys-group by hoaduong
+            // fix for honeydewusa by hoaduong
+            parentElement = e.closest('.product-details');
+            if (parentElement) {
+                let buyItNow = parentElement.querySelector('.shopify-payment-button');
+                if (buyItNow) {
+                    toRemoveElement.push(buyItNow);
+                }
+                let cartBtnSelector = parentElement.querySelector('.payment-and-quantity__add');
+                if (cartBtnSelector) {
+                    toRemoveElement.push(cartBtnSelector);
+                }
+            }
+            parentElement = e.closest('.product-block__inner');
+            if (parentElement) {
+                let quickView = parentElement.querySelector('.quick-buy');
+                if (quickView) {
+                    toRemoveElement.push(quickView);
+                }
+            }
+            // fix for diblong by hoaduong
+            parentElement = e.closest('.content-summary');
+            if (parentElement) {
+                let cartBtnSelector = parentElement.querySelector('form.cart');
+                if (cartBtnSelector) {
+                    toRemoveElement.push(cartBtnSelector);
+                }
+            }
+            // fix for sohumretail by hoaduong
+            parentElement = e.closest('div[data-pf-type="Section"]');
+            if (parentElement) {
+                let buttonQuantity = parentElement.querySelector('div[data-pf-type="ProductQuantity"]');
+                if (buttonQuantity) {
+                    toRemoveElement.push(buttonQuantity);
+                }
+                let cartBtnSelector = parentElement.querySelector('button[data-pf-type="ProductATC"]');
+                if (cartBtnSelector) {
+                    toRemoveElement.push(cartBtnSelector);
+                }
+            }
+            // fix for fnfparts by hoaduong
+            parentElement = e.closest('.pc-inner');
+            if (parentElement) {
+                let cartBtnSelector = parentElement.querySelector('form[action="/cart/add"]');
+                if (cartBtnSelector) {
+                    toRemoveElement.push(cartBtnSelector);
+                }
+                let buttonQuantity = parentElement.querySelector('.quick_shop');
+                if (buttonQuantity) {
+                    toRemoveElement.push(buttonQuantity);
+                }
+            }
+            parentElement = e.closest('.product-info-inner');
+            if (parentElement) {
+                let cartBtnProductSelector = parentElement.querySelector('form[action="/cart/add"]');
+                if (cartBtnProductSelector) {
+                    toRemoveElement.push(cartBtnProductSelector);
+                }
+            }
+            // fix for miekinvormb2b by XuTho
+            parentElement = e.closest('.product-details-inline');
+            if (parentElement) {
+                let buttonQuantity = parentElement.querySelector('.product-quantity');
+                if (buttonQuantity) {
+                    toRemoveElement.push(buttonQuantity);
+                }
+            }
+            // fix for onlyorganics-bb by hoaduong
+            parentElement = e.closest('.product-card');
+            if (parentElement) {
+                let cartBtnSelector = parentElement.querySelector('.js-grid-cart');
+                if (cartBtnSelector) {
+                    toRemoveElement.push(cartBtnSelector);
+                }
+            }
+            // fix for b.salonpremium by hoaduong
+            parentElement = e.closest('.product__info');
+            if (parentElement) {
+                let cartBtnSelector = parentElement.querySelector('.product-form__buy-buttons button');
+                if (cartBtnSelector) {
+                    toRemoveElement.push(cartBtnSelector);
+                }
+                let quantitySelector = parentElement.querySelector('.product-form__quantity');
+                if (quantitySelector) {
+                    toRemoveElement.push(quantitySelector);
+                }
+            }
+            parentElement = e.closest('.product-sticky-form__inner');
+            if (parentElement) {
+                let cartBtnSelector = parentElement.querySelector('.product-sticky-form__payment-container');
+                if (cartBtnSelector) {
+                    toRemoveElement.push(cartBtnSelector);
+                }
+            }
+            // fix for b.salonpremium by hoaduong
+            parentElement = e.closest('.product-item');
+            if (parentElement) {
+                let cartBtnSelector = parentElement.querySelector('form[action="/cart/add"]');
+                if (cartBtnSelector) {
+                    toRemoveElement.push(cartBtnSelector);
+                }
+                let quickview = parentElement.querySelector('.product-item__quick-form');
+                if (quickview) {
+                    toRemoveElement.push(quickview);
+                }
+            }
+
+            // fix for colour-and-cotton-wholesale. by hoaduong
+            parentElement = e.closest('.shopify-product-form');
+            if (parentElement) {
+                let quantitySelector = parentElement.querySelector('div.quantity');
+                if (quantitySelector) {
+                    toRemoveElement.push(quantitySelector);
+                }
+            }
+            parentElement = e.closest('.product-body');
+            if (parentElement) {
+                let cartBtnSelector = parentElement.querySelector('.product-cta-wrapper');
+                if (cartBtnSelector) {
+                    toRemoveElement.push(cartBtnSelector);
+                }
+            }
+            parentElement = e.closest('.tt-product-single-info');
+            if (parentElement) {
+                let cartButton = parentElement.querySelector('form .btn-addtocart');
+                if (cartButton) {
+                    toRemoveElement.push(cartButton);
+                }
+                let form = parentElement.querySelector('form[action*="/cart/add"]');
+                if (form) {
+                    toRemoveElement.push(form);
+                }
+            }
+
+            //madu fix cosman-interior-shop
+            parentElement = e.closest('.product-details-wrapper');
+            if (parentElement) {
+                let cartBtnSelector = parentElement.querySelector('.product-form');
+                if (cartBtnSelector) {
+                    toRemoveElement.push(cartBtnSelector);
+                }
+            }
+            parentElement = e.closest('.product-inner');
+            if (parentElement) {
+                let cartBtnSelector = parentElement.querySelector('.product-card-interactions');
+                if (cartBtnSelector) {
+                    toRemoveElement.push(cartBtnSelector);
+                }
+            }
+
+            // fix for epique-shop by XuTho
+            parentElement = e.closest('.product-single__meta');
+            if (parentElement) {
+                let cartButton = parentElement.querySelector('.add-to-cart');
+                if (cartButton) {
+                    toRemoveElement.push(cartButton);
+                }
+            }
+            // end fix epique-shop
+            // fix for dropxfoods by XuTho
+            parentElement = e.closest('.grid-view-item');
+            if (parentElement) {
+                let cartButton = parentElement.querySelector('.thumbnail-buttons');
+                if (cartButton) {
+                    toRemoveElement.push(cartButton);
+                }
+            }
+            // end fix dropxfoods
+            // fix  for foliendealer by Xutho
+            parentElement = e.closest('.product-single__meta');
+            if (parentElement) {
+                let comparePrice = parentElement.querySelector('.product-form:not(.product-form-product--static):not(.product-form-product-template)');
+                if (comparePrice) {
+                    toRemoveElement.push(comparePrice);
+                }
+            }
+            parentElement = e.closest('.pf-product-form');
+            if (parentElement) {
+                let comparePrice = parentElement.querySelector('.sc-lkgURy');
+                if (comparePrice) {
+                    toRemoveElement.push(comparePrice);
+                }
+                let comparePrice1 = parentElement.querySelector('.sc-gzcbmu');
+                if (comparePrice1) {
+                    toRemoveElement.push(comparePrice1);
+                }
+                let addToCart = parentElement.querySelector('.add-to-cart');
+                if (addToCart) {
+                    toRemoveElement.push(addToCart);
+                }
+            }
+            // fix  for studyphones by Xutho
+            parentElement = e.closest('.large--one-half');
+            if (parentElement) {
+                let comparePrice = parentElement.querySelector('.product-smart-wrapper');
+                if (comparePrice) {
+                    toRemoveElement.push(comparePrice);
+                }
+                let customizeItButton = parentElement.querySelector('div.btn[onmouseup="showProductsDesigner(this)"]');
+                if (customizeItButton) {
+                    toRemoveElement.push(customizeItButton);
+                }
+                let soldOutButton = parentElement.querySelector('button.js-prod-show-soldout');
+                if (soldOutButton) {
+                    toRemoveElement.push(soldOutButton);
+                }
+            }
+
+            // fix  for haydenla by Xutho
+            parentElement = e.closest('#add-to-cart-form');
+            if (parentElement) {
+                let comparePrice = parentElement.querySelector('.groups-btn');
+                if (comparePrice) {
+                    toRemoveElement.push(comparePrice);
+                }
+                toRemoveElement.push(e)
+            }
+            parentElement = e.closest('.product-shop');
+            if (parentElement) {
+                let comparePrice = parentElement.querySelector('.groups-btn');
+                if (comparePrice) {
+                    toRemoveElement.push(comparePrice);
+                }
+            }
+
+            parentElement = e.closest('.price-sale');
+            if (parentElement) {
+                let comparePrice = parentElement.querySelector('.old-price');
+                if (comparePrice) {
+                    toRemoveElement.push(comparePrice);
+                }
+                let comparePrice2 = parentElement.querySelector('em');
+                if (comparePrice2) {
+                    comparePrice2.innerHTML = ""
+                }
+            }
+            parentElement = e.closest(".product-details");
+            if (parentElement) {
+                let comparePrice = parentElement.querySelector('.action');
+                if (comparePrice) {
+                    toRemoveElement.push(comparePrice);
+                }
+            }
+
+            //endfix haydenla
+            //Fixed for Puzzle brand
+
+            parentElement = e.closest('.product_section');
+            if (parentElement) {
+                let cartButton = parentElement.querySelector('form .add_to_cart, form .b2b-ajax-submit');
+                if (cartButton) {
+                    toRemoveElement.push(cartButton);
+                }
+                let savingSelector = parentElement.querySelector('.sale.savings');
+
+                if (savingSelector) {
+                    toRemoveElement.push(savingSelector);
+                }
+
+            }
+
+            parentElement = e.closest('.quick-shop-style--inline');
+            if (parentElement) {
+                let cartButton = parentElement.querySelector('form .add_to_cart, form .b2b-ajax-submit');
+                if (cartButton) {
+                    toRemoveElement.push(cartButton);
+                }
+            }
+            parentElement = e.closest('.product-details');
+            if (parentElement) {
+                let fromText = parentElement.querySelector('small em');
+                if (fromText) {
+                    toRemoveElement.push(fromText);
+                }
+            }
+            //the-little-nail-shop.myshopify.com
+            parentElement = e.closest('.gt_product-body');
+            if (parentElement) {
+                let cartButton = parentElement.querySelector('form .gt_product-addtocart');
+                if (cartButton) {
+                    toRemoveElement.push(cartButton);
+                }
+                let savingElement = parentElement.querySelector('.gt_product-saved');
+                if (savingElement) {
+                    toRemoveElement.push(savingElement);
+                }
+                let comparePriceElement = parentElement.querySelector('.gt_product-price--compare');
+                if (comparePriceElement) {
+                    toRemoveElement.push(comparePriceElement);
+                }
+            }
+            parentElement = e.closest('.gt_product_content');
+            if (parentElement) {
+                let cartButton = parentElement.querySelector('form .gt_product-addtocart');
+                if (cartButton) {
+                    toRemoveElement.push(cartButton);
+                }
+                let comparePriceElement = parentElement.querySelector('.gt_product-price--compare');
+                if (comparePriceElement) {
+                    toRemoveElement.push(comparePriceElement);
+                }
+            }
+
+            parentElement = e.closest('.gt-single-product');
+
+            if (parentElement) {
+                let cartButton = parentElement.querySelector('div.gt_method_addToCart');
+                if (cartButton) {
+                    toRemoveElement.push(cartButton);
+                }
+                let comparePriceElement = parentElement.querySelector('.gt_product-price--compare');
+                if (comparePriceElement) {
+                    toRemoveElement.push(comparePriceElement);
+                }
+            }
+            //evobiosculpturemauritius.myshopify.com
+
+            parentElement = e.closest('#cont-form');
+            if (parentElement) {
+                let cartButton = parentElement.querySelector('form .cont-add-btns');
+                if (cartButton) {
+                    toRemoveElement.push(cartButton);
+                }
+            }
+            //linh
+            parentElement = e.closest('.theiaStickySidebar');
+            if (parentElement) {
+                let cartButton = parentElement.querySelector('.variations_button');
+                if (cartButton) {
+                    toRemoveElement.push(cartButton);
+                }
+            }
+            parentElement = e.closest('.product--price-wrapper');
+            if (parentElement) {
+                let cartButton = parentElement.querySelector('.product--compare-price');
+                if (cartButton) {
+                    toRemoveElement.push(cartButton);
+                }
+            }
+            // nadjarina
+            parentElement = e.closest('.product-submit');
+            if (parentElement) {
+                let cartButton = parentElement.querySelector('.payment-buttons-container');
+                if (cartButton) {
+                    toRemoveElement.push(cartButton);
+                }
+            }
+            parentElement = e.closest('.product-price');
+            if (parentElement) {
+                let cartButton = parentElement.querySelector('.product-price-compare');
+                if (cartButton) {
+                    toRemoveElement.push(cartButton);
+                }
+            }
+            parentElement = e.closest('.product-list-item');
+            if (parentElement) {
+                let salePrice = parentElement.querySelector('.original');
+                let saleBadge = parentElement.querySelector('.product-list-item-badge');
+                if (salePrice) {
+                    toRemoveElement.push(salePrice);
+                }
+                if (saleBadge) {
+                    toRemoveElement.push(saleBadge);
+                }
+            }
+            parentElement = e.closest('.productitem');
+            if (parentElement) {
+                let cartButton = parentElement.querySelector('.productitem--action');
+                if (cartButton) {
+                    toRemoveElement.push(cartButton);
+                }
+            }
+            parentElement = e.closest('.product--outer');
+            if (parentElement) {
+                let cartButton = parentElement.querySelector('.product-form--atc');
+                if (cartButton) {
+                    toRemoveElement.push(cartButton);
+                }
+                cartButton = parentElement.querySelector('.shopify-payment-button');
+                if (cartButton) {
+                    toRemoveElement.push(cartButton);
+                }
+            }
+
+            //fix for dvp-distro by TA
+            parentElement = e.closest('.Container');
+            if (parentElement) {
+                if (Shopify.shop !== 'b2b-brantlinger.myshopify.com') {
+                    let sizeButton = parentElement.querySelector('form.ProductForm');
+                    if (sizeButton) {
+                        if (Shopify.shop !== 'mama-shawna.myshopify.com') {
+                            toRemoveElement.push(sizeButton);
+                        } else {
+                            if (__st.cid) {
+                                toRemoveElement.push(sizeButton);
+                            }
+                        }
+                    }
+                } else {
+                    let buyButton = parentElement.querySelector('.ProductForm__BuyButtons');
+                    if (buyButton) {
+                        toRemoveElement.push(buyButton);
+                    }
+                }
+            }
+
+            //Fixed for loreal-professionel (madu)
+            parentElement = e.closest('.product-grouped');
+            if (parentElement) {
+                let cartButton = parentElement.querySelector('.product_top form#add-to-cart-form');
+                if (cartButton) {
+                    toRemoveElement.push(cartButton);
+                }
+
+            }
+
+            parentElement = e.closest('.product-item');
+            if (parentElement) {
+                let bottomBtnSelector = parentElement.querySelector('.product-top .product-des .action');
+
+                if (bottomBtnSelector) {
+                    toRemoveElement.push(bottomBtnSelector);
+                }
+            }
+            // end madu fix
+
+            //Fixed for bagamour (madu)
+            parentElement = e.closest('.modal_price');
+            if (parentElement) {
+                let oldPrice = parentElement.querySelector('.was_price');
+                if (oldPrice) {
+                    toRemoveElement.push(oldPrice);
+                }
+            }
+            parentElement = e.closest('.info');
+            if (parentElement) {
+                let oldPrice = parentElement.querySelector('.was_price');
+                if (oldPrice) {
+                    toRemoveElement.push(oldPrice);
+                }
+            }
+
+            //Fix for boutique8084
+
+            parentElement = e.closest('.product-item');
+            if (parentElement) {
+                let cartBtnSelector = parentElement.querySelector('.product-item__action-button[data-action="add-to-cart"]');
+
+                if (cartBtnSelector) {
+                    toRemoveElement.push(cartBtnSelector);
+                }
+            }
+            //end
+
+            // Fix for chipper-pet.myshopify.com
+            parentElement = e.closest('.grid__item.grid-product');
+            if (parentElement) {
+                let cartBtnSelector = parentElement.querySelector('form[action="/cart/add"] input[type="submit"]');
+                if (cartBtnSelector) {
+                    toRemoveElement.push(cartBtnSelector);
+                }
+                let productLabelSelector = parentElement.querySelector('.grid-product__tag');
+                if (productLabelSelector) {
+                    toRemoveElement.push(productLabelSelector);
+                }
+                let visualHiddenSelector = parentElement.querySelector('.visually-hidden');
+                if (visualHiddenSelector) {
+                    toRemoveElement.push(visualHiddenSelector);
+                }
+            }
+
+            parentElement = e.closest('.product-info');
+            if (parentElement) {
+                let cartBtnSelector = parentElement.querySelector('form[action="/cart/add"] .payment-buttons');
+                if (cartBtnSelector) {
+                    toRemoveElement.push(cartBtnSelector);
+                }
+
+                let variantPriceButton = parentElement.querySelector('.variant-wrapper.variant-wrapper--button');
+                if (variantPriceButton) {
+                    toRemoveElement.push(variantPriceButton);
+                }
+            }
+            // End
+
+            //fix for ags2020, remove text "From"
+            parentElement = e.closest('.price');
+            if (parentElement) {
+                let priceText = parentElement.textContent;
+                if (priceText.includes('From')) {
+                    let priceHtml = parentElement.innerHTML;
+                    parentElement.innerHTML = priceHtml.replace('From', '');
+                }
+            }
+            // End
+
+            // fix  for emiliv-professional by ThaBi
+            parentElement = e.closest('#product-right');
+            if (parentElement) {
+                let comparePrice = parentElement.querySelector('.was');
+                if (comparePrice) {
+                    toRemoveElement.push(comparePrice);
+                }
+                // let cartBtnSelector = parentElement.querySelector('form[action="/cart/add"]');
+                // if (cartBtnSelector) {
+                //     toRemoveElement.push(cartBtnSelector);
+                // }
+                let cartBtnSelector = parentElement.querySelector('.product-add');
+                if (cartBtnSelector) {
+                    toRemoveElement.push(cartBtnSelector);
+                }
+            }
+
+            parentElement = e.closest('.was');
+            if (parentElement) {
+                toRemoveElement.push(parentElement);
+            }
+            // end
+            // fix melagio for XuTho
+            parentElement = e.closest('.product-single__meta');
+            if (parentElement) {
+                let comparePrice = parentElement.querySelector('.pf__actions');
+                if (comparePrice) {
+                    toRemoveElement.push(comparePrice);
+                }
+                let formAddToCart = parentElement.querySelector('div.product-form__controls-group.product-form__controls-group--submit');
+                if (formAddToCart) {
+                    formAddToCart.setAttribute('style', 'visibility:hidden');
+                }
+            }
+            parentElement = e.closest('.product-item');//remove quick add from collection
+            if (parentElement) {
+                let btnQuickAdd = parentElement.querySelector('.product-item__add');
+                if (btnQuickAdd) {
+                    toRemoveElement.push(btnQuickAdd);
+                }
+            }
+            //end fix
+            // fix for cslbehringplus by vitu
+            parentElement = e.closest('.grid-item');
+            if (parentElement) {
+                let cartBtnSelector = parentElement.querySelector('#addToCart-product-template');
+                if (cartBtnSelector) {
+                    toRemoveElement.push(cartBtnSelector);
+                }
+                let buyItNowSelector = parentElement.querySelector('.payment-buttons');
+                if (buyItNowSelector) {
+                    toRemoveElement.push(buyItNowSelector);
+                }
+            }
+
+            // fix for shop-sandra-velandia by ThaBi
+            parentElement = e.closest('.product-single__meta');
+            if (parentElement) {
+                let addtocartBtnSelector = parentElement.querySelector('div.payment-buttons');
+                if (addtocartBtnSelector) {
+                    addtocartBtnSelector.remove();
+                }
+            }
+
+            //fix for klytia by ThaBi
+            parentElement = e.closest('.modal--root');
+            if (parentElement) {
+                let cartBtnSelector = parentElement.querySelector('.product-form--button-container');
+                if (cartBtnSelector) {
+                    toRemoveElement.push(cartBtnSelector);
+                }
+            }
+
+            // fix for coatingsource by ThaBi
+            parentElement = e.closest('.product-item__info');
+            if (parentElement) {
+                let cartBtnSelector = parentElement.querySelector('a.product-item__action-button.button.button--small.button--primary');
+                if (cartBtnSelector) {
+                    toRemoveElement.push(cartBtnSelector);
+                }
+            }
+
+            parentElement = e.closest('.product-form__info-list');
+            if (parentElement) {
+                let textQuantity = parentElement.querySelector('div.product-form__info-item.product-form__info-item--quantity');
+                if (textQuantity) {
+                    toRemoveElement.push(textQuantity);
+                }
+            }
+            // end fix for coatingsource
+
+            // fix for wholesale.hydrabrands by ThaBi
+            parentElement = e.closest('.large--three-fifths');
+            if (parentElement) {
+                let cartBtnSelector = parentElement.querySelector('.multivariants_setbox_footer');
+                if (cartBtnSelector) {
+                    toRemoveElement.push(cartBtnSelector);
+                }
+            }
+
+            // fix for voyage-trade by ThaBi
+            parentElement = e.closest('.product-info-main');
+            if (parentElement) {
+                let quantitySelector = parentElement.querySelector('.qty-box');
+                if (quantitySelector) {
+                    toRemoveElement.push(quantitySelector);
+                }
+
+                let cartBtnSelector = parentElement.querySelector('.btn.btn-cart');
+                if (cartBtnSelector) {
+                    toRemoveElement.push(cartBtnSelector);
+                }
+
+                let buyItNowBtnSelector = parentElement.querySelector('.shopify-payment-button');
+                if (buyItNowBtnSelector) {
+                    toRemoveElement.push(buyItNowBtnSelector);
+                }
+            }
+
+            parentElement = e.closest('.product-miniature');
+            if (parentElement) {
+                let quantitySelector = parentElement.querySelector('.qty-box');
+                if (quantitySelector) {
+                    toRemoveElement.push(quantitySelector);
+                }
+
+                let cartBtnSelector = parentElement.querySelector('.product.actions.product-item-actions');
+                if (cartBtnSelector) {
+                    toRemoveElement.push(cartBtnSelector);
+                }
+            }
+            // end fix for voyage-trade
+            // fix for Azucren-Usa by XuTho
+            parentElement = e.closest('#AddToCartForm'); //product page
+            if (parentElement) {
+                let cartBtnSelector = parentElement.querySelector('.paymentButtonsWrapper');
+                if (cartBtnSelector) {
+                    toRemoveElement.push(cartBtnSelector);
+                }
+            }
+            parentElement = e.closest('.grid-view-item'); //orther page
+            if (parentElement) {
+                let cartBtnSelector = parentElement.querySelector('.quick-add-button');
+                if (cartBtnSelector) {
+                    toRemoveElement.push(cartBtnSelector);
+                }
+            }
+            // fix for lanabeautyacademy by XuTho
+            parentElement = e.closest('.product-item-caption');
+            if (parentElement) {
+                let cartBtnSelector = parentElement.querySelector('.product-form__item--submit');
+                if (cartBtnSelector) {
+                    toRemoveElement.push(cartBtnSelector);
+                }
+            }
+            parentElement = e.closest('.product-item-caption');
+            if (parentElement) {
+                let buttonQuantity = parentElement.querySelector('.product-form__item--quantity');
+                if (buttonQuantity) {
+                    toRemoveElement.push(buttonQuantity);
+                }
+            }
+            // fix for smoketokes by XuTho
+            parentElement = e.closest('.productgrid--item');
+            if (parentElement) {
+                let cartBtnSelector = parentElement.querySelector('.productitem--actions');
+                if (cartBtnSelector) {
+                    toRemoveElement.push(cartBtnSelector);
+                }
+            }
+
+            // fix for Xbite Wholesale by ThaBi
+            parentElement = e.closest('.product-single__info-wrapper');
+            if (parentElement) {
+                let cartBtnSelector = parentElement.querySelector('.product-form__quantity-submit');
+                if (cartBtnSelector) {
+                    toRemoveElement.push(cartBtnSelector);
+                }
+                let buyItNowSelector = parentElement.querySelector('.shopify-payment-button');
+                if (buyItNowSelector) {
+                    toRemoveElement.push(buyItNowSelector);
+                }
+            }
+
+            parentElement = e.closest('.qv-content');
+            if (parentElement) {
+                let cartBtnSelector = parentElement.querySelector('.qv-add-button');
+                if (cartBtnSelector) {
+                    toRemoveElement.push(cartBtnSelector);
+                }
+                let quantitySelector = parentElement.querySelector('.qv-quantity');
+                if (quantitySelector) {
+                    toRemoveElement.push(quantitySelector);
+                }
+            }
+
+            // fix for home4wholesale by ThaBi
+            parentElement = e.closest('.product-card');
+            if (parentElement) {
+                let cartBtnSelector = parentElement.querySelector('.btn-grid-cart');
+                if (cartBtnSelector) {
+                    toRemoveElement.push(cartBtnSelector);
+                }
+            }
+
+            // fix for repair-partners-wholesale-retail by ThaBi
+            parentElement = e.closest('.product_single_detail_section');
+            if (parentElement) {
+                let cartBtnSelector = parentElement.querySelector('#AddToCart');
+                if (cartBtnSelector) {
+                    toRemoveElement.push(cartBtnSelector);
+                }
+
+                let buyitnowBtnSelector = parentElement.querySelector('.shopify-payment-button__button');
+                if (buyitnowBtnSelector) {
+                    toRemoveElement.push(buyitnowBtnSelector);
+                }
+
+                let quantityLabelSelector = parentElement.querySelector('.quantity-label');
+                if (quantityLabelSelector) {
+                    toRemoveElement.push(quantityLabelSelector);
+                }
+
+                let quantityBoxSelector = parentElement.querySelector('.quantity_width');
+                if (quantityBoxSelector) {
+                    toRemoveElement.push(quantityBoxSelector);
+                }
+            }
+
+            // fix for genito-dk by ThaBi
+            parentElement = e.closest('.product-single__meta');
+            if (parentElement) {
+                let cartBtnSelector = parentElement.querySelector('#AddToCart--product-template');
+                if (cartBtnSelector) {
+                    toRemoveElement.push(cartBtnSelector);
+                }
+
+                let buyItNowBtnSelector = parentElement.querySelector('.shopify-payment-button');
+                if (buyItNowBtnSelector) {
+                    toRemoveElement.push(buyItNowBtnSelector);
+                }
+            }
+            // fix for awswholesale by XuTho
+            parentElement = e.closest('form[action="/cart/add"]');
+            if (parentElement) {
+                let quantityButton = parentElement.querySelector('.product-page-info__field');
+                if (quantityButton) {
+                    toRemoveElement.push(quantityButton);
+                }
+                let cartButton = parentElement.querySelector('.product-page-info__button-add-to-cart');
+                if (cartButton) {
+                    toRemoveElement.push(cartButton);
+                }
+                let buttonAddWishList = parentElement.querySelector('.js-store-lists-add-wishlist');
+                if (buttonAddWishList) {
+                    toRemoveElement.push(buttonAddWishList);
+                }
+                let collectionControl = parentElement.querySelector('.product-collection__control');
+                if (collectionControl) {
+                    toRemoveElement.push(collectionControl);
+                }
+                // fix filamentlighting by DongNV
+                let priceElement = parentElement.querySelector('.offers .price.money');
+                if (priceElement) {
+                    toRemoveElement.push(priceElement);
+                }
+                let quantityButton2 = parentElement.querySelector('.row.type_quantity_selector .quantity-selector .selector-wrapper');
+                if (quantityButton2) {
+                    toRemoveElement.push(quantityButton2);
+                }
+                let buttonAddWishList2 = parentElement.querySelector('.swym-button.swym-add-to-wishlist-view-product');
+                if (buttonAddWishList2) {
+                    toRemoveElement.push(buttonAddWishList2.parentElement);
+                }
+                let buttonAddToCart = parentElement.querySelector('.row.type_buy_buttons .buttons');
+                if (buttonAddToCart) {
+                    toRemoveElement.push(buttonAddToCart);
+                }
+            }
+            // end fix awswholesale
+            // fix for asahigrant by ThaBi
+            parentElement = e.closest('.grid-item__content');
+            if (parentElement) {
+                let cartBtnSelector = parentElement.querySelector('.quick-add-btn');
+                if (cartBtnSelector) {
+                    toRemoveElement.push(cartBtnSelector);
+                }
+            }
+
+            parentElement = e.closest('.purchase-box');
+            if (parentElement) {
+                let cartBtnSelector = parentElement.querySelector('#AddToCart-product-template');
+                if (cartBtnSelector) {
+                    cartBtnSelector.remove();
+                }
+                let quantitySelector = parentElement.querySelector('.quantity-product-template');
+                if (quantitySelector) {
+                    quantitySelector.remove();
+                }
+            }
+
+            // fix for yorklandcontrols by ThaBi
+            parentElement = e.closest('.item-row');
+            if (parentElement) {
+                let cartBtnSelector = parentElement.querySelector('.add-to-cart');
+                if (cartBtnSelector) {
+                    toRemoveElement.push(cartBtnSelector);
+                }
+            }
+
+            // fix for jalousemeesthetics by ThaBi
+            parentElement = e.closest('.product-thumbnail__price');
+            if (parentElement) {
+                let bsscommerceLtspMessage = parentElement.querySelectorAll('.bsscommerce-ltsp-message');
+
+                if (bsscommerceLtspMessage.length > 1) {
+                    bsscommerceLtspMessage.forEach(function (item, i) {
+                        if (i > 0) {
+                            toRemoveElement.push(item);
+                        }
+                    })
+                }
+            }
+
+            parentElement = e.closest('.product-details');
+            if (parentElement) {
+                let cartBtnSelector = parentElement.querySelector('.product__add-to-cart-button');
+                if (cartBtnSelector) {
+                    toRemoveElement.push(cartBtnSelector);
+                }
+
+                let quantitySelector = parentElement.querySelector('.product-form__quantity-box-wrapper');
+                if (quantitySelector) {
+                    toRemoveElement.push(quantitySelector);
+                }
+            }
+            // end fix for jalousemeesthetics
+
+            parentElement = e.closest('.product-details');
+            if (parentElement) {
+                let cartBtnSelector = parentElement.querySelector('#add-to-cart-product-template');
+                if (cartBtnSelector) {
+                    toRemoveElement.push(cartBtnSelector);
+                }
+
+                let buyitnowSelector = parentElement.querySelector('.shopify-payment-button__button');
+                if (buyitnowSelector) {
+                    buyitnowSelector.remove();
+                }
+
+                let quantitySelector = parentElement.querySelector('.quantity');
+                if (quantitySelector) {
+                    toRemoveElement.push(quantitySelector);
+                }
+            }
+            // end fix for yorklandcontrols
+
+            // fix for clickbeauty by mitri
+            parentElement = e.closest('.gryffeditor');
+            if (parentElement) {
+                let quantitySelector = parentElement.querySelector('.gf_product-quantity');
+                if (quantitySelector) {
+                    quantitySelector.parentElement.remove();
+                }
+            }
+
+            // fix for homenagyker by mitri
+            parentElement = e.closest('#ProductSection-product-template');
+            if (parentElement) {
+                let frequentlyBoughtCartBtnSelector = parentElement.querySelector('.cbb-frequently-bought-add-button');
+                if (frequentlyBoughtCartBtnSelector) {
+                    frequentlyBoughtCartBtnSelector.remove();
+                }
+                let frequentlyBoughtPrice = parentElement.querySelector('.cbb-frequently-bought-form');
+                if (frequentlyBoughtPrice) {
+                    frequentlyBoughtPrice.remove();
+                }
+            }
+
+            // fix for phl-corporate-b2b by mitri
+            parentElement = e.closest('.product__info-wrapper');
+            if (parentElement) {
+                let quantitySelector = parentElement.querySelector('.product-form__quantity');
+                if (quantitySelector) {
+                    quantitySelector.remove();
+                }
+                let cartBtnSelector = parentElement.querySelector('.product-form__buttons');
+                if (cartBtnSelector) {
+                    cartBtnSelector.remove();
+                }
+            }
+            // fix for channelxr by ThaBi
+            parentElement = e.closest('.product-form');
+            if (parentElement) {
+                let cartBtnSelector = parentElement.querySelector('.product-form__payment-container');
+                if (cartBtnSelector) {
+                    cartBtnSelector.remove();
+                }
+            }
+
+            parentElement = e.closest('.product-details');
+            if (parentElement) {
+                let cartBtnSelector = parentElement.querySelector('.button-common');
+                if (cartBtnSelector) {
+                    cartBtnSelector.remove();
+                }
+            }
+
+            // fix for shoe2b-global by DangNM
+            parentElement = e.closest('.caption');
+            if (parentElement) {
+                let cartBtnSelector = parentElement.querySelector('.button.btn-cart');
+                if (cartBtnSelector) {
+                    toRemoveElement.push(cartBtnSelector);
+                }
+            }
+
+            parentElement = e.closest('.product-info-main');
+            if (parentElement) {
+                let cartBtnSelector = parentElement.querySelectorAll('.form-group')[1];
+                if (cartBtnSelector) {
+                    toRemoveElement.push(cartBtnSelector);
+                }
+            }
+
+            parentElement = e.closest('.form_buy_sticky');
+            if (parentElement) {
+                let cartBtnSelector = parentElement.querySelector('.form-group .btn.button.button-cart');
+                if (cartBtnSelector) {
+                    toRemoveElement.push(cartBtnSelector);
+                }
+                let quantitySelector = parentElement.querySelector('.form-group input#Quantity');
+                if (quantitySelector) {
+                    toRemoveElement.push(quantitySelector);
+                }
+            }
+
+            // fix for kalora-com by mitri
+            parentElement = e.closest('.product-template__container');
+            if (parentElement) {
+                let quantitySelector = parentElement.querySelector('.store-availability-container');
+                if (quantitySelector) {
+                    quantitySelector.remove();
+                }
+            }
+
+            // fix for lunicabeauty by DangNM
+            parentElement = e.closest('.product-form--container');
+            if (parentElement) {
+                let variantSelector = parentElement.querySelector('.product-form--options');
+                if (variantSelector) {
+                    toRemoveElement.push(variantSelector);
+                }
+                let buyItNowSelector = parentElement.querySelector('.product-form--smart-payment-buttons');
+                if (buyItNowSelector) {
+                    toRemoveElement.push(buyItNowSelector);
+                }
+            }
+
+            parentElement = e.closest('.product--price-wrapper');
+            if (parentElement) {
+                let fromTextSelector = parentElement.querySelector('.product--from[data-item="accent-text"]');
+                if (fromTextSelector) {
+                    toRemoveElement.push(fromTextSelector);
+                }
+            }
+
+            // fix for powerhitter-wholesale-dept bymitri
+            parentElement = e.closest('#zpproductselectorfull1-wrapper');
+            if (parentElement) {
+                let buyItNowBtnSelector = parentElement.querySelector('.zpa-button-alignment-center');
+                if (buyItNowBtnSelector) {
+                    toRemoveElement.push(buyItNowBtnSelector);
+                }
+                let quantitySelector = parentElement.querySelector('.zpa-quantity-block');
+                if (quantitySelector) {
+                    toRemoveElement.push(quantitySelector);
+                }
+            }
+            parentElement = e.closest('.zpa-multi-product-buy-box');
+            if (parentElement) {
+                let buyItNowBtnSelector = parentElement.querySelector('.zpa-button-alignment-center');
+                if (buyItNowBtnSelector) {
+                    toRemoveElement.push(buyItNowBtnSelector);
+                }
+            }
+
+            // fix scanasia-as by DangNM
+            parentElement = e.closest('.product-block__inner');
+            if (parentElement) {
+                let addToCartButton = parentElement.querySelector('form[action="/cart/add"].product-form.product-form--mini');
+                if (addToCartButton) {
+                    toRemoveElement.push(addToCartButton);
+                }
+            }
+            parentElement = e.closest('.was-price.theme-money');
+            if (parentElement) {
+                toRemoveElement.push(parentElement);
+            }
+
+            // fix for controlco by mitri
+            parentElement = e.closest('.box_product_page');
+            if (parentElement) {
+                let addToCartBox = parentElement.querySelector('.product-options-bottom');
+                if (addToCartBox) {
+                    toRemoveElement.push(addToCartBox);
+                }
+            }
+            parentElement = e.closest('.product-default');
+            if (parentElement) {
+                let addToCartButton = parentElement.querySelector('.add-links.clearfix');
+                if (addToCartButton) {
+                    toRemoveElement.push(addToCartButton);
+                }
+            }
+
+            // fix for mainmed by DangNM
+            parentElement = e.closest('.grid__item.medium-up--three-eighths');
+            if (parentElement) {
+                let addToCartForm = parentElement.querySelector('form[action="/cart/add"].shopify-product-form');
+                if (addToCartForm) {
+                    toRemoveElement.push(addToCartForm);
+                }
+            }
+
+            // fix for vashbeautylabs by hoaduong
+            parentElement = e.closest('.indiv-product');
+            if (parentElement) {
+                let addToCartForm = parentElement.querySelector('form[action="/cart/add"]');
+                if (addToCartForm) {
+                    toRemoveElement.push(addToCartForm);
+                }
+            }
+
+            // fix for xplct-studios-b2b by DangNM, hoaduong
+            parentElement = e.closest('form.product-form[action="/cart/add"]');
+            if (parentElement) {
+                let selectOptions = parentElement.querySelector('.sf__pcard-image .sf__pcard-quick-add');
+                if (selectOptions) {
+                    toRemoveElement.push(selectOptions);
+                }
+                let addToCartForm = parentElement.querySelector('.main-product__block-buy_buttons');
+                if (addToCartForm) {
+                    toRemoveElement.push(addToCartForm);
+                }
+            }
+
+            // fix for peracosmetics by hoaduong
+            parentElement = e.closest('.product-grid-item.woodmart-hover-base');
+            if (parentElement) {
+                let button = parentElement.querySelector('.fade-in-block');
+                if (button) {
+                    toRemoveElement.push(button);
+                }
+                let compareButton = parentElement.querySelector('.product-compare-button');
+                if (compareButton) {
+                    toRemoveElement.push(compareButton);
+                }
+            }
+            // fix for naturallookaustralia by hoaduong
+            parentElement = e.closest('.grid__item');
+            if (parentElement) {
+                let button = parentElement.querySelector('.product__submit__buttons');
+                if (button) {
+                    toRemoveElement.push(button);
+                }
+            }
+            // fix for b.salonpremium by hoaduong
+            parentElement = e.closest('.shop-the-look__product-info');
+            if (parentElement) {
+                let addToCartForm = parentElement.querySelector('form[action="/cart/add"]');
+                if (addToCartForm) {
+                    toRemoveElement.push(addToCartForm);
+                }
+            }
+            parentElement = e.closest('.popover.popover--quick-buy');
+            if (parentElement) {
+                let addToCartForm = parentElement.querySelector('.product-form__buy-buttons');
+                if (addToCartForm) {
+                    toRemoveElement.push(addToCartForm);
+                }
+            }
+
+            // fix yardcardsupply for by DangNM
+            parentElement = e.closest('.product__section.product-template .product__section-content .product__section-details');
+            if (parentElement) {
+                let addToCartBtn = parentElement.querySelector('form[action="/cart/add"] input#addToCart');
+                if (addToCartBtn) {
+                    toRemoveElement.push(addToCartBtn);
+                }
+            }
+
+            // fix for sg-modellbau-b2b by DangNM
+            parentElement = e.closest('.product-item__info-inner');
+            if (parentElement) {
+                let unitPrice = parentElement.querySelector('.unit-price-measurement');
+                if (unitPrice) {
+                    toRemoveElement.push(unitPrice);
+                }
+            }
+            parentElement = e.closest('.product-form__info-item');
+            if (parentElement) {
+                let unitPrice = parentElement.querySelector('.unit-price-measurement');
+                if (unitPrice) {
+                    toRemoveElement.push(unitPrice);
+                }
+            }
+
+            // fix for ibss-staging by DangNM, hoaduong
+            parentElement = e.closest('div[data-product-blocks]');
+            if (parentElement) {
+                let addToCartButton = parentElement.querySelector('.payment-buttons');
+                if (addToCartButton) {
+                    toRemoveElement.push(addToCartButton);
+                }
+                let addToWishlistButton = parentElement.querySelector('.spt-wishlist-button__wrapper');
+                if (addToWishlistButton) {
+                    toRemoveElement.push(addToWishlistButton);
+                }
+            }
+
+            // fix for alemaproshopch by Leorio
+            parentElement = e.closest('.sf__pcard-content.text-center');
+            if (parentElement) {
+                let addToCartButton = parentElement.querySelector('button.add-to-cart.sf__btn');
+                if (addToCartButton) {
+                    toRemoveElement.push(addToCartButton);
+                }
+            }
+
+            // fix for kaitlin-260 by DangNM
+            parentElement = e.closest('.product-details.section');
+            if (parentElement) {
+                let addToCartForm = parentElement.querySelector('form#AddToCartForm.product-content-inner[action="/cart/add"]');
+                if (addToCartForm) {
+                    toRemoveElement.push(addToCartForm);
+                }
+            }
+            parentElement = e.closest('.search-item .product-item, .product-grid-row .product-item');
+            if (parentElement) {
+                let addToCartButton = parentElement.querySelector('.product-img .action-btn');
+                if (addToCartButton) {
+                    toRemoveElement.push(addToCartButton);
+                }
+            }
+
+            // fix for global-football-companyb2b by DangNM
+            parentElement = e.closest('.product-collection__content,.product-page-info');
+            if (parentElement) {
+                let btnElem = parentElement.querySelector('.js-product-button-add-to-cart');
+                if (btnElem) {
+                    toRemoveElement.push(btnElem);
+                }
+            }
+            // fix for expresswholesale.ca by DongNV
+            parentElement = e.closest('.details-info');
+            if (parentElement) {
+                let addToCartButton = parentElement.querySelector('.group-button .add-to-cart');
+                if (addToCartButton) {
+                    toRemoveElement.push(addToCartButton);
+                }
+            }
+            parentElement = e.closest('.product-collection');
+            if (parentElement) {
+                let addToCartButton = parentElement.querySelector('.group-button .add-to-cart');
+                if (addToCartButton) {
+                    toRemoveElement.push(addToCartButton);
+                }
+            }
+
+            let priceElement = e.closest('[data-js-product-price]');
+            if (priceElement) {
+                priceElement.setAttribute('bss-ltsp-active', '');
+            }
+
+            //fix for biolink by HaiNN
+            parentElement = e.closest('.product__info-container');
+            if (parentElement) {
+                let buyNowButton = parentElement.querySelector('.form[data-type="add-to-cart-form"] > .shopify-payment-button[data-shopify="payment-button"]');
+                if (buyNowButton) {
+                    toRemoveElement.push(buyNowButton)
+                }
+            }
+
+            //fix for paulrussells by AnhTV
+            parentElement = e.closest('.products');
+            if (parentElement) {
+                let iconCart = parentElement.querySelector('.product-container > .product-button > .variants > .add-cart-btn');
+                let iconEye = parentElement.querySelector('.product-container > .product-button > .quick-view-text');
+                if (iconCart) {
+                    toRemoveElement.push(iconCart)
+                }
+                if (iconEye) {
+                    toRemoveElement.push(iconEye)
+                }
+            }
+            parentElement = e.closest('.dt-sc-tabs-container');
+            if (parentElement) {
+                let iconCartSlide = parentElement.querySelector('.dt-sc-tabs-content > .tab2 > .owl-stage-outer > .owl-stage > .owl-item > .item-row > .products > .product-container > .product-button > .variants > .add-cart-btn');
+                if (iconCartSlide) {
+                    toRemoveElement.push(iconCartSlide)
+                }
+            }
+            parentElement = e.closest('.wrapper-container');
+            if (parentElement) {
+                let priceRecentlyProduct = parentElement.querySelector('.recently-viewed-products > .products-grid > .grid__item > .product-item > .products > .product-bottom > .price-box > .regular-product > .special-price');
+                let btnRecentlyProduct = parentElement.querySelector('.recently-viewed-products > .products-grid > .grid__item > .product-item > .products > .product-bottom > .action > .variants > .add-to-cart-btn');
+                if (priceRecentlyProduct) {
+                    toRemoveElement.push(priceRecentlyProduct)
+                }
+                if (btnRecentlyProduct) {
+                    toRemoveElement.push(btnRecentlyProduct)
+                }
+            }
+            parentElement = e.closest('.grid__item');
+            if (parentElement) {
+                let btnCartSearchResult = parentElement.querySelector('.products > .product-detail > .product-button');
+                let btnViewResult = parentElement.querySelector('.products > .product-container > .product-button > .quick-view-text');
+                if (btnCartSearchResult) {
+                    toRemoveElement.push(btnCartSearchResult)
+                }
+                if (btnViewResult) {
+                    toRemoveElement.push(btnViewResult)
+                }
+            }
+
+            //fix for pisen by HaiNN
+            parentElement = e.closest(".featured__collection-product.product-index");
+            if (parentElement) {
+                let addToCartBtn = parentElement.querySelector(".product_listing_options");
+                if (addToCartBtn) {
+                    toRemoveElement.push(addToCartBtn)
+                }
+            }
+
+            parentElement = e.closest(".product-index");
+            if (parentElement) {
+                let addToCartBtn = parentElement.querySelector(".product_listing_options");
+                if (addToCartBtn) {
+                    toRemoveElement.push(addToCartBtn)
+                }
+            }
+
+            parentElement = e.closest(".product__section-details");
+            if (parentElement) {
+                let addToCartBtn = parentElement.querySelector(".product__section-details__inner--product_buttons");
+                if (addToCartBtn) {
+                    toRemoveElement.push(addToCartBtn)
+                }
+            }
+
+            //fix for giemmemaiano by HaiNN
+            parentElement = e.closest(".product-page--cart-form-block");
+            if (parentElement) {
+                let addToCartBtn = parentElement.querySelector(".add-to-cart");
+                if (addToCartBtn) {
+                    toRemoveElement.push(addToCartBtn)
+                }
+            }
+
+            //fix for hotmobil by AnhTV
+            parentElement = e.closest(".price__sale");
+            if (parentElement) {
+                let salePrice = parentElement.querySelector(".price-item--regular");
+                if (salePrice) {
+                    toRemoveElement.push(salePrice)
+                }
+            }
+
+            //fix for porbathco by HaiNN
+            parentElement = e.closest(".product-item-v1");
+            if (parentElement) {
+                let oldPrice = parentElement.querySelector(".price-old");
+                let actionButton = parentElement.querySelector(".product-icon-action");
+                if (oldPrice) {
+                    toRemoveElement.push(oldPrice)
+                }
+                if (actionButton) {
+                    toRemoveElement.push(actionButton)
+                }
+            }
+
+            parentElement = e.closest(".detail-info > .relative");
+            if (parentElement) {
+                let addToCardBtn = parentElement.querySelector('#AddToCartForm > .btn-action');
+                let buyNowBtn = parentElement.querySelector('div.shopify-payment-button[data-shopify="payment-button"]');
+                let oldPrice = parentElement.querySelector('.product-price > del');
+                if (addToCardBtn) {
+                    toRemoveElement.push(addToCardBtn)
+                }
+                if (buyNowBtn) {
+                    toRemoveElement.push(buyNowBtn)
+                }
+                if (oldPrice) {
+                    toRemoveElement.push(oldPrice)
+                }
+            }
+            // fix for wholesale.cafune.ca by LuanHV
+            parentElement = e.closest(".product-details");
+            if (parentElement) {
+                let priceVariant = parentElement.querySelector(".product-block--form>.product-form--regular");
+                if(priceVariant) {
+                    priceVariant.remove()
+                }
+            }
+            //fix for giemmemaiano by HaiNN
+            parentElement = e.closest(".product--price-container");
+            if (parentElement) {
+                let removeItem = parentElement.querySelectorAll(".product--price-wrapper > a");
+                if (removeItem.length) {
+                    removeItem.forEach(item => item.remove())
+                }
+            }
+            //fix for linis-bites-b2b by DongNV
+            if (Shopify.shop == 'linis-bites-b2b.myshopify.com' && e.querySelector('[bss-customize-ltsp-message]')) {
+                let parentElement = e.closest(".price .price__container");
+                if (parentElement) {
+                    let unitPriceElement = parentElement.querySelector('.unit-price.caption');
+                    if (unitPriceElement) {
+                        toRemoveElement.push(unitPriceElement)
+                    }
+                }
+            }
+
+            parentElement = e.closest(".product-price--wrapper");
+            if (parentElement) {
+                let removeItem = parentElement.querySelector(".product-price--compare");
+                if (removeItem) {
+                    removeItem.remove()
+                }
+            }
+
+            //fix for pisen.au by HaiNN
+            parentElement = e.closest(".price__pricing-group") 
+            if (parentElement) {
+                let selectElement = parentElement.querySelector(".price-item.price-item--regular[data-regular-price]")
+                if (selectElement) {
+                    selectElement.classList.remove("price-item")
+                    selectElement.classList.remove("price-item--regular")
+                }
+            }
+
+            toRemovePatterns.forEach(function (pattern) {
+                if (e.closest(pattern)) {
+                    toRemoveElement.push(e.closest(pattern));
+                }
+            });
+        }
+
+        toRemoveElement.forEach(function (e) {
+            e.remove();
+        });
+    }
+}
+// CONCATENATED MODULE: ./src/js/src/login-to-see-price/remove-parten-by-ltsp-wrapper.js
+function handleRemoveElementByLTSPWrapper(BSS_LTAP) {
+    BSS_LTAP.ltsp.removeElementByLTSPWrapper = function () {
+        let loginToSeePriceWrapper = document.getElementsByClassName("bss-ltsp-price-wrapper");
+        let toRemoveElement = [];
+
+        for (let i = 0; i < loginToSeePriceWrapper.length; i++) {
+            let e = loginToSeePriceWrapper[i];
+            let toRemovePatterns = [];
+
+            //Fixed for autmatin pro
+            let parentElement = e.closest('.product-parent');
+            if (parentElement) {
+                let cartButton = parentElement.querySelector('form .tt-btn-addtocart');
+                if (cartButton) {
+                    toRemoveElement.push(cartButton);
+                }
+                let quickViewSelector = parentElement.querySelector('.tt-btn-quickview');
+
+                if (quickViewSelector) {
+                    toRemoveElement.push(quickViewSelector);
+                }
+
+            }
+
+            // fix for leadthedisruption by ThaBi
+            parentElement = e.closest('.product-single__meta')
+            if (parentElement) {
+                // let cartBtnSelector = parentElement.querySelector('div.product-form__controls-group.product-form__controls-group--submit');
+                // if (cartBtnSelector) {
+                //     cartBtnSelector.remove();
+                //     toRemoveElement.push(cartBtnSelector);
+                // }
+            }
+
+            parentElement = e.closest('.tt-product-single-info');
+            if (parentElement) {
+                let cartButton = parentElement.querySelector('form .btn-addtocart');
+                if (cartButton) {
+                    toRemoveElement.push(cartButton);
+                }
+                let form = parentElement.querySelector('form[action*="/cart/add"]');
+                if (form) {
+                    toRemoveElement.push(form);
+                }
+            }
+
+            //Fixed for Puzzle brand
+
+            parentElement = e.closest('.product_section');
+            if (parentElement) {
+                let cartButton = parentElement.querySelector('form .add_to_cart, form .b2b-ajax-submit');
+                if (cartButton) {
+                    toRemoveElement.push(cartButton);
+                }
+                let savingSelector = parentElement.querySelector('.sale.savings');
+
+                if (savingSelector) {
+                    toRemoveElement.push(savingSelector);
+                }
+
+            }
+
+            parentElement = e.closest('.quick-shop-style--inline');
+            if (parentElement) {
+                let cartButton = parentElement.querySelector('form .add_to_cart, form .b2b-ajax-submit');
+                if (cartButton) {
+                    toRemoveElement.push(cartButton);
+                }
+            }
+            parentElement = e.closest('.product-details');
+            if (parentElement) {
+                let fromText = parentElement.querySelector('small em');
+                if (fromText) {
+                    toRemoveElement.push(fromText);
+                }
+            }
+            //the-little-nail-shop.myshopify.com
+            parentElement = e.closest('.gt_product-body');
+            if (parentElement) {
+                let cartButton = parentElement.querySelector('form .gt_product-addtocart');
+                if (cartButton) {
+                    toRemoveElement.push(cartButton);
+                }
+                let savingElement = parentElement.querySelector('.gt_product-saved');
+                if (savingElement) {
+                    toRemoveElement.push(savingElement);
+                }
+                let comparePriceElement = parentElement.querySelector('.gt_product-price--compare');
+                if (comparePriceElement) {
+                    toRemoveElement.push(comparePriceElement);
+                }
+            }
+            parentElement = e.closest('.gt_product_content');
+            if (parentElement) {
+                let cartButton = parentElement.querySelector('form .gt_product-addtocart');
+                if (cartButton) {
+                    toRemoveElement.push(cartButton);
+                }
+                let comparePriceElement = parentElement.querySelector('.gt_product-price--compare');
+                if (comparePriceElement) {
+                    toRemoveElement.push(comparePriceElement);
+                }
+            }
+
+            parentElement = e.closest('.gt-single-product')
+
+            if (parentElement) {
+                let cartButton = parentElement.querySelector('div.gt_method_addToCart');
+                if (cartButton) {
+                    toRemoveElement.push(cartButton);
+                }
+                let comparePriceElement = parentElement.querySelector('.gt_product-price--compare');
+                if (comparePriceElement) {
+                    toRemoveElement.push(comparePriceElement);
+                }
+            }
+            //evobiosculpturemauritius.myshopify.com
+
+            parentElement = e.closest('#cont-form');
+            if (parentElement) {
+                let cartButton = parentElement.querySelector('form .cont-add-btns');
+                if (cartButton) {
+                    toRemoveElement.push(cartButton);
+                }
+            }
+            //linh
+            parentElement = e.closest('.theiaStickySidebar');
+            if (parentElement) {
+                let cartButton = parentElement.querySelector('.variations_button');
+                if (cartButton) {
+                    toRemoveElement.push(cartButton);
+                }
+            }
+            // nadjarina
+            parentElement = e.closest('.product-submit');
+            if (parentElement) {
+                let cartButton = parentElement.querySelector('.payment-buttons-container');
+                if (cartButton) {
+                    toRemoveElement.push(cartButton);
+                }
+            }
+            parentElement = e.closest('.productitem');
+            if (parentElement) {
+                let cartButton = parentElement.querySelector('.productitem--action');
+                if (cartButton) {
+                    toRemoveElement.push(cartButton);
+                }
+            }
+            parentElement = e.closest('.product--outer');
+            if (parentElement) {
+                let cartButton = parentElement.querySelector('.product-form--atc');
+                if (cartButton) {
+                    toRemoveElement.push(cartButton);
+                }
+                cartButton = parentElement.querySelector('.shopify-payment-button');
+                if (cartButton) {
+                    toRemoveElement.push(cartButton);
+                }
+            }
+
+            //Fixed for loreal-professionel (madu)
+            parentElement = e.closest('.product-grouped');
+            if (parentElement) {
+                let cartButton = parentElement.querySelector('.product_top form#add-to-cart-form');
+                if (cartButton) {
+                    toRemoveElement.push(cartButton);
+                }
+
+            }
+
+            parentElement = e.closest('.product-item');
+            if (parentElement) {
+                let bottomBtnSelector = parentElement.querySelector('.product-top .product-des .action');
+
+                if (bottomBtnSelector) {
+                    toRemoveElement.push(bottomBtnSelector);
+                }
+            }
+            // end madu fix
+
+            //Fix for boutique8084
+
+            parentElement = e.closest('.product-item');
+            if (parentElement) {
+                let cartBtnSelector = parentElement.querySelector('.product-item__action-button[data-action="add-to-cart"]');
+
+                if (cartBtnSelector) {
+                    toRemoveElement.push(cartBtnSelector);
+                }
+            }
+            //end
+
+            // Fix for chipper-pet.myshopify.com
+            parentElement = e.closest('.grid__item.grid-product');
+            if (parentElement) {
+                let cartBtnSelector = parentElement.querySelector('form[action="/cart/add"] input[type="submit"]');
+                if (cartBtnSelector) {
+                    toRemoveElement.push(cartBtnSelector);
+                }
+                let productLabelSelector = parentElement.querySelector('.grid-product__tag');
+                if (productLabelSelector) {
+                    toRemoveElement.push(productLabelSelector);
+                }
+                let visualHiddenSelector = parentElement.querySelector('.visually-hidden');
+                if (visualHiddenSelector) {
+                    toRemoveElement.push(visualHiddenSelector);
+                }
+            }
+
+            parentElement = e.closest('.product-info');
+            if (parentElement) {
+                let cartBtnSelector = parentElement.querySelector('form[action="/cart/add"] .payment-buttons');
+                if (cartBtnSelector) {
+                    toRemoveElement.push(cartBtnSelector);
+                }
+
+                let variantPriceButton = parentElement.querySelector('.variant-wrapper.variant-wrapper--button');
+                if (variantPriceButton) {
+                    toRemoveElement.push(variantPriceButton);
+                }
+            }
+            // End
+
+
+            // fix  for emiliv-professional by ThaBi
+            parentElement = e.closest('#product-right');
+            if (parentElement) {
+                let comparePrice = parentElement.querySelector('.was')
+                if (comparePrice) {
+                    toRemoveElement.push(comparePrice);
+                }
+                // let cartBtnSelector = parentElement.querySelector('form[action="/cart/add"]');
+                // if (cartBtnSelector) {
+                //     toRemoveElement.push(cartBtnSelector);
+                // }
+                //fix for kaybeautyshop
+                let cartBtnSelector = parentElement.querySelector('.product-add');
+                if (cartBtnSelector) {
+                    toRemoveElement.push(cartBtnSelector);
+                }
+            }
+
+            parentElement = e.closest('.was');
+            if (parentElement) {
+                toRemoveElement.push(parentElement);
+            }
+            // end
+            parentElement = e.closest('.product-single__meta');
+            if (parentElement) {
+                let comparePrice = parentElement.querySelector('.pf__actions')
+                if (comparePrice) {
+                    toRemoveElement.push(comparePrice);
+                }
+                // let formAddToCart = parentElement.querySelector('.product-form__controls-group--submit')
+                // if (formAddToCart) {
+                //     toRemoveElement.push(formAddToCart);
+                // }
+            }
+
+            // fix for brillenliefde (madu)
+            parentElement = e.closest('#AddToCartForm-product-template');
+            if (parentElement) {
+                let cartBtnSelector = parentElement.querySelector('#CartButtons-product-template');
+                if (cartBtnSelector) {
+                    toRemoveElement.push(cartBtnSelector);
+                }
+            }
+
+            // fix for cslbehringplus by vitu
+            parentElement = e.closest('.grid-item');
+            if (parentElement) {
+                let cartBtnSelector = parentElement.querySelector('#addToCart-product-template');
+                if (cartBtnSelector) {
+                    toRemoveElement.push(cartBtnSelector);
+                }
+                let buyItNowSelector = parentElement.querySelector('.payment-buttons');
+                if (buyItNowSelector) {
+                    toRemoveElement.push(buyItNowSelector);
+                }
+            }
+
+            toRemovePatterns.forEach(function (pattern) {
+                if (e.closest(pattern)) {
+                    toRemoveElement.push(e.closest(pattern));
+                }
+            });
+        }
+
+        toRemoveElement.forEach(function (e) {
+            e.remove();
+        });
+    }
+}
+// CONCATENATED MODULE: ./src/js/src/helper/login-to-see-price.js
+function helperLTSP(BSS_LTAP) {
+    BSS_LTAP.helperLTSP = {};
+
+    BSS_LTAP.helperLTSP.createHidePriceMessageSpan = function (message) {
+        let span = document.createElement("span");
+        span.classList.add("bsscommerce-ltsp-message");
+        span.classList.add("hide-message");
+        span.style.fontSize = '16px';
+        span.style.fontWeight = 'normal';
+        span.style.color = 'initial';
+        span.style.textTransform = 'none';
+        span.style.visibility = 'visible';
+        span.innerHTML = message;
+
+        return span;
+    };
+
+    BSS_LTAP.helperLTSP.onLoadMore = function (fn) {
+        const productListingElem = document.querySelector([
+            // fix for alemaproshopch by DangNM
+            '.sf__product-listing[data-product-container] > div',
+            '.row[data-js-collection-replace="products"]',
+            '.product-list-container .product-list.use-infinite-scroll',
+            '#collection-product .product-container'
+        ].join(','));
+        if (productListingElem) {
+            const observer = new MutationObserver(function (mutations) {
+                mutations.forEach(function (m) {
+                    if (m.addedNodes.length) {
+                        fn();
+                    }
+                });
+            });
+            observer.observe(productListingElem, {childList: true});
+        }
+    }
+}
+// CONCATENATED MODULE: ./src/js/src/login-to-see-price/index.js
+
+
+
+
+
+function initLTSP(BSS_LTAP) {
+    BSS_LTAP.ltsp = {};
+
+    handleQuickView(BSS_LTAP);
+    handleRemoveElementByLTSPMessage(BSS_LTAP);
+    handleRemoveElementByLTSPWrapper(BSS_LTAP);
+
+    BSS_LTAP.ltsp.removePattern = function () {
+        BSS_LTAP.ltsp.removeElementByLTSPMessage();
+        BSS_LTAP.ltsp.removeElementByLTSPWrapper();
+    };
+
+    BSS_LTAP.ltsp.insertBeforeAddToCart = function () {
+        let loginToSeePriceMessage = document.querySelectorAll(".bsscommerce-ltsp-message[data-ltsp-cart-message]");
+
+        for (let i = 0; i < loginToSeePriceMessage.length; i++) {
+            let e = loginToSeePriceMessage[i];
+
+            let hidePriceMesssage = e.getAttribute("data-ltsp-cart-message");
+            e.removeAttribute("data-ltsp-cart-message");
+
+            // contains both price and add to cart
+            // focus on form
+            let parentSelectors = [
+                '.main-content .product-single__meta',
+                '.main-content .grid__item',
+                '.main-content .grid-item',
+                '.main-content .product__content.product__content--template.product__content--information',
+                'main#MainContent .product__info-container',
+                // support
+                // fix for shoe2b-global by DangNM
+                '.container#product-product .product-info-main',
+                // fix for halo-nail-products
+                'main#main section[data-section-id="collection-template"] .product-item',
+            ];
+
+            // insert before form
+            for (let idx = 0; idx < parentSelectors.length; idx++) {
+                let parentElement = e.closest(parentSelectors[idx]);
+                if (parentElement && !parentElement.querySelector('.bsscommerce-ltsp-message.hide-message')) {
+                    let form = parentElement.querySelector('form[action="/cart/add"]');
+                    if (form) {
+                        let span = BSS_LTAP.helperLTSP.createHidePriceMessageSpan(hidePriceMesssage);
+                        form.before(span);
+                    }
+                }
+            }
+
+            // contains both price and add to card
+            // focus on related, featured
+            // [parentSelector, addToCartSelector]
+            let productSelectors = [
+                // fix for shoe2b-global by DangNM
+                ['.product-layout .item .item-inner .caption', '.button.btn-cart'],
+                ['main#main section[data-section-id="product-template"] .card__section', '.product-form__payment-container'],
+                // fix filamentlighting by DongNV^M
+                ['.main#MainContent .content.product', 'form[action="/cart/add"] .offers'],
+            ];
+
+            // insert before add to cart
+            for (let idx = 0; idx < productSelectors.length; idx++) {
+                let parentElement = e.closest(productSelectors[idx][0]);
+                if (parentElement && !parentElement.querySelector('.bsscommerce-ltsp-message.hide-message')) {
+                    let form = parentElement.querySelector(productSelectors[idx][1]);
+                    if (form) {
+                        let span = BSS_LTAP.helperLTSP.createHidePriceMessageSpan(hidePriceMesssage);
+                        form.before(span);
+                    }
+                }
+            }
+
+            // customize for airbesafe: show price and text Log in to buy this product below price
+            if (window.location.host === 'airbesafe.myshopify.com') {
+                let productSelectors = [
+                    ['.shopify-section--main-collection .product-list__inner .product-item ', '.product-item__info  .product-item-meta__price-list-container .price-list'],
+                    ['.shopify-section--main-product .product--thumbnails-bottom .product__info', '.product-meta__price-list-container'],
+                ];
+                for (let idx = 0; idx < productSelectors.length; idx++) {
+                    let parentElement = e.closest(productSelectors[idx][0]);
+                    if (parentElement && !parentElement.querySelector('.bsscommerce-ltsp-message.hide-message')) {
+                        let form = parentElement.querySelector(productSelectors[idx][1]);
+                        if (form) {
+                            let span = createHidePriceMessageSpan(hidePriceMesssage);
+                            form.after(span);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+// CONCATENATED MODULE: ./src/js/src/passcode-to-view-price/index.js
+function initPTVP(BSS_LTAP) {
+    BSS_LTAP.ptvp = {};
+
+    BSS_LTAP.ptvp.addPasscodeForm = function () {
+        let formInProductPage = document.querySelector('form[action*="/cart/add"]');
+        let passcodeElementFormWrapper = document.getElementsByClassName('bss-passcode-wrapper-tag')
+        let passcodeElementFormArr = document.getElementsByClassName('bsscommerce-password-form')
+        let passcodeElementForm = null;
+        if (passcodeElementFormArr.length) {
+            passcodeElementForm = passcodeElementFormArr[0]
+            passcodeElementForm.style.display = 'block';
+        }
+
+        if (passcodeElementFormWrapper.length && formInProductPage && passcodeElementFormArr.length) {
+            formInProductPage.before(passcodeElementForm)
+            let passcodeElement = document.getElementById("bsscommerce-password");
+            let formData = new FormData();
+            formData.append(passcodeElement.name, passcodeElement.value);
+            //css button enter passcode
+            document.getElementById('bsscommerce-password-submit').style.padding = '12px 16px'
+            document.getElementById('bsscommerce-password-submit').style.display = 'block'
+            let xmlHttp = new XMLHttpRequest();
+
+            xmlHttp.open("post", "/cart/update.js");
+            xmlHttp.send(formData);
+            let submitBtns = document.getElementsByClassName('bsscommerce-ltap-password')
+            if (submitBtns.length) {
+                for (let i = 0; i < submitBtns.length; i++) {
+                    submitBtns[i].addEventListener('submit', function (e) {
+                        e.preventDefault();
+                        let passcodeElementArr = this
+
+                        if (passcodeElementArr.length) {
+                            for (let j = 0; j < passcodeElementArr.length; j++) {
+                                if (passcodeElementArr[j].id == 'bsscommerce-password') {
+
+                                    let passcodeElement = passcodeElementArr[j];
+                                    passcodeElement.addEventListener("input", function () {
+                                        passcodeElement.classList.remove("input--error");
+                                    });
+                                    if (passcodeElement.value) {
+                                        if (passcodeElement.value != "") {
+                                            let formData = new FormData();
+                                            formData.append(passcodeElement.name, passcodeElement.value);
+                                            let xmlHttp = new XMLHttpRequest();
+                                            xmlHttp.onreadystatechange = function () {
+                                                if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                                                    location.reload();
+                                                }
+                                            };
+
+                                            xmlHttp.open("post", "/cart/update.js");
+                                            xmlHttp.send(formData);
+                                        } else {
+                                            passcodeElement.classList.add("input--error");
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    })
+                }
+            }
+
+            for (let i = 0; i < passcodeElementFormWrapper.length; i++) {
+                passcodeElementFormWrapper[i].remove();
+            }
+        }
+    }
+}
+// CONCATENATED MODULE: ./src/js/src/helper/index.js
+
+
+function helper(BSS_LTAP) {
+    helperLTSP(BSS_LTAP);
+}
+// CONCATENATED MODULE: ./src/js/src/index.js
+
+
+
+
+function InitFunction() {
+    const BSS_LTAP = {};
+
+    helper(BSS_LTAP);
+    initLTSP(BSS_LTAP);
+    initPTVP(BSS_LTAP);
+
+    BSS_LTAP.ptvp.addPasscodeForm();
+
+    // fix for triad-office-interiors by ThaBi
+    document.querySelectorAll('.quick-view-btn').forEach(function (e) {
+        e.addEventListener('click', function () {
+            setTimeout(function () {
+                BSS_LTAP.ptvp.addPasscodeForm();
+            }, 1000)
+        })
+    });
+    // end passcode to view price
+    // fix for yorklandcontrols by ThaBi
+    function removeLtspMessageForYorklandcontrols() {
+        document.querySelectorAll('.advanced-filter a').forEach(function (e) {
+            e.addEventListener('click', function () {
+                setTimeout(function () {
+                    let loginToSeePriceMessage = document.getElementsByClassName("bsscommerce-ltsp-message");
+                    for (let i = 0; i < loginToSeePriceMessage.length; i++) {
+                        let message = loginToSeePriceMessage[i];
+                        let parentElement = message.closest('.item-row');
+
+                        if (parentElement) {
+                            let cartBtnSelector = parentElement.querySelector('.add-to-cart');
+                            if (cartBtnSelector) {
+                                cartBtnSelector.remove();
+                            }
+                        }
+                    }
+                    removeLtspMessageForYorklandcontrols();
+                }, 1200)
+            })
+        })
+    }
+
+
+    BSS_LTAP.ltsp.quickView();
+    BSS_LTAP.ltsp.insertBeforeAddToCart();
+    BSS_LTAP.ltsp.removePattern();
+
+    BSS_LTAP.helperLTSP.onLoadMore(BSS_LTAP.ltsp.removePattern());
+
+    setTimeout(function () {
+        BSS_LTAP.ltsp.removePattern();
+    }, 2500);
+    // Fix for amoreo.eu by hoaduong
+    if (window.location.host === 'amoreo.eu') {
+        let intervalRemoveAddToCartBtn = setInterval(function (){
+            BSS_LTAP.ltsp.removePattern();
+        }, 200);
+        setTimeout(function (){
+            clearInterval(intervalRemoveAddToCartBtn)
+        }, 3000)
+    }
+    let infinityHomeScollBtn = document.querySelector('.infinite-scrolling-homepage a.btn');
+
+    function removeAddtoCartAjaxLoad() {
+        setTimeout(function () {
+            BSS_LTAP.ltsp.removePattern()
+        }, 1000)
+    }
+
+    if (infinityHomeScollBtn) {
+        infinityHomeScollBtn.onclick = removeAddtoCartAjaxLoad;
+    }
+
+    let productModalWrapper = document.querySelectorAll("#shopify-section-product-recommendations, .product-modal-wrapper");
+    if (productModalWrapper.length) {
+        productModalWrapper.forEach(function (e) {
+            e.addEventListener('DOMSubtreeModified', function () {
+                BSS_LTAP.ltsp.removePattern();
+            });
+        });
+    }
+    if (window.location.host === 'valleys-group.myshopify.com') {
+        removeQuickView();
+        function removeQuickView() {
+            BSS_LTAP.ltsp.removePattern();
+            let filterEle = document.querySelectorAll('.slideout__drawer-right, .sidebar_leftside_wapper, .filtering__results');
+            if (filterEle.length) {
+                filterEle.forEach(function (e) {
+                    e.addEventListener('click', function () {
+                        setTimeout(() => {
+                            removeQuickView()
+                        }, 1700)
+                    });
+                });
+            }
+        }
+    }
+    // fix for b.salonpremium by hoaduong
+    if (window.location.host === 'b.salonpremium.com') {
+        removeAddToCartPagination();
+        function removeAddToCartPagination() {
+            BSS_LTAP.ltsp.removePattern();
+            let pagination = document.querySelectorAll('.pagination');
+            if (pagination.length) {
+                pagination.forEach(function (e) {
+                    e.addEventListener('click', function () {
+                        setTimeout(() => {
+                            removeAddToCartPagination()
+                        }, 3000)
+                    });
+                });
+            }
+        }
+    }
+    if (window.location.host === 'www.internationalbeauty.ca') {
+        removeAddToCart();
+        function removeAddToCart() {
+            let productElements = document.querySelector('[id^="RecentlyViewed"]');
+            var observer = new MutationObserver(function (mutations) {
+                mutations.forEach(function (m) {
+                    if (m.addedNodes.length) {
+                        BSS_LTAP.ltsp.removePattern();
+                        document.querySelectorAll('.btn--icon.quick-product__btn').forEach(function (e) {
+                            e.addEventListener('click', function () {
+                                setTimeout(function () {
+                                    let messageElement = document.getElementsByClassName('bsscommerce-ltsp-message')
+                                    for (let i = 0; i < messageElement.length; i++) {
+                                        let parentElement = messageElement[i].closest('.product-grid__content');
+                                        if (parentElement) {
+                                            let cartBtnSelector = parentElement.querySelector('.payment-buttons');
+                                            if (cartBtnSelector) {
+                                                cartBtnSelector.remove()
+                                            }
+                                        }
+                                    }
+                                }, 2000)
+                            })
+                        })
+                    }
+                });
+            });
+            observer.observe(productElements, { childList: true });
+        }
+    }
+}
+
+InitFunction();
+
+
+/***/ })
+/******/ ]);
+</script>
+{% endif %}

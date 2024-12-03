@@ -1,0 +1,114 @@
+{%- style -%}
+  .super_menu_list {
+    position: relative;
+  }
+  .super_menu_list .label--highlight.small {
+    right: -12px;
+    top: -8px;
+    font-size: 8px;
+  }
+  .super_menu_list .label--highlight {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+{%- endstyle -%}
+<desktop-navigation>
+  <ul class="header__linklist list--unstyled {% unless bottom_navigation %}hidden-pocket hidden-lap{% endunless %}" role="list">
+    {%- for link in menu.links -%}
+      {%- assign link_title_downcase = link.title | strip | downcase -%}
+      {%- assign mega_menu_block = '' -%}
+
+      {%- for block in section.blocks -%}
+        {%- assign menu_item_downcase = block.settings.menu_item | strip | downcase -%}
+
+        {%- if menu_item_downcase == link_title_downcase -%}
+          {%- assign mega_menu_block = block -%}
+          {%- break -%}
+        {%- endif -%}
+      {%- endfor -%}
+
+      <li class="header__linklist-item {% if link.links.size > 0 or mega_menu_block != '' %}has-dropdown{% endif %}" data-item-title="{{ link.title | escape }}">
+        <a class="super_menu_list header__linklist-link link--animated" href="{{ link.url }}" {% if link.links.size > 0 or mega_menu_block != '' %}aria-controls="desktop-menu-{{ forloop.index }}" aria-expanded="false"{% endif %}>
+          {{- link.title -}}
+          {% if link.title == 'Screen' %}
+            <span class="label label--highlight small">
+              New
+            </span>
+          {% endif %}
+        </a>
+
+        {%- if mega_menu_block != '' -%}
+          <div hidden id="desktop-menu-{{ forloop.index }}" class="mega-menu" {{ mega_menu_block.shopify_attributes }}>
+            <div class="container">
+              
+
+              <div class="nav-collection">
+                <div class="layer-container distance">
+                  <ul class="left-nav">
+                    {%- for i in (1..3) -%}
+                      {%- capture col -%}menu_collection_{{ i }}{%- endcapture -%}
+                      
+                      {%- if mega_menu_block.settings[col] != blank -%}
+                        <li class="{% if forloop.index0 == 0 %}on{% endif %}"><a href="##" class="nav-item">{{ mega_menu_block.settings[col].title }}</a></li>
+                      {%- endif -%}
+                    {%- endfor -%}
+                  </ul>
+                  <figure class="right-product">
+                    {%- for i in (1..3) -%}
+                      {%- capture col -%}menu_collection_{{ i }}{%- endcapture -%}
+
+                      {%- if mega_menu_block.settings[col] != blank -%}
+                      <ul class="child-style child-style-1 {% if forloop.index0 == 0 %}on{% endif %}">
+                        {% for product in mega_menu_block.settings[col].products limit: 4 %}
+                        <li class="super_menu_list">
+                          {% if product.metafields.custom.product_tags != blank %}
+                            <span class="label label--highlight">
+                              {{ product.metafields.custom.product_tags }} 
+                            </span>
+                          {% endif %}
+                          <a href="{{ product.url }}"><img src="{{ product.featured_image | img_url: '194x194' }}" alt="{{ product.title }}"><br />{{ product.title }}</a>
+                        </li>
+                        {% endfor %}
+                        {% if mega_menu_block.settings[col].products_count > 4 %}
+                        <li>
+                          <a href="{{ mega_menu_block.settings[col].url }}" class="viewAll flexCenter">View More</a>
+                        </li>
+                        {% endif %}
+                      </ul>
+                      {%- endif -%}
+                    {% endfor %}
+                  </figure>
+                </div>
+              </div>
+            </div>
+          </div>
+        {%- elsif link.links.size > 0 -%}
+          <ul hidden id="desktop-menu-{{ forloop.index }}" class="nav-dropdown {% if link.levels == 1 %}nav-dropdown--restrict{% endif %} list--unstyled" role="list">
+            {%- for sub_link in link.links -%}
+              <li class="nav-dropdown__item {% if sub_link.links.size > 0 %}has-dropdown{% endif %}">
+                <a class="nav-dropdown__link link--faded" href="{{ sub_link.url }}" {% if sub_link.links.size > 0 %}aria-controls="desktop-menu-{{ forloop.parentloop.index }}-{{ forloop.index }}" aria-expanded="false"{% endif %}>
+                  {{- sub_link.title -}}
+
+                  {%- if sub_link.links.size > 0 -%}
+                    {% render 'icon' with 'dropdown-arrow-right', direction_aware: true %}
+                  {%- endif -%}
+                </a>
+
+                {%- if sub_link.links.size > 0 -%}
+                  <ul hidden id="desktop-menu-{{ forloop.parentloop.index }}-{{ forloop.index }}" class="nav-dropdown list--unstyled" role="list">
+                    {%- for sub_sub_link in sub_link.links -%}
+                      <li class="nav-dropdown__item">
+                        <a class="nav-dropdown__link link--faded" href="{{ sub_sub_link.url }}">{{ sub_sub_link.title }}</a>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                {%- endif -%}
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+      </li>
+    {%- endfor -%}
+  </ul>
+</desktop-navigation>

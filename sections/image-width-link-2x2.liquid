@@ -1,0 +1,82 @@
+<style>
+.section__color-wrapper {background: #f5f5f5;}
+.vertical-breather {
+  --padding: 40px; --height: 460px;
+  max-width: 100%;
+}
+.vertical-breather a {padding: 0;}
+.link-item {width: 100%; height: var(--height); padding: var(--padding); margin: 0; background-color: rgb(var(--background)); position: relative;}
+.link-item figcaption {width: 50%; position: relative; z-index: 2;}
+.link-item figcaption p {font-size: var(--heading-h6-font-size); margin-top: var(--heading-h6-font-size);}
+.link-item figcaption p, .link-item figcaption .h3 {color: inherit;}
+.link-item img, .link-item .button {position: absolute;}
+.link-item img {
+  width: 100%; height: 100%; object-fit: cover; pointer-events: none;
+  bottom: 0; right: 0; z-index: 0;
+}
+.link-item .button {background: #2B6FD5; left: var(--padding); bottom: var(--padding); z-index: 1;}
+{% comment %} .image-width-link-2x2 {grid-template-columns: repeat(3, 1fr);grid-template-rows: auto;} {% endcomment %}
+@media screen and (max-width: 740px) {
+  .vertical-breather {
+    --padding: 10px; --height: 40vw;
+    --heading-h6-font-size: 12px; --button-height: 24px;
+  }
+  .image-width-link-2x2 {display: grid; grid-template-columns: 1fr; grid-template-rows: 1fr; gap: var(--padding);}
+  .link-item figcaption {width: 72%;}
+  .link-item figcaption .h3 {margin: 0;}
+  .link-item .button {padding-left: var(--padding); padding-right: var(--padding);}
+}
+</style>
+
+<div class="container vertical-breather">
+  <div class="image-width-link-2x2">
+    {%- for block in section.blocks -%}
+      {%- if block.settings.heading != '' and block.settings.button_text != blank and block.settings.button_link != blank -%}
+      <a href="{{ block.settings.button_link }}">
+        <figure class="link-item">
+          <figcaption style="color: {{ block.settings.color }};">
+            <h3 class="heading h3">{{ block.settings.heading }}</h3>
+            {{ block.settings.content }}
+          </figcaption>
+  
+          <button class="button button--primary">{{ block.settings.button_text }}</button>
+  
+          {%- if block.settings.image != blank -%}
+            <img loading="lazy" src="{{ block.settings.image | img_url: 'master' }}" alt="{{ block.settings.heading }}">
+          {%- endif -%}
+        </figure>
+      </a>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "image with link 2x2", "class": "section__color-wrapper",
+  "settings": [],
+  "blocks":[
+    {
+      "type": "item", "name": "list item",
+      "settings": [
+        {
+          "type": "image_picker", "id": "image", "label": "Image",
+          "info": "750x340 recommended"
+        },
+        {"type": "text", "id": "heading", "label": "Heading", "default": "Heading"},
+        {
+          "type": "richtext", "id": "content", "label": "Content",
+          "default": "<p>content.</p>"
+        },
+        {"type": "color", "id": "color", "label": "Text color", "default": "#333333"},
+        {"type": "text", "id": "button_text", "label": "Button text", "default": "Learn More"},
+        {"type": "url", "id": "button_link", "label": "Button link"}
+      ]
+    }
+  ],
+  "presets": [
+    {"name": "image with link 2x2"}
+  ]
+}
+{% endschema %}

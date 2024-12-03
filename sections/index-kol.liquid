@@ -1,0 +1,137 @@
+<style>
+  .shopify-section--shop-kol {
+    background-color: {{ section.settings.background }};
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    overflow: hidden;
+  }
+  @media screen and (max-width: 1024px) {
+    .shopify-section--shop-kol {
+      padding-top: 60px;
+      margin-top: -1px;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+  }
+</style>
+<section class="index_shop-kol">
+  <a aria-label="{{ section.settings.header_title }}" href="{% if section.settings.header_url != blank %}{{ section.settings.header_url }}{% else %}javascript:;{% endif %}" class="shop_header">
+    <h2 class="header_title">{{ section.settings.header_title }}</h2>
+    {% if section.settings.header_subtitle != blank %}
+      <h3 class="header_subtitle">{{ section.settings.header_subtitle }}</h3>
+    {% endif %}
+  </a>
+  <div class="index_kol_container swiper" style="overflow: visible;">
+    <div class="swiper-wrapper">
+      {%- for block in section.blocks -%}
+        <div class="index_kol_item swiper-slide">
+          {%- if block.settings.video_url.type == 'youtube' -%}
+            <iframe width="100%" height="340px" title="Video" id="player-{{ section.id }}" src="https://www.youtube.com/embed/{{ block.settings.video_url.id }}?playsinline=1&mute=1&loop=1&playlist={{ block.settings.video_url.id }}&enablejsapi=1&controls=0&rel=0&modestbranding=1&origin=https://{{ request.host }}" allow="autoplay; fullscreen"></iframe>
+          {%- elsif block.settings.video_url.type == 'vimeo' -%}
+            <iframe width="100%" height="340px" title="Video" id="player-{{ section.id }}" src="https://player.vimeo.com/video/{{ block.settings.video_url.id }}?background=1&loop=1&transparent=0&responsive=1&portrait=0&title=0&byline=0&color={{ settings.text_color | remove_first: '#' }}" allow="autoplay; fullscreen"></iframe>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+    <div class="swiper_container">
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+  </div>
+</section>
+<script src="{{ 'swiper-bundle.min.js' | asset_url }}"></script>
+<script>
+  var mySwiper = new Swiper('.index_kol_container', {
+  	autoplay: false,//可选选项，自动滑动
+    slidesPerView: window.innerWidth > 1024 ? 2 : 1,
+    spaceBetween : 30,
+    // loop: true,
+    pagination: {
+      el: '.index_kol_container .swiper-pagination',
+    },
+    navigation: {
+      nextEl: '.index_kol_container .swiper-button-next',
+      prevEl: '.index_kol_container .swiper-button-prev',
+    }
+  })    
+</script>
+{% schema %}
+{
+  "name": "Index KOL",
+  "class": "shopify-section--shop-kol", 
+  "blocks": [
+    {
+      "type": "video",
+      "name": "Video",
+      "settings": [
+        {
+          "type": "video_url",
+          "id": "video_url",
+          "accept": ["vimeo", "youtube"],
+          "label": "Video",
+          "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "id": "header_title",
+      "label": "Header title"
+    },
+    {
+      "type": "text",
+      "id": "header_subtitle",
+      "label": "Header subtitle"
+    },
+    {
+      "type": "url",
+      "id": "header_url",
+      "label": "Link to"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Color",
+      "info": "Color"
+    },
+    { 
+      "type": "color",
+      "id": "background",
+      "label": "Background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Endorsed container background color",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Index KOL",
+      "blocks": []
+    }
+  ]
+}
+{% endschema %}

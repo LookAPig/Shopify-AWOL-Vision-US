@@ -1,0 +1,73 @@
+<style>
+    .main{display:none;}
+    .agree_container {position: fixed;left:0;bottom:0;width: 100%;background: rgba(0,0,0,0.8);color: white;padding: 20px;z-index: 9999;display: flex;align-items: center;justify-content: space-around;}
+    .agree_container p {margin: 0;}
+    .agree_container p a {color: #de2a2a}
+    .agree_container p a:hover {color: #FFF}
+    .agree_container button {background: #de2a2a;padding: 5px 10px;border-radius: 50px;transition: all ease 0.3s}
+    .agree_container button:hover{background: #ba2424;}
+    .agree_container button#disagree-cookie {background-color: #FFF;color: black;}
+    @media screen and (max-width: 750px) {
+        .agree_container {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    }
+</style>
+<div class="main">
+<section class="agree_container">
+    <p>We value your privacy
+        We and our partners use cookies and other technologies to improve your experience, measure performance, and tailor marketing. Details in our <a href="https://awolvision.com/policies/privacy-policy">Privacy Policy</a> .</p>
+    <div class="button_items">
+        <button id="agree-cookie" style="margin-right: 10px;">Accept</button>
+        <button id="disagree-cookie">Decline</button>
+    </div>
+</section>
+</div>
+<script>
+    (function () {
+      // 判断站点所在国家
+      fetch('https://api.ipbase.com/v1/json/', {
+        method: 'GET', headers: { 'Content-Type': 'application/json' },
+      }).then(r => r.json()).then(r => {
+        let region = ['AT', 'BE', 'BG', 'CY', 'CZ', 'DE', 'DK', 'EE', 'ES', 'FI', 'FR', 'GR', 'HR', 'HU', 'IE', 'IS', 'IT', 'LI', 'LT', 'LU', 'LV', 'MT', 'NL', 'NO', 'PL', 'PT', 'RO', 'SE', 'SI', 'SK']
+        console.log('region.indexOf(r.country_code', region.indexOf(r.country_code))
+        if (region.indexOf(r.country_code) < 0) {
+            $(".main").hide()
+        } else {
+            $(".main").show()
+        }
+      }).catch((error) => {
+        console.error('Error:', error);
+      });
+    })();
+    var cookieFlag = window.localStorage.getItem('isAgree')
+    if (cookieFlag) {
+        $(".main").hide()
+    }
+    $("#disagree-cookie").on('click', function() {
+        $(".main").hide();
+    })
+    $("#agree-cookie").on('click', function() {
+        window.localStorage.setItem('isAgree', true)
+        $(".main").hide();
+        const option = {
+        'analytics_storage': 'granted',
+        'ad_storage': 'granted',
+        'ad_user_data': 'granted',
+        'ad_personalization': 'granted',
+        'region': ['AT', 'BE', 'BG', 'CY', 'CZ', 'DE', 'DK', 'EE', 'ES', 'FI', 'FR', 'GR', 'HR', 'HU', 'IE', 'IS', 'IT', 'LI', 'LT', 'LU', 'LV', 'MT', 'NL', 'NO', 'PL', 'PT', 'RO', 'SE', 'SI', 'SK']
+        };
+        gtag('consent', 'update', option);
+
+        // 3. 保存并记录用户是否同意的选项 以便下一页面自动选择是否同意 cookie
+        localStorage['gtag.consent.option'] = JSON.stringify(option);
+    })
+</script>
+{% schema %}
+{
+  "name": "Cookie", "class": "shopify-section--cookie-bar",
+  "settings": [],
+  "default": {}
+}
+{% endschema %}

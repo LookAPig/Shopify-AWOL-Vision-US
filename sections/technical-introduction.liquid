@@ -1,0 +1,1027 @@
+{{- 'technical.css' | asset_url | stylesheet_tag: true -}}
+<script src="{{ 'swiper-bundle.min.js' | asset_url }}"></script>
+{% style %}
+  .shopify-section--technical {
+    overflow: hidden;
+  }
+{% endstyle %}
+
+<div class="section-{{ section.id }} technical_main_container">
+  <div class="technical_image_container">
+    <img class="pc" src="{{ section.settings.technical_image | image_url }}" alt="">
+    <img class="mobile" src="{{ section.settings.technical_image_mobile | image_url }}" alt="">
+    {% render 'technical-introduction-banner-context', link_to: section.settings.technical_image_url %}
+  </div>
+  <div class="grid grid-12-col main-width">
+    <div class="technical_header">
+      <div class="technical_title">
+        What Are Ultra Short<br> Throw (UST) RGB Laser<br> Projectors AKA Laser<br> TVs?
+      </div>
+      <div class="technical_desc">
+        <p>Ultra Short Throw (UST) <span>RGB Laser</span> projectors represent the future of home entertainment.</p>
+        <p> Unlike traditional projectors that require significant space, UST projectors can be placed just <span>inches from the wall</span>, generating large, <span>high-quality images</span>.</p> 
+        <p>Utilizing innovative laser technology, <span>Laser TVs deliver vibrant colors, sharp contrasts, and impressive longevity</span> compared to traditional lamp-based projectors.</p>
+        <p>Enjoy a cinematic experience without leaving your home!</p>
+      </div>
+    </div>
+    <div class="technical_video">
+      <video playsinline autoplay controls muted loop="" poster="//awolvision.com/cdn/shop/files/20231222140739_x1920.jpg?v=1703225354">
+        <source src="https://cdn.shopify.com/videos/c/o/v/7bc7199ec45843149cb8b66088ee46fa.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="technical_header">
+      <div class="technical_title">
+        Advantages Over <br>Traditional TVs and <br>Projectors
+      </div>
+      <div class="technical_desc">
+        The benefits of UST projectors clearly outshine traditional TVs and projectors:
+        <p>
+          <span>Superb Image Quality:</span> Enjoy remarkable brightness and color accuracy, even in bright rooms.
+        </p>
+        <p>
+          <span>Larger Screen Size:</span> Experience cinematic viewing without the need for a cumbersome TV.
+        </p>
+        <p>
+          <span>Cost Efficiency:</span> Benefit from long-term savings due to energy efficiency and durability of laser technology.
+        </p>
+      </div>
+    </div>
+    <div class="technical_table">
+      <div class="table_container">
+        <div class="table_body">
+          <div class="table_header_name">Feature</div>
+          <div class="table_body_item bold first_line"><span class="table_desc">Screen Size Range</span></div>
+          <div class="table_body_item bold second_line"><span class="table_desc">Image Quality<br> (Resolution)</span></div>
+          <div class="table_body_item bold third_line"><span class="table_desc">3D Support</span></div>
+          <div class="table_body_item bold forth_line"><span class="table_desc">Brightness</span></div>
+          <div class="table_body_item bold fifth_line"><span class="table_desc">HDR Support</span></div>
+          <div class="table_body_item bold sixth_line"><span class="table_desc">Setup<br> Complexity</span></div>
+          <div class="table_body_item bold seventh_line"><span class="table_desc">Space<br> Requirement</span></div>
+          <div class="table_body_item bold eighth_line"><span class="table_desc">Price Range</span></div>
+          <div class="table_body_item bold nine_line"><span class="table_desc">Lifespan</span></div>
+          <div class="table_body_item bold ten_line"><span class="table_desc">Weight</span></div>
+          <div class="table_body_item bold eleven_line"><span class="table_desc">Lifespan</span></div>
+        </div>
+        <div class="table_body">
+          <div class="table_header_name">AWOL Vision UST Projectors</div>
+          <div class="table_body_item first_line"><span class="table_desc">90" - 150"</span></div>
+          <div class="table_body_item second_line"><span class="table_desc"><strong>4K HDR<br> 107% Rec. 2020 Color Gamut</strong></span></div>
+          <div class="table_body_item third_line"><span class="table_desc">Yes</span></div>
+          <div class="table_body_item forth_line"><span class="table_desc">Up to 3500 Peak Lumens<br> Triple Laser Technology</span></div>
+          <div class="table_body_item fifth_line"><span class="table_desc">Yes (HDR10+ and Dolby Vision support)</span></div>
+          <div class="table_body_item sixth_line"><span class="table_desc"><strong>Easy installation, <br>minimal setup needed</strong></span></div>
+          <div class="table_body_item seventh_line"><span class="table_desc"><strong>Space-saving,<br> can be placed inches from wall</strong></span></div>
+          <div class="table_body_item eighth_line"><span class="table_desc"><strong>$2999-5999</strong></span></div>
+          <div class="table_body_item nine_line"><span class="table_desc">25,000 + hours</span></div>
+          <div class="table_body_item ten_line"><span class="table_desc"><strong>12 kg</strong></span></div>
+          <div class="table_body_item eleven_line"><span class="table_desc"><strong>175 - 320 W</strong></span></div>
+        </div>
+        <div class="table_body">
+          <div class="table_header_name">Long Throw Projector</div>
+          <div class="table_body_item first_line"><span class="table_desc">60" - 120"</span></div>
+          <div class="table_body_item second_line"><span class="table_desc">1080P HDR<br> (varies by model)</span></div>
+          <div class="table_body_item third_line"><span class="table_desc">No</span></div>
+          <div class="table_body_item forth_line"><span class="table_desc">Moderate to high brightness<br> (varies)</span></div>
+          <div class="table_body_item fifth_line"><span class="table_desc">Yes (depends on model)</span></div>
+          <div class="table_body_item sixth_line"><span class="table_desc">Complex setup,<br> requires distance</span></div>
+          <div class="table_body_item seventh_line"><span class="table_desc">Requires significant<br> space for projection</span></div>
+          <div class="table_body_item eighth_line"><span class="table_desc">Variable</span></div>
+          <div class="table_body_item nine_line"><span class="table_desc">2,000 - 5,000 hours (bulb life)<br>Regular bulb change requires</span></div>
+          <div class="table_body_item ten_line"><span class="table_desc">6.8 - 13.6 kg</span></div>
+          <div class="table_body_item eleven_line"><span class="table_desc">200 - 400 W</span></div>
+        </div>
+        <div class="table_body">
+          <div class="table_header_name">Traditional Big TV<br> (120" and above)</div>
+          <div class="table_body_item first_line"><span class="table_desc">120" - 200"+</span></div>
+          <div class="table_body_item second_line"><span class="table_desc">4K HDR</span></div>
+          <div class="table_body_item third_line"><span class="table_desc">Mostly No</span></div>
+          <div class="table_body_item forth_line"><span class="table_desc">High brightness</span></div>
+          <div class="table_body_item fifth_line"><span class="table_desc">Yes</span></div>
+          <div class="table_body_item sixth_line"><span class="table_desc">Requires moving company or strengthening the wall and professional installation</span></div>
+          <div class="table_body_item seventh_line"><span class="table_desc">Takes a significant<br> room space</span></div>
+          <div class="table_body_item eighth_line"><span class="table_desc">$19,000+</span></div>
+          <div class="table_body_item nine_line"><span class="table_desc">Variable</span></div>
+          <div class="table_body_item ten_line"><span class="table_desc">80 - 90 kg</span></div>
+          <div class="table_body_item eleven_line"><span class="table_desc">450 - 800 W</span></div>
+        </div>
+      </div>
+      {% comment %} <div class="table_scroll"></div> {% endcomment %}
+    </div>
+    <div class="technical_tips">
+      When it comes to laser projectors, <br>
+      two common types you’ll encounter are Single Laser and Triple Laser Projectors. <br>
+      Each technology features distinct mechanisms and advantages that impact performance, <br>
+      particularly in color accuracy and efficiency.
+    </div>
+    <div class="technical_introduction">
+      <div class="introduction_title">
+        Triple Laser Projectors vs Single Laser Projectors
+      </div>
+      <div class="introduction_projectors_container">
+        <div class="introduction_projectors">
+          <div class="introduction_projectors_title">Triple Laser Projectors</div>
+          <div class="introduction_image">
+            <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/projectors_02.png?v=1725873894" alt="image" />
+          </div>
+          <div class="introduction_projectors_context">
+            <p class="context_title">Light Source:</p>
+            <div class="context_text">Triple laser projectors utilize three separate lasers—red, green, and blue. This configuration allows for the most efficient use of light energy, illuminating the image with precision.</div>
+          </div>
+          <div class="context_points">
+            <div class="context_points_item">
+              {% render 'icon' with 'shopify-right-green' %}
+              <span>Superior color performance and accuracy.</span>
+            </div>
+            <div class="context_points_item">
+              {% render 'icon' with 'shopify-right-green' %}
+              <span>Efficient use of light energy.</span>
+            </div>
+            <div class="context_points_item">
+              {% render 'icon' with 'shopify-right-green' %}
+              <span>No color distortion from a color wheel.</span>
+            </div>
+            <div class="context_points_item">
+              {% render 'icon' with 'shopify-right-green' %}
+              <span>Quieter operation enhances viewing experience.</span>
+            </div>
+            <div class="context_points_item">
+              {% render 'icon' with 'shopify-right-green' %}
+              <span>Potentially lower operating costs due to power efficiency.</span>
+            </div>
+          </div>
+        </div>
+        <div class="introduction_projectors">
+          <div class="introduction_projectors_title">Single Laser Projectors</div>
+          <div class="introduction_image">
+            <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/projectors_01.png?v=1725873894" alt="image" />
+          </div>
+          <div class="introduction_projectors_context">
+            <p class="context_title">Light Source:</p>
+            <div class="context_text">Single laser projectors primarily rely on a hybrid light engine combining a blue laser with phosphors to generate a full spectrum of colors.</div>
+          </div>
+          <div class="context_points">
+            <div class="context_points_item">
+              {% render 'icon' with 'shopify-error-red' %}
+              <span>Less vibrant color reproduction.</span>
+            </div>
+            <div class="context_points_item">
+              {% render 'icon' with 'shopify-error-red' %}
+              <span>Issues with color saturation and brightness uniformity.</span>
+            </div>
+            <div class="context_points_item">
+              {% render 'icon' with 'shopify-error-red' %}
+              <span>Inefficient light energy usage due to phosphor reliance.</span>
+            </div>
+            <div class="context_points_item">
+              {% render 'icon' with 'shopify-error-red' %}
+              <span>More noises.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="introduction_projectors_desc">
+        <strong>AWOL Vision projectors</strong> shine by incorporating the most <strong>advanced Pure RGB Triple Laser engine</strong>,<br> raising the bar for visual brilliance.
+      </div>
+      <div class="introduction_projectors_image">
+        <img style="border-radius: 10px;" src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/20240912-155751.jpg?v=1726128894" alt="image" width="auto" height="" />
+      </div>
+    </div>
+    <div class="technical_color_gamut">
+      <div class="technical_color_gamut_header">Learn more about color gamut standards</div>
+      <div class="color_gamut_context">
+        <div class="context_left">
+          <div class="context_left_header">
+            Color gamut refers to the range of colors that a display can reproduce. Different standards define varying levels of color coverage, influencing how images appear on the screen:
+          </div>
+          <div class="context_left_desc">
+            <div class="desc_item">
+              <div class="red boll">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="#EB2F96">
+                  <circle cx="6" cy="6" r="6" fill="#EB2F96"/>
+                </svg>
+              </div>
+              <div class="text"><strong>REC 709:</strong> A standard for HDTV, it defines the color space for high-definition television.</div>
+            </div>
+            <div class="desc_item">
+              <div class="blue boll">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <circle cx="6" cy="6" r="6" fill="#1677FF"/>
+                </svg>
+              </div>
+              <div class="text"><strong>DCI-P3:</strong> Used in digital cinema, covering more colors and common in consumer displays.</div>
+            </div>
+            <div class="desc_item">
+              <div class="green boll">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <circle cx="6" cy="6" r="6" fill="#52C41A"/>
+                </svg>
+              </div>
+              <div class="text"><strong>REC. 2020: The most advanced gamut standard</strong>, offering the widest color range and enabling true cinema-quality projection, ideal for home entertainment.</div>
+            </div>
+          </div>
+        </div>
+        <div class="context_right">
+          <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/Group_73.png?v=1725952524" alt="">
+          <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/Group_175.png?v=1725951424" alt="">
+        </div>
+      </div>
+    </div>
+    <div class="technical_header">
+      <div class="technical_title">
+        Why AWOL Vision <br>Stands Out
+      </div>
+      <div class="technical_desc">
+        <p style="margin-top: 0!important;">
+          AWOL Vision sets itself apart as the <span>global leader in Ultra Short Throw (UST) technology,</span> being the only brand dedicated exclusively to this innovative projection system. Our LTV-3500 Pro remains the <span>brightest RGB projector on the market,</span> setting new standards for home entertainment.
+        </p>
+        <p>
+          As the <span>number one best-selling RGB UST projector in the USA,</span> we take immense pride in our state-of-the-art engineering team that drives our commitment to excellence. We are focused not only on providing high-quality products but also on delivering exceptional customer service, ensuring that your experience with us is seamless and satisfying.
+        </p>
+      </div>
+    </div>
+    <div class="technical_salepoints swiper" id="technical_salepoints">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide sale_point_card">
+          <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/sale_point_01.jpg?v=1726224613" alt="" />
+          <div class="sale_point_box">
+            <div class="sale_point_header">RGB Triple Laser Technology:</div>
+            <div class="sale_point_context">Up to 3500 Peak Lumens Brightness and 1+ Billion Vivid Colors.</div>
+          </div>
+        </div>
+        <div class="swiper-slide sale_point_card">
+          <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/sale_point_02.png?v=1725956241" alt="" />
+          <div class="sale_point_box">
+            <div class="sale_point_header">Perfect Sharpness with Ricoh F Number 2.0 Lens:</div>
+            <div class="sale_point_context">Provides the sharpest and brightest image on a 150" screen.</div>
+          </div>
+        </div>
+        <div class="swiper-slide sale_point_card">
+          <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/sale_point_03.png?v=1725956241" alt="" />
+          <div class="sale_point_box">
+            <div class="sale_point_header">Hassle-Free Installation:</div>
+            <div class="sale_point_context">Get your projector up and running quickly and easily without professional installation.</div>
+          </div>  
+        </div>
+        <div class="swiper-slide sale_point_card">
+          <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/sale_point_04.png?v=1725956241" alt="" />
+          <div class="sale_point_box">
+            <div class="sale_point_header">Lightweight and Compact Design:</div>
+            <div class="sale_point_context">It simplifies installation and offers flexible placement options across different rooms.</div>
+          </div>
+        </div>
+        <div class="swiper-slide sale_point_card">
+          <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/sale_point_05.png?v=1725956241" alt="" />
+          <div class="sale_point_box">
+            <div class="sale_point_header">Cost-Effective and Energy Efficient:</div>
+            <div class="sale_point_context">Provides a cost-effective solution for high-quality viewing without overspending on energy.</div>
+          </div>       
+        </div>
+        <div class="swiper-slide sale_point_card">
+          <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/sale_point_06.jpg?v=1726225311" alt="" />
+          <div class="sale_point_box">
+            <div class="sale_point_header">Environmentally Friendly and Future-Proof:</div>
+            <div class="sale_point_context">Contribute to a greener planet by choosing a device that lasts longer.</div>
+          </div>
+        </div>
+      </div>
+      <div class="swiper_control">
+        <div class="swiper-button-prev"><</div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next">></div>
+      </div>
+    </div>
+    <div class="technical_products">
+      <div class="technical_products_title">
+        Find the Perfect AWOL Vision Projector for Your Space
+      </div>
+      <div class="product_tabs">
+        <div data-index="four" class="tab_item active">Gaming Rooms</div>
+        <div data-index="two" class="tab_item">Dark or Controlled Light Rooms</div>
+        <div data-index="three" class="tab_item">Office Spaces</div>
+        <div data-index="one" class="tab_item">Bright Rooms</div>
+      </div>
+      <div class="product_details">
+        {% comment %} 产品1 {% endcomment %}
+        <div id="one" class="product_detail_items">
+          <div class="products">
+            <div class="left">
+              <div class="product_desc">
+                Perfect for spaces flooded with natural light where high brightness is essential. AWOL Vision projectors are designed to deliver superior performance even in these challenging lighting conditions.
+              </div>
+              <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/technical_3500pro_productImage.png?v=1726049838" alt="3500pro" width="auto" height="auto" />
+            </div>
+            <div class="right">
+              <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/technical_product_img04.png?v=1726049460" alt="3500pro" width="auto" height="auto" />
+            </div>
+          </div>
+          <div class="product_bundleds swiper">
+            <div class="swiper-wrapper">
+              {% for block in section.blocks %}
+                {% case block.type %}
+                  {% when 'product_bundle1' %}
+                    {% if block.settings.product_1 != blank %}
+                      <div class="swiper-slide product_bundled_item">
+                        <img src="{{ block.settings.product_1 | image_url }}" alt="bundle" width="auto" height="auto" >
+                        <div class="product_bundled_card">
+                          <div class="product_bundled_name">
+                            {{ block.settings.product_1.title }}
+                          </div>
+                          <div class="product_price">{{ block.settings.product_1.price | money }}</div>
+                          {% if block.settings.product_desc1 %}
+                            {{ block.settings.product_desc1 }}
+                          {% endif %}
+                          <a class="learn_more" href="{{ block.settings.product_1.url }}">
+                            Learn More
+                          </a>
+                        </div>
+                      </div>
+                    {% endif %}     
+                    {% if block.settings.product_2 != blank  %}
+                      <div class="swiper-slide product_bundled_item">
+                        <img src="{{ block.settings.product_2 | image_url }}" alt="bundle" width="auto" height="auto" >
+                        <div class="product_bundled_card">
+                          <div class="product_bundled_name">
+                            {{ block.settings.product_2.title }}
+                          </div>
+                          <div class="product_price">{{ block.settings.product_2.price | money }}</div>
+                          {% if block.settings.product_desc2 %}
+                            {{ block.settings.product_desc2 }}
+                          {% endif %}
+                          <a class="learn_more" href="{{ block.settings.product_2.url }}">
+                            Learn More
+                          </a>
+                        </div>
+                      </div>
+                    {% endif %} 
+                    {% if block.settings.product_3 != blank  %}
+                      <div class="swiper-slide product_bundled_item">
+                        <img src="{{ block.settings.product_3 | image_url }}" alt="bundle" width="auto" height="auto" >
+                        <div class="product_bundled_card">
+                          <div class="product_bundled_name">
+                            {{ block.settings.product_3.title }}
+                          </div>
+                          <div class="product_price">{{ block.settings.product_3.price | money }}</div>
+                          {% if block.settings.product_desc3 %}
+                            {{ block.settings.product_desc3 }}
+                          {% endif %}
+                          <a class="learn_more" href="{{ block.settings.product_3.url }}">
+                            Learn More
+                          </a>
+                        </div>
+                      </div>
+                    {% endif %} 
+                {% endcase %}
+              {% endfor %}
+            </div>
+            <div class="swiper_control product_bundleds_mobile">
+              <div class="swiper-button-prev"><</div>
+              <div class="swiper-pagination"></div>
+              <div class="swiper-button-next">></div>
+            </div>
+          </div>
+        </div>
+        {% comment %} 产品2 {% endcomment %}
+        <div id="two" class="product_detail_items">
+          <div class="products">
+            <div class="left">
+              <div class="product_desc">
+                The LTV-3500 Pro excels in low-light environments, delivering stunning contrast and vibrant colors. Ideal for movie nights and immersive gaming experiences.
+              </div>
+              <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/technical_3500pro_productImage.png?v=1726049838" alt="3500pro" width="auto" height="auto" />
+            </div>
+            <div class="right">
+              <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/technical_product_img01.png?v=1726049460" alt="3500pro" width="auto" height="auto" />
+            </div>
+          </div>
+          <div class="product_bundleds swiper">
+            <div class="swiper-wrapper">
+              {% for block in section.blocks %}
+                {% case block.type %}
+                  {% when 'product_bundle2' %}
+                    {% if block.settings.product_1 != blank  %}       
+                      <div class="swiper-slide product_bundled_item">
+                        <img src="{{ block.settings.product_1 | image_url }}" alt="bundle" width="auto" height="auto" >
+                        <div class="product_bundled_card">
+                          <div class="product_bundled_name">
+                            {{ block.settings.product_1.title }}
+                          </div>
+                          <div class="product_price">{{ block.settings.product_1.price | money }}</div>
+                          {% if block.settings.product_desc1 %}
+                            {{ block.settings.product_desc1 }}
+                          {% endif %}
+                          <a class="learn_more" href="{{ block.settings.product_1.url }}">
+                            Learn More
+                          </a>
+                        </div>
+                      </div>
+                    {% endif %} 
+                    {% if block.settings.product_2 != blank  %}
+                      <div class="swiper-slide product_bundled_item">
+                        <img src="{{ block.settings.product_2 | image_url }}" alt="bundle" width="auto" height="auto" >
+                        <div class="product_bundled_card">
+                          <div class="product_bundled_name">
+                            {{ block.settings.product_2.title }}
+                          </div>
+                          <div class="product_price">{{ block.settings.product_2.price | money }}</div>
+                          {% if block.settings.product_desc2 %}
+                            {{ block.settings.product_desc2 }}
+                          {% endif %}
+                          <a class="learn_more" href="{{ block.settings.product_2.url }}">
+                            Learn More
+                          </a>
+                        </div>
+                      </div>
+                    {% endif %} 
+                    {% if block.settings.product_3 != blank  %}
+                      <div class="swiper-slide product_bundled_item">
+                        <img src="{{ block.settings.product_3 | image_url }}" alt="bundle" width="auto" height="auto" >
+                        <div class="product_bundled_card">
+                          <div class="product_bundled_name">
+                            {{ block.settings.product_3.title }}
+                          </div>
+                          <div class="product_price">{{ block.settings.product_3.price | money }}</div>
+                          {% if block.settings.product_desc3 %}
+                            {{ block.settings.product_desc3 }}
+                          {% endif %}
+                          <a class="learn_more" href="{{ block.settings.product_3.url }}">
+                            Learn More
+                          </a>
+                        </div>
+                      </div>
+                    {% endif %} 
+                {% endcase %}
+              {% endfor %}
+            </div>
+            <div class="swiper_control product_bundleds_mobile">
+              <div class="swiper-button-prev"><</div>
+              <div class="swiper-pagination"></div>
+              <div class="swiper-button-next">></div>
+            </div>
+          </div>
+        </div>
+        {% comment %} 产品3 {% endcomment %}
+        <div id="three" class="product_detail_items">
+          <div class="products">
+            <div class="left">
+              <div class="product_desc">
+                Transform your meetings and presentations with projectors that deliver clarity and professionalism, even with fluorescent lighting.
+              </div>
+              <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/technical_3500pro_productImage.png?v=1726049838" alt="3500pro" width="auto" height="auto" />
+            </div>
+            <div class="right">
+              <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/technical_product_img03.png?v=1726049460" alt="3500pro" width="auto" height="auto" />
+            </div>
+          </div>
+          <div class="product_bundleds swiper">
+            <div class="swiper-wrapper">
+              {% for block in section.blocks %}
+                {% case block.type %}
+                  {% when 'product_bundle3' %}
+                    {% if block.settings.product_1 != blank  %}     
+                      <div class="swiper-slide product_bundled_item">
+                        <img src="{{ block.settings.product_1 | image_url }}" alt="bundle" width="auto" height="auto" >
+                        <div class="product_bundled_card">
+                          <div class="product_bundled_name">
+                            {{ block.settings.product_1.title }}
+                          </div>
+                          <div class="product_price">{{ block.settings.product_1.price | money }}</div>
+                          {% if block.settings.product_desc1 %}
+                            {{ block.settings.product_desc1 }}
+                          {% endif %}
+                          <a class="learn_more" href="{{ block.settings.product_1.url }}">
+                            Learn More
+                          </a>
+                        </div>
+                      </div>
+                    {% endif %} 
+                    {% if block.settings.product_2 != blank  %}
+                      <div class="swiper-slide product_bundled_item">
+                        <img src="{{ block.settings.product_2 | image_url }}" alt="bundle" width="auto" height="auto" >
+                        <div class="product_bundled_card">
+                          <div class="product_bundled_name">
+                            {{ block.settings.product_2.title }}
+                          </div>
+                          <div class="product_price">{{ block.settings.product_2.price | money }}</div>
+                          {% if block.settings.product_desc2 %}
+                            {{ block.settings.product_desc2 }}
+                          {% endif %}
+                          <a class="learn_more" href="{{ block.settings.product_2.url }}">
+                            Learn More
+                          </a>
+                        </div>
+                      </div>
+                    {% endif %} 
+                    {% if block.settings.product_3 != blank  %}
+                      <div class="swiper-slide product_bundled_item">
+                        <img src="{{ block.settings.product_3 | image_url }}" alt="bundle" width="auto" height="auto" >
+                        <div class="product_bundled_card">
+                          <div class="product_bundled_name">
+                            {{ block.settings.product_3.title }}
+                          </div>
+                          <div class="product_price">{{ block.settings.product_3.price | money }}</div>
+                          {% if block.settings.product_desc3 %}
+                            {{ block.settings.product_desc3 }}
+                          {% endif %}
+                          <a class="learn_more" href="{{ block.settings.product_3.url }}">
+                            Learn More
+                          </a>
+                        </div>
+                      </div>
+                    {% endif %} 
+                {% endcase %}
+              {% endfor %}
+            </div>
+            <div class="swiper_control product_bundleds_mobile">
+              <div class="swiper-button-prev"><</div>
+              <div class="swiper-pagination"></div>
+              <div class="swiper-button-next">></div>
+            </div>
+          </div>
+        </div>
+        {% comment %} 产品4 {% endcomment %}
+        <div id="four" class="product_detail_items active op">
+          <div class="products">
+            <div class="left">
+              <div class="product_desc">
+                Enhance your gaming experience with high-performance projectors that deliver stunning visuals and responsiveness, perfect for immersive gameplay.
+              </div>
+              <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/technical_3500pro_productImage.png?v=1726049838" alt="3500pro" width="auto" height="auto" />
+            </div>
+            <div class="right">
+              <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/technical_product_img02.png?v=1726049460" alt="3500pro" width="auto" height="auto" />
+            </div>
+          </div>
+          <div class="product_bundleds swiper">
+            <div class="swiper-wrapper">
+              {% for block in section.blocks %}
+                {% case block.type %}
+                  {% when 'product_bundle4' %}
+                    {% if block.settings.product_1 != blank  %}      
+                      <div class="swiper-slide product_bundled_item">
+                        <img src="{{ block.settings.product_1 | image_url }}" alt="bundle" width="auto" height="auto" >
+                        <div class="product_bundled_card">
+                          <div class="product_bundled_name">
+                            {{ block.settings.product_1.title }}
+                          </div>
+                          <div class="product_price">{{ block.settings.product_1.price | money }}</div>
+                          {% if block.settings.product_desc1 %}
+                            {{ block.settings.product_desc1 }}
+                          {% endif %}
+                          <a class="learn_more" href="{{ block.settings.product_1.url }}">
+                            Learn More
+                          </a>
+                        </div>
+                      </div>
+                    {% endif %} 
+                    {% if block.settings.product_2 != blank  %}
+                      <div class="swiper-slide product_bundled_item">
+                        <img src="{{ block.settings.product_2 | image_url }}" alt="bundle" width="auto" height="auto" >
+                        <div class="product_bundled_card">
+                          <div class="product_bundled_name">
+                            {{ block.settings.product_2.title }}
+                          </div>
+                          <div class="product_price">{{ block.settings.product_2.price | money }}</div>
+                          {% if block.settings.product_desc2 %}
+                            {{ block.settings.product_desc2 }}
+                          {% endif %}
+                          <a class="learn_more" href="{{ block.settings.product_2.url }}">
+                            Learn More
+                          </a>
+                        </div>
+                      </div>
+                    {% endif %} 
+                    {% if block.settings.product_3 != blank  %}
+                      <div class="swiper-slide product_bundled_item">
+                        <img src="{{ block.settings.product_3 | image_url }}" alt="bundle" width="auto" height="auto" >
+                        <div class="product_bundled_card">
+                          <div class="product_bundled_name">
+                            {{ block.settings.product_3.title }}
+                          </div>
+                          <div class="product_price">{{ block.settings.product_3.price | money }}</div>
+                          {% if block.settings.product_desc3 %}
+                            {{ block.settings.product_desc3 }}
+                          {% endif %}
+                          <a class="learn_more" href="{{ block.settings.product_3.url }}">
+                            Learn More
+                          </a>
+                        </div>
+                      </div>
+                    {% endif %} 
+                {% endcase %}
+              {% endfor %}
+            </div>
+            <div class="swiper_control product_bundleds_mobile">
+              <div class="swiper-button-prev"><</div>
+              <div class="swiper-pagination"></div>
+              <div class="swiper-button-next">></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="technical_users">
+      <div class="technical_title">
+        Real Setups from AWOL Vision Users
+      </div>
+      <div class="technical_desc">
+        Be inspired by the incredible home theater setups created by AWOL Vision users.<br>
+        From living rooms to dedicated home cinemas, <br>
+        our customers have transformed their spaces into entertainment hubs.<br>
+        Check out these real-world examples and see what’s possible with AWOL Vision.
+      </div>
+      <div class="swiper technical_users_images" id="technical_users_images">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide user_image_card">
+            <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/technical_user_image01.png?v=1726218347" alt="" />
+            <div class="user_image_box">
+              <div class="user_header">@AWOL User</div>
+              <div class="user_context">LTV-3500 Pro</div>
+            </div>
+          </div>
+          <div class="swiper-slide user_image_card">
+            <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/technical_user_image02.png?v=1726218347" alt="" />
+            <div class="user_image_box">
+              <div class="user_header">@AWOL User</div>
+              <div class="user_context">LTV-3500 Pro</div>
+            </div>
+          </div> 
+          <div class="swiper-slide user_image_card">
+            <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/technical_user_image03.png?v=1726218347" alt="" />
+            <div class="user_image_box">
+              <div class="user_header">@AWOL User</div>
+              <div class="user_context">LTV-3500 Pro</div>
+            </div>
+          </div> 
+          <div class="swiper-slide user_image_card">
+            <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/technical_user_image04.png?v=1726218347" alt="" />
+            <div class="user_image_box">
+              <div class="user_header">@AWOL User</div>
+              <div class="user_context">LTV-3500 Pro</div>
+            </div>
+          </div> 
+          <div class="swiper-slide user_image_card">
+            <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/technical_user_image05.png?v=1726218347" alt="" />
+            <div class="user_image_box">
+              <div class="user_header">@AWOL User</div>
+              <div class="user_context">LTV-3500 Pro</div>
+            </div>
+          </div> 
+          <div class="swiper-slide user_image_card">
+            <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/technical_user_image06.png?v=1726218455" alt="" />
+            <div class="user_image_box">
+              <div class="user_header">@AWOL User</div>
+              <div class="user_context">LTV-3500 Pro</div>
+            </div>
+          </div> 
+          <div class="swiper-slide user_image_card">
+            <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/technical_user_image07.png?v=1726218455" alt="" />
+            <div class="user_image_box">
+              <div class="user_header">@AWOL User</div>
+              <div class="user_context">LTV-3500 Pro</div>
+            </div>
+          </div> 
+        </div>
+        <div class="swiper_control">
+          <div class="swiper-button-prev"><</div>
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button-next">></div>
+        </div>
+      </div>
+    </div>
+    <div class="technical_medium">
+      <div class="technical_title">
+        What the Experts Are Saying
+      </div>
+      <div class="technical_desc">
+        AWOL Vision Laser Projectors have been praised by industry experts for <br>
+        their exceptional performance and innovative features.
+      </div>
+      <div class="youtube_title">
+        Media Perspectives:
+      </div>
+      <div class="swiper technical_medium_swiper" id="technical_medium_swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide medium_card">
+            <div class="medium_box">
+              "LTV-3500 Pro is the best-performing projector in both bright and dark rooms that we’ve ever seen. It has outstanding picture clarity, color and contrast, solid built-in sound, and can throw a huge image without hogging all the space in your living room."
+            </div>
+            <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/medium_icon01.png?v=1726213719" alt="" />
+          </div>
+          <div class="swiper-slide medium_card">
+            <div class="medium_box">
+              "LTV-3500's Movie mode with either SDR or HDR was strikingly brighter than most other projectors I have reviewed." 
+            </div>
+            <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/medium_icon02.png?v=1726213905" alt="" />
+          </div>
+          <div class="swiper-slide medium_card">
+            <div class="medium_box">
+              The quality of LTV-3500 Pro really stands out in the workplace, office, studio, or gallery. The projection is superb, with clear, crisp clarity, colour, and tone that are hard to match. Thankfully, that quality is matched by the superb audio quality."
+            </div>
+            <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/medium_icon03.png?v=1726214333" alt="" />
+          </div>
+          <div class="swiper-slide medium_card">
+            <div class="medium_box">
+              "When measuring the projector in SDR Standard mode, it clocked in at an impressive 3,378 lumens. The punchy and colorful image it produces became my preferred setting for daytime viewing, offering an exceptional display for watching sports like basketball and football."
+            </div>
+            <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/medium_icon04.png?v=1726214735" alt="" />
+          </div>
+          <div class="swiper-slide medium_card">
+            <div class="medium_box">
+              "Firing up the AWOL Vision LTV-3500, I find it hard not to have a smile on my face. Even in a brightly lit room (my lounge windows face south and get the sun all day), the projector can deliver a bright image that can be seen all-day long. It really does look like there’s a massive TV in the room."
+            </div>
+            <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/medium_icon05.png?v=1726215711" alt="" />
+          </div>
+        </div>
+        <div class="swiper_control">
+          <div class="swiper-button-prev"><</div>
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button-next">></div>
+        </div>
+      </div>
+      <div class="youtube_title">
+        Influencer Spotlight:
+      </div>
+      <div class="swiper yotube_swiper" id="yotube_swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <iframe width="1018" height="573" src="https://www.youtube.com/embed/YkKQRr7FRkw" title="120&quot; AWOL Floor Rising Screen w/LTV-3500 Pro 3D Laser TV" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+          <div class="swiper-slide">
+            <iframe width="1018" height="573" src="https://www.youtube.com/embed/ev9jbrMdeFQ" title="Upgrading my TV to a 150-inch LASER PROJECTOR! [AWOL Vision LTV-3500 Pro]" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+          <div class="swiper-slide">
+            <iframe width="1018" height="573" src="https://www.youtube.com/embed/PD_GrLlNiUU" title="Die Heimkino-Revolution: 150 Zoll 4K 3D HDR in jedem Raum! - AWOL Vision LTV-3500 Pro" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+          <div class="swiper-slide">
+            <iframe width="1018" height="573" src="https://www.youtube.com/embed/lg_5NCXoCEU" title="The ULTIMATE setup? 120&quot; AWOL Vision LTV-3000 Pro Laser Projector Review" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+          <div class="swiper-slide">
+            <iframe width="1018" height="573" src="https://www.youtube.com/embed/d73bgT3K218" title="The Huge 120-inch Vanishing TV" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+          <div class="swiper-slide">
+            <iframe width="1018" height="573" src="https://www.youtube.com/embed/Kcw9H8DWNPA" title="The Best Home Projector I Have Ever Used! - AWOL 3500 4k PRO" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="swiper_control">
+          <div class="swiper-button-prev"><</div>
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button-next">></div>
+        </div>
+      </div>
+    </div>
+    <div class="technical_faqs">
+      <div class="faq_title">
+        FAQs
+      </div>
+      <div class="faq-container">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'FAQ' %}            
+              <div class="faq-item {% if forloop.first %}open{% endif %}">
+                <div class="faq-question">
+                  {{ block.settings.faq_title }}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="9" viewBox="0 0 15 9" fill="none">
+                    <path d="M0.999883 1.00046L7.56488 7.46289L14.1299 1.00047" stroke="#1B1D1D" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <div class="faq-answer">
+                  {% if block.settings.image %}
+                    <img src="{{ block.settings.image | image_url }}" alt="faq_image" width="auto" height="auto" />
+                  {% endif %}
+                  {% if block.settings.faq_context %}
+                    {{ block.settings.faq_context }}
+                  {% endif %}
+                  {{  }}
+                </div>
+              </div>
+          {% endcase %}
+        {% endfor %}
+      </div>
+    </div>
+    <div class="technical_banner">
+      <div class="technical_banner_image">
+        <img src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/screen-rising_01.png?v=1726042386">
+      </div>
+      <div class="technical_banner_context">
+        <div class="technical_banner_title">
+          Ready to Transform Your Home Theater?
+        </div>
+        <div class="technical_banner_desc">
+          <p>
+            Explore our range of AWOL Vision Laser TVs and find the<br> 
+            perfect fit for your home. Contact our customer service <br> 
+            for more information or visit our product pages to get<br> 
+            started.
+          </p>
+          <p><a target="_blank" href="https://awolvision.com/pages/where-to-see-awol-vision" title="Where to see AWOL Vision near you?">Where to see AWOL Vision near you?  >>></a></p>
+        </div>
+        <a target="_blank" href="https://awolvision.com/collections/bundles" title="Shop Now" class="technical_banner_button">
+          Shop Now
+        </a>
+      </div>
+    </div>
+  </div>
+</div> 
+<script src="{{ 'technical.js' | asset_url }}"></script>
+{% schema %}
+{
+  "name": "Technical-introduction",
+  "class": "shopify-section--technical",
+  "disabled_on": {
+    "groups": ["header", "custom.overlay"]
+  },
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "technical_image",
+      "label": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "technical_image_mobile",
+      "label": "Image"
+    },
+    {
+      "type": "url",
+      "id": "technical_image_url",
+      "label": "Url"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "FAQ",
+      "name": "FAQ",
+      "settings": [
+        {
+          "type": "text",
+          "id": "faq_title",
+          "label": "FAQ Title",
+          "default": "Question"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "FAQ Image"
+        },
+        {
+          "type": "textarea",
+          "id": "faq_context",
+          "label": "FAQ Context",
+          "default": "Answer"
+        }
+      ]
+    },
+    {
+      "type": "product_bundle1",
+      "name": "product_bundle1",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product_1",
+          "label": "Product"
+        },
+        {
+          "type": "textarea",
+          "id": "product_desc1",
+          "label": "Product desc"
+        },
+        {
+          "type": "product",
+          "id": "product_2",
+          "label": "Product"
+        },
+        {
+          "type": "textarea",
+          "id": "product_desc2",
+          "label": "Product desc"
+        },
+        {
+          "type": "product",
+          "id": "product_3",
+          "label": "Product"
+        },
+        {
+          "type": "textarea",
+          "id": "product_desc3",
+          "label": "Product desc"
+        }
+      ]
+    },
+    {
+      "type": "product_bundle2",
+      "name": "product_bundle2",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product_1",
+          "label": "Product"
+        },
+        {
+          "type": "textarea",
+          "id": "product_desc1",
+          "label": "Product desc"
+        },
+        {
+          "type": "product",
+          "id": "product_2",
+          "label": "Product"
+        },
+        {
+          "type": "textarea",
+          "id": "product_desc2",
+          "label": "Product desc"
+        },
+        {
+          "type": "product",
+          "id": "product_3",
+          "label": "Product"
+        },
+        {
+          "type": "textarea",
+          "id": "product_desc3",
+          "label": "Product desc"
+        }
+      ]
+    },
+    {
+      "type": "product_bundle3",
+      "name": "product_bundle3",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product_1",
+          "label": "Product"
+        },
+        {
+          "type": "textarea",
+          "id": "product_desc1",
+          "label": "Product desc"
+        },
+        {
+          "type": "product",
+          "id": "product_2",
+          "label": "Product"
+        },
+        {
+          "type": "textarea",
+          "id": "product_desc2",
+          "label": "Product desc"
+        },
+        {
+          "type": "product",
+          "id": "product_3",
+          "label": "Product"
+        },
+        {
+          "type": "textarea",
+          "id": "product_desc3",
+          "label": "Product desc"
+        }
+      ]
+    },
+    {
+      "type": "product_bundle4",
+      "name": "product_bundle4",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product_1",
+          "label": "Product"
+        },
+        {
+          "type": "textarea",
+          "id": "product_desc1",
+          "label": "Product desc"
+        },
+        {
+          "type": "product",
+          "id": "product_2",
+          "label": "Product"
+        },
+        {
+          "type": "textarea",
+          "id": "product_desc2",
+          "label": "Product desc"
+        },
+        {
+          "type": "product",
+          "id": "product_3",
+          "label": "Product"
+        },
+        {
+          "type": "textarea",
+          "id": "product_desc3",
+          "label": "Product desc"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Technical-introduction",
+      "blocks": []
+    }
+  ]
+}
+{% endschema %}
+    

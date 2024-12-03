@@ -1,0 +1,189 @@
+:root {
+  --grid-cols-1: repeat(1, 1fr);
+  --grid-cols-2: repeat(2, 1fr);
+  --grid-cols-3: repeat(3, 1fr);
+  --grid-cols-4: repeat(4, 1fr);
+  --background_main_color: #000;
+  --font_main_color: #fff;
+  --font_second_color: #8c8c8c;
+  --Temporary-red: #de2a2a;
+}
+
+#terms_dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+#terms_dialog {
+  position: fixed;
+  top: 30px;
+
+  width: 1380px;
+  height: inherit;
+  padding: 80px 0 70px 0;
+  margin: 0 auto;
+  border-radius: 20px;
+  border: none;
+
+  background-color: #1a1a1a;
+
+  z-index: 1000;
+
+  .dialog_main {
+    .terms_dialog_close_btn {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+
+      z-index: 1001;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background-color: #333;
+
+      cursor: pointer;
+    }
+  }
+}
+
+.terms_main {
+  font-family: AWOL-DM-Regular;
+
+  width: 737px;
+  margin: 0 auto;
+
+  .page-header {
+    color: #fff;
+    text-align: center;
+
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%; /* 36px */
+    letter-spacing: -0.72px;
+
+    margin-bottom: 60px;
+  }
+
+  .pre-sale-info {
+    color: #fff;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%; /* 24px */
+    letter-spacing: -0.48px;
+  }
+
+  .info-item {
+    margin-bottom: 32px;
+  }
+
+  .info-item h2 {
+    color: #fff;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%; /* 24px */
+    letter-spacing: -0.48px;
+
+    margin-bottom: 32px;
+
+    margin: 0;
+    padding: 0;
+  }
+
+  .info-item p {
+    color: #fff;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%; /* 24px */
+    letter-spacing: -0.48px;
+
+    margin-bottom: 32px;
+
+    padding: 0;
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  #terms_dialog {
+    width: 96vw;
+    max-width: 96vw;
+    margin: 0 auto;
+    padding: 45px 16px 20px 16px;
+
+    .dialog_main {
+      .terms_dialog_close_btn {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+
+        z-index: 1001;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background-color: #333;
+
+        cursor: pointer;
+
+        img {
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+
+    .terms_main {
+      width: 100%;
+
+      .page-header {
+        color: #fff;
+        text-align: center;
+        font-family: AWOL-DM;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 150%; /* 30px */
+        letter-spacing: -0.6px;
+
+        margin-bottom: 40px;
+      }
+
+      .info-item {
+        margin-bottom: 30px;
+      }
+
+      .info-item h2 {
+        color: #fff;
+        font-family: AWOL-DM;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 150%; /* 21px */
+        letter-spacing: -0.42px;
+      }
+
+      .info-item p {
+        color: #fff;
+        font-family: AWOL-DM;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 150%; /* 21px */
+        letter-spacing: -0.42px;
+
+        padding: 0;
+        margin: 0;
+      }
+    }
+  }
+}

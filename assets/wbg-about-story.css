@@ -1,0 +1,51 @@
+
+.wbg-about-story-container {
+  display: flex;
+  background-image: url("https://cdn.shopify.com/s/files/1/0554/7445/4576/files/Image_20231122185035.png?v=1700697554");
+  background-size: cover;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.wbg-about-story-background {
+  
+}
+
+.wbg-about-story-content {
+  display: flex;
+  align-items: center;
+  background-color: rgba(245, 246, 249, 0.95);
+  width: 70%;
+}
+
+.wbg-about-story-content-title {
+  color: #171717;
+  font-size: 48px;
+  font-weight: 400;
+  margin-bottom: 100px;
+}
+
+.wbg-about-story-content-body {
+  color: #171717;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.4;
+}
+
+.wbg-about-story-content-inner {
+  margin-left:8%;
+  margin-right:11%;
+  margin-top: 120px;
+  margin-bottom: 120px;
+}
+
+@media screen and (max-width: 1024px) {
+  .wbg-about-story-content-inner {
+    margin-left: 8%;
+    margin-right: 8%;
+  }
+  .wbg-about-story-content {
+    width: 100%;
+  }
+}

@@ -1,0 +1,123 @@
+{{- 'event_page.css' | asset_url | stylesheet_tag: true -}}
+{% style %}
+  .event_page_banner {
+    background: {{ section.settings.background }};
+  }
+  @media screen and (max-width: 1024px) {
+    .banner_context_continer {
+        transform: translate(-50%, -50%) scale(0.85);
+        left: 50%;
+        top: 42%!important;
+        width: 400px;
+    }
+  }
+{% endstyle %}
+<div class="event_page_banner">
+  <div class="banner_container">
+    {% comment %} <div class="tag_title">
+    *The free screen promotion is only available for certain products, <br> 
+    please check the event details page
+    </div> {% endcomment %}
+    {% if section.settings.banner_liquid != blank %}
+      <div class="banner_context">
+        {{ section.settings.banner_liquid }}
+      </div>
+    {% endif %}
+    <img class="pc" src="{{ section.settings.event_banner | image_url }}" alt="event_banner" width="auto" height="auto" />
+    <img class="mobile" src="{{ section.settings.event_banner_mobile | image_url }}" alt="event_banner" width="auto" height="auto" />
+    <div class="banner_text_container">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when "banner_text" %}
+            <div class="banner_title {% if block.settings.font_size == 'big' %}big_font{% elsif block.settings.font_size == 'middle' %}middle_font{% else %}small_font{% endif %}">
+              {{ block.settings.banner_text }}
+            </div>
+          {% when "banner_desc_image" %}
+            <div class="banner_desc_image">
+              <img style="width: 36%;" src="{{ block.settings.banner_desc_image | image_url }}" alt="banner desc image"/>
+            </div>        
+        {% endcase %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<script src="{{ 'event_page.js' | asset_url }}" defer></script>
+{% schema %}
+{
+  "name": "Event page banner",
+  "class": "shopify-section--event_page_banner",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background",
+      "default": "#000000"
+    },
+    {
+      "type": "image_picker",
+      "id": "event_banner",
+      "label": "Banner"
+    },
+    {
+      "type": "image_picker",
+      "id": "event_banner_mobile",
+      "label": "Banner for mobile"
+    },
+    {
+      "type": "liquid",
+      "id": "banner_liquid",
+      "label": "Banner liquid"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "banner_text",
+      "name": "banner_text",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "banner_text",
+          "label": "Text"
+        },
+        {
+          "type": "select",
+          "id": "font_size",
+          "label": "Font size",
+          "options": [
+            {
+              "value": "big",
+              "label": "Big"
+            },
+            {
+              "value": "middle",
+              "label": "Middle"
+            },
+            {
+              "value": "small",
+              "label": "Small"
+            }
+          ],
+          "default": "middle"
+        }
+      ]
+    },
+    {
+      "type": "banner_desc_image",
+      "name": "banner_desc_image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "banner_desc_image",
+          "label": "Banner desc image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Even page banner",
+      "blocks": []
+    }
+  ]
+}
+{% endschema %}

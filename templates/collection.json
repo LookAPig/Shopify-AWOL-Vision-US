@@ -1,0 +1,350 @@
+{
+  "order": [
+    "27417b1a-d887-419d-ac31-3bf6c29f3e19",
+    "40c0f083-14d2-42aa-b4ad-7f9246213159",
+    "collection-banner",
+    "main",
+    "projectors-comparison-link-btn",
+    "new_faq_nNzpjn",
+    "new_faq_EAHW69"
+  ],
+  "sections": {
+    "27417b1a-d887-419d-ac31-3bf6c29f3e19": {
+      "disabled": true,
+      "settings": {
+        "background_type": "full_width",
+        "button_background": "rgba(0,0,0,0)",
+        "button_link": "",
+        "button_text": "",
+        "button_text_color": "rgba(0,0,0,0)",
+        "content": "",
+        "image": "shopify:\/\/shop_images\/1400x542_1.jpg",
+        "mobile_image": "shopify:\/\/shop_images\/1400x1630.png",
+        "reveal_on_scroll": true,
+        "subheading": "",
+        "text_alignment": "center",
+        "text_background": "rgba(0,0,0,0)",
+        "text_color": "rgba(0,0,0,0)",
+        "text_position": "left",
+        "title": ""
+      },
+      "type": "image-with-text-block"
+    },
+    "40c0f083-14d2-42aa-b4ad-7f9246213159": {
+      "disabled": true,
+      "settings": {
+        "background_type": "full_width",
+        "button_background": "#ffffff",
+        "button_link": "",
+        "button_text": "",
+        "button_text_color": "#000000",
+        "content": "",
+        "image": "shopify:\/\/shop_images\/buy_wiht_prime.jpg",
+        "link_style": "link",
+        "overlay_color": "#000000",
+        "overlay_opacity": 0,
+        "reveal_on_scroll": true,
+        "section_height": "small",
+        "subheading": "",
+        "text_color": "#ffffff",
+        "text_position": "middle_center",
+        "text_width": "medium",
+        "title": ""
+      },
+      "type": "image-with-text-overlay"
+    },
+    "collection-banner": {
+      "block_order": [
+        "329d8d12-bbdd-40f0-9537-ea649fc1491d",
+        "593d24f6-dc4d-4eea-8516-379cd422e09b"
+      ],
+      "blocks": {
+        "329d8d12-bbdd-40f0-9537-ea649fc1491d": {
+          "settings": {
+            "category": "Buy with Prime",
+            "image": "shopify:\/\/shop_images\/buy_wiht_prime.jpg",
+            "image_m": "shopify:\/\/shop_images\/buy_wiht_prime_M.jpg"
+          },
+          "type": "category_banner"
+        },
+        "593d24f6-dc4d-4eea-8516-379cd422e09b": {
+          "disabled": true,
+          "settings": {
+            "category": "Screen",
+            "image": "shopify:\/\/shop_images\/1800x9002.png",
+            "image_m": "shopify:\/\/shop_images\/600x600.png"
+          },
+          "type": "category_banner"
+        }
+      },
+      "settings": {
+        "image_overlay_color": "#000000",
+        "image_overlay_opacity": 0,
+        "image_text_color": "#ffffff",
+        "quick_links": "",
+        "section_height": "auto",
+        "show_collection_description": true,
+        "show_collection_image": true,
+        "show_collection_title": true,
+        "text_width": "medium",
+        "use_custom_banner": false
+      },
+      "type": "collection-banner"
+    },
+    "main": {
+      "block_order": [
+        "image_86AWkj",
+        "56a3bc21-7702-4e03-ac1c-3266ae7cc38f"
+      ],
+      "blocks": {
+        "56a3bc21-7702-4e03-ac1c-3266ae7cc38f": {
+          "disabled": true,
+          "settings": {
+            "background": "#f7f8fd",
+            "button_background": "#ffffff",
+            "button_text_color": "#1e316a",
+            "image": "shopify:\/\/shop_images\/20230609164248.jpg",
+            "link_style": "link",
+            "link_text": "",
+            "link_url": "shopify:\/\/collections\/ltv-3500-pro-bundle",
+            "subheading": "",
+            "text_color": "#1e316a",
+            "text_position": "middle_left",
+            "title": ""
+          },
+          "type": "image"
+        },
+        "image_86AWkj": {
+          "disabled": true,
+          "settings": {
+            "background": "#f7f8fd",
+            "button_background": "#ffffff",
+            "button_text_color": "#1e316a",
+            "link_style": "link",
+            "link_text": "",
+            "link_url": "",
+            "subheading": "",
+            "text_color": "#1e316a",
+            "text_position": "middle_center",
+            "title": "Your heading"
+          },
+          "type": "image"
+        }
+      },
+      "settings": {
+        "desktop_products_per_row": 4,
+        "filter_position": "drawer",
+        "mobile_products_per_row": "2",
+        "open_first_filter_group": false,
+        "products_per_page": 24,
+        "promotion_height": "small",
+        "promotion_position": "top",
+        "show_color_swatch": true,
+        "show_filter_group_name": false,
+        "show_filters": true,
+        "show_sort_by": true
+      },
+      "type": "main-collection"
+    },
+    "new_faq_EAHW69": {
+      "settings": {
+        "background": "rgba(0,0,0,0)",
+        "content": "",
+        "placeholder_width": "",
+        "show_navigation": false,
+        "show_placeholder": true,
+        "text_color": "rgba(0,0,0,0)",
+        "title": "FAQ"
+      },
+      "type": "new-faq"
+    },
+    "new_faq_nNzpjn": {
+      "block_order": [
+        "category_9mwjcD",
+        "question_bt7ahK",
+        "category_PJaNyn",
+        "question_3VGUYN",
+        "question_rmrh6F",
+        "question_pKcCyY",
+        "question_6WCPnp",
+        "question_F3PeDa",
+        "question_wbkRen",
+        "question_8gbPWW",
+        "question_ETLbJD",
+        "question_nGdEdA",
+        "category_UQPcPt",
+        "question_MrYmV3",
+        "question_VYcdex",
+        "question_6fY6AL",
+        "category_NwJJ3w",
+        "question_4FM377",
+        "question_DLcR4j"
+      ],
+      "blocks": {
+        "category_9mwjcD": {
+          "disabled": true,
+          "settings": {
+            "title": "Buying Guide"
+          },
+          "type": "category"
+        },
+        "category_NwJJ3w": {
+          "disabled": true,
+          "settings": {
+            "title": "Setup"
+          },
+          "type": "category"
+        },
+        "category_PJaNyn": {
+          "disabled": true,
+          "settings": {
+            "title": "Features"
+          },
+          "type": "category"
+        },
+        "category_UQPcPt": {
+          "disabled": true,
+          "settings": {
+            "title": "Operation"
+          },
+          "type": "category"
+        },
+        "question_3VGUYN": {
+          "disabled": true,
+          "settings": {
+            "answer": "<p>The AWOL Vision 4K laser projector can project large images ranging from 80 inches to 150 inches, making it suitable for diverse environments from home theaters to conference rooms.<\/p>",
+            "title": "What is the maximum projection size for the AWOL Vision 4K laser projector?"
+          },
+          "type": "question"
+        },
+        "question_4FM377": {
+          "disabled": true,
+          "settings": {
+            "answer": "<p>For a 4K laser projector, the optimal viewing distance is 13 feet from the screen to achieve the best visual clarity, with a recommended projector-to-wall distance of 9.8 inches for a 100'' screen.<\/p>",
+            "title": "What is the recommended viewing distance for a 4K laser projector?"
+          },
+          "type": "question"
+        },
+        "question_6WCPnp": {
+          "disabled": true,
+          "settings": {
+            "answer": "<p>AWOL Vision projectors support a refresh rate of up to 4K 60Hz for non-3D input sources and 1080p 120Hz for DLP Active 3D input sources.<\/p>",
+            "title": "What is the refresh rate supported by 4K laser projectors?"
+          },
+          "type": "question"
+        },
+        "question_6fY6AL": {
+          "disabled": true,
+          "settings": {
+            "answer": "<p>Write content to help your customers to better understand your products or policies.<\/p>",
+            "title": "About your shop"
+          },
+          "type": "question"
+        },
+        "question_8gbPWW": {
+          "disabled": true,
+          "settings": {
+            "answer": "<p>AWOL Vision ultra-short throw 4K laser projectors provide superior image quality with minimal space requirements, allowing for placement just inches away from the display surface without sacrificing picture size or quality.<\/p>",
+            "title": "What advantages do ultra-short throw 4K laser projectors offer over traditional projectors?"
+          },
+          "type": "question"
+        },
+        "question_DLcR4j": {
+          "disabled": true,
+          "settings": {
+            "answer": "<p>For optimal viewing with AWOL Vision 4K laser projectors, the required distances are based on a throw ratio of 0.25:1. For a 100\" screen, place the projector about 9.8 feet away. For a 120\" screen, about 13.6 feet is required. You can check the SPECIFICATIONS file for more details.<\/p>",
+            "title": "What distances are required to project a 100\" or 120\" screen size with a 4K laser projector?"
+          },
+          "type": "question"
+        },
+        "question_ETLbJD": {
+          "disabled": true,
+          "settings": {
+            "answer": "<p>They eliminate many setup constraints, reduce shadows and glare, and enable larger images in tighter spaces, making them ideal for immersive home theater setups.<\/p>",
+            "title": "How do ultra-short throw laser projectors enhance home cinema experiences?"
+          },
+          "type": "question"
+        },
+        "question_F3PeDa": {
+          "disabled": true,
+          "settings": {
+            "answer": "<p>The 24 FPS feature, available on 4K laser projectors, matches the filming rate of most movies to enhance visual smoothness:<\/p><p>1. It eliminates the common 3:2 pull-down judder.<\/p><p>2. Preserves the director's intended image quality by displaying movies at their native frame rate.<\/p><p>3. Access this feature under the MEMC &gt; Movie menu; it auto-disables other MEMC settings when activated.<\/p>",
+            "title": "What is 24 FPS and why is it important for viewing movies on 4K laser projectors?"
+          },
+          "type": "question"
+        },
+        "question_MrYmV3": {
+          "disabled": true,
+          "settings": {
+            "answer": "<p>Walls aren’t always flat, which can cause wavy images. Ultra-short throw technology is more sensitive to surface unevenness. Using a screen, especially in dark rooms, can enhance image quality by over 80%.<\/p>",
+            "title": "Why do I see a wavy image when projecting directly on a wall with my 4K laser projector?"
+          },
+          "type": "question"
+        },
+        "question_VYcdex": {
+          "disabled": true,
+          "settings": {
+            "answer": "<p>Maintenance is minimal; it involves regular dusting and ensuring the vent areas are clean to prevent overheating, with occasional lens cleaning for optimal clarity.<\/p>",
+            "title": "What maintenance is required for 4K laser projectors?"
+          },
+          "type": "question"
+        },
+        "question_bt7ahK": {
+          "disabled": true,
+          "settings": {
+            "answer": "<p>Choosing the appropriate 4K laser projector depends on your specific lighting conditions:<\/p><p><strong>LTV-2500:<\/strong> Ideal for low-light environments, this model offers excellent performance with 2600 peak lumens of brightness. It's also cost-effective and works well with our Daylight screen, making it suitable even for use in daylight settings.<\/p><p><strong>LTV-3000 Pro: <\/strong>For varied lighting conditions, the LTV-3000 Pro adjusts seamlessly throughout the day. This versatile model is recommended for its ability to handle intermediate levels of ambient light with a peak brightness of 3000 lumens.<\/p><p><strong>LTV-3500 Pro: <\/strong>If you require TV-like brightness, particularly in brightly lit conditions, the LTV-3500 Pro is the best choice. With a peak output of 3500 lumens, it ensures vibrant and clear images even when competing with natural daylight.<\/p>",
+            "title": "How should I choose among the LTV-2500, LTV-3000 Pro, and LTV-3500 Pro 4K laser projectors?"
+          },
+          "type": "question"
+        },
+        "question_nGdEdA": {
+          "disabled": true,
+          "settings": {
+            "answer": "<p>Yes, AWOL Vision 4K laser projectors are compatible with modern gaming consoles, offering features like low input lag and high refresh rates that provide a smooth gaming experience.<\/p>",
+            "title": "Are AWOL Vision 4K laser projectors compatible with gaming consoles?"
+          },
+          "type": "question"
+        },
+        "question_pKcCyY": {
+          "disabled": true,
+          "settings": {
+            "answer": "<p>The LTV-2500, LTV-3000 Pro, and LTV-3500 Pro models differ primarily in brightness and smart home capabilities:<\/p><p><strong>1. Brightness Levels:<\/strong><\/p><p><strong>●LTV-2500: <\/strong>Offers 2600 peak lumens, making it ideal for darker rooms or settings with controlled lighting.<\/p><p><strong>●LTV-3000 Pro:<\/strong> Provides a peak brightness of 3000 lumens, suitable for moderately lit rooms and ensuring vibrant image quality.<\/p><p><strong>●LTV-3500 Pro:<\/strong> Features a peak brightness of 3500 lumens, perfect for bright environments or rooms with lots of natural light, delivering clear and vivid images even in challenging lighting conditions.<\/p><p><strong>2. Smart Home Integration:<\/strong><\/p><p>Only the Pro models, like the LTV-3500 Pro, offer advanced smart home integration with Control 4 system support. This allows seamless integration into your existing smart devices, enhancing convenience and efficiency in your home cinema setup.<\/p>",
+            "title": "What are the key differences between the LTV-2500, LTV-3000 Pro, and LTV-3500 Pro models of 4K laser projectors?"
+          },
+          "type": "question"
+        },
+        "question_rmrh6F": {
+          "disabled": true,
+          "settings": {
+            "answer": "<p>The laser light source in AWOL Vision 4K laser projectors has a longevity of over 25,000 hours, enabling more than 10,000 movie viewings (2 hours per movie), making it a reliable choice for extensive TV and movie watching.<\/p>",
+            "title": "How durable is the laser light source in AWOL Vision 4K laser projectors?"
+          },
+          "type": "question"
+        },
+        "question_wbkRen": {
+          "disabled": true,
+          "settings": {
+            "answer": "<p>Yes, AWOL Vision 4K laser projectors can be used outdoors for events like backyard movies or presentations, provided they are protected from direct sunlight and inclement weather.<\/p>",
+            "title": "Can AWOL Vision 4K laser projectors be used outdoors?"
+          },
+          "type": "question"
+        }
+      },
+      "disabled": true,
+      "settings": {
+        "background": "rgba(0,0,0,0)",
+        "content": "",
+        "placeholder_width": "",
+        "show_navigation": false,
+        "show_placeholder": true,
+        "text_color": "rgba(0,0,0,0)",
+        "title": "FAQ"
+      },
+      "type": "new-faq"
+    },
+    "projectors-comparison-link-btn": {
+      "settings": {},
+      "type": "projectors-comparison-link-btn"
+    }
+  }
+}

@@ -1,0 +1,354 @@
+<style>
+  @font-face {
+    font-family: "AWOL-DM-Medium";
+    src: url("https://cdn.shopify.com/s/files/1/0554/7445/4576/files/AWOL-DM-Medium.otf?v=1727076025")
+      format("opentype");
+    font-weight: normal;
+  }
+  .mobile {
+    display: none;
+  }
+  .countdown-container {
+    margin-top: 30px;
+    display: flex;
+    /* position: absolute; */
+    text-align: center;
+    flex-direction: column;
+    align-items: flex-start;
+    /* justify-content: space-around; */
+    /* background: #111828; */
+    /* padding: 10px; */
+    color: white;
+    width: 100%;
+    /* max-width: fit-content; */
+    /* margin: 60px auto 0px auto; */
+    top: 50%;
+    left: 6%;
+    transform: translateY(0%) !important;
+  }
+  .countdown-container a {display: flex; align-items: center;flex-direction: column;gap: 10px;}
+  .countdown-container a span.main_title {
+    /* font-size: 14px;
+    color: white;
+    font-weight: 800; */
+    font-size: 42px;
+    font-weight: bolder;
+    background-image: linear-gradient(#013d99, #013d99);
+    background-clip: text;
+    color: transparent;
+    /* background: #1b0c48; */
+    border-radius: 20px;
+    padding: 8px 40px;
+    line-height: 48px;
+  }
+  .announcement-bar__message {
+    min-height: 37px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .announcement-bar__list {
+    max-width: 93%;
+  }
+  .q-index-countdown-box {
+    min-height: 40px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    /* margin-left: 16px; */
+    justify-content: center;
+  }
+  .index-countdown {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    max-width: 100%;
+  }
+  .countdown-container .unit {
+    color: #FFF;
+    text-align: center;
+    font-family: "AWOL-DM-Medium", sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 115%; /* 18.4px */
+    letter-spacing: -0.48px;
+    text-transform: uppercase;
+  }
+  .countdown_title img{
+    width: 80%;
+  }
+  .countdown-inner {
+    display: flex;
+    /* gap: 50px; */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .countdpwn_title_header img,
+  .countdown_button {
+    width: fit-content;
+    background-color: #013d99;
+    color: #fff;
+    font-size: 22px;
+    font-weight: 600;
+    padding: 6px 30px;
+    border-radius: 14px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    margin-top: 60px;
+  }
+  .countdown_button p {
+    color: #000;
+    font-size: 22px;
+    margin: 0;
+  }
+  .date {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: 500;
+  }
+  @media screen and (max-width: 1660px) {
+    .index-countdown {
+      gap: 5px;
+    }
+    .countdown-container {
+      /* transform: scale(1) translateY(-50%); */
+      left: 2%;
+    }
+  }
+  @media screen and (max-width: 1366px) {
+    .index-countdown {
+      gap: 5px;
+    }
+    .countdown-container {
+      /* transform: scale(0.7) translateY(-70%); */
+      left: 0%;
+    }
+  }
+  @media screen and (max-width: 1440px) {
+    .index-countdown {
+      gap: 5px;
+    }
+    .countdown-container {
+        /* transform: scale(0.8) translateY(-60%); */
+        left: -2%;
+    }
+  }
+  .index-time-box {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .index-time-box .singer {
+    color: #F3F3F3;
+    margin-top: -30px;
+    font-size: 40px;
+  }
+  .index-time-num {
+    border-radius: 4px;
+    display: block;
+    /* width: 23px; */
+    line-height: 1;
+    text-align: center;
+  }
+  .q-index-countdown-box em {
+    vertical-align: top;
+    margin: 0 5px;
+    color: #fff;
+  }
+  .text-overflow {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .index-countdown-text {
+    flex: 1;
+    font-weight: 600;
+  }
+  .time-item{
+    width: 80px;
+    height: 80px;
+    background: rgba(45, 45, 45, 0.60);
+    border-radius: 10px;
+    font-size: 20px;
+    font-family: "AWOL-DM-Medium", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 115%; /* 23px */
+    letter-spacing: -0.6px;
+    text-transform: capitalize;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .time-item+.time-item{
+    margin-left: 10px;
+  }
+  .time-item .unit{
+    font-size: 12px;
+    font-family: Poppins;
+    font-weight: 500;
+    color: #111827;
+  }
+
+  @media screen and (max-width: 1024px) {
+    .pc {
+      display: none;
+    }
+    .mobile {
+      display: flex;
+    }
+    .vertical-breather {
+      padding: 0;
+    }
+    .q-index-countdown-box {
+      margin-left: 0;
+    }
+    .time-item{
+      width: 70px;
+      height: 70px;
+      font-size: 20px;
+    }
+    .time-item+.time-item{
+      margin-left: 6px;
+    }
+    .time-item .unit{
+      font-size: 10px;
+    }
+    .countdown-container a {
+      gap: 6px;
+    }
+    .countdown-container {
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .countdpwn_title_header img, .countdown_button {
+      margin-top: 26vh;
+      font-size: 18px;
+      padding: 4px 20px;
+    }
+    .date {
+      margin-top: 0px;
+      font-size: 16px;
+    }
+  }
+</style>
+<div class="countdown-container">
+  <div class="countdown-inner" href="javascript:;">
+      <div class="q-index-countdown-box">
+        <div class="index-countdown" data-end-time="2024/12/03 16:00:00">
+          <div class="index-time-box">
+            <div>
+              <div class="time-item">
+                <span class="index-days index-time-num">00</span>
+              </div>
+              <span class="unit">DAYS</span>
+            </div>
+            <div class="singer">:</div>
+            <div>
+              <div class="time-item">
+                <span class="index-hours index-time-num">00</span>
+              </div>
+              <span class="unit">HRS</span>
+            </div>
+            <div class="singer">:</div>
+            <div>
+              <div class="time-item">
+                <span class="index-minutes index-time-num">00</span>
+              </div>
+              <span class="unit">MIN</span>
+            </div>
+            <div class="singer">:</div>
+            <div>
+              <div class="time-item">
+                <span class="index-seconds index-time-num">00</span>
+              </div>
+              <span class="unit">SEC</span>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+</div>
+
+<script>
+  class Countdown {
+    constructor() {
+      this.container = document.querySelector('.index-countdown');
+      if(!this.container.dataset['endTime']) return;
+      this.endTime = new Date(this.container.dataset['endTime']).getTime();
+      // 结束时间
+      this.timer = null; // 定时器
+      this.distance = null;
+      // 倒计时容器
+      this.daysEle = document.querySelector('.index-days');
+      // 天数元素
+      this.hoursEle = document.querySelector('.index-hours');
+      // 小时元素
+      this.minutesEle = document.querySelector('.index-minutes');
+      // 分钟元素
+      this.secondsEle = document.querySelector('.index-seconds');
+      // 秒数元素
+      this.init();
+      // 初始化
+    }
+
+    // 初始化
+    init() {
+      // 更新倒计时
+      this.updateCountdown();
+      // 每隔1秒更新倒计时
+      this.timer = setInterval(() => {
+        this.updateCountdown();
+      }, 1000);
+    }
+
+    // 更新倒计时
+    updateCountdown() {
+      // 计算剩余时间
+      const date = new Date();
+      const options = { timeZone: 'Asia/Shanghai' };
+      const beijingTime = date.toLocaleString('zh-CN', options);
+      let now = new Date(beijingTime)
+      this.distance = this.endTime - now.getTime();
+      this.start();
+    }
+    start() {
+      this.updateCounter();
+      this.timer = setInterval(() => {
+        this.updateCounter();
+      }, 1000);
+    }
+
+    stop() {
+      clearInterval(this.timer);
+      this.timer = null;
+    }
+
+    updateCounter() {
+      const diff = this.distance;
+      if (diff <= 0) {
+        this.stop();
+        // this.container.style.display = 'none';
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      this.daysEle.innerHTML = days < 10 ? '0' + days : days;
+      // 天数元素
+      this.hoursEle.innerHTML = hours < 10 ? '0' + hours : hours;
+      // 小时元素
+      this.minutesEle.innerHTML = minutes < 10 ? '0' + minutes : minutes;
+      // 分钟元素
+      this.secondsEle.innerHTML = seconds < 10 ? '0' + seconds : seconds;
+      // 秒数元素
+    }
+  }
+  new Countdown();
+</script>

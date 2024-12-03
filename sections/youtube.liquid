@@ -1,0 +1,204 @@
+<style>
+.youtube-part {width: 100%; background: {{ section.settings.background }}; padding: var(--vertical-breather) 0;}
+
+.videos-slick h3 {text-align: center; line-height: 1.2; font-size: 24px; font-weight: 700;margin-bottom: 0;}
+.videos-slick p {
+  text-align: center;
+  margin-bottom: 80px;
+  font-size: 1.4rem;
+  color: #999;
+}
+.videos-slick .title {
+  margin-top: 10px;
+  text-align: center;
+}
+.youtube-part .grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+@media (min-width: 1025px) {
+  .videos-slick h3 {font-size:52px;}
+}
+.videos-slick .img-padding {width: 100%; overflow: hidden; position: relative; display: block; border-radius: 16px;}
+.videos-slick .img-padding img {width: 100%; height: 100%;}
+.videos-slick .img-padding svg {
+  width: 68px; height: auto; margin: auto; transition: all 0.3s;
+  position: absolute; left: 0; top: 0; right: 0; bottom: 0; z-index: 2;
+}
+.videos-slick .img-padding:hover svg {transform: scale(1.2);}
+.videos-slick .videos-slick-list {width: 90%; margin: 0 auto;}
+.videos-slick .videos-slick-list:not(.slick-slider) {display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 20px;}
+@media screen and (max-width: 768px) {
+  .videos-slick .videos-slick-list:not(.slick-slider) {grid-template-columns: 1fr;}
+  .videos-slick .videos-slick-list:not(.slick-slider) .videos-slick-item:not(:first-child) {display: none;}
+}
+
+.videos-slick .arrow {
+  width: 44px; height: 44px; background: #fff; border-radius: 50%; cursor: pointer; box-shadow: 0px 0px 24px rgba(0,0,0,.14);
+  position: absolute; top: 40%; z-index: 2;
+  display: flex; justify-content: center; align-items: center; transform: translateY(-50%);
+}
+
+.videos-slick .arrow-prev {left: -20px;}
+.videos-slick .arrow-next {right: -20px;}
+.videos-slick .arrow svg {
+  width: 10px; height: auto; display: block; opacity: 0.5;
+  pointer-events: none; -webkit-user-select: none; -moz-user-select: none; user-select: none;
+}
+
+@media(min-width: 1025px) {
+  .videos-slick .arrow svg {width:10px;}
+}
+.videos-slick .arrow-next svg {transform: rotateZ(180deg);}
+
+.videos-slick .slick-dots {
+  list-style: none; margin: 0; margin-top: 4vw; padding: 0;
+  display: flex; justify-content: center; align-items: center;
+}
+.videos-slick .slick-dots button {display: none;}
+.videos-slick .slick-dots li {width: 1.4vw; height: 1.4vw; background: #d9d9d9; margin: 0 .6vw; border-radius: 50%;}
+.videos-slick .slick-dots li.slick-active {background: #2b6fd5}
+
+.videos-slick .videos-slick-list .videos-slick-item {margin: 0 1vw;}
+
+@media(min-width: 1025px) {
+  .videos-slick .videos-slick-list .videos-slick-item {margin:0 .8vw;}
+  .videos-slick .videos-slick-list .arrow-prev {left: -4%;}
+  .videos-slick .videos-slick-list .arrow-next {right: -4%;}
+  .videos-slick .videos-slick-list .slick-dots {margin-top: 2vw;}
+  .videos-slick .videos-slick-list .slick-dots li {width: .6vw; height: .6vw; margin: 0 .4vw;}
+}
+
+.youtube-part .popup {
+  width: 100%; height: 100%; background: rgba(0,0,0,.7);
+  display: flex; align-items: center; justify-content: center;
+  position: fixed; top: 0; left: 0; z-index: 9;
+}
+.youtube-part .popup .close {
+  width: 40px; height: 40px; cursor: pointer;
+  position: absolute; top: 20px; right: 20px; z-index: 2;
+}
+.youtube-part .cross-stand-alone {width: 40px; height: 40px; margin: 0; padding: 0; border: 0; background: none; display: inline-block; position: relative;}
+.youtube-part .cross-stand-alone:before, .cross-stand-alone:after {
+  content: ""; height: 4px; background: #fff; border-radius: 4px;
+  position: absolute; top: 18px; left: 0; right: 0;
+}
+.youtube-part .cross-stand-alone:before {transform: rotate(45deg);}
+.youtube-part .cross-stand-alone:after {transform: rotate(-45deg);}
+.youtube-part .cross-stand-alone span {display: block;}
+.youtube-part iframe {width: 90vw; height: 80vh;}
+
+@media screen and (max-width: 750px) {
+  .youtube-part iframe {width: 100vw; height: 100vh;}
+  .youtube-part .grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 10px;
+  }
+  .videos-slick p {
+    margin-bottom: 30px;
+    font-size: 1.2rem;
+  }
+}
+</style>
+<div class="videos-slick container">
+  <h3>{{ section.settings.heading }}</h3>
+  {% if section.settings.subheading %}
+    <p>{{ section.settings.subheading }}</p>
+  {% endif %}
+
+  <div {% if section.settings.grid %}class="grid"{% else %}class="videos-slick-list"{% endif %}>
+
+    {%- for block in section.blocks -%}
+    <div class="videos-slick-item">
+      <button class="img-padding"
+        {%- if block.settings.button_link.type == 'youtube' -%}
+        data-src="https://www.youtube.com/embed/{{ block.settings.button_link.id }}?playsinline=1&autoplay=1&controls=1&loop=1&playlist={{ block.settings.button_link.id }}&enablejsapi=1&rel=0&modestbranding=1&origin={{ 'https://' | append: request.host | url_encode }}"
+        {%- elsif block.settings.button_link.type == 'vimeo' -%}
+        data-src="https://player.vimeo.com/video/{{ block.settings.button_link.id }}?autoplay=1&autopause=1&background=1&loop=1&transparent=0&responsive=1&portrait=0&title=0&byline=0"
+        {%- endif -%}
+      >
+        <img src="{{ block.settings.image | img_url: 'master' }}" loading="lazy" alt="{{ section.settings.heading }}">
+        <svg height="100%" viewBox="0 0 68 48">
+          <path d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"></path><path d="M 45,24 27,14 27,34" fill="#fff"></path>
+        </svg>
+      </button>
+      {% if block.settings.title %}
+        <div class="title">
+          <h4>{{ block.settings.title }}</h4>
+        </div>
+      {% endif %}
+    </div>
+    {%- endfor -%}
+
+  </div>
+</div>
+
+<script>
+$(function () {
+  $('.videos-slick-list').slick({
+    prevArrow: '<span class="arrow arrow-prev"><svg viewBox="0 0 25 44"><path d="M3 22L22 3L9.53125 22L22 41L3 22Z" stroke="#222222" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>',
+    nextArrow: '<span class="arrow arrow-next"><svg viewBox="0 0 25 44"><path d="M3 22L22 3L9.53125 22L22 41L3 22Z" stroke="#222222" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>',
+    slidesToShow: 3, slidesToScroll: 3, dots: true,
+    responsive: [
+      {
+        breakpoint: 1205, settings: {slidesToShow: 2, slidesToScroll: 2}
+      },
+      {
+        breakpoint: 601, settings: {slidesToShow: 1, slidesToScroll: 1}
+      }
+    ]
+  });
+
+  // click popup
+  document.querySelectorAll(".youtube-part .videos-slick-item .img-padding").forEach(item => {
+    item.onclick = function() {
+      let src = item.dataset.src;
+      if (!src) { return }
+      let ytb = `<iframe title="{{ section.settings.heading }}" src="${src}" allow="autoplay; encrypted-media" allowfullscreen="allowfullscreen"></iframe>`;
+      let ele = document.createElement("div");
+      ele.className = "popup";
+      ele.innerHTML = `<div class="close"><span class="cross-stand-alone"></span></div>${ytb}`;
+      document.querySelector(".youtube-part").appendChild(ele);
+
+      $(".popup .close").click(function() {
+        $(".popup").remove()
+      })
+    }
+  })
+});
+</script>
+
+{% schema %}
+{
+  "name": "Youtube", "class": "youtube-part",
+  "settings": [
+    {"type": "text", "id": "heading", "label": "Heading", "default": "What Online Reviews Say?"},
+    {"type": "text", "id": "subheading", "label": "Subheading"},
+    {"type": "color", "id": "background", "label": "Background", "default": "#f5f5f5"},
+    {"type": "checkbox", "id": "grid", "label": "Use grid template"}
+  ],
+  "blocks":[
+    {
+      "type": "item", "name": "review item",
+      "settings": [
+        {
+          "type": "image_picker", "id": "image", "label": "Image",
+          "info": "1:1 recommended"
+        },
+        {
+          "type": "textarea", "id": "title", "label": "Title"
+        },
+        {
+          "type": "video_url", "id": "button_link", "accept": ["vimeo", "youtube"], "label": "youtebe or vimeo Video",
+          "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {"name": "Youtube"}
+  ]
+}
+{% endschema %}

@@ -1,0 +1,542 @@
+<style>
+  ul,li,ol,dl,dd {list-style-type: none;}
+  i, em {font-style: normal;}
+
+  h2, h3 {letter-spacing: 0; text-transform: none;}
+  
+  input, button {border: none; border-radius: 0;}
+  button:focus{outline: 0;}
+  input::-webkit-input-placeholder {color: #ccc; font-size: 24px;}
+  input:-moz-placeholder {color: #ccc; font-size: 12px;}
+  input:-ms-input-placeholder {color: #ccc; font-size: 12px;}
+
+  /* 超过隐藏 */
+  .ellipsis {overflow: hidden; word-break: keep-all; white-space: nowrap; text-overflow: ellipsis;}
+
+  /* webkit 内核 scrollbar 样式 */
+  *::-webkit-scrollbar-track {-webkit-box-shadow: inset 0 0 4px rgba(0,0,0,0.2); background-color: #ccc;}
+  *::-webkit-scrollbar {width: 8px; height: 8px; background-color: rgba(0,0,0,0.5);}
+  *::-webkit-scrollbar-thumb {
+    background-image: -webkit-gradient(linear, left bottom, left top,
+    color-stop(0, rgb(150,150,150)), color-stop(0.5, rgb(150,150,150)), color-stop(1, rgb(150,150,150)));
+  }
+  /* webkit 内核 scrollbar 样式 */
+  .pc_img {display: block;width: 100%;}
+  .mobile_img {display: none;}
+  .product-ltv .layer {transition: all ease-out .5s;filter: brightness(1);position: relative;}
+  .product-ltv .no-swiper .img_desc, .product-ltv .swiper-slide .img_desc {position: absolute;}
+  .product-ltv .layer.start {filter: brightness(1);}
+  .product-ltv .layer .op_text {
+    padding: var(--text-padding);
+    opacity: 0; transform: translateY(100px); transition: all 1s;
+  }
+  .product-ltv .layer.start .op_text {opacity: 1; transform: translateY(0);}
+  .product-ltv .layer p {margin: 0;}
+  input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {-webkit-appearance: none;}
+  .swiper-wrapper {position: relative;}
+  .swiper_1,.swiper_2,.swiper_3,.swiper_4 {position: relative;overflow: hidden;}
+  .swiper-button-next, .swiper-container-rtl .swiper-button-prev {right: 60px;color: #000;}
+  .swiper-button-prev, .swiper-container-rtl .swiper-button-next {left: 60px;color: #000;}
+  .swiper-pagination-clickable .swiper-pagination-bullet {
+      cursor: pointer;
+      width: 15%;
+      background: #000;
+      border: 2px solid #fff;
+      height: 50px;
+      border-radius: 50px;
+      line-height: 50px;
+      color: white;
+  }
+  .swiper-container-horizontal>.swiper-pagination-bullets {z-index: 1; top: 30px;display: flex;color: #fff!important;}
+  .swiper-container-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet {margin: 0 20px;width: 100%;}
+  .swiper-pagination-bullet {opacity: 0.6;transition: all ease 0.3s;}
+  .swiper-pagination-bullet.swiper-pagination-bullet-active{ opacity: 1;transition: all ease 0.3s;}
+  .desc_header h2 {
+    font-size: 42px;
+    line-height: 42px;
+  }
+  @media screen and (max-width: 992px) and (min-width: 768px) { 
+    .desc_header h2 {
+      font-size: 24px!important;
+    }
+    .desc_context {
+      font-size: 18px!important;
+    }
+    .product-sticky-form .product-sticky-form__form{
+      display: none;
+    }
+  }
+  @media screen and (max-width: 740px) {
+    .swiper-pagination {position: unset;display: none;}
+    .swiper-container-horizontal>.swiper-pagination-bullets {display: none;margin: 20px 0;grid-template-columns: repeat(2, 1fr);padding: 0 20px;grid-gap: 12px;}
+    .swiper-container-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet {
+      margin:0px;
+      width: 100%;
+      font-size: 12px;
+    }
+    .swiper-button-next, .swiper-container-rtl .swiper-button-prev {right: 20px;}
+    .swiper-button-prev, .swiper-container-rtl .swiper-button-next {left: 20px;}
+    .img_desc {display: none;}
+    .pc_img {display: none;}
+    .mobile_img {display: block;}
+    .product-ltv .no-swiper .img_desc {position: relative; text-align: center;}
+  }
+  .youtube-part {width: 100%; background: {{ section.settings.background }}; padding: var(--vertical-breather) 0;}
+  .videos-slick {
+    background: url(https://cdn.shopify.com/s/files/1/0787/4651/7790/files/video_background.png?v=1695371294);
+    background-position: center;
+    background-size: cover;
+    padding: 40px;
+  }
+  .videos-slick h3 {text-align: center; line-height: 1.2; font-size: 24px; font-weight: 700;}
+  @media (min-width: 1025px) {
+    .videos-slick h3 {font-size:52px;}
+  }
+  .videos-slick .img-padding {width: 100%; overflow: hidden; position: relative; display: block; border-radius: 16px;height: inherit;}
+  .videos-slick .img-padding img {width: 100%; height: 100%;}
+  .videos-slick .img-padding svg {
+    width: 68px; height: auto; margin: auto; transition: all 0.3s;
+    position: absolute; left: 0; top: 0; right: 0; bottom: 0; z-index: 2;
+  }
+  .videos-slick .img-padding:hover svg {transform: scale(1.2);}
+  .videos-slick .videos-slick-list {width: 90%; margin: 0 auto;}
+  .videos-slick .videos-slick-list:not(.slick-slider) {display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 20px;}
+  @media screen and (max-width: 768px) {
+    .videos-slick .videos-slick-list:not(.slick-slider) {grid-template-columns: 1fr;}
+    .videos-slick .videos-slick-list:not(.slick-slider) .videos-slick-item:not(:first-child) {display: none;}
+  }
+
+  .videos-slick .arrow {
+    width: 44px; height: 44px; background: #fff; border-radius: 50%; cursor: pointer; box-shadow: 0px 0px 24px rgba(0,0,0,.14);
+    position: absolute; top: 40%; z-index: 2;
+    display: flex; justify-content: center; align-items: center; transform: translateY(-50%);
+  }
+
+  .videos-slick .arrow-prev {left: -20px;}
+  .videos-slick .arrow-next {right: -20px;}
+  .videos-slick .arrow svg {
+    width: 10px; height: auto; display: block; opacity: 0.5;
+    pointer-events: none; -webkit-user-select: none; -moz-user-select: none; user-select: none;
+  }
+
+  @media(min-width: 1025px) {
+    .videos-slick .arrow svg {width:10px;}
+  }
+  .videos-slick .arrow-next svg {transform: rotateZ(180deg);}
+
+  .videos-slick .slick-dots {
+    list-style: none; margin: 0; margin-top: 4vw; padding: 0;
+    display: flex; justify-content: center; align-items: center;
+  }
+  .videos-slick .slick-dots button {display: none;}
+  .videos-slick .slick-dots li {width: 1.4vw; height: 1.4vw; background: #d9d9d9; margin: 0 .6vw; border-radius: 50%;}
+  .videos-slick .slick-dots li.slick-active {background: #2b6fd5}
+
+  .videos-slick .videos-slick-list .videos-slick-item {margin: 0 1vw;overflow: hidden;height: 15vw;}
+
+  @media(min-width: 1025px) {
+    .videos-slick .videos-slick-list .videos-slick-item {margin:0 .8vw;overflow: hidden;height: 15vw;}
+    .videos-slick .videos-slick-list .arrow-prev {left: -4%;}
+    .videos-slick .videos-slick-list .arrow-next {right: -4%;}
+    .videos-slick .videos-slick-list .slick-dots {margin-top: 2vw;}
+    .videos-slick .videos-slick-list .slick-dots li {width: .6vw; height: .6vw; margin: 0 .4vw;}
+  }
+
+  .youtube-part .popup {
+    width: 100%; height: 100%; background: rgba(0,0,0,.7);
+    display: flex; align-items: center; justify-content: center;
+    position: fixed; top: 0; left: 0; z-index: 9;
+  }
+  .youtube-part .popup .close {
+    width: 40px; height: 40px; cursor: pointer;
+    position: absolute; top: 20px; right: 20px; z-index: 2;
+  }
+  .youtube-part .cross-stand-alone {width: 40px; height: 40px; margin: 0; padding: 0; border: 0; background: none; display: inline-block; position: relative;}
+  .youtube-part .cross-stand-alone:before, .cross-stand-alone:after {
+    content: ""; height: 4px; background: #fff; border-radius: 4px;
+    position: absolute; top: 18px; left: 0; right: 0;
+  }
+  .youtube-part .cross-stand-alone:before {transform: rotate(45deg);}
+  .youtube-part .cross-stand-alone:after {transform: rotate(-45deg);}
+  .youtube-part .cross-stand-alone span {display: block;}
+  .youtube-part iframe {width: 90vw; height: 80vh;}
+
+  @media screen and (max-width: 740px) {
+    .youtube-part iframe {width: 100vw; height: 100vh;}
+  }
+</style>
+<div id="{{ section.settings.id }}" class="product-ltv">
+    <div class="videos-slick" style="display: none;">
+      <h2 style="color: white;" class="">Reviews by Top Influencers</h2>
+      <div class="videos-slick-list">
+        {%- for block in section.blocks -%}
+        {%- if block.type == 'imageWithVideo' -%}
+        <div class="videos-slick-item">
+          <button class="img-padding"
+            {%- if block.settings.button_link.type == 'youtube' -%}
+            data-src="https://www.youtube.com/embed/{{ block.settings.button_link.id }}?playsinline=1&autoplay=1&controls=1&loop=1&playlist={{ block.settings.button_link.id }}&enablejsapi=1&rel=0&modestbranding=1&origin={{ 'https://' | append: request.host | url_encode }}"
+            {%- elsif block.settings.button_link.type == 'vimeo' -%}
+            data-src="https://player.vimeo.com/video/{{ block.settings.button_link.id }}?autoplay=1&autopause=1&background=1&loop=1&transparent=0&responsive=1&portrait=0&title=0&byline=0"
+            {%- endif -%}
+          >
+            <img src="{{ block.settings.image | img_url: 'master' }}" loading="lazy" alt="{{ section.settings.heading }}" alt="img">
+            <svg height="100%" viewBox="0 0 68 48">
+              <path d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"></path><path d="M 45,24 27,14 27,34" fill="#fff"></path>
+            </svg>
+          </button>
+        </div>
+        {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+
+
+    {%- for block in section.blocks -%}
+      {%- if block.settings.swiperType == 'none' -%}
+      <div class="layer no-swiper">
+        <div class="img_desc op_text" style="left: {{ block.settings.text_position_left }}%;top: {{ block.settings.text_position_top }}%;{%- if block.settings.text_position_left == 50 -%}transform: translate(-50%);{%- endif -%}{%- if block.settings.center_position -%}text-align: center;width: 100%;{%- endif -%}">
+          <div class="desc_header" style="color: {{ block.settings.headColor }};">{{ block.settings.context_little_title }}</div>
+          <div class="desc_header" style="color: {{ block.settings.headColor }}; font-size: {{ block.settings.head_font_size }}px;">{{ block.settings.headTitle }}</div>
+          <div class="desc_context" style="color: {{ block.settings.contextColor }}; font-size: {{ block.settings.context_font_size }}px;">{{ block.settings.context }}</div>
+        </div>
+        <img class="pc_img" src="{{ block.settings.image_pc | img_url: '1920x' }}" alt="{{ block.settings.image_alt }}">
+        <img class="mobile_img" src="{{ block.settings.image_mobile | img_url: '750x' }}" alt="{{ block.settings.image_alt_mobile }}">
+      </div>
+      {%- endif -%}
+    {%- endfor -%}
+
+
+    <div class="swiper_1 layer">
+      <div class="swiper-wrapper">
+      {%- for block in section.blocks -%}
+        {%- if block.settings.swiperType == 'one' -%}
+        <div class="swiper-slide">
+          <div class="img_desc op_text" style="left: {{ block.settings.text_position_left }}%;top: {{ block.settings.text_position_top }}%;">
+            <div class="desc_header" style="color: {{ block.settings.headColor }}; font-size: {{ block.settings.head_font_size }}px;">{{ block.settings.headTitle }}</div>
+            <div class="desc_context" style="color: {{ block.settings.contextColor }}; font-size: {{ block.settings.context_font_size }}px;">{{ block.settings.context }}</div>
+          </div>
+          <img class="pc_img" src="{{ block.settings.image_pc | img_url: '1920x' }}" alt="{{ block.settings.image_alt }}">
+          <img class="mobile_img" src="{{ block.settings.image_mobile | img_url: '750x' }}" alt="{{ block.settings.image_alt_mobile }}">
+        </div>
+        {%- endif -%}
+      {%- endfor -%}
+      </div>
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+
+    <div class="swiper_2 layer">
+      <div class="swiper-wrapper">
+      {%- for block in section.blocks -%}
+        {%- if block.settings.swiperType == 'two' -%}
+        <div class="swiper-slide">
+          <div class="img_desc op_text" style="left: {{ block.settings.text_position_left }}%;top: {{ block.settings.text_position_top }}%;">
+            <div class="desc_header" style="color: {{ block.settings.headColor }}; font-size: {{ block.settings.head_font_size }}px;">{{ block.settings.headTitle }}</div>
+            <div class="desc_context" style="color: {{ block.settings.contextColor }}; font-size: {{ block.settings.context_font_size }}px;">{{ block.settings.context }}</div>
+          </div>
+          <img class="pc_img" src="{{ block.settings.image_pc | img_url: '1920x' }}" alt="{{ block.settings.image_alt }}">
+          <img class="mobile_img" src="{{ block.settings.image_mobile | img_url: '750x' }}" alt="{{ block.settings.image_alt_mobile }}">
+        </div>
+        {%- endif -%}
+      {%- endfor -%}
+      </div>
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+    
+    <div class="swiper_4 layer">
+      <div class="swiper-wrapper">
+      {%- for block in section.blocks -%}
+        {%- if block.settings.swiperType == 'four' -%}
+        <div class="swiper-slide">
+          <div class="img_desc op_text" style="left: {{ block.settings.text_position_left }}%;top: {{ block.settings.text_position_top }}%;">
+            <div class="desc_header" style="color: {{ block.settings.headColor }}; font-size: {{ block.settings.head_font_size }}px;">{{ block.settings.headTitle }}</div>
+            <div class="desc_context" style="color: {{ block.settings.contextColor }}; font-size: {{ block.settings.context_font_size }}px;">{{ block.settings.context }}</div>
+          </div>
+          <img class="pc_img" src="{{ block.settings.image_pc | img_url: '1920x' }}" alt="{{ block.settings.image_alt }}">
+          <img class="mobile_img" src="{{ block.settings.image_mobile | img_url: '750x' }}" alt="{{ block.settings.image_alt_mobile }}">
+        </div>
+        {%- endif -%}
+      {%- endfor -%}
+      </div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+
+    <div class="layer no-swiper">
+      <img class="pc_img" src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/20231026144453.png?v=1698303765" alt="img">
+      <img class="mobile_img" src="https://cdn.shopify.com/s/files/1/0554/7445/4576/files/20231026144453.png?v=1698303765" alt="img">
+    </div>
+    <div class="layer no-swiper">
+      <iframe style="width: 100%;" width="100%" height="720" src="https://www.youtube.com/embed/IWmxwArM_7w" title="How to choose right screen for your projector --- AWOL Vision" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+</div>
+<script>
+  $(function() {
+    $('.videos-slick-list').slick({
+      prevArrow: '<span class="arrow arrow-prev"><svg viewBox="0 0 25 44"><path d="M3 22L22 3L9.53125 22L22 41L3 22Z" stroke="#222222" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>',
+      nextArrow: '<span class="arrow arrow-next"><svg viewBox="0 0 25 44"><path d="M3 22L22 3L9.53125 22L22 41L3 22Z" stroke="#222222" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>',
+      slidesToShow: 3, slidesToScroll: 3, dots: true,
+      responsive: [
+        {
+          breakpoint: 1205, settings: {slidesToShow: 2, slidesToScroll: 2}
+        },
+        {
+          breakpoint: 601, settings: {slidesToShow: 1, slidesToScroll: 1}
+        }
+      ]
+    });
+
+    // click popup
+    
+    document.querySelectorAll(".youtube-part .videos-slick-item").forEach(item => {
+      item.onclick = function() {
+        let src = item.querySelector(".img-padding").dataset.src;
+        if (!src) { return }
+        let ytb = `<iframe title="Reviews by Top Influencers" src="${src}" allow="autoplay; encrypted-media" allowfullscreen="allowfullscreen"></iframe>`;
+        let ele = document.createElement("div");
+        ele.className = "popup";
+        ele.innerHTML = `<div class="close"><span class="cross-stand-alone"></span></div>${ytb}`;
+        document.querySelector(".youtube-part").appendChild(ele);
+
+        $(".popup .close").click(function() {
+          $(".popup").remove()
+        })
+      }
+    })
+    window.addEventListener("scroll", function() {
+      let top = window.pageYOffset, layers = document.querySelectorAll(".layer"), main = document.querySelector("#main");
+      
+      // response for content
+      layers.forEach(item => {
+        if (top + window.innerHeight / 2 >= item.offsetTop) {
+          item.className.indexOf("start") < 0 && item.classList.add("start")
+        } else {
+          item.classList.remove("start")
+        }
+      })
+    })
+    var mySwiper = new Swiper('.swiper_1', {
+      autoplay: true,//可选选项，自动滑动
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      pagination: {
+      el: '.swiper-pagination',
+      effect: 'cards',
+      clickable: true,
+      renderBullet: function (index, className) {
+        return '<span class="' + className + '">' + (index + 1) + '</span>';
+      },
+      renderBullet: function (index, className) {
+          switch(index){
+            case 0:text='Active 3D Display';break;
+            case 1:text='Real-time Gaming Engine';break;
+            case 2:text='24 FPS for Cinema Purists';break;
+            case 3:text='Cinema Quality Sound';break;
+          }
+          return '<span class="' + className + '">' + text + '</span>';
+        },
+      },
+    });
+    var mySwiper = new Swiper('.swiper_2', {
+      autoplay: true,//可选选项，自动滑动
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+      renderBullet: function (index, className) {
+        return '<span class="' + className + '">' + (index + 1) + '</span>';
+      },
+      renderBullet: function (index, className) {
+          switch(index){
+            case 0:text='Enhanced Black Level';break;
+            case 1:text='Super Energy Saving';break;
+            case 2:text='Focus & 8-Point Keystone';break;
+            case 3:text='Color Management System';break;
+          }
+          return '<span class="' + className + '">' + text + '</span>';
+        },
+      },
+    });
+    var mySwiper = new Swiper('.swiper_4', {
+      autoplay: true,//可选选项，自动滑动
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      }
+    });
+  })
+</script>
+{% schema %}
+{
+  "name": "Ltv 2500Pro describe", "class": "youtube-part",
+  "settings": [
+    {
+      "type": "text",
+      "id": "id",
+      "label": "Section id"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "imageWithTextr",
+      "name": "Image with text",
+      "settings":[
+        {
+          "type": "checkbox",
+          "id": "isNeedSwiper",
+          "label": "Swiper",
+          "default": false    
+        },
+        {
+          "type": "select",
+          "id": "swiperType",
+          "label": "Swiper Type",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "one",
+              "label": "One"
+            },
+            {
+              "value": "two",
+              "label": "Two"
+            },
+            {
+              "value": "three",
+              "label": "Three"
+            },
+            {
+              "value": "four",
+              "label": "Four"
+            }
+          ],
+          "info": "If you want your image can swiper choose one"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_pc",
+          "label": "Image For Pc"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "Image For Mobile"
+        },
+        {
+          "type": "textarea",
+          "id": "image_alt",
+          "label": "Image Alt"
+        },
+        {
+          "type": "textarea",
+          "id": "image_alt_mobile",
+          "label": "Image Alt for mobile"
+        },
+        {
+          "type": "textarea",
+          "id": "headTitle",
+          "label": "Head title"
+        },
+        {
+          "type": "color",
+          "id": "headColor",
+          "label": "Head Title Color"
+        },
+        {
+          "type": "range",
+          "id": "head_font_size",
+          "label": "Head Title Font Szie",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "px",
+          "default": 36
+        },
+        {
+          "type": "text",
+          "id": "context_little_title",
+          "label": "Context header"
+        },
+        {
+          "type": "richtext",
+          "id": "context",
+          "label": "Context"
+        },
+        {
+          "type": "color",
+          "id": "contextColor",
+          "label": "Context Color"
+        },
+        {
+          "type": "range",
+          "id": "context_font_size",
+          "label": "Context Title Font Szie",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "px",
+          "default": 22
+        },
+        {
+          "type": "header",
+          "content": "Text Position"
+        },
+        {
+          "type": "checkbox",
+          "id": "center_position",
+          "label": "Is need text center",
+          "default": false
+        },
+        {
+          "type": "range",
+          "id": "text_position_left",
+          "label": "Left",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "default": 10
+        },
+        {
+          "type": "range",
+          "id": "text_position_top",
+          "label": "Top",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "default": 10
+        }
+      ]
+    },
+    {
+      "type": "imageWithVideo",
+      "name": "Image with video",
+      "settings":[
+        {
+          "type": "image_picker", "id": "image", "label": "Image",
+          "info": "1:1 recommended"
+        },
+        {
+          "type": "video_url", "id": "button_link", "accept": ["vimeo", "youtube"], "label": "youtebe or vimeo Video",
+          "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {"name": "product ltv 2500Pro describe"}
+  ]
+}
+{% endschema %}
